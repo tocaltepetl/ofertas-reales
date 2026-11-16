@@ -1,0 +1,45 @@
+[Texto compuesto desde el DOM en Chrome. La página "Promociones bancarias" de Walmart (beneficios-walmart) presenta las promociones como banners en imagen; se registran el texto visible relevante y el texto alternativo (alt) de los banners. Se omitieron los listados de productos.]
+Título: beneficios walmart | Walmart tienda en línea
+Aviso: A partir del 27 de noviembre, nuestros Términos y Condiciones cambiarán.
+Menú: Beneficios | Ahorra hasta 65% | Promociones bancarias | Bonificaciones | Liquidaciones | Envío en horas | ...
+Texto visible:
+WM Invex Hasta 40% de bonificación
+Compras a 12 ó 18 Meses Sin Intereses. Productos Participantes.
+BBVA 20% Bonificación pagando a 12 ó 18 Meses Sin Intereses
+En la sección "Pago" elige el plazo MSI
+Agrega el código promocional de tu banco
+Consulta Términos y Condiciones -> https://www.walmart.com.mx/ayuda/channel/legales/948e0ef218ec4a68958891c803ad6f97
+
+Banners (alt):
+el Fin Irresistible Hasta 65% + Hasta 24 MSI* + Hasta 40% de Ahorro de Bonificación bancaria + Ahorro Adicional + Envío en Horas y sin costo *Walmart+. *Aplica en productos participantes. Consulta Términos y Condiciones en: wwwwalmart.com.mx/ayuda
+¡Sólo por hoy! WM INVEX Hasta 40% de bonificación en estado de cuenta Vigencia: 16 de noviembre de 2026.
+BBVA 12 ó 18 MSI + 20% de bonificación Vigencia: 14 al 17 noviembre 2026
+Banamex Hasta 30% de bonificación a estado de cuenta. Vigencia: del 13 al 17 de noviembre de 2026.
+BBVA 10% de bonificación a 13, 15, 20 y 24 MSI Vigencia: Del 14 al 17 de noviembre de 2026
+BBVA Compra hoy y paga en marzo de 2027 a 3 Meses Sin Intereses. Vigencia: del 13 al 17 de noviembre de 2026.
+Santander Hasta 10% de cashback a 6 o más MSI Vigencia: 13, 15, 16 y 17 de noviembre de 2026.
+American Express Gasta $12,000 y obtén $2,000 de bonificación Vigencia: del 13 al 17 de noviembre de 2026.
+HSBC Hasta 30% de devolución a compras a partir de 6 Meses sin intereses. Vigencia: 13 al 17 de noviembre
+Scotiabank Hasta 25% de cashback en tus compras Vigencia: del 13 al 17 de noviembre de 2026.
+Afirme 10% de bonificación a 6 o más MSI Vigencia: del 13 al 17 de noviembre de 2026.
+DiDi Card Hasta 20% de cashback según tu monto acumulado Vigencia: del 13 al 17 de noviembre de 2026.
+PayPal + Banorte 15% de bonificación en compras a Meses Sin Intereses Vigencia: 13 al 17 de noviembre
+BanCoppel Hasta 25% de bonificación Vigencia: del 13 al 17 de noviembre de 2026.
+MIfiel Hasta $6,000 de bonificación desde 12MSI. Vigencia: 5 al 18 de noviembre. 1. Añade al carrito al menos $10,000 MXN en productos participantes. 2. Selecciona tus productos a 12 o 18 MSI. 3. Realiza tu pago. La bonificación se hará en tu EDC
+Stori Hasta 10% de cashback. Vigencia: 5 al 18 de noviembre. 1: Añade al carrito al menos $2,000. 2. Realiza tu pago a una sola exhibición con tu Tarjeta de crédito Stori. 3. La bonificación y el tope máximo dependerá de tu nivel.
+Hasta 18 Meses sin Intereses Válido del 5 al 18 de noviembre de 2026. Compra mínima $1,500. Aplica en Productos Participantes. Consulta TyC en www.walmart.com.mx/ayuda
+Walmart INVEX BBVA Hasta 24 Meses sin Intereses Válido del 5 al 18 de noviembre de 2026. Compra mínima $1,500. Aplica en Productos Participantes. Consulta TyC en www.walmart.com.mx/ayuda
+Juguetilandia Hasta 12 MSI Bancos participantes. Artículos participantes de Juguetería, Videojuegos, Accesorios de Bebés, Montables y Bicicletas.Vigencia del 1 de septiembre 2026 al 6 de enero 2027
+Juguetilandia 13 MSI con Tarjetas de crédito WM INVEX y BBVA. Artículos participantes de Juguetería, Videojuegos, Accesorios de Bebés, Montables y Bicicletas. Vigencia del 1 de septiembre 2026 al 6 de enero 2027
+
+Enlaces por banco (listados de productos participantes):
+https://www.walmart.com.mx/browse/especiales/bancos/promociones-bancarias-credito/360013_550002_5885254
+https://www.walmart.com.mx/browse/especiales/bancos/santander/360013_550002_480080
+https://www.walmart.com.mx/browse/especiales/bancos/american-express/360013_550002_390022
+https://www.walmart.com.mx/browse/especiales/bancos/hsbc/360013_550002_550003
+https://www.walmart.com.mx/browse/especiales/bancos/scotiabank/360013_550002_920002
+https://www.walmart.com.mx/browse/especiales/bancos/afirme/360013_550002_1400051
+https://www.walmart.com.mx/browse/especiales/bancos/didicard/360013_550002_9257797
+https://www.walmart.com.mx/browse/especiales/bancos/banorte/360013_550002_1130034
+https://www.walmart.com.mx/browse/especiales/bancos/bancoppel/360013_550002_7408338
+Bonificaciones: https://www.walmart.com.mx/content/especiales/bonificaciones/360013_8632280

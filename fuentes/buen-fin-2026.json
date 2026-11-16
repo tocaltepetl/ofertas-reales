@@ -9,8 +9,7 @@
    "id": "ml-mercado-pago",
    "tipo": "comercio-banco",
    "comercio": "mercadolibre",
-   "url": "https://www.mercadolibre.com.mx/ofertas/mercado-pago",
-   "nota": "slug desconocido: /ofertas/mercado-pago redirige a la portada"
+   "url": "https://www.mercadolibre.com.mx/ofertas/tarjeta-mercado-pago-visa"
   },
   {
    "id": "ml-banamex",
@@ -181,7 +180,9 @@
    "id": "banco-invex-tyc",
    "tipo": "banco",
    "emisor": "invex",
-   "url": "https://www.invextarjetas.com.mx/invex/Documentos/Landings/TerminosyCondicionesBuenFin2026.pdf"
+   "url": "https://www.invextarjetas.com.mx/invex/Documentos/Landings/TerminosyCondicionesBuenFin2026.pdf",
+   "render": true,
+   "nota": "curl/urllib no responden desde esta máquina; capturar con Chrome"
   },
   {
    "id": "banco-nu-tyc",
@@ -272,6 +273,58 @@
    "id": "pista-elceo-bancos",
    "tipo": "pista",
    "url": "https://elceo.com/mercados/meses-sin-intereses-bonificaciones-cashback-bancos-buen-fin-2026/"
+  },
+  {
+   "id": "comercio-amazon",
+   "tipo": "comercio",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=120273989011",
+   "render": true,
+   "nota": "bancos solo como logos; los recuadros 'Conoce más' traen las condiciones"
+  },
+  {
+   "id": "comercio-palacio",
+   "tipo": "comercio",
+   "comercio": "palacio-de-hierro",
+   "url": "https://www.elpalaciodehierro.com/promociones-bancarias.html",
+   "render": true
+  },
+  {
+   "id": "comercio-homedepot",
+   "tipo": "comercio",
+   "comercio": "homedepot",
+   "url": "https://www.homedepot.com.mx/promociones-bancarias",
+   "render": true
+  },
+  {
+   "id": "comercio-homedepot-tyc",
+   "tipo": "comercio",
+   "comercio": "homedepot",
+   "url": "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea",
+   "render": true
+  },
+  {
+   "id": "comercio-walmart",
+   "tipo": "comercio",
+   "comercio": "walmart",
+   "url": "https://www.walmart.com.mx/content/especiales/beneficios-walmart/360013_2480003",
+   "render": true,
+   "nota": "promos en banners: usar texto alternativo"
+  },
+  {
+   "id": "comercio-walmart-tyc",
+   "tipo": "comercio",
+   "comercio": "walmart",
+   "url": "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56",
+   "render": true
+  },
+  {
+   "id": "comercio-coppel",
+   "tipo": "comercio",
+   "comercio": "coppel",
+   "url": "https://www.coppel.com/inf/promociones-bancarias",
+   "render": true,
+   "nota": "curl da 403; T&C en PDFs de Contentstack"
   }
  ],
  "directorio": {

@@ -1,0 +1,408 @@
+# Texto del DOM (incluye modales ocultos "Conoce más" / T&C) de https://www.amazon.com.mx/b?node=120273989011
+# Extraído vía JS: textContent sin script/style, alt de logos insertado como [X logo]. Capturado 2026-11-16 15:11 -06:00.
+# Nota: los modales no llevan nombre del banco salvo algunos; aparecen en orden aproximadamente inverso a las tarjetas.
+# Nota: la tarjeta con código BNRTBF26 (Banorte) tiene alt "Access logo" en el sitio (error de alt).
+Aprovecha y ahorra
+Oferta del día:
+[Banamex logo]
+10% de descuento
+Código: BNMXBF26
+Hasta 30% de bonificación
+Hasta 24 MSI
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[BBVA logo]
+10% de descuento
+Código: BBVABF26
+Hasta 10% de bonificación
+Hasta 15 MSI
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[Santander logo]
+15% de descuento
+AGOTADO
+Hasta 10% de bonificación
+Hasta 12 MSI
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[HSBC logo]
+10% de descuento
+Código: HSBCBF26
+Hasta 30% de bonificación
+Hasta 12 MSI
+Conoce más
+[Access logo]
+*Para nuevos usuarios Amazon Access
+20% de descuento
+Código: ACCESSBF26
+Crea tu cuenta
+Conoce más
+[Access logo]
+10% de descuento
+Código: BNRTBF26
+10% de bonificación
+Conoce más
+*Promoción exclusiva al pagar en una sola exhibición.
+[Nu logo]
+Puedes obtener hasta $100,000 de bonificación en pases morados
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[Amex logo]
+$1,500 de bonificación
+Hasta 12 MSI
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[Invex logo]
+10% de descuento
+Código: INVEXBF26
+10% de bonificación
+Hasta 12 MSI
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[Bancopel logo]
+10% de descuento con tarjeta de débito
+Código: BCOPPBFD
+10% de descuento con tarjeta de crédito
+Código: BCOPPBFC
+20% de bonificación
+Hasta 12 MSI
+Conoce más
+[DiDi Card logo]
+20% de bonificación
+Hasta 12 MSI
+Conoce más
+[Scotiabank logo]
+15% de descuento
+Código: SCOTBF26
+Hasta 12 MSI
+Conoce más
+[Afirme logo]
+10% de descuento
+Código: AFIRMEBF26
+Hasta 12 MSI
+Conoce más
+[Mifel logo]
+15% de descuento
+Código: MIFELBF26
+Hasta 12 MSI
+Conoce más
+[Rappi Card logo]
+10% de bonificación
+Hasta 12 MSI
+Conoce más
+[Openbank logo]
+10% de descuento
+Código: OPBF26
+15% de bonificación
+Conoce más
+*Promoción exclusiva al pagar en una sola exhibición.
+[Klar logo]
+10% de bonificación
+Hasta 12 MSI
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[Hey, banco logo]
+15% de bonificación
+Hasta 12 MSI
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[Falabella logo]
+15% de bonificación
+Hasta 12 MSI
+Conoce más
+*Promoción exclusiva al pagar a meses sin intereses.
+[Revolut logo]
+Hasta 42,000 RevPoints
+Conoce más
+[Kueski logo]
+$150 pesos de descuento
+Código: KUESKIBF150
+2 quincenas sin intereses
+Crea tu cuenta
+Conoce más
+Ingresa el código directamente en el checkout pagando con Kueski Pay.
+[Kueski logo]
+30% de descuento
+Código: KUESKI30
+2 quincenas sin intereses
+Crea tu cuenta
+Conoce más
+Ingresa el código directamente en el checkout pagando con Kueski Pay. Aplica solo para nuevos usuarios
+Hasta 24 MSI con Banamex
+Compra aquí
+Compra en efectivo y obtén $100 en saldo Amazon
+Compra aquí
+✕
+Ver Términos y Condiciones
+Descuento
+¿Qué obtienes?
+10% de descuento
+Código: BNRTBF26
+Compra mínima
+$3,000
+El descuento máximo acumulado por cliente de Amazon México será de $1,000.00 (mil pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+Bonificación
+¿Qué obtienes?
+10% de bonificación
+Compra mínima
+$3,000
+La bonificación máxima acumulada por cliente de Amazon México será de $5,000.00 (cinco mil pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+Hasta 42,000 RevPoints
+Compras acumuladas mínimas
+$50,000.00 MXN para 7,000 RevPoints
+$100,000.00 MXN para 14,000 RevPoints
+$150,000.00 MXN para 28,000 RevPoints
+$200,000.00 MXN para 42,000 RevPoints
+El Bono de Bienvenida máximo por cliente será de 42,000 (cuarenta y dos mil) RevPoints con el Plan Ultra, según tu Suscripción activa al cumplirse 90 días naturales desde tu registro en la promoción. Se otorga una sola vez durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+*Promoción exclusiva al pagar a meses sin intereses.
+¿Qué obtienes?
+15% de bonificación +
+12 meses sin intereses
+Compra mínima
+$2,000
+La bonificación máxima acumulada por cliente de Amazon México será de $1,000.00 (mil pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+15% de bonificación +
+12 meses sin intereses con tarjetas de crédito Hey, banco
+O
+5% de bonificación con tu tarjeta débito Hey, banco
+Compra mínima
+$4,500 en compras con MSI
+$2,500 en compras con tu tarjeta de débito Hey, banco
+La bonificación máxima acumulada por cliente de Amazon México será de $1,000.00 (mil pesos 00/100 MXN) pesos en compras a MSI, $200 (doscientos pesos 00/100 MXN) en compras a débito, durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+10% de bonificación +
+12 meses sin intereses
+Compra mínima
+$4,000
+La bonificación máxima acumulada por cliente de Amazon México será de $800.00 (ochocientos pesos 00/100 MXN) durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+Descuento
+¿Qué obtienes?
+10% de descuento
+Código: OPBF26
+Compra mínima
+$4,500
+El descuento máximo acumulado por cliente de Amazon México será de $500.00 (quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción o hasta acabar existencias.
+Bonificación
+¿Qué obtienes?
+15% de bonificación
+Compra mínima
+$2,000
+El descuento máximo acumulado por cliente de Amazon México será de $500.00 (quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción o hasta acabar existencias.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+10% de bonificación +
+12 meses sin intereses
+Compra mínima
+$750
+La bonificación máxima acumulada por cliente de Amazon México será de $1,000.00 (mil pesos 00/100 MXN) durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+15% de descuento +
+12 meses sin intereses
+Código: MIFELBF26
+Compra mínima
+$4,000
+El descuento máximo acumulado por cliente de Amazon México será de $1,500.00 (mil quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+15% de descuento +
+12 meses sin intereses
+Código: SCOTBF26
+Compra mínima
+$4,500
+El descuento máximo acumulado por cliente de Amazon México será de $1,000.00 (mil pesos 00/100 MXN) durante toda la vigencia de la promoción
+✕
+Ver Términos y Condiciones
+*Promoción exclusiva al pagar a meses sin intereses.
+¿Qué obtienes?
+Hasta $100,000 de bonificación en pases morados
+Compra mínima
+$3,000
+Cada cliente podrá obtener un máximo de 5 (cinco) Pases Morados durante toda la vigencia de la promoción. Las bonificaciones van desde $300.00 (trescientos pesos 00/100 MXN) hasta una única bonificación de $100,000.00 (cien mil pesos 00/100 MXN).
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+10% o 20% de bonificación +
+12 meses sin intereses
+Compra mínima
+$500 para el 10%
+$5,000 para el 20%
+El monto máximo de cashback por cliente es de $2,000.00 (dos mil pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+Descuento
+¿Qué obtienes?
+10% de descuento
+Código: BCOPPBFD
+Compra mínima
+$1,000
+El descuento máximo acumulado por cliente de Amazon México será de $300.00 (trescientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción, con tu tarjeta de débito BanCoppel.
+¿Qué obtienes?
+10% de descuento +
+12 meses sin intereses
+Código: BCOPPBFC
+Compra mínima
+$4,500
+El descuento máximo acumulado por cliente de Amazon México será de $500.00 (quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción, con tu tarjeta de crédito BanCoppel
+Bonificación
+¿Qué obtienes?
+20% de bonificación +
+12 meses sin intereses
+Compra mínima
+$2,000 en compras con Débito
+$3,000 en compras con Crédito
+El monto máximo de cashback por cliente es de $1,500.00 M.N. (mil quinientos pesos 00/100 MXN) en compras a débito, $2,200.00 M.N. (dos mil doscientos pesos 00/100 MXN), I.V.A. incluido, en compras a crédito.
+✕
+Ver Términos y Condiciones
+Descuento
+¿Qué obtienes?
+10% de descuento
+Código: INVEXBF26
+Compra mínima
+$4,500
+El descuento máximo acumulado por cliente de Amazon México será de $500.00 (quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+Bonificación
+*Promoción exclusiva al pagar a meses sin intereses.
+¿Qué obtienes?
+Hasta 10% de bonificación +
+12 meses sin intereses
+Compra mínima acumulada
+El monto mínimo será notificado individualmente por Banco INVEX vía correo electrónico
+La bonificación máxima acumulada por cliente de Amazon México será de $2,500.00 (dos mil quinientos pesos 00/100 MXN) a $5,000.00 (cinco mil pesos 00/100 MXN), según el porcentaje de bonificación aplicable, durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+*Promoción exclusiva al pagar a meses sin intereses.
+¿Qué obtienes?
+$1,500 de bonificación +
+12 meses sin intereses
+Compra mínima acumulada
+$10,000
+La bonificación máxima acumulada por cliente de Amazon México será de $1,500.00 (mil quinientos pesos 00/100 MXN) durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+10% de descuento +
+12 meses sin intereses
+Código: AFIRMEBF26
+Compra mínima
+$4,500
+El descuento máximo acumulado por cliente de Amazon México será de $1,000.00 (mil pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+✕
+Ver Términos y Condiciones
+Descuento
+¿Qué obtienes?
+10% de descuento +
+15 meses sin intereses
+Código: BBVABF26
+Compra mínima
+$4,500
+El descuento máximo acumulado por cliente de Amazon México será de $500.00 (quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+Bonificación
+¿Qué obtienes?
+10% de bonificación +
+15 meses sin intereses
+Compra mínima
+$5,000.00
+El monto máximo de cashback por cliente es de $2,500.00 MXN por día y por cliente del 14 al 17 de noviembre de 2026
+Paga hasta marzo de 2027
+¿Qué obtienes?
+Paga en una sola exhibición y difiere a 3 meses sin intereses
+Compra mínima
+$3,500.00
+Compra del 13 al 17 de noviembre de 2026 con tu tarjeta de crédito BBVA, en una sola transacción, y empieza a pagar hasta marzo de 2027. Es necesario inscribir tu compra en
+bbva.mx/buenfin.
+✕
+¿Qué obtienes?
+20% de descuento en tu primera compra con Amazon Access
+Código: ACCESSBF26
+Compra mínima
+$900
+Ver Términos y Condiciones
+El descuento máximo acumulado por cliente de Amazon México será de $500.00 (quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción o hasta acabar existencias.
+Crea tu cuenta
+✕
+[Logo de Santander]
+Ver Términos y Condiciones
+Descuento
+*Promoción exclusiva al pagar a meses sin intereses.
+¿Qué obtienes?
+15% de descuento
+AGOTADO
+Compra mínima
+$3,500.00
+El descuento máximo acumulado por cliente de Amazon México será de $600.00 (seiscientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+Bonificación
+*Promoción exclusiva al pagar a meses sin intereses.
+¿Qué obtienes?
+Hasta 10% de bonificación +
+12 meses sin intereses
+Compra mínima
+$10,000.00
+El monto máximo de cashback por cliente es de $7,000.00 M.N. (siete mil pesos 00/100 MXN), I.V.A. incluido.
+✕
+[Banamex Logo]
+Ver Términos y Condiciones
+Descuento
+*Promoción exclusiva al pagar a meses sin intereses.
+¿Qué obtienes?
+10% de descuento +
+24 meses sin intereses
+Código: BNMXBF26
+Compra mínima
+$3,500.00
+El descuento máximo acumulado por cliente de Amazon México será de $500.00 (quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+Bonificación
+*Promoción exclusiva al pagar a meses sin intereses.
+¿Qué obtienes?
+30% de bonificación +
+24 meses sin intereses
+Compra mínima
+$10,000.00
+El monto máximo de cashback por cliente es de $10,000.00 M.N. (diez mil pesos 00/100 MXN), I.V.A. incluido.
+✕
+Ver Términos y Condiciones
+Descuento
+¿Qué obtienes?
+10% de descuento
+Código: HSBCBF26
+Compra mínima
+$3,500.00
+El descuento máximo acumulado por cliente de Amazon México será de $750.00 (setecientos cincuenta pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción.
+Bonificación
+¿Qué obtienes?
+30% de bonificación +
+12 meses sin intereses
+Compra mínima
+$15,000.00
+El monto máximo de cashback por cliente es de $7,000.00 M.N. (siete mil pesos 00/100 MXN), I.V.A. incluido.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+30% de descuento
+Código: KUESKI30
+Compra mínima
+$100
+El descuento máximo acumulado por cliente de Amazon México será de $350 (trecientos cincuenta pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción o hasta acabar existencias. Limitado a 2,000 cupones.
+✕
+Ver Términos y Condiciones
+¿Qué obtienes?
+$150 pesos de descuento
+Código: KUESKIBF150
+Compra mínima
+$1,500 pesos
+El descuento solo lo podrás utilizar una sola vez.

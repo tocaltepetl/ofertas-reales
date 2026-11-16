@@ -1,0 +1,30 @@
+[Texto compuesto desde el DOM en Chrome: la página usa pestañas con banners en imagen; se registran el texto visible, el texto alternativo (alt) de cada banner y el enlace de términos y condiciones de cada pestaña.]
+Título: Promociones Bancarias Buen Fin 2026 | Coppel.com
+Crédito Coppel y Promociones Bancarias
+Pestañas: 0% Pago inicial | BanCoppel 3 y 6 Meses Sin Intereses | 3 Meses Sin Intereses | Hasta 25% de Cashback | 10% en Dinero electrónico
+
+[Pestaña: Crédito Coppel - 0% Pago inicial]
+Banner (alt): 0% de pago inicial con tu Crédito Coppel. Aplica en ropa, zapatos, refrigeradores y lavadoras. Válido del 13 al 17 de noviembre 2026.
+Texto banner: 0% de pago inicial con tu Crédito Coppel. En Ropa, Zapatos y Accesorios, Refrigeradores y Lavadoras.
+Términos y condiciones: https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/bltb20c2fb9dfc10005/6af78ab377abc4cbf3d39c5a/0_Pago_inicial_TyC_BuenFin2026.pdf
+Listado de productos de juguetería que no participan: https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/bltcde47a9891386ca3/6af78ab3766ec7968e527a45/Listado_de_productos_de_Jugueter%C3%ADa_que_no_participa_en_la_promoci%C3%B3n..pdf
+
+[Pestaña: BanCoppel - 3 y 6 Meses Sin Intereses]
+Banner (alt): Promoción de Buen Fin 2026: Obtén 3 y 6 meses sin intereses en compras en Coppel y Coppel.com pagando con tus Tarjetas de Crédito BanCoppel
+Texto banner: BanCoppel te lo da todo. 3y6 MSI. Con tus Tarjetas de Crédito BanCoppel
+Términos y condiciones: https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/blt36c7aa2c1b2b3b73/6af368cbf321bef7e38f9f8d/BanCoppel_20_5_MSI_TyC_BuenFin2026.pdf
+
+[Pestaña: BBVA - 3 Meses Sin Intereses]
+Banner (alt): Promoción Buen Fin BBVA: Compra hoy el 13 de noviembre y comienza a pagar hasta marzo 2027 a 3 meses sin intereses con tarjetas de crédito BBVA
+Términos y condiciones: https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/blt77e03d647829166f/6af368fc6166e432a41974c3/BBVA_TyC_BuenFin2026.pdf
+
+[Pestaña: Scotiabank - Hasta 25% de Cashback]
+Banner (alt): Promoción Buen Fin 2026 Scotiabank: Obtén hasta 25% de cashback con tus Tarjetas de Crédito Scotiabank participantes inscribiéndote en ScotiaMóvil hasta el 17 de noviembre.
+Términos y condiciones: https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/blta413c4284e95ae83/6af4b0f7535255adacf4e6de/Scotiabank_TyC_BuenFin2026.docx.pdf
+
+[Pestaña: Coppel Max - 10% en Dinero electrónico]
+Banner (alt): Banner Coppel Max.
+Términos y condiciones: https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/bltcc7d9bb31ce86f85/6af368fb7c35acfb612f9b01/10_Dinero_Electronica_TyC_BuenFin2026.docx.pdf
+
+[Pie de página relevante]
+Todos los precios en Coppel.com son en pesos mexicanos e incluyen impuestos. Los precios y promociones de nuestro sitio web son exclusivos de Coppel.com. Los abonos quincenales, el plazo o el pago inicial pueden variar según el margen de crédito y el historial de pago de cada cliente. Los quincenales contemplan: 24, 36, 48, 60 o 72 quincenas para muebles y 24 quincenas para ropa. Los productos de Marketplace que lleves con tu crédito Coppel, cuentan con un plazo de 24 quincenas y son financiados con Coppel Pay.
