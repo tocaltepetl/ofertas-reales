@@ -1,0 +1,314 @@
+{
+ "evento": "buen-fin-2026",
+ "vigencia": [
+  "2026-11-13",
+  "2026-11-17"
+ ],
+ "fuentes": [
+  {
+   "id": "ml-mercado-pago",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/mercado-pago",
+   "nota": "slug desconocido: /ofertas/mercado-pago redirige a la portada"
+  },
+  {
+   "id": "ml-banamex",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/banamex"
+  },
+  {
+   "id": "ml-santander",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/santander"
+  },
+  {
+   "id": "ml-bbva",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/bbva"
+  },
+  {
+   "id": "ml-hsbc",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/hsbc"
+  },
+  {
+   "id": "ml-banorte",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/banorte"
+  },
+  {
+   "id": "ml-amex",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/amex"
+  },
+  {
+   "id": "ml-oxxo",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/oxxo"
+  },
+  {
+   "id": "ml-scotiabank",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/scotiabank"
+  },
+  {
+   "id": "ml-afirme",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/afirme"
+  },
+  {
+   "id": "ml-invex",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/invex"
+  },
+  {
+   "id": "ml-openbank",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/openbank"
+  },
+  {
+   "id": "ml-mifel",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/mifel"
+  },
+  {
+   "id": "ml-falabella",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/falabella"
+  },
+  {
+   "id": "ml-bancoppel",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/bancoppel"
+  },
+  {
+   "id": "ml-nu",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/nubank"
+  },
+  {
+   "id": "ml-didi",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/didi"
+  },
+  {
+   "id": "ml-klar",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/klar"
+  },
+  {
+   "id": "banco-bbva",
+   "tipo": "banco",
+   "emisor": "bbva",
+   "url": "https://www.bbva.mx/buen-fin.html",
+   "render": true
+  },
+  {
+   "id": "banco-banamex",
+   "tipo": "banco",
+   "emisor": "banamex",
+   "url": "https://www.banamex.com/buenfin",
+   "render": true
+  },
+  {
+   "id": "banco-santander",
+   "tipo": "banco",
+   "emisor": "santander",
+   "url": "https://www.santander.com.mx/promociones/buen-fin.html",
+   "render": true
+  },
+  {
+   "id": "banco-hsbc",
+   "tipo": "banco",
+   "emisor": "hsbc",
+   "url": "https://www.hsbc.com.mx/buenfin",
+   "render": true
+  },
+  {
+   "id": "banco-banorte",
+   "tipo": "banco",
+   "emisor": "banorte",
+   "url": "https://www.banorte.com/tutarjetafavorita",
+   "render": true
+  },
+  {
+   "id": "banco-scotiabank",
+   "tipo": "banco",
+   "emisor": "scotiabank",
+   "url": "https://www.scotiabank.com.mx/buenfin",
+   "render": true
+  },
+  {
+   "id": "banco-openbank",
+   "tipo": "banco",
+   "emisor": "openbank",
+   "url": "https://www.openbank.mx/buenfin-26",
+   "render": true
+  },
+  {
+   "id": "banco-mifel",
+   "tipo": "banco",
+   "emisor": "mifel",
+   "url": "https://www.mifel.com.mx/personas",
+   "render": true
+  },
+  {
+   "id": "banco-bancoppel",
+   "tipo": "banco",
+   "emisor": "bancoppel",
+   "url": "https://www.bancoppel.com/buen-fin/",
+   "render": true
+  },
+  {
+   "id": "banco-invex-tyc",
+   "tipo": "banco",
+   "emisor": "invex",
+   "url": "https://www.invextarjetas.com.mx/invex/Documentos/Landings/TerminosyCondicionesBuenFin2026.pdf"
+  },
+  {
+   "id": "banco-nu-tyc",
+   "tipo": "banco",
+   "emisor": "nu",
+   "url": "https://cdn.nu.com.mx/MX/terminos-y-condiciones-nuviembre-2026-promo-a.pdf"
+  },
+  {
+   "id": "banco-klar-tyc",
+   "tipo": "banco",
+   "emisor": "klar",
+   "url": "https://cdn.prod.website-files.com/630e13ca92151d578bc2ed8b/6ae9fec434cf054ae0babcab_TyC_Klarfest_Buen_Fin_2026_Track_Changes-(Final).pdf"
+  },
+  {
+   "id": "banco-amex-liverpool",
+   "tipo": "banco",
+   "emisor": "amex",
+   "url": "https://www.americanexpress.com/es-mx/beneficios/promociones/buenfin/mesessinintereses.liverpool.html",
+   "render": true
+  },
+  {
+   "id": "banco-bankaool-tyc",
+   "tipo": "banco",
+   "emisor": "bankaool",
+   "url": "https://www.bankaool.com/pdf/promocion/TyC_BuenFin.pdf"
+  },
+  {
+   "id": "comercio-liverpool",
+   "tipo": "comercio",
+   "comercio": "liverpool",
+   "url": "https://www.liverpool.com.mx/tienda/paginas/buenfin",
+   "render": true
+  },
+  {
+   "id": "comercio-sanborns",
+   "tipo": "comercio",
+   "comercio": "sanborns",
+   "url": "https://www.sanborns.com.mx/c/buen-fin/",
+   "render": true
+  },
+  {
+   "id": "comercio-palacio-tyc",
+   "tipo": "comercio",
+   "comercio": "palacio-de-hierro",
+   "url": "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/TyC.pdf"
+  },
+  {
+   "id": "pista-paypal-bancos",
+   "tipo": "pista",
+   "url": "https://www.paypalobjects.com/marketing/web/mx/buen-fin-2026/Promociones-Bancarias-BF26.pdf"
+  },
+  {
+   "id": "pista-pd-santander",
+   "tipo": "pista",
+   "url": "https://www.promodescuentos.com/ofertas/buen-fin-2026-con-santander-hasta-35-de-bonificacion-en-compras-a-msi-amazon-walmart-y-mas-1206845",
+   "render": true
+  },
+  {
+   "id": "pista-pd-amex",
+   "tipo": "pista",
+   "url": "https://www.promodescuentos.com/ofertas/todas-las-promociones-del-buen-fin-2026-con-american-express-1203718",
+   "render": true
+  },
+  {
+   "id": "pista-pd-bancoppel",
+   "tipo": "pista",
+   "url": "https://www.promodescuentos.com/ofertas/el-buen-fin-2026-en-bancoppel-este-buen-fin-tus-compras-con-tarjeta-te-dan-hasta-20-de-bonificacion-5-adicional-si-compras-en-coppel-1203479",
+   "render": true
+  },
+  {
+   "id": "pista-pd-banorte",
+   "tipo": "pista",
+   "url": "https://www.promodescuentos.com/ofertas/buen-fin-2026-con-banorte-15-de-bonificacion-en-compras-a-meses-sin-intereses-en-comercios-participantes-1204725",
+   "render": true
+  },
+  {
+   "id": "pista-pd-openbank",
+   "tipo": "pista",
+   "url": "https://www.promodescuentos.com/ofertas/buen-fin-2026-openbank-500-de-bonificacion-al-comprar-2000-nuevos-usuarios-15-para-todos-y-mas-1201369",
+   "render": true
+  },
+  {
+   "id": "pista-expansion-bancos",
+   "tipo": "pista",
+   "url": "https://expansion.mx/finanzas-personales/2026/11/11/promociones-bancarias-buen-fin-2026"
+  },
+  {
+   "id": "pista-elceo-bancos",
+   "tipo": "pista",
+   "url": "https://elceo.com/mercados/meses-sin-intereses-bonificaciones-cashback-bancos-buen-fin-2026/"
+  }
+ ],
+ "directorio": {
+  "api": "https://www.elbuenfin.org/companies/search?offset=12&query={q}&page={p}",
+  "consultas": [
+   "mercado libre",
+   "amazon",
+   "liverpool",
+   "palacio de hierro",
+   "walmart",
+   "bodega aurrera",
+   "sams club",
+   "costco",
+   "chedraui",
+   "soriana",
+   "coppel",
+   "elektra",
+   "sears",
+   "suburbia",
+   "sanborns",
+   "home depot",
+   "office depot",
+   "samsung",
+   "apple",
+   "best buy",
+   "famsa",
+   "telcel",
+   "att",
+   "nike",
+   "adidas",
+   "innovasport",
+   "martí",
+   "zara",
+   "cinepolis",
+   "volaris",
+   "viva aerobus",
+   "despegar"
+  ]
+ }
+}
