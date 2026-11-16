@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title aria-placeholder="Servicio no disponible">Servicio no disponible</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800');
+
+        html,
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            padding: 1rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            height: calc(100vh - 2rem);
+        }
+
+        .santander-message {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .santander-logo {
+            max-width: 500px;
+            width: 250px;
+            height: 145px;
+        }
+
+        @media (min-width: 768px) {
+            .santander-logo {
+                width: auto;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+        <img src="https://www.santander.com.mx/santander_logo.png">
+        
+        <p class="santander-message" id="santander-message">
+            Favor de intentar más tarde
+        </p>
+        <p>Error: 0.4e17dd17.1794862394.24dd0719</p>
+        <div></div>
+        <div></div>
+    </main>
+</body>
+
+</html>
