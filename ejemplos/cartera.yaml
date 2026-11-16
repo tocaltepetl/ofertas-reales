@@ -1,0 +1,49 @@
+# Cartera de ejemplo: todas las tarjetas del catálogo, con los MSI que ofrecía el
+# refrigerador Midea Side by Side ($12,987) en Mercado Libre. Copia este archivo y deja
+# solo lo que tengas.
+instrumentos:
+  - mercadopago.tdc
+  - mercadopago.credito
+  - mercadopago.saldo
+  - banamex.tdc
+  - santander.tdc
+  - bbva.tdc
+  - hsbc.tdc
+  - banorte.tdc
+  - banorte.tdd
+  - amex.tarjeta
+  - oxxo.efectivo
+  - scotiabank.tdc
+  - scotiabank.tdd
+  - afirme.tdc
+  - invex.tdc
+  - openbank.tdc
+  - mifel.tdc
+  - falabella.tdc
+  - bancoppel.tdc
+  - bancoppel.tdd
+  - nu.tdc
+  - didi.tarjeta
+  - klar.tdc
+
+atributos:
+  banamex_productos_extra: 1
+  hsbc_segmento: otro
+
+# MSI máximos que ofrece ESTE producto con cada tarjeta (revisa "Ver los medios de pago")
+msi:
+  mercadopago.tdc: 24
+  banamex.tdc: 12
+  santander.tdc: 12
+  bbva.tdc: 15
+  hsbc.tdc: 15
+  banorte.tdc: 12
+  amex.tarjeta: 12
+  scotiabank.tdc: 12
+  afirme.tdc: 12
+  mifel.tdc: 3
+  falabella.tdc: 3
+  bancoppel.tdc: 12
+  nu.tdc: 3
+
+rendimiento_anual: 10

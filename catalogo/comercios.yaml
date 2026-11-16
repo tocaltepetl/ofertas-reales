@@ -1,0 +1,14 @@
+# Comercios. Catálogo permanente; el RFC viene del directorio oficial de elbuenfin.org.
+comercios:
+  - id: mercadolibre
+    nombre: Mercado Libre
+    sitio: https://www.mercadolibre.com.mx
+    reglas:
+      # T&C comunes: "acumulable con otras promociones pero no con otros cupones" (salvo TCMPBF)
+      max_cupones_por_compra: 1
+  - { id: amazon, nombre: Amazon México, sitio: https://www.amazon.com.mx }
+  - { id: liverpool, nombre: Liverpool, rfc: DLI931201MI9, sitio: https://www.liverpool.com.mx }
+  - { id: palacio-de-hierro, nombre: El Palacio de Hierro, sitio: https://www.elpalaciodehierro.com }
+  - { id: walmart, nombre: Walmart México, sitio: https://www.walmart.com.mx }
+  - { id: coppel, nombre: Coppel, sitio: https://www.coppel.com }
+  - { id: homedepot, nombre: The Home Depot México, sitio: https://www.homedepot.com.mx }

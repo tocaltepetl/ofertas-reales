@@ -1,0 +1,120 @@
+# Emisores y productos de pago. Catálogo permanente: no depende del evento.
+# Los atributos describen datos de la cartera que cambian el beneficio (segmento, nómina…).
+emisores:
+  - id: mercadopago
+    nombre: Mercado Pago
+    productos:
+      - { id: mercadopago.tdc, nombre: Tarjeta de Crédito Mercado Pago, tipo: credito, msi: true }
+      - { id: mercadopago.credito, nombre: Mercado Crédito, tipo: bnpl, nota: Cobra intereses }
+      - { id: mercadopago.saldo, nombre: Saldo Mercado Pago Wallet, tipo: monedero }
+    atributos:
+      - { id: mercadopago_credito_primera_vez, etiqueta: Nunca he usado Mercado Crédito, tipo: booleano }
+      - { id: mercadopago_usuario_nuevo, etiqueta: Nunca usé la app de Mercado Pago y tenía saldo menor a $100 al inicio del evento, tipo: booleano }
+
+  - id: banamex
+    nombre: Banamex
+    productos:
+      - { id: banamex.tdc, nombre: Tarjeta de Crédito Banamex, tipo: credito, msi: true }
+    atributos:
+      - id: banamex_productos_extra
+        etiqueta: Otros productos Banamex (Nómina, Hipotecario, Afore)
+        tipo: opcion
+        defecto: 0
+        opciones: [{ valor: 0, etiqueta: Ninguno }, { valor: 1, etiqueta: "1" }, { valor: 2, etiqueta: "2" }, { valor: 3, etiqueta: "3" }]
+
+  - id: santander
+    nombre: Santander
+    productos:
+      - { id: santander.tdc, nombre: Tarjeta de Crédito Santander, tipo: credito, msi: true }
+    atributos:
+      - { id: santander_nomina, etiqueta: Portabilidad de nómina activa a Santander, tipo: booleano }
+
+  - id: bbva
+    nombre: BBVA
+    productos:
+      - { id: bbva.tdc, nombre: Tarjeta de Crédito BBVA, tipo: credito, msi: true }
+
+  - id: hsbc
+    nombre: HSBC
+    productos:
+      - { id: hsbc.tdc, nombre: Tarjeta de Crédito HSBC, tipo: credito, msi: true, nota: Excepto Fusión y Empresariales }
+    atributos:
+      - id: hsbc_segmento
+        etiqueta: Segmento HSBC
+        tipo: opcion
+        defecto: otro
+        opciones: [{ valor: premier, etiqueta: Premier / Premier Elite }, { valor: one, etiqueta: HSBC One }, { valor: otro, etiqueta: Otro }]
+      - { id: hsbc_transferencia, etiqueta: Transferí al menos $50,000 de saldo (invitación), tipo: booleano }
+      - { id: hsbc_otras_compras, etiqueta: Otras compras a 6+ meses en comercios participantes ($), tipo: numero, defecto: 0 }
+
+  - id: banorte
+    nombre: Banorte
+    productos:
+      - { id: banorte.tdc, nombre: Tarjeta de Crédito Banorte, tipo: credito, msi: true }
+      - { id: banorte.tdd, nombre: Tarjeta de Débito Banorte, tipo: debito }
+
+  - id: amex
+    nombre: American Express
+    productos:
+      - { id: amex.tarjeta, nombre: Tarjeta American Express (personal), tipo: credito, msi: true }
+
+  - id: oxxo
+    nombre: OXXO
+    productos:
+      - { id: oxxo.efectivo, nombre: Pago en efectivo en OXXO, tipo: efectivo }
+
+  - id: scotiabank
+    nombre: Scotiabank
+    productos:
+      - { id: scotiabank.tdc, nombre: Tarjeta de Crédito Scotiabank, tipo: credito, msi: true, nota: Excepto Básica }
+      - { id: scotiabank.tdd, nombre: Tarjeta de Débito Scotiabank, tipo: debito }
+    atributos:
+      - { id: scotiabank_invitacion, etiqueta: Recibí la invitación al cashback y me inscribí, tipo: booleano }
+
+  - id: afirme
+    nombre: Afirme
+    productos:
+      - { id: afirme.tdc, nombre: Tarjeta de Crédito Afirme, tipo: credito, msi: true }
+
+  - id: invex
+    nombre: INVEX
+    productos:
+      - { id: invex.tdc, nombre: Tarjeta de Crédito INVEX, tipo: credito, msi: true }
+    atributos:
+      - { id: invex_meta, etiqueta: Con esta compra alcanzo la meta que me notificó INVEX, tipo: booleano }
+
+  - id: openbank
+    nombre: Openbank
+    productos:
+      - { id: openbank.tdc, nombre: Tarjeta de Crédito Open o Cinépolis, tipo: credito, msi: true }
+
+  - id: mifel
+    nombre: Mifel
+    productos:
+      - { id: mifel.tdc, nombre: Tarjeta de Crédito Mifel, tipo: credito, msi: true }
+
+  - id: falabella
+    nombre: Falabella
+    productos:
+      - { id: falabella.tdc, nombre: Tarjeta de Crédito Falabella, tipo: credito, msi: true }
+
+  - id: bancoppel
+    nombre: BanCoppel
+    productos:
+      - { id: bancoppel.tdc, nombre: Tarjeta de Crédito BanCoppel, tipo: credito, msi: true }
+      - { id: bancoppel.tdd, nombre: Tarjeta de Débito o Nómina BanCoppel, tipo: debito }
+
+  - id: nu
+    nombre: Nu
+    productos:
+      - { id: nu.tdc, nombre: Tarjeta de Crédito Nu, tipo: credito, msi: true }
+
+  - id: didi
+    nombre: DiDi Card
+    productos:
+      - { id: didi.tarjeta, nombre: DiDi Card, tipo: credito, msi: true }
+
+  - id: klar
+    nombre: Klar
+    productos:
+      - { id: klar.tdc, nombre: Tarjeta de Crédito Klar, tipo: credito, msi: true }
