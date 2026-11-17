@@ -454,6 +454,46 @@
    "tipo": "comercio-tyc",
    "comercio": "palacio-de-hierro",
    "url": "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/Kueskipay.pdf"
+  },
+  {
+   "id": "banco-bancoppel-tyc",
+   "tipo": "banco",
+   "banco": "bancoppel",
+   "url": "https://www.bancoppel.com/buen-fin/img/Buen_Fin_2026_TyC_VF.pdf"
+  },
+  {
+   "id": "banco-bbva-tyc-walmart-13nov",
+   "tipo": "banco",
+   "banco": "bbva",
+   "comercio": "walmart",
+   "url": "https://www.bbva.mx/content/dam/public-web/mexico/documents/tycs/TyC_25_Bonificacion_Walmart_Sams_Bodega_13Nov2026.pdf"
+  },
+  {
+   "id": "banco-bbva-tyc-bonificacion10",
+   "tipo": "banco",
+   "banco": "bbva",
+   "url": "https://www.bbva.mx/content/dam/public-web/mexico/documents/tycs/Buen-Fin-2026_Terminos-y-Condiciones_Bonificacion10_14al17nov2026.pdf"
+  },
+  {
+   "id": "banco-mifel-tyc-walmart",
+   "tipo": "banco",
+   "banco": "mifel",
+   "comercio": "walmart",
+   "url": "https://docs.mifel.com.mx/d/TyC-ElFinIrresistible2026.pdf"
+  },
+  {
+   "id": "comercio-homedepot-tyc-tienda",
+   "tipo": "comercio-tyc",
+   "comercio": "homedepot",
+   "url": "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses",
+   "render": true
+  },
+  {
+   "id": "banco-didi-tyc-paypal",
+   "tipo": "banco",
+   "banco": "didi",
+   "url": "https://h5.didiglobal.com/silver-bullet-online/_dL_Wmjd067VIxOgJUXyA",
+   "render": true
   }
  ],
  "directorio": {
