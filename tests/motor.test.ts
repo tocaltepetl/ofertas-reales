@@ -127,6 +127,14 @@ test("Banorte en Palacio: tramos de contado y MSI, excluyentes entre sí", () =>
   assert.ok(!msi.opciones.some((o) => o.promos.some((p) => p.id === "ph-banorte-msi") && o.promos.some((p) => p.id === "ph-banorte-contado")));
 });
 
+test("BanCoppel en Coppel: 6 MSI automáticos desde $5,500 y bonificación con el 5% extra", () => {
+  const r = evaluar(cat, { evento: "buen-fin-2026", comercio: "coppel", precio: 6000, dia: "2026-11-17", msi: {} }, { instrumentos: ["bancoppel.tdc"], atributos: {} }, P);
+  const mejor = ordenar(r.opciones, "total")[0];
+  assert.deepEqual(mejor.promos.map((p) => p.id).sort(), ["cp-bancoppel-6msi", "cp-bancoppel-tdc"]);
+  assert.equal(mejor.ahorro, 1200); // 15% base + 5% Coppel sobre $6,000
+  assert.equal(mejor.meses_financiamiento, 6);
+});
+
 test("PayPal: la promo requiere tener la tarjeta con la que se fondea", () => {
   const base = { evento: "buen-fin-2026", comercio: "walmart", precio: 12000, dia: "2026-11-16", msi: { "paypal.cuenta": 12 } };
   const sin = evaluar(cat, base, { instrumentos: ["paypal.cuenta"], atributos: {} }, P);

@@ -1,0 +1,253 @@
+# Promociones de Coppel (tiendas y coppel.com), Buen Fin 2026.
+# Origen: coppel.com/inf/promociones-bancarias (5 pestañas, cada una con su PDF de T&C), capturada con Chrome
+# el 17 nov 2026; los PDFs los bajó a mano el usuario (el CDN de Coppel rechaza curl y Chrome headless). revisada: false.
+#
+# La página bloquea curl (403). Los PDFs están en snapshots/buen-fin-2026/comercio-coppel-tyc/.
+# Bonificación base de BanCoppel (hasta 20%, campañas bancoppel-bf26-*): T&C en la App BanCoppel; mecánica
+# tomada de pista-pd-bancoppel, que dice "+5% adicional en compras en tiendas Coppel y Coppel.com".
+promociones:
+  # ---------------- Crédito Coppel ----------------
+  - id: cp-pago-inicial-0
+    nombre: 0% de pago inicial con Crédito Coppel (ropa, zapatos, refrigeradores y lavadoras)
+    comercio: coppel
+    patrocinador: coppel
+    instrumentos: [coppel.credito]
+    beneficio:
+      tipo: diferido
+      descripcion: "Sin enganche: 0% de pago inicial al comprar a crédito; el crédito sigue cobrando intereses"
+    condiciones:
+      categorias: [ropa, calzado, accesorios, linea-blanca]
+    avisos:
+      - "Solo ropa y zapatos (incluye lencería, cuidado personal, juguetes, bebés, mascotas, blancos) y lavadoras y refrigeradores de cualquier marca"
+      - "Excluye una lista de juguetes (Tabla A del PDF) y artículos de Marketplace o Coppel Pay; compra los de Marketplace por separado"
+      - "Sin saldo vencido y con margen de crédito disponible"
+      - "Tienda, app, coppel.com, kiosko, WhatsApp y teléfono"
+    fuente:
+      url: "https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/bltb20c2fb9dfc10005/6af78ab377abc4cbf3d39c5a/0_Pago_inicial_TyC_BuenFin2026.pdf"
+      snapshot: snapshots/buen-fin-2026/comercio-coppel-tyc/0_Pago_inicial_TyC_BuenFin2026.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide}
+      evidencia: "El beneficio es exclusivo para adquisiciones realizadas mediante el crédito Coppel en las categorías de ropa y zapatos"
+
+  - id: cp-coppel-max-dinero-electronico
+    nombre: 10% en Dinero Electrónico en tu primera compra en línea con Crédito Coppel
+    comercio: coppel
+    patrocinador: coppel
+    instrumentos: [coppel.credito]
+    vigencia: {desde: 2026-07-01, hasta: 2026-11-30}
+    beneficio: {tipo: bonificacion, pct: 10, tope: 200, forma: monedero, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 100}
+      requiere: [coppel_primera_compra_digital]
+    avisos:
+      - "Solo la primera compra en coppel.com, coppel.com en tienda o App Coppel; no en tienda física"
+      - "No aplica a clientes con domicilio en BCS, Colima, SLP ni Quintana Roo"
+      - "1% al instante y 9% hasta 10 días hábiles después; el Dinero Electrónico vence a los 12 meses"
+      - "No acumulable con otras promos de Dinero Electrónico; excluye Marketplace y Coppel Pay"
+      - "Hasta agotar el presupuesto de la campaña; no es exclusiva del Buen Fin (1 jul al 30 nov)"
+    fuente:
+      url: "https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/bltcc7d9bb31ce86f85/6af368fb7c35acfb612f9b01/10_Dinero_Electronica_TyC_BuenFin2026.docx.pdf"
+      snapshot: snapshots/buen-fin-2026/comercio-coppel-tyc/10_Dinero_Electronica_TyC_BuenFin2026.docx.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide}
+      evidencia: "La presente promoción tendrá un tope máximo de bonificación en Dinero Electrónico de $200."
+
+  # ---------------- BanCoppel ----------------
+  - id: cp-bancoppel-6msi
+    nombre: BanCoppel 6 MSI automáticos (desde $5,500 por ticket)
+    comercio: coppel
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Pagas de contado y BanCoppel difiere la compra a 6 MSI el 19 nov, sin registro"
+    condiciones:
+      minimo: {monto: 5500}
+      plazos: {permitidos: [0]}
+      financiamiento_posterior: {meses: 6}
+    excluye: [cp-bancoppel-3msi]
+    avisos:
+      - "El diferimiento es automático (no hay que pedirlo en caja ni en la app): se valida el 18 nov y se aplica el 19 nov"
+      - "Mínimo por ticket individual, no acumulable; pagar 100% con línea de crédito (no saldo a favor) y sin sobregiro"
+      - "Cuenta al corriente en los últimos 6 meses"
+      - "Suma para la bonificación BanCoppel del Buen Fin si te registraste en la App BanCoppel"
+    fuente:
+      url: "https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/blt36c7aa2c1b2b3b73/6af368cbf321bef7e38f9f8d/BanCoppel_20_5_MSI_TyC_BuenFin2026.pdf"
+      snapshot: snapshots/buen-fin-2026/comercio-coppel-tyc/BanCoppel_20_5_MSI_TyC_BuenFin2026.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide}
+      evidencia: "$5,500.00 MXN (Cinco mil quinientos pesos 00/100 MXN) en adelante sin monto topado — 6 Meses Sin Intereses — Tiendas Coppel y Coppel.com"
+
+  - id: cp-bancoppel-3msi
+    nombre: BanCoppel 3 MSI automáticos ($3,500 a $5,499 por ticket)
+    comercio: coppel
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Pagas de contado y BanCoppel difiere la compra a 3 MSI el 19 nov, sin registro"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      financiamiento_posterior: {meses: 3}
+    excluye: [cp-bancoppel-6msi]
+    avisos:
+      - "Solo tickets de $3,500 a $5,499; desde $5,500 son 6 MSI (cp-bancoppel-6msi). El motor no modela el máximo, así que también la ofrece arriba de $5,499"
+      - "El diferimiento es automático: se valida el 18 nov y se aplica el 19 nov"
+      - "Mínimo por ticket individual, no acumulable; pagar 100% con línea de crédito y sin sobregiro"
+    fuente:
+      url: "https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/blt36c7aa2c1b2b3b73/6af368cbf321bef7e38f9f8d/BanCoppel_20_5_MSI_TyC_BuenFin2026.pdf"
+      snapshot: snapshots/buen-fin-2026/comercio-coppel-tyc/BanCoppel_20_5_MSI_TyC_BuenFin2026.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide}
+      evidencia: "$3,500.00 MXN (Tres mil quinientos pesos 00/100 MXN) a $5,499 MXN — 3 Meses Sin Intereses — Tiendas Coppel y Coppel.com"
+
+  - id: cp-bancoppel-tdc
+    nombre: Bonificación BanCoppel (crédito) + 5% adicional en Coppel
+    comercio: coppel
+    patrocinador: bancoppel
+    campana: bancoppel-bf26-bonificacion-tdc
+    instrumentos: [bancoppel.tdc]
+    beneficio:
+      tipo: bonificacion
+      tope: 2200
+      certeza: condicionado
+      tramos:
+        - {mayor_a: 8500, pct: 25}
+        - {mayor_a: 4500, pct: 20}
+        - {desde: 3000, pct: 15}
+      escala_acumulada: true
+    condiciones:
+      registro_previo: App BanCoppel
+    avisos:
+      - "Tramos base 10/15/20% por compras acumuladas con BanCoppel en cualquier comercio, +5% sobre lo comprado en Coppel (ya sumado aquí)"
+      - "No está claro si el tope de $2,200 incluye el 5% adicional; se asume que sí"
+      - "Sujeta a una bolsa de $3.56 M que se reparte primero a quien más acumula"
+      - "Crédito y débito no se suman: una sola bonificación, sobre el producto con mayor monto"
+      - "Compatible con los 3/6 MSI automáticos"
+    fuente:
+      url: "https://www.promodescuentos.com/ofertas/el-buen-fin-2026-en-bancoppel-este-buen-fin-tus-compras-con-tarjeta-te-dan-hasta-20-de-bonificacion-5-adicional-si-compras-en-coppel-1203479"
+      snapshot: snapshots/buen-fin-2026/pista-pd-bancoppel/20261117-162130.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Mecánica de un post de Promodescuentos que transcribe los T&C; el PDF oficial de BanCoppel en Coppel solo cita la campaña ('hasta 20% de bonificación ... + 5% adicional en Coppel/Coppel.com'). Falta el T&C de la App BanCoppel para confirmar si el tope incluye el 5%"}
+      evidencia: "Si realizas compras en tiendas físicas Coppel o en Coppel.com, recibirás un 5% adicional sobre esas compras, que se suma al porcentaje de bonificación base alcanzado."
+
+  - id: cp-bancoppel-tdd
+    nombre: Bonificación BanCoppel (débito o nómina) + 5% adicional en Coppel
+    comercio: coppel
+    patrocinador: bancoppel
+    campana: bancoppel-bf26-bonificacion-tdd
+    instrumentos: [bancoppel.tdd]
+    beneficio:
+      tipo: bonificacion
+      tope: 1500
+      certeza: condicionado
+      tramos:
+        - {mayor_a: 6000, pct: 25}
+        - {mayor_a: 3000, pct: 20}
+        - {desde: 2000, pct: 15}
+      escala_acumulada: true
+    condiciones:
+      registro_previo: App BanCoppel
+    avisos:
+      - "Tramos base 10/15/20% por compras acumuladas con BanCoppel en cualquier comercio, +5% sobre lo comprado en Coppel (ya sumado aquí)"
+      - "No está claro si el tope de $1,500 incluye el 5% adicional; se asume que sí"
+      - "Sujeta a una bolsa de $4.44 M que se reparte primero a quien más acumula"
+      - "Crédito y débito no se suman: una sola bonificación, sobre el producto con mayor monto"
+    fuente:
+      url: "https://www.promodescuentos.com/ofertas/el-buen-fin-2026-en-bancoppel-este-buen-fin-tus-compras-con-tarjeta-te-dan-hasta-20-de-bonificacion-5-adicional-si-compras-en-coppel-1203479"
+      snapshot: snapshots/buen-fin-2026/pista-pd-bancoppel/20261117-162130.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Igual que cp-bancoppel-tdc: fuente de terceros que transcribe los T&C; falta el T&C oficial de la App BanCoppel"}
+      evidencia: "De $2,000 a $3,000: 10% de bonificación. De $3,000.01 a $6,000: 15% de bonificación. De $6,000.01 en adelante: 20% de bonificación."
+
+  # ---------------- BBVA ----------------
+  - id: cp-bbva-paga-marzo
+    nombre: BBVA paga en marzo 2027 a 3 MSI
+    comercio: coppel
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Compra en una exhibición y empieza a pagar en marzo 2027 a 3 MSI (según tu fecha de corte, podría ser febrero)"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: "App BBVA (notificación, Centro de Mensajes o Puntos y Promociones)"
+    avisos:
+      - "Monto mínimo $3,500 por compra, no acumulable"
+      - "Inscripción en la App BBVA del 3 al 12 nov o del 18 nov al 9 dic"
+      - "No aplica a MSI otorgados por el comercio ni a débito; excluye Congelada, Crea, Mi primera tarjeta, Negocio y MicroNegocio"
+    fuente:
+      url: "https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/blt77e03d647829166f/6af368fc6166e432a41974c3/BBVA_TyC_BuenFin2026.pdf"
+      snapshot: snapshots/buen-fin-2026/comercio-coppel-tyc/BBVA_TyC_BuenFin2026.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide}
+      evidencia: "Aplica en compras realizadas en una sola exhibición a partir de un monto mínimo de $3,500.00"
+
+  # ---------------- Scotiabank ----------------
+  - id: cp-scotiabank-cashback-tdc
+    nombre: Cashback Scotiabank (crédito)
+    comercio: coppel
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdc
+    instrumentos: [scotiabank.tdc]
+    beneficio:
+      tipo: cashback
+      tope: 9000
+      certeza: condicionado
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: ScotiaMóvil, SMS o correo de invitación
+    avisos:
+      - "Solo clientes invitados e inscritos; los montos son compras acumuladas en giros participantes (retail)"
+      - "+5% adicional (tope $500) pagando con billetera digital compras acumuladas desde $3,000; no se modela"
+      - "Sujeto a una bolsa de $11 M; una bonificación por cliente"
+    fuente:
+      url: "https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/blta413c4284e95ae83/6af4b0f7535255adacf4e6de/Scotiabank_TyC_BuenFin2026.docx.pdf"
+      snapshot: snapshots/buen-fin-2026/comercio-coppel-tyc/Scotiabank_TyC_BuenFin2026.docx.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide}
+      evidencia: "A partir de $40,000 MXN recibe hasta $8,000.00 MXN (20% de cashback)"
+
+  - id: cp-scotiabank-cashback-tdd
+    nombre: Cashback Scotiabank (débito)
+    comercio: coppel
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdd
+    instrumentos: [scotiabank.tdd]
+    beneficio:
+      tipo: cashback
+      tope: 2500
+      certeza: condicionado
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: ScotiaMóvil, SMS o correo de invitación
+    avisos:
+      - "Sujeto a una bolsa de $3 M; no participan débito empresarial ni adicionales"
+      - "Si cumples con crédito y débito, solo se premia crédito"
+    fuente:
+      url: "https://imagescontentstack.coppel.com/v3/assets/blt81f564913ca7e893/blta413c4284e95ae83/6af4b0f7535255adacf4e6de/Scotiabank_TyC_BuenFin2026.docx.pdf"
+      snapshot: snapshots/buen-fin-2026/comercio-coppel-tyc/Scotiabank_TyC_BuenFin2026.docx.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide}
+      evidencia: "La bonificación máxima de cashback, por las compras realizadas durante el periodo de la vigencia, con Tarjeta de Débito, considerando el 5% de cashback adicional en compras con billetera digital**, es de $2,500.00 MXN."

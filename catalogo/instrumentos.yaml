@@ -173,6 +173,8 @@ emisores:
     nombre: Coppel
     productos:
       - { id: coppel.credito, nombre: Crédito Coppel, tipo: credito-tienda, nota: Cobra intereses }
+    atributos:
+      - { id: coppel_primera_compra_digital, etiqueta: Nunca he comprado en línea (coppel.com o App Coppel) con mi Crédito Coppel, tipo: booleano }
 
   - id: amazon
     nombre: Amazon
