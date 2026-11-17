@@ -391,20 +391,23 @@ promociones:
     condiciones:
       minimo: {monto: 10000, acumulable: true}
       plazos: {max: 18}
-      registro_previo: Servicio en línea o Amex App, antes de comprar (primeros 40,000 registros)
+      registro_previo: Plataforma o App de American Express, antes de comprar (registros limitados)
     avisos:
-      - "Limitado a los primeros 40,000 registros"
-      - "$10,000 acumulados en compras calificadas; una bonificación por titular"
-      - "Solo aparece en los T&C, no en la página de promociones"
-      - "No aplica vía PayPal ni Mercado Pago"
-      - "Puede tardar hasta 90 días"
+      - "Hay que registrar la promoción en la plataforma de Amex antes de comprar; cupo limitado (40,000 registros según el T&C que publica Mercado Libre, 53,000 según americanexpress.com)"
+      - "Campaña compartida con Palacio, Liverpool, Amazon, Mercado Libre e iShop: los $10,000 se acumulan entre comercios y hay una sola bonificación de $1,500 por titular"
+      - "Solo titulares de tarjetas personales emitidas por American Express México; no Corporativas ni emitidas por terceros; el gasto de suplementarias no cuenta"
+      - "El T&C de Amex dice \"No aplica con otras promociones\""
+      - "La bonificación puede tardar hasta 90 días después del 17 nov en aparecer en el estado de cuenta"
+      - "No aplica vía PayPal, Mercado Pago u otros procesadores de pago; excluye Home Depot Pro, La Fábrica, instalaciones, fletes y renta de herramientas"
+      - "Home Depot la anunciaba a MSI o a un solo pago; el encabezado de Amex dice 'a Meses sin Intereses', pero su T&C solo exige MSI en Amazon, Mercado Libre e iShop"
     fuente:
-      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
-      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
-      capturada: 2026-11-16
+      url: "https://www.americanexpress.com/es-mx/beneficios/promociones/buenfin/cashback.buen-fin.html"
+      snapshot: snapshots/buen-fin-2026/banco-amex-buenfin-cashback/20261117-165718.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
-      evidencia: "se deberán acumular $10,000 MXN de compras calificadas durante el periodo de la promoción."
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide, notas: "Alineada con lp-amex-1500 (registro_previo y avisos). El T&C oficial de Amex (banco-amex-buenfin-cashback 20261117) nombra a The Home Depot, en tienda o en línea: $1,500 al acumular $10,000 a MSI, 13-17 nov, registro previo, una bonificación por titular, hasta 90 días. Se mantiene plazos {max: 18} (contado incluido): comercio-homedepot-tyc 20261116 dice 'MSI o a un solo pago' y el T&C de Amex solo exige MSI en Amazon, Mercado Libre e iShop, aunque su encabezado dice 'a Meses sin Intereses'. Se agregan avisos de exclusiones y de esa ambigüedad. Antes la fuente era comercio-homedepot-tyc (40,000 registros; Amex dice 53,000), cuya captura del 17 nov ya no trae la sección AMEX."}
+      evidencia: "Recibe $1,500.00 M.N. de Cashback* al gastar $10,000.00 M.N. a Meses sin Intereses en tienda o en línea en El Palacio de Hierro , Liverpool , The Home Depot"
+      nota: "Home Depot la listaba en sus T&C en línea (snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt, 'AMEX: $1,500 de bonificación en compras a MSI o a un solo pago'); ya no aparece en la captura del 17 nov."
 
   # ---------------- DiDi ----------------
   - id: hd-didi-cashback
@@ -443,19 +446,22 @@ promociones:
     comercio: homedepot
     patrocinador: mercadopago
     instrumentos: [mercadopago.tdc]
-    beneficio: {tipo: bonificacion, pct: 15, certeza: condicionado}
+    beneficio: {tipo: bonificacion, pct: 15, tope: 2000}
     condiciones:
-      registro_previo: App Mercado Pago
+      minimo: {monto: 5000}
+      plazos: {max: 18}
+      registro_previo: App Mercado Pago (activar y aceptar T&C antes de comprar)
     avisos:
-      - "Exclusivo para compras en tienda física, no en homedepot.com.mx"
-      - "Los T&C capturados no incluyen esta promo: tope y mínimo desconocidos"
+      - "Exclusivo para compras en tienda física, no en homedepot.com.mx; solo con tarjeta física"
+      - "Tope de $2,000 por usuario en toda la campaña"
+      - "A MSI aplican los mínimos de la tienda: $6,500 (6), $8,500 (12) o $12,500 (18); no se modelan por plazo"
     fuente:
-      url: "https://www.homedepot.com.mx/promociones-bancarias"
-      snapshot: snapshots/buen-fin-2026/comercio-homedepot/20261116-151102.txt
-      capturada: 2026-11-16
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc-tienda/20261117-165823.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "15%, solo en tienda física, MSI o un solo pago coincide con comercio-homedepot. Los T&C capturados no incluyen esta promo: tope y mínimo desconocidos, así que el 15% no tiene tope en el catálogo."}
-      evidencia: "Exclusivo para compras en tienda a Meses Sin Intereses o a un solo pago con Tarjeta de Crédito Mercado Pago."
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: corregida, notas: "Se agregan tope $2,000, mínimo $5,000 y plazos hasta 18 MSI (o un solo pago) de comercio-homedepot-tyc-tienda (T&C de tiendas físicas, sección Mercado Pago); ya no es condicionado. 15%, solo en tienda y activación en la app coinciden con comercio-homedepot 20261117."}
+      evidencia: "Máximo de bonificación de $2,000 MXN por usuario durante la campaña."
 
   # ---------------- Nu ----------------
   - id: hd-nu-folios
@@ -663,19 +669,33 @@ promociones:
     nombre: Hasta 20% de cashback DiDi Card pagando con PayPal
     comercio: homedepot
     patrocinador: didi
+    campana: didi-bf26-cashback
     instrumentos: [paypal.cuenta]
-    beneficio: {tipo: cashback, valor_desconocido: true, certeza: condicionado, forma: saldo_app}
+    beneficio:
+      tipo: cashback
+      tope: 2000
+      forma: saldo_app
+      tramos:
+        - {desde: 5000, pct: 20}
+        - {pct: 10}
+      escala_acumulada: true
     condiciones:
+      minimo: {monto: 500}
       fondeo: [didi.tarjeta]
+      registro_previo: App DiDi, sección Beneficios (del 1 al 17 nov)
     avisos:
-      - "Los T&C de DiDi para PayPal (h5.didiglobal.com) no se capturaron: mínimo, tope y si comparte campaña con el cashback directo son desconocidos"
+      - "Es la misma campaña que el cashback DiDi Card directo: el acumulado y el tope de $2,000 se comparten entre todos los comercios"
+      - "El % se decide por el acumulado al cierre: 20% sobre todo si llegas a $5,000, si no 10%"
+      - "Mínimo de $500 por cargo; a MSI rige el mínimo de PayPal en la tienda ($10,000)"
+      - "Cashback en la app DiDi"
     fuente:
-      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
-      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
-      capturada: 2026-11-16
+      url: "https://h5.didiglobal.com/silver-bullet-online/_dL_Wmjd067VIxOgJUXyA"
+      snapshot: snapshots/buen-fin-2026/banco-didi-tyc-paypal/20261117-165823.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Nueva. Solo se tiene la frase de comercio-homedepot-tyc; los T&C de DiDi para PayPal no se capturaron, por eso valor_desconocido."}
-      evidencia: "Didi Card: Hasta 20% de cashback en compras acumuladas con tu Didi Card a través de PayPal."
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: corregida, notas: "valor_desconocido → mecánica de la campaña general (campana didi-bf26-cashback, como hd-didi-cashback): banco-didi-tyc-paypal lista a PayPal entre los Comercios Participantes; 10% o 20% desde $5,000 acumulados, mínimo $500 por compra fuera de la Plataforma DiDi, tope $2,000 por participante en toda la vigencia, registro del 1 al 17 nov. comercio-homedepot-tyc y pista-paypal-bancos lo resumen como 'Hasta 20% de cashback en compras acumuladas'."}
+      evidencia: "El monto máximo de Cashback que podrá obtener cada Participante durante toda la Vigencia es de $2,000.00 M.N."
+      nota: "Home Depot la lista en snapshots/buen-fin-2026/comercio-homedepot-tyc/20261117-162130.txt (sección PayPal)."
 
   - id: hd-paypal-nu
     nombre: Pase Morado Nuviembre pagando con Nu vía PayPal
