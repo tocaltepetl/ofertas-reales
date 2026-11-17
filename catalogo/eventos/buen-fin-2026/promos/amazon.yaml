@@ -3,6 +3,8 @@
 # Las condiciones (mínimos y topes) vienen de los modales "Conoce más" (archivo .modales.txt).
 # Las tarjetas llevan logo, pero los modales no siempre nombran al banco: DiDi, Rappi, Klar, Falabella y Revolut
 # se asignaron por el orden (inverso) de los modales y por coincidencia de cifras; la tarjeta de BNRTBF26 tiene alt "Access logo".
+# En la recaptura del 17 nov (20261117-162130.render.html) cada modal lleva su botón "Ver Términos y Condiciones" con
+# ref_=BANKP_F_button_<Banco>_..._bf_2026 y un node propio: eso confirma el banco de cada modal (Banorte, Rappi, Revolut, DiDi, Klar...).
 # Amazon Access (cupón ACCESSBF26, 20% en la primera compra, mínimo $900, tope $500) no se incluye: falta el instrumento.
 # Cuando Amazon solo resume una promoción general del banco, la mecánica viene del snapshot del banco (fuente.nota).
 # Regla de Amazon (T&C del cupón SCOTBF26): los cupones bancarios NO se combinan con otros códigos promocionales.
@@ -69,24 +71,25 @@ promociones:
     comercio: amazon
     patrocinador: bbva
     instrumentos: [bbva.tdc]
-    vigencia: {desde: 2026-11-14, hasta: 2026-11-17}
     beneficio: {tipo: cupon, pct: 10, tope: 500}
     condiciones:
       minimo: {monto: 4500}
       plazos: {permitidos: [3, 6, 9, 12, 15]}
-    avisos: ["Amazon dice tope de $500 acumulado en la vigencia; BBVA dice $500 por día y por cliente", "BBVA dice que sus ofertas en línea aplican del 14 al 17 nov; Amazon no da fechas"]
+    avisos:
+      - "Tope de $500 acumulado por cliente en toda la vigencia (la página de BBVA dice \"por día\"; manda el T&C de Amazon)"
+      - "No se combina con la bonificación BBVA: su T&C dice que no es acumulable con otras promociones o descuentos de BBVA"
+    excluye: [amz-bbva-bonificacion]
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936416011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-bbva/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
-        resultado: dudosa
-        notas: "Amazon (modal) dice tope de $500 acumulado en toda la vigencia; BBVA (banco-bbva: 'El máximo a bonificar es de $500 por día y por cliente') dice por día. Se deja tope_por cliente (lo más conservador). Se agregó vigencia 14-17 nov: BBVA lista el cupón en 'Ofertas exclusivas... Aplican del 14 al 17 de noviembre'; el modal de Amazon no da fechas."
-      evidencia: "10% de descuento + 15 meses sin intereses Código: BBVABF26 Compra mínima $4,500"
-      nota: "Plazos 3, 6, 9, 12 y 15 MSI, tope por día y fechas 14-17 nov: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt (https://www.bbva.mx/buen-fin.html)"
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "T&C de Amazon para BBVA (snapshots/buen-fin-2026/comercio-amazon-tyc-bbva/20261117-165539.txt): 'El descuento máximo acumulado por cliente de Amazon México será de $500.00... durante toda la vigencia', vigencia 'iniciando el 13 de Noviembre del 2026... expira el 17', plazos '3, 6, 9, 12 o 15 Meses sin Intereses', mínimo $4,500. Cambios: se quita la vigencia 14-17 (era del encabezado de banco-bbva; el cupón corre del 13 al 17, la del evento) y se agrega excluye con amz-bbva-bonificacion porque el T&C de la bonificación en la misma página dice 'Esta promoción no es acumulable con otras promociones o descuentos ofrecidos por BBVA'. El tope por cliente se confirma; el 'por día' de banco-bbva queda como discrepancia de la página del banco."
+      evidencia: "El descuento máximo acumulado por cliente de Amazon México será de $500.00 (quinientos pesos 00/100 MXN) pesos, durante toda la vigencia de la promoción."
 
   - id: amz-bbva-bonificacion
     nombre: Bonificación BBVA
@@ -97,16 +100,26 @@ promociones:
     beneficio: {tipo: bonificacion, pct: 10, tope: 2500, forma: estado_de_cuenta, tope_por: dia}
     condiciones:
       minimo: {monto: 5000}
-      plazos: {min: 12}
-    avisos: ["Automática, sin inscripción", "Tope de $2,500 por día y por cliente", "Mínimo por compra (no acumulable)"]
+      plazos: {permitidos: [12, 15]}
+    avisos:
+      - "Automática, sin inscripción"
+      - "Tope de $2,500 por día y por cliente"
+      - "Mínimo por transacción o carrito (no acumulable); varios cargos de un mismo carrito pagado con TDC Digital cuentan juntos"
+      - "No acumulable con otras promociones o descuentos de BBVA (por eso se excluye con el cupón BBVABF26)"
+      - "No aplica en Amazon USA ni a compras de contado convertidas a MSI después"
+    excluye: [amz-bbvabf26]
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936416011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-bbva/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
-      evidencia: "El monto máximo de cashback por cliente es de $2,500.00 MXN por día y por cliente del 14 al 17 de noviembre de 2026"
-      nota: "Plazos de 12 a 24 MSI, sin inscripción: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt (https://www.bbva.mx/buen-fin.html)"
+      verificacion:
+        por: agente
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "T&C de Amazon para BBVA (snapshots/buen-fin-2026/comercio-amazon-tyc-bbva/20261117-165539.txt): 10% desde $5,000 'a plazos de 12 o 15 meses sin intereses', del 14 al 17 nov, '$2,500.00 MXN... por día y por cliente', sin registro. Cambios: plazos min 12 → permitidos [12, 15] y excluye con amz-bbvabf26 por 'Esta promoción no es acumulable con otras promociones o descuentos ofrecidos por BBVA'."
+      evidencia: "Esta promoción no es acumulable con otras promociones o descuentos ofrecidos por BBVA."
+      nota: "Plazos de 12 a 24 MSI y sin inscripción también en snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt (https://www.bbva.mx/buen-fin.html)"
 
   - id: amz-bbva-paga-en-marzo
     nombre: BBVA paga en marzo 2027 a 3 MSI
@@ -132,22 +145,28 @@ promociones:
 
   # ---------------- Santander ----------------
   - id: amz-santander-cupon
-    nombre: 15% de descuento Santander (agotado)
+    nombre: Cupón SANTBF26
+    codigo: SANTBF26
     comercio: amazon
     patrocinador: santander
     instrumentos: [santander.tdc]
-    beneficio: {tipo: cupon, pct: 15, tope: 600, certeza: condicionado}
+    vigencia: {desde: 2026-11-14, hasta: 2026-11-17}
+    beneficio: {tipo: cupon, pct: 15, tope: 600}
     condiciones:
       minimo: {monto: 3500}
       plazos: {min: 1}
-    avisos: ["AGOTADO al capturar (16 nov 15:11)", "Amazon no muestra el código", "Solo a meses sin intereses"]
+    avisos: ["Solo a meses sin intereses", "Tope de $600 acumulado por cliente; hasta agotar cupones", "El 16 nov 15:11 aparecía AGOTADO y sin código; el 17 nov ya mostraba SANTBF26"]
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936397011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-santander/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
-      evidencia: "15% de descuento AGOTADO Compra mínima $3,500.00"
+      verificacion:
+        por: agente
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "T&C de Amazon para Santander (snapshots/buen-fin-2026/comercio-amazon-tyc-santander/20261117-165539.txt): código SANTBF26, 15%, mínimo $3,500, 'pagando a Meses sin Intereses', tope $600 'durante toda la vigencia', vigencia 'comienza el 14 de noviembre del 2026... expira el 17'. Cambios: se agrega el código (antes AGOTADO, sin código; comercio-amazon/20261117-162130.txt ya lo muestra), vigencia 14-17 nov y se quita certeza condicionado."
+      evidencia: "Para hacer válido el cupón de 15% (quince por ciento) de descuento, deberás hacer un pedido de productos elegibles por un monto mínimo de $3,500.00 (tres mil quinientos pesos 00/100 MXN) pesos, pagando a Meses sin Intereses con tarjetas de crédito SANTANDER participantes, e ingresando el código de promoción SANTBF26"
 
   - id: amz-santander-cashback
     nombre: Cashback Santander
@@ -197,15 +216,15 @@ promociones:
       - "La página de HSBC presenta el cupón \"O\" la devolución; por prudencia no se combinan"
     excluye: [amz-hsbc-devolucion]
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936486011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-hsbc/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
+        fecha: 2026-11-17
         resultado: dudosa
-        notas: "Valores coinciden con el modal y la nota (4) de banco-hsbc. La página de HSBC presenta el cupón HSBCBF26 'O' la devolución de hasta 30%; Amazon los muestra juntos y los T&C de la devolución no excluyen compras con cupón. Se agregó excluye mutuo con amz-hsbc-devolucion por prudencia."
+        notas: "T&C de Amazon para HSBC (snapshots/buen-fin-2026/comercio-amazon-tyc-hsbc/20261117-165539.txt) confirma 10%, mínimo $3,500, tope $750 en toda la vigencia, 'en una sola exhibición (pago de contado) o a Meses sin Intereses' y vigencia 13-17 nov (la frase de encabezado 'exclusiva para compras a meses sin intereses' es plantilla y la contradicen los pasos y las preguntas frecuentes). La combinación con la devolución sigue sin resolverse: el T&C del cupón dice 'no puede combinarse con otras promociones, incluyendo Tarjetas de Regalo Electrónicas y/u ofertas basadas en códigos promocionales'; la página de Amazon pone 'Aprovecha y combina hasta' sobre Cupón y Bonificación (plantilla, sale también en la de Rappi, que solo tiene una promo); el T&C de la devolución no excluye compras con cupón y banco-hsbc pone 'O' entre ambos. Se mantiene el excluye por prudencia; lo resolvería una respuesta de HSBC o una compra de prueba."
       evidencia: "10% de descuento Código: HSBCBF26 Compra mínima $3,500.00"
       nota: "Contado o MSI: snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt, nota (4) (https://www.hsbc.com.mx/buenfin)"
 
@@ -236,15 +255,15 @@ promociones:
       - "La página de HSBC presenta el cupón \"O\" la devolución; por prudencia no se combinan"
     excluye: [amz-hsbcbf26]
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936486011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-hsbc/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
+        fecha: 2026-11-17
         resultado: dudosa
-        notas: "Mecánica coincide con banco-hsbc (25/20/10% +5%, 6-24 MSI, $15,000 acumulado, tope $7,000). Se agregó excluye con amz-hsbcbf26 porque HSBC presenta cupón 'O' devolución; no es explícito que se excluyan."
+        notas: "T&C de Amazon para HSBC (snapshots/buen-fin-2026/comercio-amazon-tyc-hsbc/20261117-165539.txt): hasta 30% (25% Premier, 20% One, 10% resto, +5% por transferencia de saldos de $50,000+), compras acumuladas 'a partir de 6 Meses', mínimo $15,000, tope $7,000 por cliente, registro en hsbc.com.mx/buenfin a más tardar el 17 nov; coincide con banco-hsbc/20261117-162130.txt. Solo queda la duda del excluye con amz-hsbcbf26 (ver notas del cupón): ningún T&C excluye compras con cupón, pero el del cupón dice que no se combina con otras promociones."
       evidencia: "30% de bonificación + 12 meses sin intereses Compra mínima $15,000.00"
       nota: "Porcentaje por segmento, +5% por transferencia, 6-24 MSI, mínimo acumulado y restricción a vendido por Amazon México: snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt (https://www.hsbc.com.mx/buenfin)"
 
@@ -254,27 +273,27 @@ promociones:
     codigo: BNRTBF26
     comercio: amazon
     patrocinador: banorte
-    instrumentos: [banorte.tdc]
+    instrumentos: [banorte.tdc, banorte.tdd]
     beneficio: {tipo: cupon, pct: 10, tope: 1000}
     condiciones:
       minimo: {monto: 3000}
       plazos: {permitidos: [0]}
     avisos:
-      - "Solo en una exhibición"
+      - "Solo en una exhibición; no aplica a MSI"
+      - "Crédito o débito Banorte, incluidas las tarjetas VA"
       - "Tope de $1,000 acumulado por cliente"
-      - "La tarjeta de Amazon tiene logo con alt \"Access\"; el código indica Banorte"
-      - "Amazon no dice si aplica con débito Banorte"
+      - "La tarjeta de Amazon tiene logo con alt \"Access\", pero su modal enlaza el T&C de Banorte"
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936368011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-banorte/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
-        resultado: dudosa
-        notas: "Porcentaje, mínimo y tope coinciden con el modal. La tarjeta de Amazon lleva logo 'Access' (no Banorte) y Amazon no dice si aplica con débito; en Mercado Libre el cupón Banorte equivalente acepta crédito y débito (ml-banorte). Se deja solo crédito."
-      evidencia: "10% de descuento Código: BNRTBF26 Compra mínima $3,000"
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "T&C de Amazon para Banorte (snapshots/buen-fin-2026/comercio-amazon-tyc-banorte/20261117-165539.txt): 'Participan las tarjetas de crédito o débito emitidas en México por Banorte y Va', 'pagando en una sola exhibición (pago de contado)', mínimo $3,000, tope $1,000 en toda la vigencia, 13-17 nov. Cambio: se agrega banorte.tdd (antes solo crédito). VA no tiene instrumento propio en el catálogo."
+      evidencia: "Participan las tarjetas de crédito o débito emitidas en México por Banorte y Va."
 
   - id: amz-banorte-bonificacion
     nombre: 10% de bonificación Banorte
@@ -327,16 +346,27 @@ promociones:
     condiciones:
       minimo: {monto: 10000, acumulable: true}
       plazos: {min: 1}
-      registro_previo: App American Express (activaciones limitadas)
-    avisos: ["Mínimo acumulado de $10,000 a MSI", "Solo compras en línea", "Activación limitada; no a todos los clientes les aparece"]
+      registro_previo: Plataforma o App de American Express, antes de comprar (registros limitados)
+    avisos:
+      - "Hay que registrar la promoción en la plataforma de Amex antes de comprar; cupo limitado (40,000 registros según el T&C que publica Mercado Libre, 53,000 según americanexpress.com)"
+      - "Campaña compartida con Palacio, Home Depot, Liverpool, Mercado Libre e iShop: los $10,000 se acumulan entre comercios y hay una sola bonificación de $1,500 por titular"
+      - "Solo titulares de tarjetas personales emitidas por American Express México; no Corporativas ni emitidas por terceros; el gasto de suplementarias no cuenta"
+      - "El T&C de Amex dice \"No aplica con otras promociones\""
+      - "La bonificación puede tardar hasta 90 días después del 17 nov en aparecer en el estado de cuenta"
+      - "En Amazon solo cuentan compras en línea a Meses Sin Intereses con American Express; no aplica pagando mediante procesadores de pago o financiamiento de terceros (p. ej. Kueski Pay)"
+      - "Amazon cobra al enviar: si el cargo llega después del 17 nov, la compra puede no contar"
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.americanexpress.com/es-mx/beneficios/promociones/buenfin/cashback.buen-fin.html"
+      snapshot: snapshots/buen-fin-2026/banco-amex-buenfin-cashback/20261117-165718.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
-      evidencia: "$1,500 de bonificación + 12 meses sin intereses Compra mínima acumulada $10,000"
-      nota: "Registro previo y 'solo en línea con Amazon': T&C de Amex en snapshots/buen-fin-2026/ml-amex/20261116-145923.txt; activaciones limitadas según pista-pd-amex/20261116-145923.txt (agregador)"
+      verificacion:
+        por: agente
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "Alineada con lp-amex-1500 (registro_previo y avisos). T&C oficial de Amex (banco-amex-buenfin-cashback/20261117-165718.txt): '$1,500.00 M.N. de Cashback al gastar $10,000.00 M.N. a Meses sin Intereses... solo en línea en Amazon', 'Para Amazon, Mercado Libre, y iShop solo son válidas las compras realizadas con Meses Sin Intereses con American Express', 'Limitado a los primeros 53,000 registros', 'No aplica a compras mediante Mercado Pago u otros procesadores de pago o servicios de financiación de terceros' y 'Es posible que su compra no cumpla los requisitos si el comercio espera a realizar el cargo... hasta después de que finalice la oferta'. Amazon cobra la tarjeta directamente (no usa un procesador tercero), así que la exclusión solo afecta pagos como Kueski Pay; se agregó aviso. El cupo de registros difiere (40,000 en ml-amex, 53,000 en Amex) y no se modela."
+      evidencia: "Para Amazon, Mercado Libre, y iShop solo son válidas las compras realizadas con Meses Sin Intereses con American Express."
+      nota: "Modal de Amazon ($1,500 + 12 MSI, mínimo acumulado $10,000): snapshots/buen-fin-2026/comercio-amazon/20261117-162130.txt"
 
   # ---------------- INVEX ----------------
   - id: amz-invexbf26
@@ -348,22 +378,22 @@ promociones:
     beneficio: {tipo: cupon, pct: 10, tope: 500}
     condiciones:
       minimo: {monto: 4500}
-      plazos: {min: 1}
-    avisos: ["La tarjeta de Amazon dice exclusiva a MSI; el modal solo lo indica para la bonificación"]
+      plazos: {permitidos: [0, 3, 6, 9, 12]}
+    avisos: ["Contado o 3, 6, 9 o 12 MSI", "Tope de $500 acumulado por cliente", "La tarjeta y el encabezado del T&C dicen \"exclusiva a MSI\", pero los pasos y las preguntas frecuentes aceptan una sola exhibición"]
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936420011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-invex/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
-        resultado: dudosa
-        notas: "10%, $4,500 y tope $500 coinciden con el modal. La restricción a MSI viene de la leyenda de la tarjeta; en el modal el asterisco 'exclusiva a MSI' solo acompaña a la bonificación."
-      evidencia: "10% de descuento Código: INVEXBF26 Compra mínima $4,500"
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "T&C de Amazon para INVEX (snapshots/buen-fin-2026/comercio-amazon-tyc-invex/20261117-165539.txt): 'Paga tus productos en una sola exhibición o Meses sin Intereses (3, 6, 9 o 12 Meses sin Intereses)', repetido en la mecánica, el mínimo, la forma de pago y '¿Con qué forma de pago puedo participar?'. Solo la frase de encabezado 'Esta promoción es exclusiva para compras realizadas a meses sin intereses' contradice, y aparece igual en los T&C de HSBC y BanCoppel crédito, que también aceptan contado: es plantilla. Cambio: plazos min 1 → permitidos [0, 3, 6, 9, 12]."
+      evidencia: "Esta promoción aplica en compras realizadas en una sola exhibición o Meses sin Intereses (3, 6, 9 o 12 Meses sin Intereses) con tarjetas de crédito INVEX participantes."
 
   - id: amz-invex-bonificacion
-    nombre: Bonificación INVEX
+    nombre: Bonificación INVEX 10% a 9+ MSI
     comercio: amazon
     patrocinador: invex
     instrumentos: [invex.tdc]
@@ -371,20 +401,47 @@ promociones:
     condiciones:
       plazos: {min: 9}
       requiere: [invex_meta]
-      registro_previo: Canales de INVEX (activación del 12 al 17 nov)
-    avisos: ["Solo clientes invitados por correo", "Mínimo y tope personales ($2,500 a $5,000)"]
+      registro_previo: Botón del correo de INVEX o App INVEX Now (activación del 12 al 17 nov)
+    avisos: ["Solo clientes invitados por correo", "Mínimo acumulado personal (notificado por correo); tope de $5,000 por cliente", "Hay otro nivel de 5% para compras de contado (amz-invex-bonificacion-contado)"]
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936420011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-invex/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
-        resultado: dudosa
-        notas: "Mínimo acumulado y tope personales: el modal dice 'El monto mínimo será notificado individualmente' y tope de $2,500 a $5,000 según el porcentaje; se usa $5,000 como máximo y el atributo invex_meta. Plazos 9+ MSI de banco-invex-tyc."
-      evidencia: "El monto mínimo será notificado individualmente por Banco INVEX vía correo electrónico"
-      nota: "Plazos de 9+ MSI y activación: snapshots/buen-fin-2026/banco-invex-tyc/20261116-150956.txt (https://www.invextarjetas.com.mx/invex/Documentos/Landings/TerminosyCondicionesBuenFin2026.pdf)"
+        fecha: 2026-11-17
+        resultado: coincide
+        notas: "T&C de Amazon para INVEX (snapshots/buen-fin-2026/comercio-amazon-tyc-invex/20261117-165539.txt), 'Nivel *': '10% sobre el total de compras acumuladas. Monto mínimo: el notificado individualmente... Modalidad de pago: 9 MSI o más... Máximo: $5,000.00 MXN por cliente'; activación por el correo o la App INVEX Now del 12 al 17 nov. Coincide con banco-invex-tyc/20261117-163900.txt. Se precisó el canal de registro y se separó el nivel de contado en otra promoción."
+      evidencia: "Nivel *: Bonificación: 10% sobre el total de compras acumuladas. Monto mínimo: el notificado individualmente por Banco INVEX vía correo electrónico. Modalidad de pago: 9 MSI o más con Tarjeta de Crédito INVEX. Máximo: $5,000.00 MXN por cliente."
+      nota: "T&C del banco: snapshots/buen-fin-2026/banco-invex-tyc/20261117-163900.txt (https://www.invextarjetas.com.mx/invex/Documentos/Landings/TerminosyCondicionesBuenFin2026.pdf)"
+
+  - id: amz-invex-bonificacion-contado
+    nombre: Bonificación INVEX 5% de contado
+    comercio: amazon
+    patrocinador: invex
+    instrumentos: [invex.tdc]
+    beneficio: {tipo: bonificacion, pct: 5, tope: 2500, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      plazos: {permitidos: [0]}
+      requiere: [invex_meta]
+      registro_previo: Botón del correo de INVEX o App INVEX Now (activación del 12 al 17 nov)
+    avisos:
+      - "Solo clientes invitados por correo"
+      - "Mínimo acumulado personal (notificado por correo); tope de $2,500 por cliente, aparte del nivel de 10%"
+      - "El PDF de INVEX pide además una compra a 9+ MSI en la vigencia; el T&C de Amazon no lo menciona"
+      - "El modal de Amazon solo anuncia la bonificación a MSI; este nivel sale del T&C"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=223936420011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-invex/20261117-165539.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "Nueva. T&C de Amazon para INVEX (snapshots/buen-fin-2026/comercio-amazon-tyc-invex/20261117-165539.txt), 'Nivel **': '5% sobre el total de compras acumuladas... Pago en una sola exhibición... Máximo: $2,500.00 MXN por cliente'; 'Si el cliente cumple el monto mínimo acumulado en las dos modalidades, se dará el beneficio correspondiente a cada compra'. banco-invex-tyc/20261117-163900.txt da el mismo 5%, condicionado a 'una compra diferida a 9 Meses sin Intereses o más'; requisito no modelable, queda en avisos."
+      evidencia: "Nivel **: Bonificación: 5% sobre el total de compras acumuladas. Monto mínimo: el notificado individualmente por Banco INVEX vía correo electrónico. Modalidad de pago: Pago en una sola exhibición con Tarjeta de Crédito INVEX. Máximo: $2,500.00 MXN por cliente."
 
   # ---------------- BanCoppel ----------------
   - id: amz-bcoppbfd
@@ -427,53 +484,71 @@ promociones:
     nombre: Bonificación BanCoppel (débito)
     comercio: amazon
     patrocinador: bancoppel
+    campana: bancoppel-bf26-bonificacion-tdd
     instrumentos: [bancoppel.tdd]
-    beneficio: {tipo: bonificacion, pct: 20, tope: 1500, certeza: condicionado}
+    beneficio:
+      tipo: bonificacion
+      tope: 1500
+      certeza: condicionado
+      tramos:
+        - {mayor_a: 6000, pct: 20}
+        - {mayor_a: 3000, pct: 15}
+        - {desde: 2000, pct: 10}
+      escala_acumulada: true
     condiciones:
-      minimo: {monto: 2000}
       registro_previo: App BanCoppel
     avisos:
-      - "Amazon anuncia 20%; BanCoppel dice que el porcentaje depende del monto acumulado (tramos no capturados)"
-      - "Sujeta al presupuesto del banco"
-      - "Crédito y débito no se suman: una sola bonificación"
+      - "Amazon anuncia 20% desde $2,000; según BanCoppel el 20% solo llega con más de $6,000 acumulados (10% de $2,000 a $3,000, 15% hasta $6,000)"
+      - "Campaña única de BanCoppel en todos los comercios: el acumulado y el tope de $1,500 se comparten"
+      - "Sujeta a una bolsa limitada que se reparte primero a quien más acumula"
+      - "Crédito y débito no se suman: una sola bonificación, sobre el producto con mayor monto"
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936360011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-bancoppel/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
-        resultado: dudosa
-        notas: "Modal de Amazon: 20%, mínimo $2,000 con débito, tope $1,500. BanCoppel (ml-bancoppel) dice que el porcentaje depende del monto acumulado y del tipo de tarjeta, sujeto a presupuesto; en Mercado Libre se modeló 10/15/20% por tramos. No consta si en Amazon el 20% es fijo ni si el mínimo es acumulado."
-      evidencia: "20% de bonificación + 12 meses sin intereses Compra mínima $2,000 en compras con Débito"
-      nota: "Registro en app, presupuesto y porcentaje variable: snapshots/buen-fin-2026/ml-bancoppel/20261116-145101.txt y banco-bancoppel/20261116-145101.txt (https://www.bancoppel.com/buen-fin/)"
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "Confirmada con el T&C oficial de BanCoppel publicado por Amazon (snapshots/buen-fin-2026/comercio-amazon-tyc-bancoppel/20261117-165539.txt): escalones 10/15/20% por facturación acumulada en todos los comercios, mínimo y tope por producto, registro en la App BanCoppel antes de comprar, bolsa topada y una sola bonificación por cliente. Antes: 20% fijo con mínimo $2,000 por compra y sin campaña. Ahora: tramos acumulados 10/15/20% y campana bancoppel-bf26-bonificacion-tdd, igual que ml-bancoppel-tdd y cp-bancoppel-tdd. El mínimo ($2,000) y el tope ($1,500) del modal de Amazon (igual el 17 nov) son exactamente el piso del 10% y el tope de BanCoppel, lo que indica que Amazon anuncia el tramo máximo. Tramos: pista-pd-bancoppel/20261117-162130.txt (transcribe el T&C: 'De $2,000 a $3,000: 10%... De $6,000.01 en adelante: 20%') y pista-expansion-bancos (mismas cifras); ml-bancoppel: 'El porcentaje depende de cuánto acumules y de tu tipo de tarjeta'. banco-bancoppel sigue mostrando T&C de 2024."
+      evidencia: "Escalón 1 - $2,000.00 a $3,000.00 MXN - 10%"
+      nota: "Tramos, bolsa y tope: snapshots/buen-fin-2026/pista-pd-bancoppel/20261117-162130.txt; registro en app y porcentaje variable: snapshots/buen-fin-2026/ml-bancoppel/20261117-162130.txt (https://www.mercadolibre.com.mx/ofertas/bancoppel)"
 
   - id: amz-bancoppel-bonificacion-tdc
     nombre: Bonificación BanCoppel (crédito)
     comercio: amazon
     patrocinador: bancoppel
+    campana: bancoppel-bf26-bonificacion-tdc
     instrumentos: [bancoppel.tdc]
-    beneficio: {tipo: bonificacion, pct: 20, tope: 2200, certeza: condicionado}
+    beneficio:
+      tipo: bonificacion
+      tope: 2200
+      certeza: condicionado
+      tramos:
+        - {mayor_a: 8500, pct: 20}
+        - {mayor_a: 4500, pct: 15}
+        - {desde: 3000, pct: 10}
+      escala_acumulada: true
     condiciones:
-      minimo: {monto: 3000}
       registro_previo: App BanCoppel
     avisos:
-      - "Amazon anuncia 20%; BanCoppel dice que el porcentaje depende del monto acumulado (tramos no capturados)"
-      - "Sujeta al presupuesto del banco"
-      - "Crédito y débito no se suman: una sola bonificación"
+      - "Amazon anuncia 20% desde $3,000; según BanCoppel el 20% solo llega con más de $8,500 acumulados (10% de $3,000 a $4,500, 15% hasta $8,500)"
+      - "Campaña única de BanCoppel en todos los comercios: el acumulado y el tope de $2,200 se comparten"
+      - "Sujeta a una bolsa limitada que se reparte primero a quien más acumula"
+      - "Crédito y débito no se suman: una sola bonificación, sobre el producto con mayor monto"
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936360011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-bancoppel/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
-        resultado: dudosa
-        notas: "Modal de Amazon: 20%, mínimo $3,000 con crédito, tope $2,200. BanCoppel (ml-bancoppel) dice que el porcentaje depende del monto acumulado, sujeto a presupuesto; en Mercado Libre se modeló 10/15/20% por tramos. No consta si en Amazon el 20% es fijo ni si el mínimo es acumulado."
-      evidencia: "$3,000 en compras con Crédito"
-      nota: "Registro en app, presupuesto y porcentaje variable: snapshots/buen-fin-2026/ml-bancoppel/20261116-145101.txt y banco-bancoppel/20261116-145101.txt (https://www.bancoppel.com/buen-fin/)"
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "Confirmada con el T&C oficial de BanCoppel publicado por Amazon (snapshots/buen-fin-2026/comercio-amazon-tyc-bancoppel/20261117-165539.txt): escalones 10/15/20% por facturación acumulada en todos los comercios, mínimo y tope por producto, registro en la App BanCoppel antes de comprar, bolsa topada y una sola bonificación por cliente. Antes: 20% fijo con mínimo $3,000 por compra y sin campaña. Ahora: tramos acumulados 10/15/20% y campana bancoppel-bf26-bonificacion-tdc, igual que ml-bancoppel-tdc y cp-bancoppel-tdc (sin el 5% extra de Coppel). El mínimo ($3,000) y el tope ($2,200) del modal de Amazon (igual el 17 nov) son exactamente el piso del 10% y el tope de BanCoppel, lo que indica que Amazon anuncia el tramo máximo. Tramos: pista-pd-bancoppel/20261117-162130.txt ('De $3,000 a $4,500: 10%... De $8,500.01 en adelante: 20%') y pista-expansion-bancos (mismas cifras); ml-bancoppel: 'El porcentaje depende de cuánto acumules'."
+      evidencia: "Escalón 1 - $3,000.00 a $4,500.00 MXN - 10%"
+      nota: "Tramos, bolsa y tope: snapshots/buen-fin-2026/pista-pd-bancoppel/20261117-162130.txt; registro en app y porcentaje variable: snapshots/buen-fin-2026/ml-bancoppel/20261117-162130.txt (https://www.mercadolibre.com.mx/ofertas/bancoppel)"
 
   # ---------------- DiDi Card ----------------
   - id: amz-didi-cashback
@@ -574,21 +649,27 @@ promociones:
     comercio: amazon
     patrocinador: rappi
     instrumentos: [rappi.tdc]
-    beneficio: {tipo: bonificacion, pct: 10, tope: 1000, certeza: condicionado}
+    beneficio: {tipo: cashback, pct: 10, tope: 1000, certeza: condicionado}
     condiciones:
       minimo: {monto: 750}
-    avisos: ["Modal sin nombre de banco: asignado a RappiCard por el orden de los modales (el otro 10% coincide con los T&C de Klar)", "Amazon lo anuncia junto con hasta 12 MSI"]
+      registro_previo: App RappiCard (del 5 al 17 nov; no cuentan compras previas a la activación)
+    avisos:
+      - "Contado o MSI"
+      - "Tope de $1,000 acumulado en todo el Buen Fin"
+      - "Solo tarjetas RappiCard que recibieron la comunicación de la promoción"
+      - "RappiCard puede cortar el cashback para todos al llegar a $25 millones otorgados"
+      - "Acumulable con otras promociones de cashback"
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936382011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-rappi/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
-        resultado: dudosa
-        notas: "10%, mínimo $750 y tope $1,000 coinciden con el modal, pero el modal no nombra al banco: se asignó a RappiCard por el orden inverso de los modales (queda entre los de Openbank y Mifel, igual que la tarjeta con logo Rappi Card). Sin fuente del banco."
-      evidencia: "10% de bonificación + 12 meses sin intereses Compra mínima $750"
+        fecha: 2026-11-17
+        resultado: corregida
+        notas: "T&C de Amazon para RappiCard (snapshots/buen-fin-2026/comercio-amazon-tyc-rappi/20261117-165539.txt): '10% de cashback en compras de $750 o más... Aplica para compras de contado y a MSI', 'Monto máximo de cashback $1,000', 'Activar la promoción directamente en la aplicación de RappiCard entre el 5 y el 17 de noviembre', bolsa de $25,000,000. Cambios: se agrega registro_previo y tipo bonificacion → cashback (así lo llama el T&C); 10%, $750 y tope $1,000 coinciden."
+      evidencia: "Recibe 10% de cashback en compras de $750 o más que sean aprobadas durante la vigencia de la promoción. Aplica para compras de contado y a MSI."
 
   # ---------------- Openbank ----------------
   - id: amz-opbf26
@@ -712,7 +793,7 @@ promociones:
 
   # ---------------- Revolut ----------------
   - id: amz-revolut-revpoints
-    nombre: Hasta 42,000 RevPoints Revolut
+    nombre: Bono de bienvenida Revolut (hasta 42,000 RevPoints)
     comercio: amazon
     patrocinador: revolut
     campana: revolut-bf26-revpoints
@@ -720,23 +801,24 @@ promociones:
     beneficio: {tipo: bonificacion, valor_desconocido: true, certeza: condicionado, forma: puntos}
     condiciones:
       minimo: {monto: 50000, acumulable: true}
-      registro_previo: Registro en la promoción de Revolut (Amazon no indica el canal)
+      registro_previo: App de Revolut (registro en la promoción "Bono de Bienvenida de TDC")
     avisos:
-      - "Bono por compras acumuladas: $50,000 = 7,000; $100,000 = 14,000; $150,000 = 28,000; $200,000 = 42,000 RevPoints"
-      - "42,000 solo con Plan Ultra: depende de tu suscripción activa a los 90 días del registro"
-      - "Una sola vez por cliente; el valor en pesos de los RevPoints no está publicado"
-      - "Modal sin nombre de banco: asignado a Revolut por ser el único con RevPoints"
+      - "Solo para quien contrata por primera vez la Tarjeta de Crédito Revolut entre el 26 oct 2026 y el 29 ene 2027; no aplica a quien ya la tuvo"
+      - "Los RevPoints dependen del plan, no del monto: Standard o Plus 7,000 con $50,000; Premium 14,000 con $100,000; Metal 28,000 con $150,000; Ultra 42,000 con $200,000"
+      - "Las compras cuentan en cualquier comercio durante los 90 días siguientes al registro; no es exclusiva de Amazon"
+      - "El valor en pesos de los RevPoints no está publicado"
+      - "No acumulable con otras promociones de bienvenida de Revolut"
     fuente:
-      url: "https://www.amazon.com.mx/b?node=120273989011"
-      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
-      capturada: 2026-11-16
+      url: "https://www.amazon.com.mx/b?node=223936358011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon-tyc-revolut/20261117-165539.txt
+      capturada: 2026-11-17
       revisada: false
       verificacion:
         por: agente
-        fecha: 2026-11-16
+        fecha: 2026-11-17
         resultado: dudosa
-        notas: "Nueva. Modal (asignado a Revolut por orden y por ser el único con RevPoints): tramos de $50,000 a $200,000 acumulados, máximo 42,000 RevPoints con Plan Ultra, a los 90 días del registro. Valor de los RevPoints en pesos no publicado (valor_desconocido)."
-      evidencia: "Hasta 42,000 RevPoints Compras acumuladas mínimas $50,000.00 MXN para 7,000 RevPoints"
+        notas: "T&C de Amazon para Revolut (snapshots/buen-fin-2026/comercio-amazon-tyc-revolut/20261117-165539.txt) aclara la mecánica: 'al contratar por primera vez tu Tarjeta de Crédito Revolut durante la Vigencia' (26 oct 2026 - 29 ene 2027), 'no aplica para personas que hayan sido titulares de una Tarjeta de Crédito Revolut con anterioridad', monto y RevPoints por Suscripción, 90 días desde el registro. Se reescribieron nombre, registro y avisos. Sigue dudosa porque el catálogo no puede modelarla: el instrumento revolut.tarjeta es de débito y la promo pide la tarjeta de crédito, y no hay atributo de 'cliente nuevo de TDC Revolut'. Falta en instrumentos.yaml un producto revolut.tdc y un atributo tipo revolut_tdc_nueva."
+      evidencia: "La Promoción no aplica para personas que hayan sido titulares de una Tarjeta de Crédito Revolut con anterioridad, incluyendo quienes la hayan cancelado en los últimos 12 (doce) meses."
 
   # ---------------- Kueski Pay ----------------
   - id: amz-kueskibf150
