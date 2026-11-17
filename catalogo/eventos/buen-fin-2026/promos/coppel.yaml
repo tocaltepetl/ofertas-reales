@@ -3,8 +3,8 @@
 # el 17 nov 2026; los PDFs los bajó a mano el usuario (el CDN de Coppel rechaza curl y Chrome headless). revisada: false.
 #
 # La página bloquea curl (403). Los PDFs están en snapshots/buen-fin-2026/comercio-coppel-tyc/.
-# Bonificación base de BanCoppel (hasta 20%, campañas bancoppel-bf26-*): T&C en la App BanCoppel; mecánica
-# tomada de pista-pd-bancoppel, que dice "+5% adicional en compras en tiendas Coppel y Coppel.com".
+# Bonificación de BanCoppel (hasta 20% + 5% en Coppel, campañas bancoppel-bf26-*): T&C oficial en
+# snapshots/buen-fin-2026/banco-bancoppel-tyc/ (bancoppel.com/buen-fin/img/Buen_Fin_2026_TyC_VF.pdf, 403 a scripts).
 promociones:
   # ---------------- Crédito Coppel ----------------
   - id: cp-pago-inicial-0
@@ -125,17 +125,17 @@ promociones:
       registro_previo: App BanCoppel
     avisos:
       - "Tramos base 10/15/20% por compras acumuladas con BanCoppel en cualquier comercio, +5% sobre lo comprado en Coppel (ya sumado aquí)"
-      - "No está claro si el tope de $2,200 incluye el 5% adicional; se asume que sí"
+      - "El tope de $2,200 incluye el 5% adicional; el 5% solo se paga si alcanzas la meta base"
       - "Sujeta a una bolsa de $3.56 M que se reparte primero a quien más acumula"
       - "Crédito y débito no se suman: una sola bonificación, sobre el producto con mayor monto"
       - "Compatible con los 3/6 MSI automáticos"
     fuente:
-      url: "https://www.promodescuentos.com/ofertas/el-buen-fin-2026-en-bancoppel-este-buen-fin-tus-compras-con-tarjeta-te-dan-hasta-20-de-bonificacion-5-adicional-si-compras-en-coppel-1203479"
-      snapshot: snapshots/buen-fin-2026/pista-pd-bancoppel/20261117-162130.txt
+      url: "https://www.bancoppel.com/buen-fin/img/Buen_Fin_2026_TyC_VF.pdf"
+      snapshot: snapshots/buen-fin-2026/banco-bancoppel-tyc/20261117-170500.txt
       capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Tramos base 10/15/20% y topes $2,200/$1,500 confirmados con el T&C oficial de BanCoppel que publica Amazon (comercio-amazon-tyc-bancoppel/20261117-165539.txt). El +5% en Coppel solo lo citan el PDF de BanCoppel en Coppel ('+ 5% adicional en Coppel/Coppel.com') y Promodescuentos; falta el T&C completo de BanCoppel (bancoppel.com/buen-fin/img/Buen_Fin_2026_TyC_VF.pdf, 403 a scripts) para saber si el tope incluye el 5%"}
-      evidencia: "Si realizas compras en tiendas físicas Coppel o en Coppel.com, recibirás un 5% adicional sobre esas compras, que se suma al porcentaje de bonificación base alcanzado."
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide, notas: "T&C oficial de BanCoppel (PDF bajado a mano): tramos 10/15/20%, +5% sobre lo facturado en Coppel/coppel.com y tope de $2,200 que incluye el adicional ('Sujeto al tope máximo aplicable'). Antes dudosa con Promodescuentos como fuente"}
+      evidencia: "y a los $1,000 facturados en tiendas Coppel se les aplica el 5% ($50), de este modo, la bonificación total obtenida será de $350. Sujeto al tope máximo aplicable para cada tipo de producto"
 
   - id: cp-bancoppel-tdd
     nombre: Bonificación BanCoppel (débito o nómina) + 5% adicional en Coppel
@@ -156,16 +156,16 @@ promociones:
       registro_previo: App BanCoppel
     avisos:
       - "Tramos base 10/15/20% por compras acumuladas con BanCoppel en cualquier comercio, +5% sobre lo comprado en Coppel (ya sumado aquí)"
-      - "No está claro si el tope de $1,500 incluye el 5% adicional; se asume que sí"
+      - "El tope de $1,500 incluye el 5% adicional; el 5% solo se paga si alcanzas la meta base"
       - "Sujeta a una bolsa de $4.44 M que se reparte primero a quien más acumula"
       - "Crédito y débito no se suman: una sola bonificación, sobre el producto con mayor monto"
     fuente:
-      url: "https://www.promodescuentos.com/ofertas/el-buen-fin-2026-en-bancoppel-este-buen-fin-tus-compras-con-tarjeta-te-dan-hasta-20-de-bonificacion-5-adicional-si-compras-en-coppel-1203479"
-      snapshot: snapshots/buen-fin-2026/pista-pd-bancoppel/20261117-162130.txt
+      url: "https://www.bancoppel.com/buen-fin/img/Buen_Fin_2026_TyC_VF.pdf"
+      snapshot: snapshots/buen-fin-2026/banco-bancoppel-tyc/20261117-170500.txt
       capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Igual que cp-bancoppel-tdc: tramos y tope confirmados con comercio-amazon-tyc-bancoppel; el +5% y si entra en el tope siguen sin T&C oficial completo"}
-      evidencia: "De $2,000 a $3,000: 10% de bonificación. De $3,000.01 a $6,000: 15% de bonificación. De $6,000.01 en adelante: 20% de bonificación."
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide, notas: "T&C oficial de BanCoppel: tramos 10/15/20% para débito/nómina, +5% en Coppel y tope de $1,500 que incluye el adicional"}
+      evidencia: "TDD: $1,500.00 MXN (Un mil quinientos pesos 00/100 MXN)."
 
   # ---------------- BBVA ----------------
   - id: cp-bbva-paga-marzo
