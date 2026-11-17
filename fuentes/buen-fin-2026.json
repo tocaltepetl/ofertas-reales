@@ -409,6 +409,51 @@
    "banco": "rappi",
    "url": "https://www.amazon.com.mx/b?node=223936382011",
    "render": true
+  },
+  {
+   "id": "banco-amex-buenfin-cashback",
+   "tipo": "banco",
+   "banco": "amex",
+   "url": "https://www.americanexpress.com/es-mx/beneficios/promociones/buenfin/cashback.buen-fin.html"
+  },
+  {
+   "id": "comercio-liverpool-tyc-paypal",
+   "tipo": "comercio-tyc",
+   "comercio": "liverpool",
+   "url": "https://gcp-na-assets.contentstack.com/v3/assets/blt339516d00dd80f86/blt6ac4e41c18975e31/6afc993a631333c0118726d5/rest_paypalLV_171126.pdf"
+  },
+  {
+   "id": "comercio-liverpool-tyc-cashback",
+   "tipo": "comercio-tyc",
+   "comercio": "liverpool",
+   "url": "https://gcp-na-assets.contentstack.com/v3/assets/blt339516d00dd80f86/bltcc877af9cade8281/6af7209d03123512a2b189e8/rest_cashbackLV_131126.pdf"
+  },
+  {
+   "id": "comercio-liverpool-tyc-scotiabank",
+   "tipo": "comercio-tyc",
+   "comercio": "liverpool",
+   "banco": "scotiabank",
+   "url": "https://gcp-na-assets.contentstack.com/v3/assets/blt339516d00dd80f86/blt74b21f368c10ab9c/6af3504cd52f4936d303933f/rest_scotiabankLV_131126.pdf"
+  },
+  {
+   "id": "comercio-liverpool-tyc-amex",
+   "tipo": "comercio-tyc",
+   "comercio": "liverpool",
+   "banco": "amex",
+   "url": "https://gcp-na-assets.contentstack.com/v3/assets/blt339516d00dd80f86/bltb374c86dd643b600/6af3504bd52f4984a403933b/rest_amexLV_131126.pdf"
+  },
+  {
+   "id": "banco-falabella-tyc-palacio",
+   "tipo": "banco",
+   "banco": "falabella",
+   "comercio": "palacio-de-hierro",
+   "url": "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/Buen-Fin-Falabella.pdf"
+  },
+  {
+   "id": "comercio-palacio-tyc-kueski",
+   "tipo": "comercio-tyc",
+   "comercio": "palacio-de-hierro",
+   "url": "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/Kueskipay.pdf"
   }
  ],
  "directorio": {
