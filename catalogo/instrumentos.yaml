@@ -136,6 +136,9 @@ emisores:
     nombre: Revolut
     productos:
       - { id: revolut.tarjeta, nombre: Tarjeta Revolut, tipo: debito }
+      - { id: revolut.tdc, nombre: Tarjeta de Crédito Revolut, tipo: credito }
+    atributos:
+      - { id: revolut_tdc_nueva, etiqueta: Contraté la Tarjeta de Crédito Revolut por primera vez entre el 26 oct 2026 y el 29 ene 2027, tipo: booleano }
 
   - id: kueski
     nombre: Kueski Pay

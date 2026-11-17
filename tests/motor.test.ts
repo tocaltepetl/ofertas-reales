@@ -110,7 +110,7 @@ test("el tope por cliente descuenta lo ya recibido en la campaña", () => {
 });
 
 test("valor desconocido: se muestra sin sumar ahorro", () => {
-  const r = evaluar(cat, { evento: "buen-fin-2026", comercio: "amazon", precio: 60000, dia: "2026-11-15", msi: {} }, { instrumentos: ["revolut.tarjeta"], atributos: {} }, P);
+  const r = evaluar(cat, { evento: "buen-fin-2026", comercio: "amazon", precio: 60000, dia: "2026-11-15", msi: {} }, { instrumentos: ["revolut.tdc"], atributos: { revolut_tdc_nueva: true } }, P);
   const o = r.opciones.find((o) => o.promos.some((p) => p.id === "amz-revolut-revpoints"))!;
   assert.equal(o.ahorro, 0);
   assert.equal(o.certeza, "condicionado");

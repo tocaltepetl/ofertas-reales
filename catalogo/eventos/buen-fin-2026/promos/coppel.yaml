@@ -134,7 +134,7 @@ promociones:
       snapshot: snapshots/buen-fin-2026/pista-pd-bancoppel/20261117-162130.txt
       capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Mecánica de un post de Promodescuentos que transcribe los T&C; el PDF oficial de BanCoppel en Coppel solo cita la campaña ('hasta 20% de bonificación ... + 5% adicional en Coppel/Coppel.com'). Falta el T&C de la App BanCoppel para confirmar si el tope incluye el 5%"}
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Tramos base 10/15/20% y topes $2,200/$1,500 confirmados con el T&C oficial de BanCoppel que publica Amazon (comercio-amazon-tyc-bancoppel/20261117-165539.txt). El +5% en Coppel solo lo citan el PDF de BanCoppel en Coppel ('+ 5% adicional en Coppel/Coppel.com') y Promodescuentos; falta el T&C completo de BanCoppel (bancoppel.com/buen-fin/img/Buen_Fin_2026_TyC_VF.pdf, 403 a scripts) para saber si el tope incluye el 5%"}
       evidencia: "Si realizas compras en tiendas físicas Coppel o en Coppel.com, recibirás un 5% adicional sobre esas compras, que se suma al porcentaje de bonificación base alcanzado."
 
   - id: cp-bancoppel-tdd
@@ -164,7 +164,7 @@ promociones:
       snapshot: snapshots/buen-fin-2026/pista-pd-bancoppel/20261117-162130.txt
       capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Igual que cp-bancoppel-tdc: fuente de terceros que transcribe los T&C; falta el T&C oficial de la App BanCoppel"}
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Igual que cp-bancoppel-tdc: tramos y tope confirmados con comercio-amazon-tyc-bancoppel; el +5% y si entra en el tope siguen sin T&C oficial completo"}
       evidencia: "De $2,000 a $3,000: 10% de bonificación. De $3,000.01 a $6,000: 15% de bonificación. De $6,000.01 en adelante: 20% de bonificación."
 
   # ---------------- BBVA ----------------

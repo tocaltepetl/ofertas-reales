@@ -797,10 +797,11 @@ promociones:
     comercio: amazon
     patrocinador: revolut
     campana: revolut-bf26-revpoints
-    instrumentos: [revolut.tarjeta]
+    instrumentos: [revolut.tdc]
     beneficio: {tipo: bonificacion, valor_desconocido: true, certeza: condicionado, forma: puntos}
     condiciones:
       minimo: {monto: 50000, acumulable: true}
+      requiere: [revolut_tdc_nueva]
       registro_previo: App de Revolut (registro en la promoción "Bono de Bienvenida de TDC")
     avisos:
       - "Solo para quien contrata por primera vez la Tarjeta de Crédito Revolut entre el 26 oct 2026 y el 29 ene 2027; no aplica a quien ya la tuvo"
@@ -816,8 +817,8 @@ promociones:
       verificacion:
         por: agente
         fecha: 2026-11-17
-        resultado: dudosa
-        notas: "T&C de Amazon para Revolut (snapshots/buen-fin-2026/comercio-amazon-tyc-revolut/20261117-165539.txt) aclara la mecánica: 'al contratar por primera vez tu Tarjeta de Crédito Revolut durante la Vigencia' (26 oct 2026 - 29 ene 2027), 'no aplica para personas que hayan sido titulares de una Tarjeta de Crédito Revolut con anterioridad', monto y RevPoints por Suscripción, 90 días desde el registro. Se reescribieron nombre, registro y avisos. Sigue dudosa porque el catálogo no puede modelarla: el instrumento revolut.tarjeta es de débito y la promo pide la tarjeta de crédito, y no hay atributo de 'cliente nuevo de TDC Revolut'. Falta en instrumentos.yaml un producto revolut.tdc y un atributo tipo revolut_tdc_nueva."
+        resultado: coincide
+        notas: "2026-11-17: se agregaron revolut.tdc y el atributo revolut_tdc_nueva; ya se modela como en el T&C (valor en pesos de los RevPoints desconocido). T&C de Amazon para Revolut (snapshots/buen-fin-2026/comercio-amazon-tyc-revolut/20261117-165539.txt) aclara la mecánica: 'al contratar por primera vez tu Tarjeta de Crédito Revolut durante la Vigencia' (26 oct 2026 - 29 ene 2027), 'no aplica para personas que hayan sido titulares de una Tarjeta de Crédito Revolut con anterioridad', monto y RevPoints por Suscripción, 90 días desde el registro. Se reescribieron nombre, registro y avisos. Sigue dudosa porque el catálogo no puede modelarla: el instrumento revolut.tarjeta es de débito y la promo pide la tarjeta de crédito, y no hay atributo de 'cliente nuevo de TDC Revolut'. Falta en instrumentos.yaml un producto revolut.tdc y un atributo tipo revolut_tdc_nueva."
       evidencia: "La Promoción no aplica para personas que hayan sido titulares de una Tarjeta de Crédito Revolut con anterioridad, incluyendo quienes la hayan cancelado en los últimos 12 (doce) meses."
 
   # ---------------- Kueski Pay ----------------
