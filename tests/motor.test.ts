@@ -110,11 +110,21 @@ test("el tope por cliente descuenta lo ya recibido en la campaña", () => {
 });
 
 test("valor desconocido: se muestra sin sumar ahorro", () => {
-  const r = evaluar(cat, { evento: "buen-fin-2026", comercio: "palacio-de-hierro", precio: 15000, dia: "2026-11-15", msi: {} }, { instrumentos: ["banorte.tdc"], atributos: {} }, P);
-  const o = r.opciones.find((o) => o.promos.some((p) => p.id === "ph-banorte-bonificacion"))!;
+  const r = evaluar(cat, { evento: "buen-fin-2026", comercio: "amazon", precio: 60000, dia: "2026-11-15", msi: {} }, { instrumentos: ["revolut.tarjeta"], atributos: {} }, P);
+  const o = r.opciones.find((o) => o.promos.some((p) => p.id === "amz-revolut-revpoints"))!;
   assert.equal(o.ahorro, 0);
   assert.equal(o.certeza, "condicionado");
   assert.match(o.aportes[0].nota ?? "", /no publicado/);
+});
+
+test("Banorte en Palacio: tramos de contado y MSI, excluyentes entre sí", () => {
+  const base = { evento: "buen-fin-2026", comercio: "palacio-de-hierro", precio: 25000, dia: "2026-11-15" };
+  const contado = evaluar(cat, { ...base, msi: {} }, { instrumentos: ["banorte.tdc"], atributos: {} }, P);
+  assert.equal(contado.opciones.find((o) => o.promos.some((p) => p.id === "ph-banorte-contado"))!.ahorro, 5000);
+  const msi = evaluar(cat, { ...base, msi: { "banorte.tdc": 12 } }, { instrumentos: ["banorte.tdc"], atributos: {} }, P);
+  const o = msi.opciones.find((o) => o.promos.some((p) => p.id === "ph-banorte-msi") && o.meses === 12)!;
+  assert.ok(o.ahorro >= 3500);
+  assert.ok(!msi.opciones.some((o) => o.promos.some((p) => p.id === "ph-banorte-msi") && o.promos.some((p) => p.id === "ph-banorte-contado")));
 });
 
 test("PayPal: la promo requiere tener la tarjeta con la que se fondea", () => {

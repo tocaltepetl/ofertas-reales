@@ -232,26 +232,65 @@ promociones:
       nota: "La tarjeta de Palacio no distingue crédito/débito; el débito sale de snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt"
 
   # ---------------- Banorte ----------------
-  - id: ph-banorte-bonificacion
-    nombre: Bonificación Banorte hasta $12,000 (porcentaje desconocido)
+  - id: ph-banorte-contado
+    nombre: Bonificación Banorte a un solo pago (hasta $12,000)
     comercio: palacio-de-hierro
     patrocinador: banorte
     instrumentos: [banorte.tdc]
-    beneficio: {tipo: bonificacion, tope: 12000, certeza: condicionado, valor_desconocido: true}
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tramos:
+        - {desde: 30000, monto: 9000}
+        - {desde: 20000, monto: 5000}
+        - {desde: 12000, monto: 2000}
     condiciones:
-      minimo: {monto: 12000}
+      plazos: {permitidos: [0]}
+      registro_previo: banorte.com/tutarjetafavorita o App Tu Tarjeta Favorita
+    excluye: [ph-banorte-msi]
     avisos:
-      - "Valor desconocido: la página solo dice \"hasta $12,000\" y no hay T&C de Banorte capturados para Palacio; el motor la muestra como $0"
-      - "Liverpool anuncia la misma campaña como hasta $12,000 a un solo pago o hasta $8,500 a MSI"
+      - "Se modelan los montos activando en sitio web; activando en la App son $2,200 / $5,500 / $9,900 y $12,000 desde $45,000"
+      - "Compras acumuladas en todos los comercios participantes del 13 al 17 nov; no cuentan compras diferidas después"
+      - "Alternativa: bono en puntos Recompensa Total (45,000 a 255,000) o Marriott Bonvoy, en lugar del dinero"
+      - "No aplica vía PayPal ni Mercado Pago; excluye Básica, Conmigo, Corporativa, Empuje Negocios, Negocios y Empresas, RappiCard y VA"
+      - "Se refleja a más tardar el 15 dic 2026"
       - "MSI Banorte en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
     fuente:
-      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
-      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
-      capturada: 2026-11-16
+      url: "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/Buen-Fin-Banorte.pdf"
+      snapshot: snapshots/buen-fin-2026/banco-banorte-tyc-palacio/20261117-164431.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Ningún snapshot da porcentaje ni tramos (banco-banorte no contiene la campaña; pista-pd-banorte es otra promoción de 15% a MSI que no incluye a Palacio en su lista); se mantiene valor_desconocido"}
-      evidencia: "OBTÉN HASTA $12,000 u obtén bonificaciones adicionales, comprando $12,000 o más Noviembre 13 al 17."
-      nota: "snapshots/buen-fin-2026/banco-banorte/20261116-150336.txt no contiene la campaña; la de 15% a MSI (pista-pd-banorte) es para otros comercios"
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide, notas: "Tramos de T&C oficiales de Banorte; coinciden con pista-pd-banorte-12000. Antes valor_desconocido"}
+      evidencia: "$12,000 a $19,999 $2,000 $2,200 $1,000 [tabla: compras acumuladas / bonificación a revolvente web / app / a MSI]"
+
+  - id: ph-banorte-msi
+    nombre: Bonificación Banorte a MSI (hasta $8,500)
+    comercio: palacio-de-hierro
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tramos:
+        - {desde: 30000, monto: 6000}
+        - {desde: 20000, monto: 3500}
+        - {desde: 12000, monto: 1000}
+    condiciones:
+      plazos: {min: 1}
+      registro_previo: banorte.com/tutarjetafavorita o App Tu Tarjeta Favorita
+    excluye: [ph-banorte-contado]
+    avisos:
+      - "Desde $45,000 activando en la App son $8,500; sin App el máximo es $6,000"
+      - "Compras acumuladas a MSI en comercios participantes; no cuentan compras diferidas después"
+      - "No aplica vía PayPal ni Mercado Pago"
+      - "MSI Banorte en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/Buen-Fin-Banorte.pdf"
+      snapshot: snapshots/buen-fin-2026/banco-banorte-tyc-palacio/20261117-164431.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide, notas: "Tramos de T&C oficiales de Banorte; coinciden con pista-pd-banorte-8500, que lista a palacio-de-hierro entre los comercios participantes. Antes valor_desconocido"}
+      evidencia: "La bonificación máxima por cliente es de $6,000 pesos y si activas en la app de Tu Tarjeta Favorita recibes hasta $8,500 pesos por cliente."
 
   # ---------------- HSBC ----------------
   - id: ph-hsbc-devolucion
