@@ -11,7 +11,9 @@
     "test": "node --test 'tests/**/*.test.ts'",
     "typecheck": "tsc --noEmit",
     "validar": "node src/cli.ts validar",
-    "evaluar": "node src/cli.ts evaluar"
+    "evaluar": "node src/cli.ts evaluar",
+    "build:web": "node scripts/build-web.ts",
+    "web": "node scripts/build-web.ts && python3 -m http.server -b 127.0.0.1 -d web/dist 8766"
   },
   "dependencies": {
     "yaml": "^2.8.1",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.18.0",
+    "esbuild": "^0.25.10",
     "typescript": "^5.9.3"
   }
 }
