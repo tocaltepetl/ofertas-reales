@@ -325,6 +325,26 @@
    "url": "https://www.coppel.com/inf/promociones-bancarias",
    "render": true,
    "nota": "curl da 403; T&C en PDFs de Contentstack"
+  },
+  {
+   "id": "banco-banorte-tyc-palacio",
+   "tipo": "banco",
+   "banco": "banorte",
+   "url": "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/Buen-Fin-Banorte.pdf"
+  },
+  {
+   "id": "pista-pd-banorte-12000",
+   "tipo": "pista",
+   "banco": "banorte",
+   "url": "https://www.promodescuentos.com/ofertas/banorte-buen-fin-2026-compra-con-tu-tarjeta-de-credito-y-recibe-hasta-12000-de-bonificacion-1204709",
+   "render": true
+  },
+  {
+   "id": "pista-pd-banorte-8500",
+   "tipo": "pista",
+   "banco": "banorte",
+   "url": "https://www.promodescuentos.com/ofertas/buen-fin-2026-con-banorte-hasta-8500-de-bonificacion-pagando-a-msi-con-tdc-tarjetas-seleccionadas-1207673",
+   "render": true
   }
  ],
  "directorio": {
