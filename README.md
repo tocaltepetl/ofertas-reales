@@ -36,3 +36,7 @@ Aun así, **las condiciones del banco y del comercio son las que valen.** Revís
 - [CONTRIBUTING.md](CONTRIBUTING.md): cómo confirmar promos, capturar fuentes y mandar cambios.
 - [docs/pendientes.md](docs/pendientes.md): promociones que necesitan confirmación.
 - [docs/aprendizajes.md](docs/aprendizajes.md): dónde están las condiciones reales, trampas de cada sitio y recetas de modelado.
+
+## Licencia
+
+El código es [MIT](LICENSE). El catálogo y la documentación son [CC BY-SA 4.0](LICENSE-DATOS.md). Las capturas de `snapshots/` son de sus titulares y se conservan solo como evidencia.

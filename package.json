@@ -2,6 +2,7 @@
   "name": "buenfin",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "Catálogo de promociones y motor para encontrar la mejor forma de pagar en eventos de compras (Buen Fin, Hot Sale, ...)",
   "engines": {
