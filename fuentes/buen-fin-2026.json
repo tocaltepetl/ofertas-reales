@@ -345,6 +345,70 @@
    "banco": "banorte",
    "url": "https://www.promodescuentos.com/ofertas/buen-fin-2026-con-banorte-hasta-8500-de-bonificacion-pagando-a-msi-con-tdc-tarjetas-seleccionadas-1207673",
    "render": true
+  },
+  {
+   "id": "comercio-amazon-tyc-hsbc",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "banco": "hsbc",
+   "url": "https://www.amazon.com.mx/b?node=223936486011",
+   "render": true
+  },
+  {
+   "id": "comercio-amazon-tyc-bbva",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "banco": "bbva",
+   "url": "https://www.amazon.com.mx/b?node=223936416011",
+   "render": true
+  },
+  {
+   "id": "comercio-amazon-tyc-invex",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "banco": "invex",
+   "url": "https://www.amazon.com.mx/b?node=223936420011",
+   "render": true
+  },
+  {
+   "id": "comercio-amazon-tyc-bancoppel",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "banco": "bancoppel",
+   "url": "https://www.amazon.com.mx/b?node=223936360011",
+   "render": true
+  },
+  {
+   "id": "comercio-amazon-tyc-revolut",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "banco": "revolut",
+   "url": "https://www.amazon.com.mx/b?node=223936358011",
+   "render": true
+  },
+  {
+   "id": "comercio-amazon-tyc-banorte",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "banco": "banorte",
+   "url": "https://www.amazon.com.mx/b?node=223936368011",
+   "render": true
+  },
+  {
+   "id": "comercio-amazon-tyc-santander",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "banco": "santander",
+   "url": "https://www.amazon.com.mx/b?node=223936397011",
+   "render": true
+  },
+  {
+   "id": "comercio-amazon-tyc-rappi",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "banco": "rappi",
+   "url": "https://www.amazon.com.mx/b?node=223936382011",
+   "render": true
   }
  ],
  "directorio": {
