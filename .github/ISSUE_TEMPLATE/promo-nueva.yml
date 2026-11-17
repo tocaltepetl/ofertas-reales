@@ -1,0 +1,40 @@
+name: Proponer una promoción nueva
+description: Una promo que no está en el catálogo
+title: "[nueva] <comercio>: <promo>"
+labels: ["promo-nueva"]
+body:
+  - type: input
+    id: evento
+    attributes:
+      label: Evento
+      placeholder: buen-fin-2026
+    validations:
+      required: true
+  - type: input
+    id: comercio
+    attributes:
+      label: Comercio
+      placeholder: Liverpool, Amazon, Coppel…
+    validations:
+      required: true
+  - type: input
+    id: instrumento
+    attributes:
+      label: Con qué se paga
+      description: Banco y tipo de tarjeta (crédito o débito), monedero, PayPal…
+    validations:
+      required: true
+  - type: textarea
+    id: mecanica
+    attributes:
+      label: Cómo funciona
+      description: Porcentaje o monto, mínimo, tope, plazos (contado o MSI), fechas, si hay que registrarse antes, cupón.
+    validations:
+      required: true
+  - type: textarea
+    id: fuente
+    attributes:
+      label: Fuente
+      description: Enlace a las condiciones oficiales (mejor el PDF), o una captura de pantalla con fecha.
+    validations:
+      required: true

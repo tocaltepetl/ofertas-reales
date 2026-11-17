@@ -11,6 +11,7 @@
     "test": "node --test 'tests/**/*.test.ts'",
     "typecheck": "tsc --noEmit",
     "validar": "node src/cli.ts validar",
+    "pendientes": "node src/cli.ts pendientes --escribir docs/pendientes.md",
     "evaluar": "node src/cli.ts evaluar",
     "build:web": "node scripts/build-web.ts",
     "web": "node scripts/build-web.ts && python3 -m http.server -b 127.0.0.1 -d web/dist 8766"

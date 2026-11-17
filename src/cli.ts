@@ -4,8 +4,9 @@
  *   node src/cli.ts evaluar --comercio mercadolibre --precio 12987 [--dia 2026-11-16] [--cartera ejemplos/cartera.yaml]
  *                           [--evento buen-fin-2026] [--criterio ahorro|total] [--todas] [--rendimiento 10] [--categoria ropa]
  *   node src/cli.ts comparar --precio 12987 [--comercios amazon,walmart] [--dia …] [--cartera …] [--criterio …] [--categoria …]
+ *   node src/cli.ts pendientes [--evento buen-fin-2026] [--escribir docs/pendientes.md]
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { parseArgs } from "node:util";
 import { parse } from "yaml";
 import { z } from "zod";
@@ -50,6 +51,46 @@ function imprimir(cat: Catalogo, ops: Opcion[], criterio: Criterio) {
   for (const a of g.avisos) console.log(`  ! ${a}`);
 }
 
+/** Lista en Markdown lo que la comunidad puede ayudar a confirmar. */
+function pendientes(cat: Catalogo, evento: string): string {
+  const ev = cat.eventos.get(evento);
+  if (!ev) throw new Error(`Evento desconocido: ${evento}`);
+  const todas = cat.promociones.get(evento) ?? [];
+  const dudosas = todas.filter((p) => p.fuente.verificacion?.resultado === "dudosa");
+  const sinHumano = todas.filter((p) => !p.fuente.revisada && p.fuente.verificacion?.resultado !== "dudosa");
+  const archivo = (p: { comercio: string }) => `catalogo/eventos/${evento}/promos/${p.comercio}.yaml`;
+  const una = (s?: string) => (s ?? "").replace(/\s+/g, " ").trim();
+  const out: string[] = [
+    `# Pendientes de ${ev.nombre}`,
+    "",
+    "> Archivo generado con `npm run pendientes`. No lo edites a mano.",
+    "",
+    `${todas.length} promociones: **${dudosas.length} dudosas** (falta un dato o las fuentes se contradicen) y ${sinHumano.length} que verificó un agente pero ninguna persona.`,
+    "",
+    "¿Viste alguna en la página del comercio o del banco, o ya te llegó la bonificación? Abre un issue con la plantilla **Confirmar una promoción** o manda un PR. Los pasos están en [CONTRIBUTING.md](../CONTRIBUTING.md).",
+    "",
+    "## Dudosas",
+    "",
+  ];
+  const porComercio = new Map<string, typeof dudosas>();
+  for (const p of dudosas) porComercio.set(p.comercio, [...(porComercio.get(p.comercio) ?? []), p]);
+  for (const [c, lista] of [...porComercio].sort()) {
+    out.push(`### ${cat.comercios.get(c)?.nombre ?? c}`, "");
+    for (const p of lista) {
+      out.push(`- **${p.nombre}** (\`${p.id}\`, [${archivo(p)}](../${archivo(p)}))`);
+      out.push(`  - Qué falta: ${una(p.fuente.verificacion?.notas) || "sin notas"}`);
+      out.push(`  - Fuente actual: ${p.fuente.url}`);
+    }
+    out.push("");
+  }
+  out.push("## Sin revisión humana", "", "Verificadas por un agente contra una captura, pero ninguna persona las ha cotejado. Confirmar cualquiera también ayuda.", "");
+  const cuenta = new Map<string, number>();
+  for (const p of sinHumano) cuenta.set(p.comercio, (cuenta.get(p.comercio) ?? 0) + 1);
+  for (const [c, n] of [...cuenta].sort()) out.push(`- ${cat.comercios.get(c)?.nombre ?? c}: ${n}`);
+  out.push("");
+  return out.join("\n");
+}
+
 function main() {
   const { positionals, values } = parseArgs({
     allowPositionals: true,
@@ -58,6 +99,7 @@ function main() {
       evento: { type: "string", default: "buen-fin-2026" }, cartera: { type: "string", default: "ejemplos/cartera.yaml" },
       criterio: { type: "string", default: "ahorro" }, todas: { type: "boolean", default: false },
       rendimiento: { type: "string" }, categoria: { type: "string" }, comercios: { type: "string" },
+      escribir: { type: "string" },
     },
   });
   let cat: Catalogo;
@@ -76,6 +118,12 @@ function main() {
     for (const p of todas) { const k = p.fuente.verificacion ? `${p.fuente.verificacion.resultado} (${p.fuente.verificacion.por})` : "sin verificar"; porResultado.set(k, (porResultado.get(k) ?? 0) + 1); }
     console.log(`Catálogo válido: ${cat.productos.size} instrumentos, ${cat.comercios.size} comercios, ${cat.eventos.size} evento(s), ${n} promociones (${sinRevisar} sin revisión humana).`);
     console.log(`Verificación: ${[...porResultado].map(([k, v]) => `${v} ${k}`).join(", ")}`);
+    return;
+  }
+  if (positionals[0] === "pendientes") {
+    const md = pendientes(cat, values.evento!);
+    if (values.escribir) { writeFileSync(values.escribir, md); console.log(`Escrito ${values.escribir}`); }
+    else console.log(md);
     return;
   }
   if (positionals[0] === "comparar" && values.precio) {
@@ -106,7 +154,7 @@ function main() {
     return;
   }
   if (positionals[0] !== "evaluar" || !values.comercio || !values.precio) {
-    console.error("Uso: node src/cli.ts validar | evaluar --comercio <id> --precio <n> [--dia AAAA-MM-DD] [--cartera archivo.yaml] [--criterio ahorro|total] [--todas]");
+    console.error("Uso: node src/cli.ts validar | pendientes [--escribir archivo.md] | evaluar --comercio <id> --precio <n> [--dia AAAA-MM-DD] [--cartera archivo.yaml] [--criterio ahorro|total] [--todas]");
     process.exit(2);
   }
   const cartera = ArchivoCartera.parse(parse(readFileSync(values.cartera!, "utf8")));

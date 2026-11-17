@@ -193,6 +193,10 @@ export const Promocion = z.object({
         fecha: Fecha,
         resultado: z.enum(["coincide", "corregida", "dudosa"]),
         notas: z.string().optional(),
+        /** quién verificó (usuario de GitHub, p. ej. "@usuaria"), para dar crédito a la comunidad */
+        quien: z.string().optional(),
+        /** captura, foto del ticket o estado de cuenta, o enlace que respalda una verificación humana */
+        evidencia_url: z.string().optional(),
       })
       .optional(),
     evidencia: z.string().optional(),

@@ -1,0 +1,54 @@
+name: Confirmar una promoción
+description: Viste una promo en la página del banco o del comercio, o ya te llegó la bonificación
+title: "[confirmar] <id de la promo>"
+labels: ["confirmar"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Gracias! Las dudosas y lo que les falta están en [docs/pendientes.md](../blob/main/docs/pendientes.md).
+        **Antes de subir capturas, tapa tu número de tarjeta, tu nombre, tu dirección y cualquier folio.**
+  - type: input
+    id: promo
+    attributes:
+      label: Id de la promoción
+      description: Por ejemplo `amz-hsbcbf26`. Si no lo encuentras, escribe el comercio y el nombre de la promo.
+    validations:
+      required: true
+  - type: dropdown
+    id: resultado
+    attributes:
+      label: ¿Qué encontraste?
+      options:
+        - Los datos del catálogo están bien
+        - Algún dato está mal (lo explico abajo)
+        - Hay información nueva (tope, mínimo, si se combina…)
+        - La promo ya no existe o nunca existió
+    validations:
+      required: true
+  - type: textarea
+    id: detalle
+    attributes:
+      label: Qué viste
+      description: Porcentaje, mínimo, tope, plazos, fechas, con qué se combina. Si compraste, cuánto te llegó y cuándo.
+    validations:
+      required: true
+  - type: dropdown
+    id: tipo_evidencia
+    attributes:
+      label: Tipo de evidencia
+      multiple: true
+      options:
+        - Condiciones oficiales del banco o del comercio (PDF o página)
+        - Compra real (ticket, estado de cuenta, app del banco)
+        - Página o app del comercio
+        - Foro, agregador o nota de prensa
+    validations:
+      required: true
+  - type: textarea
+    id: evidencia
+    attributes:
+      label: Evidencia
+      description: Enlace a las condiciones, o arrastra aquí tu captura. Indica la fecha en que la viste.
+    validations:
+      required: true
