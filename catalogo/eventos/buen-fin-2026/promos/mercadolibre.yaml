@@ -57,7 +57,7 @@ promociones:
       url: "https://www.mercadolibre.com.mx/ofertas"
       capturada: 2026-11-16
       nota: "No aparece en la página de Mercado Pago capturada; viene de la calculadora v0"
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Sin snapshot: no aparece en ml-mercado-pago/20261116-150901.txt (solo TCMPBF y CREDITOBF). Única pista: pista-expansion-bancos dice 'Mercado Crédito ofrece acceso a descuentos de hasta 40%', sin código, mínimo, tope ni vigencia."}
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Sigue sin snapshot: tampoco aparece en la recaptura ml-mercado-pago/20261117-162130.txt (solo TCMPBF y CREDITOBF). En web, Xataka (11/11 de Mercado Libre, Fechas Dobles) da 'CREDITO40: 40% de descuento en tu primera compra con Mercado Crédito. Descuento topado a 500 pesos' y un comunicado de ML en Excélsior menciona '40% de descuento en la primera compra' con Mercado Crédito, sin código ni tope. Pct y tope tienen respaldo de terceros; mínimo $300, vigencia 10-17 nov y cupo de 2,000 cupones no aparecen en ninguna fuente. Lo resolvería el T&C del cupón en la app o en mercadolibre.com.mx (sección de cupones o página de Mercado Crédito)."}
 
   - id: ml-saldo-mp-20
     nombre: 20% pagando con saldo en cuenta
@@ -73,7 +73,7 @@ promociones:
       url: "https://www.mercadolibre.com.mx/ofertas"
       capturada: 2026-11-16
       nota: "No aparece en la página de Mercado Pago capturada; viene de la calculadora v0"
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Sin snapshot: ningún snapshot menciona un 20% con saldo Mercado Pago. pista-expansion-bancos solo cita un cupón BFINMP de 10% (crédito, Mercado Crédito o saldo), que es otra promo y parece ser para tiendas externas."}
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Sigue sin snapshot: ni la recaptura ml-mercado-pago/20261117-162130.txt ni ningún otro snapshot mencionan un 20% con saldo Mercado Pago (pista-expansion-bancos solo cita el cupón BFINMP de 10%, otra promo). La búsqueda web tampoco encontró ninguna fuente, ni de terceros, con 20%, tope $300, mínimo $100 o el fondo de $2,000,000. Puede ser una promo de otro evento que arrastró la calculadora v0. Lo resolvería el T&C en mercadolibre.com.mx/ofertas o en la app de Mercado Pago; si no aparece, conviene retirarla."}
 
   # ---------------- Banamex ----------------
   - id: ml-bnmxbf
@@ -364,14 +364,19 @@ promociones:
     condiciones:
       minimo: {monto: 10000, acumulable: true}
       plazos: {min: 3}
-      registro_previo: Plataforma de Amex (primeros 40,000 registros)
-    avisos: ["Duda: Amex excluye compras \"mediante Mercado Pago\" y dice que no aplica con otras promociones", "Solo titulares de tarjetas personales; no Corporativas ni emitidas por terceros; el gasto de suplementarias no cuenta"]
+      registro_previo: Plataforma o App de American Express, antes de comprar (registros limitados)
+    avisos:
+      - "Duda: el T&C de Amex nombra a Mercado Libre como participante, pero también excluye compras \"mediante Mercado Pago u otros procesadores de pago\" (ML cobra con Mercado Pago Standard) y dice que no aplica con otras promociones (ML la marca \"Adicional\" al cupón AMEXBF)"
+      - "Hay que registrar la promoción en la plataforma de Amex antes de comprar; el cupo no está claro: la página de Amex dice \"primeros 53,000 registros\" y el T&C que publica Mercado Libre dice 40,000"
+      - "Campaña compartida con Liverpool, Palacio, Home Depot, Amazon e iShop: los $10,000 se acumulan entre comercios y hay una sola bonificación de $1,500 por titular"
+      - "Solo titulares de tarjetas personales emitidas por American Express México; no Corporativas ni emitidas por terceros; el gasto de suplementarias no cuenta"
+      - "La bonificación puede tardar hasta 90 días después del 17 nov en aparecer en el estado de cuenta"
     fuente:
       url: "https://www.mercadolibre.com.mx/ofertas/amex"
-      snapshot: snapshots/buen-fin-2026/ml-amex/20261116-145923.txt
-      capturada: 2026-11-16
+      snapshot: snapshots/buen-fin-2026/ml-amex/20261117-162130.txt
+      capturada: 2026-11-17
       evidencia: "No aplica a compras mediante Mercado Pago u otros procesadores de pago o servicios de financiación de terceros."
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Monto, mínimo acumulado, MSI y cupo de 40,000 registros coinciden, pero los T&C se contradicen con la página: ML la marca 'Adicional' al cupón y cobra vía 'Mercado Pago Standard', mientras Amex dice 'No aplica con otras promociones' y excluye compras 'mediante Mercado Pago'. Se agregó el aviso de tarjetas elegibles."}
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Monto, mínimo acumulado y MSI coinciden con el T&C de ml-amex/20261117-162130.txt (igual al del 16 nov). La página propia de Amex (banco-amex-buenfin-cashback/20261117-165718.txt) trae el mismo T&C: también lista a Mercado Libre 'solo en línea' y a la vez excluye 'compras mediante Mercado Pago' y 'otras promociones'; solo cambia el cupo (53,000 registros vs 40,000 en ML). La contradicción está dentro del propio T&C de Amex, así que no se resuelve con más capturas. Las condiciones de campaña quedan iguales en lp-amex-1500 y ph-amex-1500 (coincide). No se marca exclusiva: la calculadora v0 combina AMEXBF + $1,500 (prueba de paridad). Lo resolvería una aclaración escrita de Amex sobre si las compras en ML pagadas con Amex vía Mercado Pago Standard califican."}
 
   # ---------------- OXXO ----------------
   - id: ml-oxxobf

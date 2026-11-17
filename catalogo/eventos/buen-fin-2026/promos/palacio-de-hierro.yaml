@@ -88,18 +88,22 @@ promociones:
     condiciones:
       minimo: {monto: 10000, acumulable: true}
       plazos: {min: 3}
-      registro_previo: App American Express (activaciones limitadas)
+      registro_previo: Plataforma o App de American Express, antes de comprar (registros limitados)
     avisos:
-      - "Requiere activar la promoción en la App de Amex; las activaciones son limitadas"
+      - "Hay que registrar la promoción en la plataforma de Amex antes de comprar; el cupo no está claro: la página de Amex dice \"primeros 53,000 registros\" y el T&C que publica Mercado Libre dice 40,000"
+      - "Campaña compartida con Liverpool, Home Depot, Amazon, Mercado Libre e iShop: los $10,000 se acumulan entre comercios y hay una sola bonificación de $1,500 por titular"
+      - "Solo titulares de tarjetas personales emitidas por American Express México; no Corporativas ni emitidas por terceros; el gasto de suplementarias no cuenta"
+      - "El T&C de Amex dice \"No aplica con otras promociones\""
+      - "La bonificación puede tardar hasta 90 días después del 17 nov en aparecer en el estado de cuenta"
       - "MSI Amex en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
     fuente:
-      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
-      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
-      capturada: 2026-11-16
+      url: "https://www.americanexpress.com/es-mx/beneficios/promociones/buenfin/cashback.buen-fin.html"
+      snapshot: snapshots/buen-fin-2026/banco-amex-buenfin-cashback/20261117-165718.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "$1,500 con $10,000 a MSI coincide con la página de Palacio; que el mínimo sea acumulable y requiera activación solo consta en Promodescuentos (pista-pd-amex); no hay T&C de Amex capturado"}
-      evidencia: "OBTÉN $1,500 De bonificación comprando $10,000 a MSI* Noviembre 13 al 17."
-      nota: "snapshots/buen-fin-2026/pista-pd-amex/20261116-145923.txt: \"Recibe $1,500 de Cashback al gastar $10,000 a Meses sin Intereses en tienda o en línea en El Palacio de Hierro\"; activación en la App de Amex. No hay T&C de Amex capturado"
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: coincide, notas: "La página propia de Amex (banco-amex-buenfin-cashback/20261117-165718.txt) respalda cada valor: $1,500, mínimo $10,000 acumulado en marcas participantes, solo a MSI, registro previo, Palacio en tienda o en línea, 13 al 17 nov, una bonificación por titular. Ya no depende de Promodescuentos ni del T&C copiado en ML. Avisos de tarjetas elegibles, campaña compartida y 'No aplica con otras promociones' del mismo T&C. El cupo de registros (53,000 en Amex, 40,000 en ml-amex/20261117-162130.txt) queda como aviso"}
+      evidencia: "Recibe $1,500.00 M.N. de Cashback* al gastar $10,000.00 M.N. a Meses sin Intereses en tienda o en línea en El Palacio de Hierro , Liverpool , The Home Depot , y solo en línea en Amazon , iShop y Mercado Libre ."
+      nota: "Tarjeta del comercio en snapshots/buen-fin-2026/comercio-palacio/20261117-162130.txt: \"OBTÉN $1,500 De bonificación comprando $10,000 a MSI* Noviembre 13 al 17.\""
 
   # ---------------- Banamex ----------------
   - id: ph-banamex-bonificacion
@@ -329,24 +333,31 @@ promociones:
 
   # ---------------- Falabella ----------------
   - id: ph-falabella-dinero-electronico
-    nombre: 15% en dinero electrónico Falabella
+    nombre: 15% de cashback Falabella a MSI (desde $4,000 acumulados)
     comercio: palacio-de-hierro
     patrocinador: falabella
+    campana: falabella-bf26-cashback
     instrumentos: [falabella.tdc]
-    beneficio: {tipo: bonificacion, pct: 15, forma: monedero, certeza: condicionado}
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, forma: estado_de_cuenta, certeza: condicionado}
     condiciones:
-      minimo: {monto: 4000}
+      minimo: {monto: 4000, acumulable: true}
       plazos: {min: 3}
+      registro_previo: "WhatsApp con #BuenFin desde el celular del titular, a más tardar el 17 nov"
     avisos:
-      - "Tope, registro y forma de uso del dinero electrónico desconocidos: no hay T&C de Falabella capturados"
+      - "Hay que inscribirse por WhatsApp (#BuenFin) a más tardar el 17 nov y tener activo el NIP de compras de la tarjeta"
+      - "Mínimo $4,000 a MSI acumulados y tope de $5,000 por cliente, sumando todos los comercios participantes de Falabella"
+      - "La página lo llama dinero electrónico, pero el T&C dice que el reembolso llega en el siguiente o subsiguiente estado de cuenta, a más tardar 45 días después del 17 nov"
+      - "Compras en línea requieren el CVV Digital de la App Falabella"
+      - "No es la campaña de Falabella en Mercado Libre (#MeLiFalabella, otro mínimo y otro tope)"
       - "MSI Falabella en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
     fuente:
-      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
-      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
-      capturada: 2026-11-16
+      url: "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/Buen-Fin-Falabella.pdf"
+      snapshot: snapshots/buen-fin-2026/banco-falabella-tyc-palacio/20261117-165718.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "15% desde $4,000 a MSI coincide con la página de Palacio, pero tope, registro y uso del dinero electrónico no aparecen en ningún snapshot"}
-      evidencia: "OBTÉN 15 % DE DINERO ELECTRÓNICO Comprando $4,000 o más a MSI* Noviembre 13 al 17."
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: corregida, notas: "Según el T&C de Falabella (banco-falabella-tyc-palacio/20261117-165718.txt): se agrega tope $5,000, el mínimo de $4,000 pasa a acumulable en todos los comercios participantes, con campana falabella-bf26-cashback, y se agrega registro_previo por WhatsApp #BuenFin hasta el 17 nov. La forma pasa de monedero a estado_de_cuenta porque 'El reembolso se verá reflejado en tu siguiente o subsiguiente Estado de Cuenta'. 15%, a MSI y 13-17 nov coinciden"}
+      evidencia: "Para obtener el 15% de Cashback en dinero electrónico se debe realizar una compra mínima de $4,000 acumulada en todos los comercios participantes, con un reembolso máximo de cashback en dinero electrónico de $5,000."
+      nota: "Tarjeta de snapshots/buen-fin-2026/comercio-palacio/20261117-162130.txt: \"OBTÉN 15 % DE DINERO ELECTRÓNICO Comprando $4,000 o más a MSI* Noviembre 13 al 17.\""
 
   # ---------------- Nu ----------------
   - id: ph-nu-nuviembre
@@ -385,16 +396,18 @@ promociones:
     condiciones:
       minimo: {monto: 200}
       requiere: [kueski_usuario_nuevo]
-    excluye: [ph-kueski-bf]
+    excluye: [ph-kueski-bf, ph-kueski-buenfin]
     avisos:
-      - "Tope del descuento desconocido: no hay T&C de Kueski capturados"
+      - "Tope del descuento desconocido: el T&C de Kueski capturado es la versión de abril y no trae los cupones de noviembre (en abril este mismo código topaba en $400; no se asume)"
+      - "Cliente nuevo = primera vez que contratas un crédito en Kueski Pay; cupones limitados"
+      - "Del 13 al 17 nov conviene KUESKIBUENFIN (35%) si eres usuario nuevo; los códigos de Kueski no se acumulan entre sí"
       - "Kueski Pay cobra intereses según el plan"
     fuente:
       url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
-      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
-      capturada: 2026-11-16
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261117-162130.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "30% desde $200 y vigencia 1-30 nov coinciden con la página; tope del descuento desconocido (no hay T&C de Kueski)"}
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "30% desde $200 y vigencia 1-30 nov se repiten en comercio-palacio/20261117-162130.txt. Kueskipay.pdf (comercio-palacio-tyc-kueski/20261117-165718.txt) es el T&C general 2026, pero su tablero es de abril: KUESKINUEVO30 en Palacio en línea del 1 al 30 de abril, desde $100, tope $400. No trae filas de noviembre, así que no respalda el tope ni el mínimo actuales. Sí respalda, en las reglas generales, que los cupones 'No son acumulables con otros códigos de descuento de Kueski' (excluye mutuo con KUESKIBF y KUESKIBUENFIN) y la definición de cliente nuevo. Lo resolvería una versión del PDF con el tablero de noviembre"}
       evidencia: "OBTÉN 30 % DE DESCUENTO Usuarios nuevos, comprando $200 o más ingresando el cupón: KUESKINUEVO30 Noviembre 1 al 30."
 
   - id: ph-kueski-bf
@@ -406,18 +419,44 @@ promociones:
     beneficio: {tipo: cupon, pct: 10, certeza: condicionado}
     condiciones:
       minimo: {monto: 5000}
-    excluye: [ph-kueski-nuevo30]
+    excluye: [ph-kueski-nuevo30, ph-kueski-buenfin]
     avisos:
-      - "Tope del descuento desconocido: no hay T&C de Kueski capturados"
-      - "Se asume que no se combina con KUESKINUEVO30 (un cupón por compra)"
+      - "Tope del descuento desconocido: el T&C de Kueski capturado es la versión de abril y no trae los cupones de noviembre"
+      - "No se combina con KUESKINUEVO30 ni KUESKIBUENFIN: los códigos de Kueski no son acumulables entre sí; cupones limitados"
       - "Kueski Pay cobra intereses según el plan"
     fuente:
       url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
-      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
-      capturada: 2026-11-16
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261117-162130.txt
+      capturada: 2026-11-17
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "10% desde $5,000 coincide con la página; tope del descuento y si se combina con KUESKINUEVO30 desconocidos (no hay T&C de Kueski)"}
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "10% desde $5,000, 13 al 17 nov, se repite en comercio-palacio/20261117-162130.txt. Kueskipay.pdf (comercio-palacio-tyc-kueski/20261117-165718.txt) confirma en sus reglas generales que los códigos de Kueski 'No son acumulables con otros códigos de descuento de Kueski' (excluye ahora también ph-kueski-buenfin), pero su tablero es de abril y no incluye KUESKIBF, así que el tope sigue sin conocerse. Lo resolvería una versión del PDF con el tablero de noviembre"}
       evidencia: "OBTÉN 10 % DE DESCUENTO Comprando $5,000 o más ingresando el cupón: KUESKIBF Noviembre 13 al 17."
+
+  - id: ph-kueski-buenfin
+    nombre: Cupón KUESKIBUENFIN (usuarios nuevos)
+    codigo: KUESKIBUENFIN
+    comercio: palacio-de-hierro
+    patrocinador: kueski
+    instrumentos: [kueski.pay]
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-17}
+    beneficio: {tipo: cupon, pct: 35, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 200}
+      requiere: [kueski_usuario_nuevo]
+    excluye: [ph-kueski-nuevo30, ph-kueski-bf]
+    avisos:
+      - "Tope del descuento desconocido: el T&C de Kueski capturado es la versión de abril y no trae este cupón"
+      - "Cliente nuevo = primera vez que contratas un crédito en Kueski Pay; cupones limitados"
+      - "No se combina con KUESKINUEVO30 ni KUESKIBF: los códigos de Kueski no son acumulables entre sí"
+      - "Kueski Pay cobra intereses según el plan"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261117-162130.txt
+      capturada: 2026-11-17
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Nueva: aparece en la recaptura del 17 nov (no estaba en comercio-palacio/20261116-151140.txt). 35%, usuarios nuevos, desde $200 y 13-17 nov salen de esa tarjeta. Kueskipay.pdf (comercio-palacio-tyc-kueski/20261117-165718.txt) no la incluye (tablero de abril), pero sus reglas generales respaldan el excluye mutuo ('No son acumulables con otros códigos de descuento de Kueski') y la definición de cliente nuevo. Tope desconocido"}
+      evidencia: "OBTÉN 35 % DE DESCUENTO Usuarios nuevos, comprando $200 o más ingresando el cupón: KUESKIBUENFIN Noviembre 13 al 17."
+      nota: "snapshots/buen-fin-2026/comercio-palacio-tyc-kueski/20261117-165718.txt: \"Las promociones son aplicables para los clientes descritos en la columna Promoción dentro del Tablero. No son acumulables con otros códigos de descuento de Kueski.\""
 
   # ---------------- BanBajío ----------------
   - id: ph-banbajio-compra-gratis
@@ -484,6 +523,6 @@ promociones:
       snapshot: snapshots/buen-fin-2026/pista-pd-banorte/20261116-145923.txt
       capturada: 2026-11-16
       revisada: false
-      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Nueva. Porcentaje, tope y mínimo de Promodescuentos (pista-pd-banorte), que lista PayPal como comercio; PayPal la confirma en pista-paypal-bancos. Que aplique en Palacio vía PayPal solo lo afirma un comentario del mismo hilo"}
+      verificacion: {por: agente, fecha: 2026-11-17, resultado: dudosa, notas: "Porcentaje, tope y mínimo siguen solo en Promodescuentos (pista-pd-banorte/20261117-162130.txt, que lista PayPal, Shein y TEMU como comercios). PayPal confirma el 15% a MSI (pista-paypal-bancos/20261117-162130.txt). El T&C oficial nuevo de Banorte en Palacio (banco-banorte-tyc-palacio/20261117-164431.txt) es la campaña de tramos (ph-banorte-contado/msi) y excluye 'compras realizadas a través de PayPal ni Mercado Pago'; no habla del 15% ni dice si una compra en Palacio pagada con PayPal cuenta como compra en PayPal. Que aplique en Palacio sigue dependiendo de un comentario del hilo. Lo resolvería el T&C de Banorte del 15% en banorte.com/tutarjetafavorita"}
       evidencia: "Compra mínima $6,500 pesos por ticket, no acumulable en moneda nacional en los comercios participantes."
       nota: "snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt: \"15% de bonificación en compras a meses sin intereses con tarjeta de crédito Banorte a través de PayPal\""
