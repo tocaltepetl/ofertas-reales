@@ -77,6 +77,10 @@ const CondicionTramo = z.object({
   mayor_a: z.number().nonnegative().optional(),
   /** atributos de la cartera que deben valer exactamente esto */
   atributos: z.record(z.string(), ValorAtributo).optional(),
+  /** plazos (meses) en que aplica el tramo; 0 = contado */
+  meses: z.array(z.number().int().nonnegative()).optional(),
+  /** el plazo debe ser >= meses_min */
+  meses_min: z.number().int().nonnegative().optional(),
 });
 
 export const Tramo = CondicionTramo.extend({
@@ -92,6 +96,7 @@ export const TipoBeneficio = z.enum([
   "bonificacion", // llega después (estado de cuenta, monedero)
   "cashback",
   "sorteo", // no suma ahorro; se muestra
+  "diferido", // "compra hoy, paga después": no suma ahorro; se muestra (su valor financiero aún no se calcula)
 ]);
 export const EN_CHECKOUT = new Set(["cupon", "descuento"]);
 
@@ -105,14 +110,24 @@ export const Beneficio = z
     /** puntos porcentuales extra si la cartera tiene ciertos atributos */
     extras: z.array(z.object({ atributos: z.record(z.string(), ValorAtributo), pct: z.number() })).optional(),
     tope: z.number().nonnegative().optional(),
+    /** a qué se aplica el tope: por compra, por día o por cliente en toda la campaña (se descuenta lo ya recibido) */
+    tope_por: z.enum(["compra", "dia", "cliente"]).default("cliente"),
+    /** los tramos (desde / mayor_a) se eligen por lo acumulado en la campaña, no solo por esta compra */
+    escala_acumulada: z.boolean().default(false),
+    /** el monto exacto no se publicó (p. ej. "hasta $12,000"); se muestra pero no suma ahorro */
+    valor_desconocido: z.boolean().default(false),
     /** bruto: sobre el precio; neto: sobre lo que pagas tras cupones/descuentos. Por defecto bruto en checkout y neto después. */
     base: z.enum(["bruto", "neto"]).optional(),
     /** sorteos: una participación por cada N pesos */
     por_cada: z.number().positive().optional(),
     certeza: Certeza.default("garantizado"),
+    /** cómo llega: estado de cuenta, monedero electrónico de la tienda, puntos… (informativo) */
+    forma: z.enum(["checkout", "estado_de_cuenta", "monedero", "puntos", "saldo_app"]).optional(),
+    /** diferido: texto del esquema de pago, p. ej. "Primer pago en marzo 2027, a 3 MSI" */
+    descripcion: z.string().optional(),
   })
   .refine(
-    (b) => b.tipo === "sorteo" || [b.pct, b.monto, b.tramos].filter((x) => x !== undefined).length === 1,
+    (b) => b.tipo === "sorteo" || b.tipo === "diferido" || b.valor_desconocido || [b.pct, b.monto, b.tramos].filter((x) => x !== undefined).length === 1,
     "el beneficio lleva exactamente uno de: pct, monto, tramos",
   );
 
@@ -129,6 +144,8 @@ export const Promocion = z.object({
   codigo: z.string().optional(),
   comercio: Id,
   patrocinador: Id, // quién paga: banco o comercio
+  /** misma campaña del banco en varios comercios: comparte mínimos acumulados y topes por cliente */
+  campana: Id.optional(),
   /** basta con pagar con uno de estos productos */
   instrumentos: z.array(Id).min(1),
   vigencia: z.object({ desde: Fecha, hasta: Fecha }).optional(), // por defecto, la del evento
@@ -141,8 +158,8 @@ export const Promocion = z.object({
           /** true: debe ser mayor (>) al monto, no igual */
           estricto: z.boolean().default(false),
           base: z.enum(["bruto", "neto"]).optional(),
-          /** suma un atributo numérico de la cartera (compras previas acumuladas) */
-          sumar_atributo: z.string().optional(),
+          /** el mínimo se cuenta sobre lo acumulado en la campaña (esta compra + compras previas registradas en la cartera) */
+          acumulable: z.boolean().default(false),
         })
         .optional(),
       plazos: Plazos.optional(),
@@ -151,6 +168,10 @@ export const Promocion = z.object({
       /** pagas de contado en el comercio y difieres después desde la app del banco */
       financiamiento_posterior: z.object({ meses: z.number().int().positive() }).optional(),
       registro_previo: z.string().optional(),
+      /** se paga con el instrumento de la promo (p. ej. PayPal) fondeado con una de estas tarjetas, que debes tener */
+      fondeo: z.array(Id).optional(),
+      /** solo en estas categorías de producto (ids libres, p. ej. ropa, linea-blanca). Si la compra no dice su categoría, no se aplica. */
+      categorias: z.array(Id).optional(),
     })
     .default({}),
   excluye: z.array(Id).default([]),
@@ -163,7 +184,17 @@ export const Promocion = z.object({
     url: z.string().url(),
     snapshot: z.string().optional(),
     capturada: Fecha,
+    /** true solo cuando una persona la cotejó contra la fuente */
     revisada: z.boolean().default(false),
+    /** última verificación contra el snapshot (agente o humano) */
+    verificacion: z
+      .object({
+        por: z.enum(["agente", "humano"]),
+        fecha: Fecha,
+        resultado: z.enum(["coincide", "corregida", "dudosa"]),
+        notas: z.string().optional(),
+      })
+      .optional(),
     evidencia: z.string().optional(),
     nota: z.string().optional(),
   }),

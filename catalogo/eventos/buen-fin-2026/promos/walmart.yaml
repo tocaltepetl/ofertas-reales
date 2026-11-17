@@ -1,0 +1,537 @@
+# Promociones bancarias de Walmart México (walmart.com.mx), Buen Fin 2026.
+# Origen: página "Promociones bancarias" (alt de los banners) y artículo de T&C de Walmart,
+# capturados el 16 nov 2026. Cuando Walmart solo resume una promoción del banco, la mecánica
+# exacta viene de la página del banco (ver fuente.nota). revisada: false hasta cotejarla a mano.
+# No hay cupones vigentes: WB12EFI26 / WB18EFI26 (5–12 nov) ya vencieron y no se incluyen.
+promociones:
+  # ---------------- Walmart INVEX / Sam's Club INVEX ----------------
+  - id: wm-invex-bonificacion
+    nombre: Bonificación Walmart INVEX a 12 o 18 MSI
+    comercio: walmart
+    patrocinador: invex
+    instrumentos: [invex.walmart, invex.sams]
+    vigencia: {desde: 2026-11-05, hasta: 2026-11-18}
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tramos:
+        - {dias: [2026-11-16], pct: 40, tope: 2000}
+        - {dias: [2026-11-13, 2026-11-14, 2026-11-15, 2026-11-17], pct: 25, tope: 1250}
+        - {dias: [2026-11-05, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-11, 2026-11-12, 2026-11-18], pct: 20, tope: 1000}
+    condiciones:
+      minimo: {monto: 5000}
+      plazos: {permitidos: [12, 18]}
+    exclusiva: true
+    avisos:
+      - "Solo productos participantes de walmart.com.mx (listado WM INVEX)"
+      - "Tope por comercio: $2,000 el 16 nov; $1,250 el 13-15 y 17 nov; $1,000 el 5-12 y 18 nov"
+      - "No acumulable con otras promociones, beneficios o descuentos; un cupón por usuario"
+      - "Bonificación en máximo 30 días naturales tras la vigencia, en el siguiente estado de cuenta"
+      - "El banner de Walmart dice WM INVEX; el T&C incluye también a la Tarjeta Sam's Club INVEX"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "40% de bonificación en compras realizadas exclusivamente el 16 de noviembre de 2026."
+
+  - id: wm-invex-meta
+    nombre: Bonificación INVEX por meta personal (9+ MSI)
+    comercio: walmart
+    patrocinador: invex
+    instrumentos: [invex.tdc, invex.walmart, invex.sams]
+    beneficio: {tipo: bonificacion, pct: 10, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      plazos: {min: 9}
+      requiere: [invex_meta]
+      registro_previo: Activar del 12 al 17 nov por los canales de INVEX (correo / INVEX Now)
+    excluye: [wm-invex-bonificacion]
+    avisos:
+      - "Promoción general de INVEX (no exclusiva de Walmart); solo clientes que recibieron el correo"
+      - "El mínimo y el tope son personales (meta notificada por correo); no se conocen"
+      - "No acumulable con la bonificación exclusiva Walmart INVEX / Sam's Club INVEX"
+      - "No se modela el 5% adicional a una sola exhibición (requiere además una compra a 9+ MSI)"
+    fuente:
+      url: "https://www.invextarjetas.com.mx/invex/Documentos/Landings/TerminosyCondicionesBuenFin2026.pdf"
+      snapshot: snapshots/buen-fin-2026/banco-invex-tyc/20261116-150956.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Se otorgará 10% de bonificación al acumular compras diferidas a partir de 9 Meses sin Intereses"
+      nota: "Walmart la menciona solo para decir que no se acumula con la exclusiva WM INVEX (comercio-walmart-tyc)."
+
+  # ---------------- BBVA ----------------
+  - id: wm-bbva-20
+    nombre: Bonificación BBVA a 12 o 18 MSI (20%; 25% el 13 nov)
+    comercio: walmart
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-17}
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 3000
+      tramos:
+        - {dias: [2026-11-13], pct: 25, certeza: condicionado}
+        - {pct: 20}
+      tope_por: dia
+    condiciones:
+      minimo: {monto: 6000}
+      plazos: {permitidos: [12, 18]}
+      registro_previo: App BBVA (antes o después de la vigencia, según Walmart)
+    excluye: [wm-bbva-10]
+    avisos:
+      - "Tope de $3,000 por día y por cliente"
+      - "13 nov (vencida): 25% según 'Promociones Vencidas' de Walmart; mínimo y tope de ese día no capturados, se asumen $6,000 / $3,000"
+      - "Walmart dice que requiere registro en la App BBVA; BBVA no lo menciona para Walmart.com.mx"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "14-17 nov coincide con Walmart (20%, 12/18 MSI) y bbva.mx (mínimo $6,000, tope $3,000 por día y cliente). El 13 nov (25%, en 'Promociones Vencidas' de comercio-walmart-tyc) es real pero su mínimo y tope no se capturaron: se asumen los de 14-17."}
+      evidencia: "20% de bonificación a estado de cuenta en 12 ó 18 Meses Sin Intereses con Tarjeta de Crédito BBVA"
+      nota: "Mínimo $6,000 y tope $3,000 por día de bbva.mx/buen-fin.html (snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt, sección Walmart.com.mx)."
+
+  - id: wm-bbva-10
+    nombre: Bonificación BBVA a 13, 15, 20 o 24 MSI (10%; 15% el 13 nov)
+    comercio: walmart
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-17}
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 2500
+      tramos:
+        - {dias: [2026-11-13], pct: 15, certeza: condicionado}
+        - {pct: 10}
+      tope_por: dia
+    condiciones:
+      minimo: {monto: 5000}
+      plazos: {permitidos: [13, 15, 20, 24]}
+    excluye: [wm-bbva-20]
+    avisos:
+      - "Tope de $2,500 por día y por cliente; no acumulable"
+      - "13 nov (vencida): 15% según 'Promociones Vencidas' de Walmart; mínimo y tope de ese día no capturados, se asumen $5,000 / $2,500"
+      - "BBVA la describe como automática; Walmart dice que requiere registro en la App BBVA"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "14-17 nov coincide con Walmart (10% a 13/15/20/24 MSI) y bbva.mx (mínimo $5,000, tope $2,500 por día y cliente). El 13 nov (15%, 'Promociones Vencidas' de comercio-walmart-tyc) no tiene mínimo ni tope capturados: se asumen los de 14-17."}
+      evidencia: "10% de bonificación a estado de cuenta en 13, 15, 20 ó 24 Meses Sin Intereses con Tarjeta de Crédito BBVA"
+      nota: "Mínimo $5,000 y tope $2,500 por día y cliente de bbva.mx/buen-fin.html (snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt)."
+
+  - id: wm-bbva-paga-marzo
+    nombre: BBVA compra hoy y paga en marzo 2027 a 3 MSI
+    comercio: walmart
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-17}
+    beneficio:
+      tipo: diferido
+      descripcion: "Compra en una exhibición; primer pago en marzo 2027 (o febrero según tu corte), a 3 MSI"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: App BBVA (3 al 12 nov o 18 nov al 9 dic)
+    avisos:
+      - "No suma ahorro: es un diferimiento sin intereses"
+      - "Mínimo $3,500 no acumulable"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Compra hoy y paga en marzo de 2027 a 3 Meses Sin Intereses."
+      nota: "Mínimo, una exhibición y fechas de inscripción de bbva.mx/buen-fin.html (snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt)."
+
+  # ---------------- Banamex ----------------
+  - id: wm-banamex-bonificacion
+    nombre: Bonificación Banamex desde 12 MSI
+    comercio: walmart
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [banamex.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 10000
+      tramos:
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 12}
+      registro_previo: App Banamex o banamex.com/buenfin (3 al 17 nov, antes de comprar)
+    avisos:
+      - "Mínimo $10,000 acumulado en compras a 12+ MSI; tope $10,000 por cliente"
+      - "No participan corporativas, Costco Banamex ni Negocios (PyME)"
+      - "Vía PayPal sí cuenta para la bonificación base (ver wm-paypal-banamex); solo las Horas Banamex excluyen agregadores"
+      - "Horas Banamex (+5% o +10%) no se modelan: no se sabe si Walmart es negocio seleccionado"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Aviso: se quitó 'no cuenta pagar con PayPal o Mercado Pago'. banco-banamex solo excluye agregadores en las Horas Banamex; pista-paypal-bancos y comercio-homedepot-tyc confirman hasta 30% vía PayPal. Porcentajes, mínimo acumulado y tope coinciden."}
+      evidencia: "Hasta 30% de bonificación a estado de cuenta en compras a partir de 12 Meses Sin Intereses con Tarjeta de Crédito Banamex"
+      nota: "Porcentajes por productos, mínimo y tope de banamex.com/buenfin (snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt)."
+
+  # ---------------- Santander ----------------
+  - id: wm-santander-cashback
+    nombre: Cashback Santander desde 6 MSI
+    comercio: walmart
+    patrocinador: santander
+    campana: santander-bf26-cashback
+    instrumentos: [santander.tdc]
+    beneficio:
+      tipo: cashback
+      forma: estado_de_cuenta
+      tope: 7000
+      tramos:
+        - {dias: [2026-11-14], atributos: {santander_nomina: true}, pct: 35, certeza: hasta}
+        - {dias: [2026-11-14], pct: 30, certeza: hasta}
+        - {pct: 10}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {min: 6}
+      registro_previo: santander.com.mx/promociones/buen-fin.html (antes de comprar)
+    avisos:
+      - "Mínimo $10,000 por transacción; tope $7,000 por cliente en todo el Buen Fin"
+      - "14 nov fue día turbo de supermercados (Walmart): 10% base + 20% (o 25% con portabilidad de nómina)"
+      - "Vía PayPal o Mercado Pago solo cuenta el 10% base, no el turbo; no cuentan compras 'paga hasta marzo 2027' en Walmart"
+    fuente:
+      url: "https://www.walmart.com.mx/content/especiales/beneficios-walmart/360013_2480003"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart/20261116-151450.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Aviso: vía PayPal/Mercado Pago sí cuenta el 10% base y solo se excluye el turbo (T&C de Santander en pista-pd-santander). Día turbo 14 nov para Walmart confirmado en banco-santander; mínimo $10,000 por transacción y tope $7,000 coinciden."}
+      evidencia: "Santander Hasta 10% de cashback a 6 o más MSI Vigencia: 13, 15, 16 y 17 de noviembre de 2026."
+      nota: "Mínimo, tope y día turbo (14 nov, 35% en promociones vencidas de Walmart) de santander.com.mx (snapshots/buen-fin-2026/banco-santander/20261116-145101.txt)."
+
+  # ---------------- American Express ----------------
+  - id: wm-amex-2000
+    nombre: Amex gasta $12,000 y recibe $2,000
+    comercio: walmart
+    patrocinador: amex
+    instrumentos: [amex.tarjeta]
+    beneficio: {tipo: bonificacion, monto: 2000, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 12000}
+      registro_previo: AMEX App (limitado a 20,000 registros)
+    avisos:
+      - "Una bonificación por tarjetahabiente; sujeta a 20,000 registros disponibles"
+      - "No se indica si el gasto de $12,000 puede ser acumulado ni si exige MSI"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Gasta $12,000 y obtén $2,000 de bonificación en estado de cuenta en tus compras con Tarjeta de Crédito American Express"
+
+  # ---------------- HSBC ----------------
+  - id: wm-hsbc-devolucion
+    nombre: Devolución HSBC desde 6 MSI
+    comercio: walmart
+    patrocinador: hsbc
+    campana: hsbc-bf26-devolucion
+    instrumentos: [hsbc.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 7000
+      tramos:
+        - {atributos: {hsbc_segmento: premier}, pct: 25}
+        - {atributos: {hsbc_segmento: one}, pct: 20}
+        - {pct: 10}
+      extras:
+        - {atributos: {hsbc_transferencia: true}, pct: 5}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 15000, acumulable: true}
+      plazos: {min: 6}
+      registro_previo: App HSBC (Benefit Hub) o hsbc.com.mx/buenfin
+    avisos:
+      - "Mínimo $15,000 acumulado en comercios participantes; tope $7,000 por cliente"
+      - "Devolución a más tardar el 29 ene 2027"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Hasta 30% de devolución a compras a partir de 6 Meses sin intereses con Tarjeta de Crédito HSBC"
+      nota: "Porcentajes por segmento, 5% por transferencia de saldo, mínimo y tope de hsbc.com.mx/buenfin (snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt)."
+
+  # ---------------- Scotiabank ----------------
+  - id: wm-scotiabank-cashback-tdc
+    nombre: Cashback Scotiabank (crédito)
+    comercio: walmart
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdc
+    instrumentos: [scotiabank.tdc]
+    beneficio:
+      tipo: cashback
+      forma: estado_de_cuenta
+      certeza: condicionado
+      tope: 9000
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: Invitación de Scotiabank (registro hasta el 17 nov)
+    avisos:
+      - "Montos por compras acumuladas en el Buen Fin; sujeto a bolsa de $11 M; una bonificación por cliente"
+      - "El 5% adicional con billetera digital (mín. $3,000) no se modela"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Hasta 25% de bonificación en estado de cuenta en tus compras con Tarjeta de Crédito Scotiabank"
+      nota: "Escalones, topes y bolsa de scotiabank.com.mx/buenfin (snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt)."
+
+  - id: wm-scotiabank-cashback-tdd
+    nombre: Cashback Scotiabank (débito)
+    comercio: walmart
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdd
+    instrumentos: [scotiabank.tdd]
+    beneficio:
+      tipo: cashback
+      forma: estado_de_cuenta
+      certeza: condicionado
+      tope: 2500
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: Invitación de Scotiabank (registro hasta el 17 nov)
+    avisos:
+      - "Walmart solo menciona crédito; la promoción del banco incluye débito (tope $2,500, bolsa $3 M)"
+    fuente:
+      url: "https://www.scotiabank.com.mx/buenfin"
+      snapshot: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "La bonificación máxima de cashback, por las compras realizadas durante el periodo de la vigencia, con Tarjeta de Débito, es de $2,500.00 MXN."
+
+  # ---------------- Afirme ----------------
+  - id: wm-afirme-bonificacion
+    nombre: 10% de bonificación Afirme desde 6 MSI
+    comercio: walmart
+    patrocinador: afirme
+    campana: afirme-bf26-bonificacion
+    instrumentos: [afirme.tdc]
+    beneficio: {tipo: bonificacion, pct: 10, tope: 6000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 6}
+      registro_previo: WhatsApp de Afirme, 1 al 17 nov (solo cuentan compras posteriores)
+    avisos:
+      - "Mínimo $10,000 acumulado; una bonificación por cliente"
+      - "Bonificación en máximo 60 días tras la vigencia"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de bonificación en estado de cuenta en compras a partir de 6 Meses sin intereses con Tarjeta de Crédito Afirme"
+      nota: "Mínimo $10,000 y tope $6,000 del texto de Afirme en snapshots/buen-fin-2026/ml-afirme/20261116-145101.txt (mínimo confirmado en pista-paypal-bancos)."
+
+  # ---------------- DiDi Card ----------------
+  - id: wm-didi-cashback
+    nombre: Cashback DiDi Card
+    comercio: walmart
+    patrocinador: didi
+    campana: didi-bf26-cashback
+    instrumentos: [didi.tarjeta]
+    beneficio:
+      tipo: cashback
+      forma: saldo_app
+      tope: 2000
+      tramos:
+        - {desde: 5000, pct: 20}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 500}
+      registro_previo: App DiDi, 1 al 17 nov
+    avisos:
+      - "El 20% se calcula sobre el total acumulado si llegas a $5,000 en la campaña"
+      - "Mínimo $500 por compra; tope $2,000 por cliente en toda la campaña"
+      - "Cashback a más tardar el 25 nov 2026"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Se añade campana didi-bf26-cashback, escala_acumulada y mínimo de $500 por compra. ml-didi dice '20% de cashback sobre el total acumulado si acumulas $5,000' y 'Monto mínimo de $500 MXN por compra'; antes el 20% se decidía solo con esta compra."}
+      evidencia: "Recibe 20% de cashback en compras iguales o mayores a $5,000."
+      nota: "Mínimo $500 por compra y tope $2,000 del texto de DiDi en snapshots/buen-fin-2026/ml-didi/20261116-145101.txt."
+
+  # ---------------- PayPal + Banorte ----------------
+  - id: wm-paypal-banorte
+    nombre: 15% de bonificación Banorte pagando con PayPal a MSI
+    comercio: walmart
+    patrocinador: banorte
+    campana: banorte-bf26-msi-15
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 6500}
+      plazos: {min: 3}
+      fondeo: [banorte.tdc]
+    avisos:
+      - "Solo si la tarjeta vinculada a PayPal es de crédito Banorte (excepto Básica, Conmigo, Corporativa, Negocios, RappiCard y VA)"
+      - "Bonificación mes a mes durante el plazo de la compra; tope $5,000 por cliente en toda la campaña 15% MSI Banorte (PayPal, Shein, TEMU…)"
+      - "Mínimo $6,500 por ticket tomado de Promodescuentos, no de Walmart ni Banorte"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "15%, MSI y tope $5,000 coinciden con comercio-walmart-tyc. El mínimo de $6,500 por ticket solo viene de Promodescuentos (pista-pd-banorte), no de Walmart ni Banorte. Se añade campana banorte-bf26-msi-15 para compartir el tope con Home Depot vía PayPal."}
+      evidencia: "15% de bonificación en estado de cuenta en tus compras a Meses Sin Intereses con Tarjeta de Crédito Banorte pagando con PayPal"
+      nota: "Mínimo $6,500 y tarjetas excluidas de snapshots/buen-fin-2026/pista-pd-banorte/20261116-145923.txt; PayPal la lista en snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt."
+
+  # ---------------- PayPal + Banamex ----------------
+  - id: wm-paypal-banamex
+    nombre: Hasta 30% de bonificación Banamex pagando con PayPal desde 12 MSI
+    comercio: walmart
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [paypal.cuenta]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 10000
+      certeza: condicionado
+      tramos:
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 12}
+      fondeo: [banamex.tdc]
+      registro_previo: App Banamex o banamex.com/buenfin (3 al 17 nov, antes de comprar)
+    avisos:
+      - "Es la misma campaña que la bonificación directa: mínimo $10,000 acumulado y tope $10,000 por cliente compartidos"
+      - "Walmart solo la anuncia (en 'Promociones Vencidas') para el 14 nov con Horas Banamex (hasta 35%); el resto de días se infiere del listado de PayPal"
+      - "Las Horas Banamex (+5%/+10%) no aplican vía agregadores según banamex.com; no se modelan"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Nueva. Walmart solo la menciona vencida (14 nov, hasta 35%, en Horas Banamex); que aplique del 13 al 17 nov se infiere de pista-paypal-bancos. Mecánica de banco-banamex."}
+      evidencia: "hasta 35% de bonificación a estado de cuenta pagando con PayPal en compras a partir de 12 Meses Sin Intereses"
+      nota: "PayPal lista Banamex del 13 al 17 nov (snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt); porcentajes, mínimo y tope de snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt."
+
+  # ---------------- BanCoppel ----------------
+  - id: wm-bancoppel-tdc
+    nombre: Bonificación BanCoppel (crédito)
+    comercio: walmart
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 2200
+      certeza: condicionado
+      tramos:
+        - {mayor_a: 8500, pct: 20}
+        - {mayor_a: 4500, pct: 15}
+        - {desde: 3000, pct: 10}
+    condiciones:
+      registro_previo: App BanCoppel (desde el 1 nov; no cuentan compras previas)
+    avisos:
+      - "Escalones por compras acumuladas tomados de Promodescuentos; Walmart dice 'según tu tarjeta'"
+      - "El 'hasta 25%' del banner incluye el 5% adicional que solo aplica en Coppel"
+      - "Bonificación en máximo 45 días hábiles"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "El tope de $2,200 coincide con Walmart. Los escalones acumulados 10/15/20% solo vienen de Promodescuentos (pista-pd-bancoppel); banco-bancoppel parece desactualizado (dice 2024). El encabezado de Walmart menciona por error a American Express."}
+      evidencia: "Tope de bonificación: $2,200 en Tarjeta de Crédito y $1,500 MXN en Tarjeta de Débito o Nómina."
+      nota: "Escalones de snapshots/buen-fin-2026/pista-pd-bancoppel/20261116-145923.txt (bancoppel.com no los detalla)."
+
+  - id: wm-bancoppel-tdd
+    nombre: Bonificación BanCoppel (débito o nómina)
+    comercio: walmart
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdd]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 1500
+      certeza: condicionado
+      tramos:
+        - {mayor_a: 6000, pct: 20}
+        - {mayor_a: 3000, pct: 15}
+        - {desde: 2000, pct: 10}
+    condiciones:
+      registro_previo: App BanCoppel (desde el 1 nov; no cuentan compras previas)
+    avisos:
+      - "Escalones por compras acumuladas tomados de Promodescuentos; Walmart dice 'según tu tarjeta'"
+    fuente:
+      url: "https://www.walmart.com.mx/ayuda/articulo/el-fin-irresistible-and-buen-fin-promociones-bancarias/172a059b988640b19ad75c639542df56"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart-tyc/20261116-151615.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "El tope de $1,500 coincide con Walmart. Los escalones acumulados solo vienen de Promodescuentos (pista-pd-bancoppel)."}
+      evidencia: "Tope de bonificación: $2,200 en Tarjeta de Crédito y $1,500 MXN en Tarjeta de Débito o Nómina."
+      nota: "Escalones de snapshots/buen-fin-2026/pista-pd-bancoppel/20261116-145923.txt (bancoppel.com no los detalla)."
+
+  # ---------------- Mifel ----------------
+  - id: wm-mifel-bonificacion
+    nombre: Bonificación Mifel desde 12 MSI
+    comercio: walmart
+    patrocinador: mifel
+    instrumentos: [mifel.tdc]
+    vigencia: {desde: 2026-11-05, hasta: 2026-11-18}
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      certeza: condicionado
+      tramos:
+        - {desde: 50000, monto: 6000}
+        - {desde: 25000, monto: 2500}
+        - {desde: 10000, monto: 1000}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {permitidos: [12, 18]}
+    avisos:
+      - "Compras acumuladas; Walmart solo da el mínimo ($10,000) y el máximo ($6,000)"
+      - "Escalones tomados de los T&C de Mifel para Mercado Libre (13-17 nov); en Walmart la vigencia es 5-18 nov"
+    fuente:
+      url: "https://www.walmart.com.mx/content/especiales/beneficios-walmart/360013_2480003"
+      snapshot: snapshots/buen-fin-2026/comercio-walmart/20261116-151450.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "El mínimo de $10,000, 12/18 MSI, hasta $6,000 y la vigencia del 5 al 18 nov coinciden con Walmart. Los escalones $1,000/$2,500/$6,000 vienen de los T&C de Mifel para Mercado Libre (ml-mifel). Walmart dice 'compras acumuladas', pero el banner pide $10,000 en el carrito."}
+      evidencia: "Añade al carrito al menos $10,000 MXN en productos participantes. 2. Selecciona tus productos a 12 o 18 MSI."
+      nota: "Escalones de snapshots/buen-fin-2026/ml-mifel/20261116-145101.txt; mifel.com.mx (banco-mifel) confirma 'hasta $6,000' en El Fin Irresistible."

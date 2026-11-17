@@ -35,7 +35,7 @@ type X = { mcFirst: boolean; walletNew: boolean; bnxProd: number; santNom: boole
 const atributos = (x: X) => ({
   mercadopago_credito_primera_vez: x.mcFirst, mercadopago_usuario_nuevo: x.walletNew,
   banamex_productos_extra: x.bnxProd, santander_nomina: x.santNom,
-  hsbc_segmento: SEGMENTO[x.hsbcSeg], hsbc_transferencia: x.hsbcTr, hsbc_otras_compras: x.hsbcExtra,
+  hsbc_segmento: SEGMENTO[x.hsbcSeg], hsbc_transferencia: x.hsbcTr,
   scotiabank_invitacion: x.scotiaInv, invex_meta: x.invexMeta,
 });
 
@@ -70,7 +70,7 @@ test("el motor reproduce cada opción de la calculadora v0", () => {
       .filter((l) => !(l.o.own === "nu" && P < 3000));
     const { opciones } = evaluar(cat,
       { evento: "buen-fin-2026", comercio: "mercadolibre", precio: P, dia: `2026-11-${day}`, msi: Object.fromEntries(Object.entries(msiL).map(([k, v]) => [MSI[k], v])) },
-      { instrumentos: Object.values(OWN), atributos: atributos(x) },
+      { instrumentos: Object.values(OWN), atributos: atributos(x), acumulados: { "hsbc-bf26-devolucion": { compras: x.hsbcExtra } } },
       { rendimiento_anual: RENDIMIENTO });
     const donde = `P=${P} día=${day} msi=${JSON.stringify(msiL)} x=${JSON.stringify(x)}`;
     for (const l of legado) {

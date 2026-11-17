@@ -25,6 +25,15 @@ instrumentos:
   - nu.tdc
   - didi.tarjeta
   - klar.tdc
+  # Tarjetas de tienda y otras (quita las que no tengas)
+  - liverpool.tarjeta
+  - palacio.tarjeta
+  - invex.walmart
+  - banamex.homedepot
+  - hey.tdc
+  - rappi.tdc
+  - kueski.pay
+  - paypal.cuenta
 
 atributos:
   banamex_productos_extra: 1
@@ -45,5 +54,16 @@ msi:
   falabella.tdc: 3
   bancoppel.tdc: 12
   nu.tdc: 3
+
+# MSI distintos en un comercio concreto
+msi_por_comercio:
+  homedepot: { banamex.homedepot: 24, banamex.tdc: 18, bbva.tdc: 18, santander.tdc: 18, hsbc.tdc: 18 }
+  walmart: { invex.walmart: 18, bbva.tdc: 18 }
+  liverpool: { liverpool.tarjeta: 18, bbva.tdc: 18, banamex.tdc: 18 }
+  palacio-de-hierro: { palacio.tarjeta: 18 }
+
+# Lo que ya compraste en el evento, por campaña (suma a mínimos acumulados y descuenta topes por cliente)
+acumulados:
+  hsbc-bf26-devolucion: { compras: 0, beneficio: 0 }
 
 rendimiento_anual: 10

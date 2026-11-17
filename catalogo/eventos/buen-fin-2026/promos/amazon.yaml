@@ -1,0 +1,808 @@
+# Promociones bancarias y de medios de pago de Amazon México, Buen Fin 2026.
+# Origen: amazon.com.mx/b?node=120273989011 ("Promociones Bancarias"), capturada el 16 nov 2026 15:11.
+# Las condiciones (mínimos y topes) vienen de los modales "Conoce más" (archivo .modales.txt).
+# Las tarjetas llevan logo, pero los modales no siempre nombran al banco: DiDi, Rappi, Klar, Falabella y Revolut
+# se asignaron por el orden (inverso) de los modales y por coincidencia de cifras; la tarjeta de BNRTBF26 tiene alt "Access logo".
+# Amazon Access (cupón ACCESSBF26, 20% en la primera compra, mínimo $900, tope $500) no se incluye: falta el instrumento.
+# Cuando Amazon solo resume una promoción general del banco, la mecánica viene del snapshot del banco (fuente.nota).
+# Regla de Amazon (T&C del cupón SCOTBF26): los cupones bancarios NO se combinan con otros códigos promocionales.
+# revisada: false hasta cotejarla a mano.
+promociones:
+  # ---------------- Banamex ----------------
+  - id: amz-bnmxbf26
+    nombre: Cupón BNMXBF26
+    codigo: BNMXBF26
+    comercio: amazon
+    patrocinador: banamex
+    instrumentos: [banamex.tdc]
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {min: 1}
+    avisos: ["Solo a meses sin intereses (hasta 24 MSI)", "Tope de $500 acumulado por cliente en toda la vigencia"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de descuento + 24 meses sin intereses Código: BNMXBF26 Compra mínima $3,500.00"
+
+  - id: amz-banamex-bonificacion
+    nombre: Bonificación Banamex
+    comercio: amazon
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [banamex.tdc]
+    beneficio:
+      tipo: bonificacion
+      tope: 10000
+      forma: estado_de_cuenta
+      tramos:
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 12}
+      registro_previo: App Banamex o banamex.com/buenfin (no cuentan compras previas al registro)
+    avisos:
+      - "Mínimo de $10,000 acumulado en compras participantes a 12+ MSI con tarjetas Banamex"
+      - "No participan Costco Banamex, corporativas ni PyME"
+      - "Horas Banamex (11-13 h y 19-21 h) pueden sumar 5% o 10% en negocios seleccionados; no consta que Amazon participe"
+      - "Se refleja en el estado de cuenta a más tardar 60 días después del evento"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "30% de bonificación + 24 meses sin intereses Compra mínima $10,000.00"
+      nota: "Porcentajes por productos Banamex, mínimo acumulado y registro: snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt (https://www.banamex.com/buenfin)"
+
+  # ---------------- BBVA ----------------
+  - id: amz-bbvabf26
+    nombre: Cupón BBVABF26
+    codigo: BBVABF26
+    comercio: amazon
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-14, hasta: 2026-11-17}
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {permitidos: [3, 6, 9, 12, 15]}
+    avisos: ["Amazon dice tope de $500 acumulado en la vigencia; BBVA dice $500 por día y por cliente", "BBVA dice que sus ofertas en línea aplican del 14 al 17 nov; Amazon no da fechas"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "Amazon (modal) dice tope de $500 acumulado en toda la vigencia; BBVA (banco-bbva: 'El máximo a bonificar es de $500 por día y por cliente') dice por día. Se deja tope_por cliente (lo más conservador). Se agregó vigencia 14-17 nov: BBVA lista el cupón en 'Ofertas exclusivas... Aplican del 14 al 17 de noviembre'; el modal de Amazon no da fechas."
+      evidencia: "10% de descuento + 15 meses sin intereses Código: BBVABF26 Compra mínima $4,500"
+      nota: "Plazos 3, 6, 9, 12 y 15 MSI, tope por día y fechas 14-17 nov: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt (https://www.bbva.mx/buen-fin.html)"
+
+  - id: amz-bbva-bonificacion
+    nombre: Bonificación BBVA
+    comercio: amazon
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-14, hasta: 2026-11-17}
+    beneficio: {tipo: bonificacion, pct: 10, tope: 2500, forma: estado_de_cuenta, tope_por: dia}
+    condiciones:
+      minimo: {monto: 5000}
+      plazos: {min: 12}
+    avisos: ["Automática, sin inscripción", "Tope de $2,500 por día y por cliente", "Mínimo por compra (no acumulable)"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "El monto máximo de cashback por cliente es de $2,500.00 MXN por día y por cliente del 14 al 17 de noviembre de 2026"
+      nota: "Plazos de 12 a 24 MSI, sin inscripción: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt (https://www.bbva.mx/buen-fin.html)"
+
+  - id: amz-bbva-paga-en-marzo
+    nombre: BBVA paga en marzo 2027 a 3 MSI
+    comercio: amazon
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Pagas de contado y el cargo se difiere a 3 MSI con primer pago en marzo 2027 (o febrero según tu fecha de corte)"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: "Inscripción en la App BBVA (bbva.mx/buenfin); también se puede del 18 nov al 9 dic"
+    avisos: ["Una sola transacción de $3,500 o más (no acumulable)", "Su valor financiero no se calcula: el motor lo muestra sin ahorro"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Paga en una sola exhibición y difiere a 3 meses sin intereses Compra mínima $3,500.00"
+      nota: "Fechas de inscripción y primer pago: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt (https://www.bbva.mx/buen-fin.html)"
+
+  # ---------------- Santander ----------------
+  - id: amz-santander-cupon
+    nombre: 15% de descuento Santander (agotado)
+    comercio: amazon
+    patrocinador: santander
+    instrumentos: [santander.tdc]
+    beneficio: {tipo: cupon, pct: 15, tope: 600, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {min: 1}
+    avisos: ["AGOTADO al capturar (16 nov 15:11)", "Amazon no muestra el código", "Solo a meses sin intereses"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "15% de descuento AGOTADO Compra mínima $3,500.00"
+
+  - id: amz-santander-cashback
+    nombre: Cashback Santander
+    comercio: amazon
+    patrocinador: santander
+    campana: santander-bf26-cashback
+    instrumentos: [santander.tdc]
+    beneficio:
+      tipo: cashback
+      tope: 7000
+      forma: estado_de_cuenta
+      tramos:
+        - {dias: [2026-11-13], atributos: {santander_nomina: true}, pct: 35, certeza: hasta}
+        - {dias: [2026-11-13], pct: 30, certeza: hasta}
+        - {pct: 10}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {min: 6}
+      registro_previo: santander.com.mx/promociones/buen-fin.html (no cuentan compras previas a la inscripción)
+    avisos:
+      - "Día turbo de Amazon: 13 nov (10% base + 20% adicional, o + 25% con portabilidad de nómina)"
+      - "Amazon anuncia hasta 10% con 12 MSI"
+      - "Se abona en la tarjeta con mayor facturación en la campaña"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Hasta 10% de bonificación + 12 meses sin intereses Compra mínima $10,000.00"
+      nota: "Día turbo de Amazon (13 nov), 6+ MSI e inscripción: snapshots/buen-fin-2026/banco-santander/20261116-145101.txt (https://www.santander.com.mx/promociones/buen-fin.html)"
+
+  # ---------------- HSBC ----------------
+  - id: amz-hsbcbf26
+    nombre: Cupón HSBCBF26
+    codigo: HSBCBF26
+    comercio: amazon
+    patrocinador: hsbc
+    instrumentos: [hsbc.tdc]
+    beneficio: {tipo: cupon, pct: 10, tope: 750}
+    condiciones:
+      minimo: {monto: 3500}
+    avisos:
+      - "Contado o MSI"
+      - "Tope de $750 acumulado por cliente"
+      - "Hasta agotar existencias"
+      - "La página de HSBC presenta el cupón \"O\" la devolución; por prudencia no se combinan"
+    excluye: [amz-hsbc-devolucion]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "Valores coinciden con el modal y la nota (4) de banco-hsbc. La página de HSBC presenta el cupón HSBCBF26 'O' la devolución de hasta 30%; Amazon los muestra juntos y los T&C de la devolución no excluyen compras con cupón. Se agregó excluye mutuo con amz-hsbc-devolucion por prudencia."
+      evidencia: "10% de descuento Código: HSBCBF26 Compra mínima $3,500.00"
+      nota: "Contado o MSI: snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt, nota (4) (https://www.hsbc.com.mx/buenfin)"
+
+  - id: amz-hsbc-devolucion
+    nombre: Devolución HSBC
+    comercio: amazon
+    patrocinador: hsbc
+    campana: hsbc-bf26-devolucion
+    instrumentos: [hsbc.tdc]
+    beneficio:
+      tipo: bonificacion
+      tope: 7000
+      forma: estado_de_cuenta
+      tramos:
+        - {atributos: {hsbc_segmento: premier}, pct: 25}
+        - {atributos: {hsbc_segmento: one}, pct: 20}
+        - {pct: 10}
+      extras:
+        - {atributos: {hsbc_transferencia: true}, pct: 5}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 15000, acumulable: true}
+      plazos: {min: 6}
+      registro_previo: App HSBC (Benefit Hub) o hsbc.com.mx/buenfin
+    avisos:
+      - "Solo productos vendidos y enviados por Amazon México"
+      - "Devolución a más tardar el 29 ene 2027"
+      - "La página de HSBC presenta el cupón \"O\" la devolución; por prudencia no se combinan"
+    excluye: [amz-hsbcbf26]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "Mecánica coincide con banco-hsbc (25/20/10% +5%, 6-24 MSI, $15,000 acumulado, tope $7,000). Se agregó excluye con amz-hsbcbf26 porque HSBC presenta cupón 'O' devolución; no es explícito que se excluyan."
+      evidencia: "30% de bonificación + 12 meses sin intereses Compra mínima $15,000.00"
+      nota: "Porcentaje por segmento, +5% por transferencia, 6-24 MSI, mínimo acumulado y restricción a vendido por Amazon México: snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt (https://www.hsbc.com.mx/buenfin)"
+
+  # ---------------- Banorte ----------------
+  - id: amz-bnrtbf26
+    nombre: Cupón BNRTBF26
+    codigo: BNRTBF26
+    comercio: amazon
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio: {tipo: cupon, pct: 10, tope: 1000}
+    condiciones:
+      minimo: {monto: 3000}
+      plazos: {permitidos: [0]}
+    avisos:
+      - "Solo en una exhibición"
+      - "Tope de $1,000 acumulado por cliente"
+      - "La tarjeta de Amazon tiene logo con alt \"Access\"; el código indica Banorte"
+      - "Amazon no dice si aplica con débito Banorte"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "Porcentaje, mínimo y tope coinciden con el modal. La tarjeta de Amazon lleva logo 'Access' (no Banorte) y Amazon no dice si aplica con débito; en Mercado Libre el cupón Banorte equivalente acepta crédito y débito (ml-banorte). Se deja solo crédito."
+      evidencia: "10% de descuento Código: BNRTBF26 Compra mínima $3,000"
+
+  - id: amz-banorte-bonificacion
+    nombre: 10% de bonificación Banorte
+    comercio: amazon
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio: {tipo: bonificacion, pct: 10, tope: 5000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 3000, estricto: true}
+      plazos: {permitidos: [0]}
+      registro_previo: banorte.com/tutarjetafavorita
+    avisos: ["Excluye Básica, Conmigo, VA y empresariales", "Alternativa a Puntos Triples (eliges uno)", "Por ticket, no acumulable"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de bonificación Compra mínima $3,000 La bonificación máxima acumulada por cliente de Amazon México será de $5,000.00"
+      nota: "Mecánica general de Banorte (compra mayor a $3,000, registro, tarjetas excluidas) según snapshots/buen-fin-2026/ml-banorte/20261116-145101.txt; la página del banco capturada no la detalla"
+
+  # ---------------- Nu ----------------
+  - id: amz-nu-pase-morado
+    nombre: Pase Morado Nuviembre
+    comercio: amazon
+    patrocinador: nu
+    instrumentos: [nu.tdc]
+    beneficio: {tipo: sorteo, por_cada: 3000}
+    condiciones:
+      plazos: {min: 6}
+      registro_previo: App Nu
+    avisos: ["Premio no garantizado: aprox. 1 de cada 10 folios trae bonificación ($300 a $100,000)", "Máximo 5 folios por cliente"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Hasta $100,000 de bonificación en pases morados Compra mínima $3,000"
+      nota: "Folio por cada $3,000 a 6+ MSI, 5 folios máximo: snapshots/buen-fin-2026/banco-nu-tyc/20261116-145101.txt (https://cdn.nu.com.mx/MX/terminos-y-condiciones-nuviembre-2026-promo-a.pdf)"
+
+  # ---------------- American Express ----------------
+  - id: amz-amex-1500
+    nombre: Bonificación Amex $1,500
+    comercio: amazon
+    patrocinador: amex
+    campana: amex-bf26-1500
+    instrumentos: [amex.tarjeta]
+    beneficio: {tipo: bonificacion, monto: 1500, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 1}
+      registro_previo: App American Express (activaciones limitadas)
+    avisos: ["Mínimo acumulado de $10,000 a MSI", "Solo compras en línea", "Activación limitada; no a todos los clientes les aparece"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "$1,500 de bonificación + 12 meses sin intereses Compra mínima acumulada $10,000"
+      nota: "Registro previo y 'solo en línea con Amazon': T&C de Amex en snapshots/buen-fin-2026/ml-amex/20261116-145923.txt; activaciones limitadas según pista-pd-amex/20261116-145923.txt (agregador)"
+
+  # ---------------- INVEX ----------------
+  - id: amz-invexbf26
+    nombre: Cupón INVEXBF26
+    codigo: INVEXBF26
+    comercio: amazon
+    patrocinador: invex
+    instrumentos: [invex.tdc]
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {min: 1}
+    avisos: ["La tarjeta de Amazon dice exclusiva a MSI; el modal solo lo indica para la bonificación"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "10%, $4,500 y tope $500 coinciden con el modal. La restricción a MSI viene de la leyenda de la tarjeta; en el modal el asterisco 'exclusiva a MSI' solo acompaña a la bonificación."
+      evidencia: "10% de descuento Código: INVEXBF26 Compra mínima $4,500"
+
+  - id: amz-invex-bonificacion
+    nombre: Bonificación INVEX
+    comercio: amazon
+    patrocinador: invex
+    instrumentos: [invex.tdc]
+    beneficio: {tipo: bonificacion, pct: 10, tope: 5000, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      plazos: {min: 9}
+      requiere: [invex_meta]
+      registro_previo: Canales de INVEX (activación del 12 al 17 nov)
+    avisos: ["Solo clientes invitados por correo", "Mínimo y tope personales ($2,500 a $5,000)"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "Mínimo acumulado y tope personales: el modal dice 'El monto mínimo será notificado individualmente' y tope de $2,500 a $5,000 según el porcentaje; se usa $5,000 como máximo y el atributo invex_meta. Plazos 9+ MSI de banco-invex-tyc."
+      evidencia: "El monto mínimo será notificado individualmente por Banco INVEX vía correo electrónico"
+      nota: "Plazos de 9+ MSI y activación: snapshots/buen-fin-2026/banco-invex-tyc/20261116-150956.txt (https://www.invextarjetas.com.mx/invex/Documentos/Landings/TerminosyCondicionesBuenFin2026.pdf)"
+
+  # ---------------- BanCoppel ----------------
+  - id: amz-bcoppbfd
+    nombre: Cupón BCOPPBFD (débito)
+    codigo: BCOPPBFD
+    comercio: amazon
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdd]
+    beneficio: {tipo: cupon, pct: 10, tope: 300}
+    condiciones:
+      minimo: {monto: 1000}
+    avisos: ["Tope de $300 acumulado por cliente"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de descuento Código: BCOPPBFD Compra mínima $1,000"
+
+  - id: amz-bcoppbfc
+    nombre: Cupón BCOPPBFC (crédito)
+    codigo: BCOPPBFC
+    comercio: amazon
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdc]
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 4500}
+    avisos: ["Tope de $500 acumulado por cliente"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de descuento + 12 meses sin intereses Código: BCOPPBFC Compra mínima $4,500"
+
+  - id: amz-bancoppel-bonificacion-tdd
+    nombre: Bonificación BanCoppel (débito)
+    comercio: amazon
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdd]
+    beneficio: {tipo: bonificacion, pct: 20, tope: 1500, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 2000}
+      registro_previo: App BanCoppel
+    avisos:
+      - "Amazon anuncia 20%; BanCoppel dice que el porcentaje depende del monto acumulado (tramos no capturados)"
+      - "Sujeta al presupuesto del banco"
+      - "Crédito y débito no se suman: una sola bonificación"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "Modal de Amazon: 20%, mínimo $2,000 con débito, tope $1,500. BanCoppel (ml-bancoppel) dice que el porcentaje depende del monto acumulado y del tipo de tarjeta, sujeto a presupuesto; en Mercado Libre se modeló 10/15/20% por tramos. No consta si en Amazon el 20% es fijo ni si el mínimo es acumulado."
+      evidencia: "20% de bonificación + 12 meses sin intereses Compra mínima $2,000 en compras con Débito"
+      nota: "Registro en app, presupuesto y porcentaje variable: snapshots/buen-fin-2026/ml-bancoppel/20261116-145101.txt y banco-bancoppel/20261116-145101.txt (https://www.bancoppel.com/buen-fin/)"
+
+  - id: amz-bancoppel-bonificacion-tdc
+    nombre: Bonificación BanCoppel (crédito)
+    comercio: amazon
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdc]
+    beneficio: {tipo: bonificacion, pct: 20, tope: 2200, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 3000}
+      registro_previo: App BanCoppel
+    avisos:
+      - "Amazon anuncia 20%; BanCoppel dice que el porcentaje depende del monto acumulado (tramos no capturados)"
+      - "Sujeta al presupuesto del banco"
+      - "Crédito y débito no se suman: una sola bonificación"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "Modal de Amazon: 20%, mínimo $3,000 con crédito, tope $2,200. BanCoppel (ml-bancoppel) dice que el porcentaje depende del monto acumulado, sujeto a presupuesto; en Mercado Libre se modeló 10/15/20% por tramos. No consta si en Amazon el 20% es fijo ni si el mínimo es acumulado."
+      evidencia: "$3,000 en compras con Crédito"
+      nota: "Registro en app, presupuesto y porcentaje variable: snapshots/buen-fin-2026/ml-bancoppel/20261116-145101.txt y banco-bancoppel/20261116-145101.txt (https://www.bancoppel.com/buen-fin/)"
+
+  # ---------------- DiDi Card ----------------
+  - id: amz-didi-cashback
+    nombre: Cashback DiDi Card
+    comercio: amazon
+    patrocinador: didi
+    campana: didi-bf26-cashback
+    instrumentos: [didi.tarjeta]
+    beneficio:
+      tipo: cashback
+      tope: 2000
+      certeza: condicionado
+      tramos:
+        - {desde: 5000, pct: 20}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 500}
+      registro_previo: App DiDi, sección Beneficios (del 1 al 17 nov)
+    avisos:
+      - "Modal sin nombre de banco: asignado a DiDi por orden (la tarjeta con logo DiDi Card anuncia 20%) y porque sus cifras coinciden con DiDi en Mercado Libre"
+      - "El 20% se paga sobre el total acumulado si llegas a $5,000 en la campaña; si no, 10%"
+      - "Mínimo de $500 por compra; tope de $2,000 por cliente en toda la campaña"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: corregida
+        notas: "Se agregaron campana didi-bf26-cashback, escala_acumulada, mínimo de $500 por compra y registro en la App DiDi: ml-didi dice '20% de cashback sobre el total acumulado si acumulas $5,000' y 'Monto mínimo de $500 MXN por compra'; antes el 20% se evaluaba solo por esta compra y faltaba el registro. Porcentajes y tope ($2,000) coinciden con el modal de Amazon."
+      evidencia: "10% o 20% de bonificación + 12 meses sin intereses Compra mínima $500 para el 10% $5,000 para el 20%"
+      nota: "Acumulado, mínimo por compra y registro: snapshots/buen-fin-2026/ml-didi/20261116-145101.txt (https://www.mercadolibre.com.mx/ofertas/didi)"
+
+  # ---------------- Scotiabank ----------------
+  - id: amz-scotbf26
+    nombre: Cupón SCOTBF26
+    codigo: SCOTBF26
+    comercio: amazon
+    patrocinador: scotiabank
+    instrumentos: [scotiabank.tdc]
+    beneficio: {tipo: cupon, pct: 15, tope: 1000}
+    condiciones:
+      minimo: {monto: 4500}
+    avisos: ["Contado o MSI", "Tope de $1,000 acumulado por cliente; un cupón por cuenta", "No se combina con otros códigos promocionales", "El cashback general de Scotiabank excluye Amazon"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "15% de descuento + 12 meses sin intereses Código: SCOTBF26 Compra mínima $4,500"
+      nota: "T&C del cupón (contado o MSI, no combinable con otros códigos) y exclusión de Amazon del cashback: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt (https://www.scotiabank.com.mx/buenfin)"
+
+  # ---------------- Afirme ----------------
+  - id: amz-afirmebf26
+    nombre: Cupón AFIRMEBF26
+    codigo: AFIRMEBF26
+    comercio: amazon
+    patrocinador: afirme
+    instrumentos: [afirme.tdc]
+    beneficio: {tipo: cupon, pct: 10, tope: 1000}
+    condiciones:
+      minimo: {monto: 4500}
+    avisos: ["Tope de $1,000 acumulado por cliente"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de descuento + 12 meses sin intereses Código: AFIRMEBF26 Compra mínima $4,500"
+
+  # ---------------- Mifel ----------------
+  - id: amz-mifelbf26
+    nombre: Cupón MIFELBF26
+    codigo: MIFELBF26
+    comercio: amazon
+    patrocinador: mifel
+    instrumentos: [mifel.tdc]
+    beneficio: {tipo: cupon, pct: 15, tope: 1500}
+    condiciones:
+      minimo: {monto: 4000}
+    avisos: ["Tope de $1,500 acumulado por cliente"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "15% de descuento + 12 meses sin intereses Código: MIFELBF26 Compra mínima $4,000"
+
+  # ---------------- RappiCard ----------------
+  - id: amz-rappi-bonificacion
+    nombre: 10% de bonificación RappiCard
+    comercio: amazon
+    patrocinador: rappi
+    instrumentos: [rappi.tdc]
+    beneficio: {tipo: bonificacion, pct: 10, tope: 1000, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 750}
+    avisos: ["Modal sin nombre de banco: asignado a RappiCard por el orden de los modales (el otro 10% coincide con los T&C de Klar)", "Amazon lo anuncia junto con hasta 12 MSI"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "10%, mínimo $750 y tope $1,000 coinciden con el modal, pero el modal no nombra al banco: se asignó a RappiCard por el orden inverso de los modales (queda entre los de Openbank y Mifel, igual que la tarjeta con logo Rappi Card). Sin fuente del banco."
+      evidencia: "10% de bonificación + 12 meses sin intereses Compra mínima $750"
+
+  # ---------------- Openbank ----------------
+  - id: amz-opbf26
+    nombre: Cupón OPBF26
+    codigo: OPBF26
+    comercio: amazon
+    patrocinador: openbank
+    instrumentos: [openbank.tdc]
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {permitidos: [0]}
+    avisos: ["Solo en una exhibición; puedes diferir hasta 9 MSI desde la App Openbank", "Tope de $500 acumulado; hasta acabar existencias"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de descuento Código: OPBF26 Compra mínima $4,500"
+      nota: "Cupón + hasta 9 MSI diferidos desde la app: snapshots/buen-fin-2026/banco-openbank/20261116-145101.txt (https://www.openbank.mx/buenfin-26)"
+
+  - id: amz-openbank-cashback
+    nombre: Cashback Openbank al diferir
+    comercio: amazon
+    patrocinador: openbank
+    instrumentos: [openbank.tdc]
+    beneficio: {tipo: cashback, pct: 15, tope: 500}
+    condiciones:
+      minimo: {monto: 2000, estricto: true}
+      plazos: {permitidos: [0]}
+      financiamiento_posterior: {meses: 9}
+    avisos: ["Requiere diferir la compra desde la App Openbank", "Amazon dice mínimo $2,000; Openbank dice compra mayor a $2,000"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "15% de bonificación Compra mínima $2,000"
+      nota: "Cashback al diferir una compra mayor a $2,000, hasta 9 MSI en Amazon: snapshots/buen-fin-2026/banco-openbank/20261116-145101.txt (https://www.openbank.mx/buenfin-26)"
+
+  # ---------------- Klar ----------------
+  - id: amz-klar-cashback
+    nombre: 10% cashback Klar
+    comercio: amazon
+    patrocinador: klar
+    instrumentos: [klar.tdc]
+    beneficio: {tipo: cashback, pct: 10, tope: 800}
+    condiciones:
+      minimo: {monto: 4000}
+      plazos: {min: 6, max: 12}
+    avisos:
+      - "Solo segmentos Klar Plus y Platino"
+      - "Mínimo por cargo individual; tope de $800 sumando todos los comercios"
+      - "Automático, sin registro"
+      - "Modal sin nombre de banco; asignación confirmada por los T&C de Klar"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de bonificación + 12 meses sin intereses Compra mínima $4,000"
+      nota: "Amazon de 6 a 12 MSI, segmentos Plus y Platino: snapshots/buen-fin-2026/banco-klar-tyc/20261116-145101.txt"
+
+  # ---------------- Hey Banco ----------------
+  - id: amz-hey-tdc
+    nombre: 15% de bonificación Hey (crédito)
+    comercio: amazon
+    patrocinador: hey
+    instrumentos: [hey.tdc]
+    beneficio: {tipo: bonificacion, pct: 15, tope: 1000}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {min: 1}
+    avisos: ["Solo a meses sin intereses", "Tope de $1,000 acumulado por cliente"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "15% de bonificación + 12 meses sin intereses con tarjetas de crédito Hey, banco"
+
+  - id: amz-hey-tdd
+    nombre: 5% de bonificación Hey (débito)
+    comercio: amazon
+    patrocinador: hey
+    instrumentos: [hey.tdd]
+    beneficio: {tipo: bonificacion, pct: 5, tope: 200}
+    condiciones:
+      minimo: {monto: 2500}
+    avisos: ["Tope de $200 acumulado por cliente"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "5% de bonificación con tu tarjeta débito Hey, banco"
+
+  # ---------------- Falabella ----------------
+  - id: amz-falabella-bonificacion
+    nombre: 15% de bonificación Falabella
+    comercio: amazon
+    patrocinador: falabella
+    instrumentos: [falabella.tdc]
+    beneficio: {tipo: bonificacion, pct: 15, tope: 1000, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 2000}
+      plazos: {min: 1}
+    avisos: ["Modal sin nombre de banco: asignado a Falabella por orden; 15%, $2,000 y tope $1,000 coinciden con Falabella en Mercado Libre", "Solo a meses sin intereses", "En Mercado Libre Falabella pide activar por WhatsApp; Amazon no menciona registro"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "15% de bonificación + 12 meses sin intereses Compra mínima $2,000"
+
+  # ---------------- Revolut ----------------
+  - id: amz-revolut-revpoints
+    nombre: Hasta 42,000 RevPoints Revolut
+    comercio: amazon
+    patrocinador: revolut
+    campana: revolut-bf26-revpoints
+    instrumentos: [revolut.tarjeta]
+    beneficio: {tipo: bonificacion, valor_desconocido: true, certeza: condicionado, forma: puntos}
+    condiciones:
+      minimo: {monto: 50000, acumulable: true}
+      registro_previo: Registro en la promoción de Revolut (Amazon no indica el canal)
+    avisos:
+      - "Bono por compras acumuladas: $50,000 = 7,000; $100,000 = 14,000; $150,000 = 28,000; $200,000 = 42,000 RevPoints"
+      - "42,000 solo con Plan Ultra: depende de tu suscripción activa a los 90 días del registro"
+      - "Una sola vez por cliente; el valor en pesos de los RevPoints no está publicado"
+      - "Modal sin nombre de banco: asignado a Revolut por ser el único con RevPoints"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-16
+        resultado: dudosa
+        notas: "Nueva. Modal (asignado a Revolut por orden y por ser el único con RevPoints): tramos de $50,000 a $200,000 acumulados, máximo 42,000 RevPoints con Plan Ultra, a los 90 días del registro. Valor de los RevPoints en pesos no publicado (valor_desconocido)."
+      evidencia: "Hasta 42,000 RevPoints Compras acumuladas mínimas $50,000.00 MXN para 7,000 RevPoints"
+
+  # ---------------- Kueski Pay ----------------
+  - id: amz-kueskibf150
+    nombre: Cupón KUESKIBF150
+    codigo: KUESKIBF150
+    comercio: amazon
+    patrocinador: kueski
+    instrumentos: [kueski.pay]
+    beneficio: {tipo: cupon, monto: 150}
+    condiciones:
+      minimo: {monto: 1500}
+    avisos: ["Un solo uso", "Kueski Pay puede cobrar intereses según el plan"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "$150 pesos de descuento Código: KUESKIBF150 Compra mínima $1,500 pesos"
+
+  - id: amz-kueski30
+    nombre: Cupón KUESKI30 (usuarios nuevos)
+    codigo: KUESKI30
+    comercio: amazon
+    patrocinador: kueski
+    instrumentos: [kueski.pay]
+    beneficio: {tipo: cupon, pct: 30, tope: 350}
+    condiciones:
+      minimo: {monto: 100}
+      requiere: [kueski_usuario_nuevo]
+    avisos: ["Limitado a 2,000 cupones", "Kueski Pay puede cobrar intereses según el plan"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.modales.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "30% de descuento Código: KUESKI30 Compra mínima $100"
+
+  - id: amz-kueski-2-quincenas
+    nombre: Kueski Pay 2 quincenas sin intereses
+    comercio: amazon
+    patrocinador: kueski
+    instrumentos: [kueski.pay]
+    beneficio: {tipo: diferido, descripcion: "2 quincenas sin intereses con Kueski Pay"}
+    avisos: ["Condiciones del plan (montos, elegibilidad) no capturadas"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "$150 pesos de descuento Código: KUESKIBF150 2 quincenas sin intereses"
+
+  # ---------------- Efectivo ----------------
+  - id: amz-efectivo-saldo-100
+    nombre: $100 en saldo Amazon al pagar en efectivo
+    comercio: amazon
+    patrocinador: amazon
+    instrumentos: [amazon.efectivo]
+    beneficio: {tipo: bonificacion, monto: 100, certeza: condicionado, forma: monedero}
+    avisos: ["Condiciones (mínimo, productos, tiendas) no capturadas: la tarjeta no tiene modal"]
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/buen-fin-2026/comercio-amazon/20261116-151127.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Compra en efectivo y obtén $100 en saldo Amazon"

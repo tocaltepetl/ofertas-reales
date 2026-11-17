@@ -15,6 +15,7 @@ emisores:
     nombre: Banamex
     productos:
       - { id: banamex.tdc, nombre: Tarjeta de Crédito Banamex, tipo: credito, msi: true }
+      - { id: banamex.homedepot, nombre: Tarjeta The Home Depot Banamex, tipo: credito, msi: true }
     atributos:
       - id: banamex_productos_extra
         etiqueta: Otros productos Banamex (Nómina, Hipotecario, Afore)
@@ -45,7 +46,6 @@ emisores:
         defecto: otro
         opciones: [{ valor: premier, etiqueta: Premier / Premier Elite }, { valor: one, etiqueta: HSBC One }, { valor: otro, etiqueta: Otro }]
       - { id: hsbc_transferencia, etiqueta: Transferí al menos $50,000 de saldo (invitación), tipo: booleano }
-      - { id: hsbc_otras_compras, etiqueta: Otras compras a 6+ meses en comercios participantes ($), tipo: numero, defecto: 0 }
 
   - id: banorte
     nombre: Banorte
@@ -80,6 +80,8 @@ emisores:
     nombre: INVEX
     productos:
       - { id: invex.tdc, nombre: Tarjeta de Crédito INVEX, tipo: credito, msi: true }
+      - { id: invex.walmart, nombre: Tarjeta Walmart INVEX, tipo: credito, msi: true }
+      - { id: invex.sams, nombre: Tarjeta Sam's Club INVEX, tipo: credito, msi: true }
     atributos:
       - { id: invex_meta, etiqueta: Con esta compra alcanzo la meta que me notificó INVEX, tipo: booleano }
 
@@ -118,3 +120,61 @@ emisores:
     nombre: Klar
     productos:
       - { id: klar.tdc, nombre: Tarjeta de Crédito Klar, tipo: credito, msi: true }
+
+  - id: hey
+    nombre: Hey Banco
+    productos:
+      - { id: hey.tdc, nombre: Tarjeta de Crédito Hey, tipo: credito, msi: true }
+      - { id: hey.tdd, nombre: Tarjeta de Débito Hey, tipo: debito }
+
+  - id: rappi
+    nombre: RappiCard
+    productos:
+      - { id: rappi.tdc, nombre: RappiCard, tipo: credito, msi: true }
+
+  - id: revolut
+    nombre: Revolut
+    productos:
+      - { id: revolut.tarjeta, nombre: Tarjeta Revolut, tipo: debito }
+
+  - id: kueski
+    nombre: Kueski Pay
+    productos:
+      - { id: kueski.pay, nombre: Kueski Pay, tipo: bnpl, nota: Cobra intereses según el plan }
+    atributos:
+      - { id: kueski_usuario_nuevo, etiqueta: Nunca he usado Kueski Pay, tipo: booleano }
+
+  - id: stori
+    nombre: Stori
+    productos:
+      - { id: stori.tdc, nombre: Tarjeta de Crédito Stori, tipo: credito, msi: true }
+
+  - id: banbajio
+    nombre: BanBajío
+    productos:
+      - { id: banbajio.tdc, nombre: Tarjeta de Crédito BanBajío, tipo: credito, msi: true }
+
+  - id: paypal
+    nombre: PayPal
+    productos:
+      - { id: paypal.cuenta, nombre: PayPal (con tarjeta vinculada), tipo: monedero, msi: true, nota: Las promos bancarias vía PayPal dependen de la tarjeta vinculada }
+
+  - id: palacio
+    nombre: El Palacio de Hierro
+    productos:
+      - { id: palacio.tarjeta, nombre: Tarjeta Palacio, tipo: credito-tienda, msi: true }
+
+  - id: liverpool
+    nombre: Liverpool
+    productos:
+      - { id: liverpool.tarjeta, nombre: Tarjeta de Crédito Liverpool (departamental o Visa), tipo: credito-tienda, msi: true }
+
+  - id: coppel
+    nombre: Coppel
+    productos:
+      - { id: coppel.credito, nombre: Crédito Coppel, tipo: credito-tienda, nota: Cobra intereses }
+
+  - id: amazon
+    nombre: Amazon
+    productos:
+      - { id: amazon.efectivo, nombre: Pago en efectivo (Amazon Cash / tiendas), tipo: efectivo }

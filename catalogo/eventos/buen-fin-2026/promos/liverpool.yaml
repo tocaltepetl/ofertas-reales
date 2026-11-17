@@ -1,0 +1,540 @@
+# Promociones bancarias y de medios de pago de Liverpool, Buen Fin 2026.
+# Origen: liverpool.com.mx/tienda/paginas/buenfin ("Descubre los beneficios que cada banco tiene para ti",
+# 10 tarjetas; el banco de cada una sale de la imagen en el .render.html) capturada el 16 nov 2026, más
+# las páginas de cada banco (snapshots banco-*), citadas en fuente.nota. Los T&C PDF de Liverpool
+# (rest_*_131126.pdf) no se capturaron.
+#
+# Vigencia: cada tarjeta dice "Válido al: 17/11/26" y los bancos dicen 13 al 17 nov, así que se deja la
+# del evento; el texto al pie de la página habla de descuentos "del 13 al 16 de noviembre".
+#
+# No se capturan como promoción:
+# - "Obtén 15% de cashback con tu tarjeta Activa Liverpool": no existe el instrumento (débito Activa).
+# - De "Con PayPal todo suma" (hasta 12 MSI + promociones de los bancos vía PayPal) se capturan, con
+#   condiciones.fondeo, las de Banorte, Afirme, Banamex, HSBC, Santander y Liverpool Visa (pista-paypal-bancos).
+#   No se capturan BBVA (hasta 15/16%, sin tope publicado), Falabella (15%, sin tope), DiDi, Nu (folios),
+#   Scotiabank (ya cuenta como compra acumulada de la tarjeta) ni Klar (su T&C excluye PayPal).
+promociones:
+  # ---------------- Tarjetas Liverpool ----------------
+  - id: lp-liverpool-cashback
+    nombre: 10% cashback con Tarjetas Liverpool desde $12,500
+    comercio: liverpool
+    patrocinador: liverpool
+    campana: liverpool-bf26-cashback
+    instrumentos: [liverpool.tarjeta]
+    beneficio: {tipo: cashback, pct: 10, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 12500, acumulable: true}
+    avisos:
+      - "El mínimo de $12,500 puede ser en compras acumuladas"
+      - "Tope, plazos participantes y forma de entrega desconocidos: el T&C (rest_cashbackLV_131126.pdf) no se capturó"
+      - "Para Liverpool Visa vía PayPal, PayPal indica que hay que inscribirse en micredito.liverpool.com.mx"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "minimo pasa a acumulable: true con campana liverpool-bf26-cashback: la tarjeta de comercio-liverpool dice Acumulando compras de $12,500 o más. El tope y los plazos siguen sin conocerse (T&C rest_cashbackLV no capturado)"}
+      evidencia: "Obtén 10% de cashback Acumulando compras de $12,500 o más con tus Tarjetas Liverpool"
+      nota: "snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt: Liverpool Visa \"inscríbete para participar por 10% de cashback* al acumular compras de $12,500\""
+
+  # ---------------- BBVA ----------------
+  - id: lp-bbva-bonificacion
+    nombre: Bonificación BBVA 10% a partir de 13 MSI
+    comercio: liverpool
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-14, hasta: 2026-11-17}
+    beneficio: {tipo: bonificacion, pct: 10, tope: 2500, forma: estado_de_cuenta, tope_por: dia}
+    condiciones:
+      minimo: {monto: 5000}
+      plazos: {min: 13, max: 24}
+    avisos:
+      - "Automática, sin inscripción; mínimo $5,000 por compra (no acumulable)"
+      - "Tope de $2,500 por día y por cliente"
+      - "BBVA la anuncia del 14 al 17 nov; Liverpool no aparece en la parte capturada de la lista de comercios de BBVA"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Obtén 10% de bonificación En compras a partir de 13 MSI o empieza a pagar en marzo 2027 a 3 MSI"
+      nota: "Banco identificado por img_bancosBBVA en el .render.html. Mínimo, tope y vigencia: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt"
+
+  - id: lp-bbva-paga-marzo
+    nombre: BBVA paga en marzo 2027 a 3 MSI
+    comercio: liverpool
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Compra en una exhibición y empieza a pagar en marzo 2027 a 3 MSI (según tu fecha de corte, podría ser febrero)"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: "App BBVA (notificación, Centro de Mensajes o Puntos y Promociones)"
+    avisos:
+      - "Monto mínimo $3,500 por compra, no acumulable"
+      - "Inscripción en la App BBVA del 3 al 12 nov o del 18 nov al 9 dic"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "o empieza a pagar en marzo 2027 a 3 MSI"
+      nota: "Mecánica de snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt: una exhibición, inscripción en la App, mínimo $3,500, 13 al 17 nov"
+
+  # ---------------- Banamex ----------------
+  - id: lp-banamex-bonificacion
+    nombre: Bonificación Banamex (hasta 30%)
+    comercio: liverpool
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [banamex.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 10000
+      tramos:
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 13}
+      registro_previo: App Banamex o banamex.com/buenfin
+    avisos:
+      - "Liverpool la anuncia a partir de 13 MSI (Banamex dice a partir de 12 MSI en general)"
+      - "El mínimo de $10,000 puede acumularse en negocios y plazos participantes"
+      - "Horas Banamex: 5% o 10% adicional en negocios seleccionados que se anuncian 3 horas antes; no se modela"
+      - "No participan tarjetas Corporativas, Costco Banamex ni de Negocios (PyME)"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Obtén hasta 30% de bonificación En compras a partir de 13 MSI con tu tarjeta de crédito Banamex"
+      nota: "Tramos 10/15/20/30%, mínimo $10,000 y tope $10,000: snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt"
+
+  # ---------------- Banorte ----------------
+  - id: lp-banorte-bonificacion
+    nombre: Bonificación Banorte hasta $12,000 contado o $8,500 a MSI (porcentaje desconocido)
+    comercio: liverpool
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio:
+      tipo: bonificacion
+      certeza: condicionado
+      tope: 12000
+      valor_desconocido: true
+    avisos:
+      - "Valor desconocido: la página solo da los topes y no hay T&C de Banorte capturados (rest_banorteLV_131126.pdf); el motor la muestra como $0"
+      - "Hasta $12,000 en compras a un solo pago; hasta $8,500 en compras a MSI"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Ningún snapshot da porcentaje, mínimo ni tramos; solo los topes de la página ($12,000 a un solo pago, $8,500 a MSI). Se mantiene valor_desconocido"}
+      evidencia: "Recibe una bonificación de hasta $12,000 pesos En compras a un solo pago o hasta $8,500 en compras a MSI"
+      nota: "snapshots/buen-fin-2026/banco-banorte/20261116-150336.txt no contiene la campaña"
+
+  # ---------------- HSBC ----------------
+  - id: lp-hsbc-devolucion
+    nombre: Devolución HSBC (hasta 30%)
+    comercio: liverpool
+    patrocinador: hsbc
+    campana: hsbc-bf26-devolucion
+    instrumentos: [hsbc.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 7000
+      tramos:
+        - {atributos: {hsbc_segmento: premier}, pct: 25}
+        - {atributos: {hsbc_segmento: one}, pct: 20}
+        - {pct: 10}
+      extras:
+        - {atributos: {hsbc_transferencia: true}, pct: 5}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 15000, acumulable: true}
+      plazos: {min: 6, max: 24}
+      registro_previo: hsbc.com.mx/buenfin o Benefit Hub en la app HSBC
+    avisos:
+      - "Mínimo de $15,000 acumulado en compras de 6 a 24 MSI en comercios participantes"
+      - "Devolución a más tardar el 29 ene 2027; no aplica Fusión ni Empresariales"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Obtén hasta 30% de devolución En compras a partir de 6 MSI con tu Tarjeta de Crédito HSBC"
+      nota: "Segmentos 25/20/10%, +5% por transferencia de saldo, mínimo y tope: snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt"
+
+  # ---------------- Santander ----------------
+  - id: lp-santander-cashback
+    nombre: Cashback Santander (10%; día turbo 15 nov hasta 30% o 35%)
+    comercio: liverpool
+    patrocinador: santander
+    campana: santander-bf26-cashback
+    instrumentos: [santander.tdc]
+    beneficio:
+      tipo: cashback
+      forma: estado_de_cuenta
+      tope: 7000
+      tramos:
+        - {dias: [2026-11-15], atributos: {santander_nomina: true}, pct: 35, certeza: hasta}
+        - {dias: [2026-11-15], pct: 30, certeza: hasta}
+        - {pct: 10}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {min: 6}
+      registro_previo: santander.com.mx/promociones/buen-fin.html
+    avisos:
+      - "Inscríbete antes de comprar; las compras previas al registro no cuentan"
+      - "Mínimo $10,000 por transacción; tope $7,000 por cliente en toda la campaña"
+      - "El 15 nov es día turbo para Liverpool según Santander (+20%, o +25% con portabilidad de nómina)"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Obtén hasta 10% de cashback En compras a partir de 6 MSI con tu tarjeta de crédito Santander"
+      nota: "Mínimo, tope, registro y día turbo: snapshots/buen-fin-2026/banco-santander/20261116-145101.txt (\"15 de noviembre: ... El Palacio de Hierro, Liverpool y Sears\")"
+
+  # ---------------- American Express ----------------
+  - id: lp-amex-1500
+    nombre: Bonificación Amex $1,500 a MSI
+    comercio: liverpool
+    patrocinador: amex
+    campana: amex-bf26-1500
+    instrumentos: [amex.tarjeta]
+    beneficio: {tipo: bonificacion, monto: 1500, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 3}
+      registro_previo: App American Express (activaciones limitadas)
+    avisos:
+      - "Requiere activar la promoción en la App de Amex; las activaciones son limitadas"
+      - "El mínimo de $10,000 viene de Promodescuentos; la página de Liverpool no lo muestra"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "La página de Liverpool solo dice $1,500 a MSI; el mínimo de $10,000, que sea acumulable y la activación salen de Promodescuentos (pista-pd-amex); no hay T&C de Amex capturado"}
+      evidencia: "Obtén $1,500 M.N. de bonificación En compras a MSI con Amex"
+      nota: "snapshots/buen-fin-2026/pista-pd-amex/20261116-145923.txt: \"Recibe $1,500 de Cashback al gastar $10,000 a Meses sin Intereses en tienda o en línea en ... Liverpool\""
+
+  - id: lp-ropa-descuento
+    nombre: Ropa, calzado y accesorios hasta 30% o 25% + 9 MSI (Amex y Scotiabank)
+    comercio: liverpool
+    patrocinador: liverpool
+    instrumentos: [amex.tarjeta, scotiabank.tdc]
+    beneficio:
+      tipo: descuento
+      tramos:
+        - {meses: [0], pct: 30, certeza: hasta}
+        - {meses: [9], desde: 500, pct: 25, certeza: condicionado}
+    condiciones:
+      categorias: [ropa, calzado, accesorios]
+    exclusiva: true
+    avisos:
+      - "Solo ropa, calzado y accesorios en departamentos participantes"
+      - "Si el precio publicado ya trae el descuento, no lo sumes de nuevo"
+      - "Amex: no aplica con otras promociones y/o descuentos"
+      - "Compra mínima para MSI: $500"
+    fuente:
+      url: "https://www.americanexpress.com/es-mx/beneficios/promociones/buenfin/mesessinintereses.liverpool.html"
+      snapshot: snapshots/buen-fin-2026/banco-amex-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Se agrega desde: 500 al tramo de 9 MSI: banco-amex-liverpool (el mínimo para MSI no puede ser inferior a $500) y banco-scotiabank (Compra mínima para Meses sin Intereses $500 pesos). Porcentajes, categorías y exclusividad (Amex: no aplica con otras promociones) coinciden"}
+      evidencia: "Obtén hasta 30% de descuento ó 25% de descuento 1 + 9 Meses sin Intereses 2 en ropa, calzado y accesorios"
+      nota: "Scotiabank anuncia la misma oferta en Liverpool: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt. No aparece en la página de Buen Fin de Liverpool"
+
+  # ---------------- Scotiabank ----------------
+  - id: lp-scotiabank-cashback-tdc
+    nombre: Cashback Scotiabank (crédito)
+    comercio: liverpool
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdc
+    instrumentos: [scotiabank.tdc]
+    beneficio:
+      tipo: cashback
+      tope: 9000
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: ScotiaMóvil, SMS o correo de invitación
+    avisos:
+      - "Solo clientes invitados e inscritos; los montos son compras acumuladas en giros participantes"
+      - "+5% adicional (tope $500) pagando con billetera digital compras acumuladas desde $3,000; no se modela"
+      - "Una bonificación por cliente"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Obtén hasta 25% de cashback Con tus tarjetas de crédito y débito Scotiabank"
+      nota: "Tramos 10/15/20%, topes e invitación: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt (retail incluye Liverpool)"
+
+  - id: lp-scotiabank-cashback-tdd
+    nombre: Cashback Scotiabank (débito)
+    comercio: liverpool
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdd
+    instrumentos: [scotiabank.tdd]
+    beneficio:
+      tipo: cashback
+      tope: 2500
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: ScotiaMóvil, SMS o correo de invitación
+    avisos:
+      - "Solo clientes invitados e inscritos; compras acumuladas"
+      - "Tope de $2,500 con débito; bolsa total de débito de $3,000,000"
+      - "Si cumples con crédito y débito, solo se premia la de crédito"
+    fuente:
+      url: "https://www.liverpool.com.mx/tienda/paginas/buenfin"
+      snapshot: snapshots/buen-fin-2026/comercio-liverpool/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Obtén hasta 25% de cashback Con tus tarjetas de crédito y débito Scotiabank"
+      nota: "Tramos y topes de débito: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt"
+
+  # ---------------- Klar ----------------
+  - id: lp-klar-splitk
+    nombre: 10% cashback Klar difiriendo con Split K al 0%
+    comercio: liverpool
+    patrocinador: klar
+    instrumentos: [klar.tdc]
+    beneficio: {tipo: cashback, pct: 10, tope: 800, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 4000}
+      plazos: {permitidos: [0]}
+      financiamiento_posterior: {meses: 12}
+    avisos:
+      - "Solo segmentos Klar Plus y Platino"
+      - "En Liverpool no aplica a MSI del comercio: paga en una exhibición y difiere con Split K a 6, 9 o 12 meses al 0% antes de tu fecha de corte"
+      - "Mínimo $4,000 por cargo individual; tope $800 por cliente en todos los comercios"
+    fuente:
+      url: "https://cdn.prod.website-files.com/630e13ca92151d578bc2ed8b/6ae9fec434cf054ae0babcab_TyC_Klarfest_Buen_Fin_2026_Track_Changes-(Final).pdf"
+      snapshot: snapshots/buen-fin-2026/banco-klar-tyc/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "En Liverpool y El Palacio de Hierro podrán diferirse compras elegibles a 6, 9 o 12 meses."
+      nota: "No aparece en la página de Buen Fin de Liverpool; viene del T&C de Klar"
+
+  - id: lp-hogar-descuento
+    nombre: Hogar hasta 40% o 30% + 13 MSI (Scotiabank)
+    comercio: liverpool
+    patrocinador: liverpool
+    instrumentos: [scotiabank.tdc]
+    beneficio:
+      tipo: descuento
+      tramos:
+        - {meses: [0], pct: 40, certeza: hasta}
+        - {meses: [13], desde: 500, pct: 30, certeza: condicionado}
+    condiciones:
+      categorias: [hogar]
+    avisos:
+      - "Solo en artículos para el hogar participantes"
+      - "Si el precio publicado ya trae el descuento, no lo sumes de nuevo"
+      - "Compra mínima para MSI: $500"
+      - "No se sabe si se combina con otras promociones; Scotiabank no lo dice"
+    fuente:
+      url: "https://www.scotiabank.com.mx/buenfin"
+      snapshot: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Nueva. Solo la anuncia Scotiabank (enlaza a liverpool.com.mx); no aparece en la página de Buen Fin de Liverpool y no hay T&C de Liverpool capturado"}
+      evidencia: "Hasta 40% de descuento o 30% de descuento + 13 Meses sin Intereses en una gran variedad de artículos para el hogar"
+      nota: "Mismo bloque: \"Válido del 13 al 17 de noviembre de 2026. Participan todas las secciones. Compra mínima para Meses sin Intereses $500 pesos\""
+
+  # ---------------- PayPal (promociones de bancos) ----------------
+  # Liverpool: "Con PayPal todo suma. Paga con hasta 12 MSI y aprovecha las promociones de los bancos participantes".
+  # Mecánicas de cada banco vía PayPal: pista-paypal-bancos. Son excluyentes entre sí (una sola tarjeta fondea el pago).
+  - id: lp-paypal-banorte
+    nombre: 15% de bonificación Banorte pagando con PayPal a MSI
+    comercio: liverpool
+    patrocinador: banorte
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 6500}
+      plazos: {min: 3, max: 12}
+      fondeo: [banorte.tdc]
+    excluye: [lp-paypal-afirme, lp-paypal-banamex, lp-paypal-hsbc, lp-paypal-santander, lp-paypal-liverpool]
+    avisos:
+      - "Solo si la tarjeta vinculada a PayPal es de crédito Banorte (excepto Básica, Conmigo, Corporativa, Negocios, RappiCard y VA)"
+      - "Bonificación mes a mes durante el plazo de la compra; tope $5,000 por cliente; mínimo $6,500 por ticket, no acumulable"
+    fuente:
+      url: "https://www.paypalobjects.com/marketing/web/mx/buen-fin-2026/Promociones-Bancarias-BF26.pdf"
+      snapshot: snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Nueva. PayPal da el 15% a MSI; mínimo $6,500 y tope $5,000 solo constan en Promodescuentos (pista-pd-banorte/20261116-145923.txt)"}
+      evidencia: "15% de bonificación en compras a meses sin intereses con tarjeta de crédito Banorte a través de PayPal."
+      nota: "Liverpool (comercio-liverpool/20261116-145101.txt): \"Paga con hasta 12 MSI y aprovecha las promociones de los bancos participantes\""
+
+  - id: lp-paypal-afirme
+    nombre: 10% de bonificación Afirme pagando con PayPal desde 6 MSI
+    comercio: liverpool
+    patrocinador: afirme
+    campana: afirme-bf26-bonificacion
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: bonificacion, pct: 10, tope: 6000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 6, max: 12}
+      fondeo: [afirme.tdc]
+      registro_previo: WhatsApp de Afirme, 1 al 17 nov (solo cuentan compras posteriores)
+    excluye: [lp-paypal-banorte, lp-paypal-banamex, lp-paypal-hsbc, lp-paypal-santander, lp-paypal-liverpool]
+    avisos:
+      - "Solo si la tarjeta vinculada a PayPal es de crédito Afirme"
+      - "Mínimo $10,000 acumulado; tope $6,000 y una bonificación por cliente"
+    fuente:
+      url: "https://www.paypalobjects.com/marketing/web/mx/buen-fin-2026/Promociones-Bancarias-BF26.pdf"
+      snapshot: snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva. Tope $6,000 y registro por WhatsApp de snapshots/buen-fin-2026/ml-afirme/20261116-145101.txt"}
+      evidencia: "10% de bonificación acumulando desde $10,000 en compras a partir de 6 meses sin intereses con tarjeta de crédito Afirme a través de PayPal."
+      nota: "Liverpool (comercio-liverpool/20261116-145101.txt): \"Paga con hasta 12 MSI y aprovecha las promociones de los bancos participantes\""
+
+  - id: lp-paypal-banamex
+    nombre: Bonificación Banamex pagando con PayPal (hasta 30%)
+    comercio: liverpool
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [paypal.cuenta]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 10000
+      tramos:
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 12, max: 12}
+      fondeo: [banamex.tdc]
+      registro_previo: App Banamex o banamex.com/buenfin
+    excluye: [lp-paypal-banorte, lp-paypal-afirme, lp-paypal-hsbc, lp-paypal-santander, lp-paypal-liverpool]
+    avisos:
+      - "Solo si la tarjeta vinculada a PayPal es de crédito Banamex"
+      - "Vía PayPal Liverpool da hasta 12 MSI y Banamex pide a partir de 12: solo participa el plazo de 12"
+      - "Mínimo $10,000 acumulado; tope $10,000 por cliente"
+    fuente:
+      url: "https://www.paypalobjects.com/marketing/web/mx/buen-fin-2026/Promociones-Bancarias-BF26.pdf"
+      snapshot: snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva. Tramos, mínimo y tope de snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt"}
+      evidencia: "Hasta 30% de bonificación en compras a partir de 12 meses sin intereses con tu tarjeta de crédito Banamex a través de PayPal."
+      nota: "Liverpool (comercio-liverpool/20261116-145101.txt): \"Paga con hasta 12 MSI y aprovecha las promociones de los bancos participantes\""
+
+  - id: lp-paypal-hsbc
+    nombre: Devolución HSBC pagando con PayPal (hasta 30%)
+    comercio: liverpool
+    patrocinador: hsbc
+    campana: hsbc-bf26-devolucion
+    instrumentos: [paypal.cuenta]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 7000
+      tramos:
+        - {atributos: {hsbc_segmento: premier}, pct: 25}
+        - {atributos: {hsbc_segmento: one}, pct: 20}
+        - {pct: 10}
+      extras:
+        - {atributos: {hsbc_transferencia: true}, pct: 5}
+    condiciones:
+      minimo: {monto: 15000, acumulable: true}
+      plazos: {min: 6, max: 12}
+      fondeo: [hsbc.tdc]
+      registro_previo: hsbc.com.mx/buenfin o Benefit Hub en la app HSBC
+    excluye: [lp-paypal-banorte, lp-paypal-afirme, lp-paypal-banamex, lp-paypal-santander, lp-paypal-liverpool]
+    avisos:
+      - "Solo si la tarjeta vinculada a PayPal es de crédito HSBC"
+      - "En PayPal HSBC acepta Meses Sin Intereses y Pago Diferido"
+      - "Mínimo $15,000 acumulado en compras de 6 a 24 MSI; tope $7,000 por cliente"
+    fuente:
+      url: "https://www.paypalobjects.com/marketing/web/mx/buen-fin-2026/Promociones-Bancarias-BF26.pdf"
+      snapshot: snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva. Segmentos, mínimo y tope de snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt, que incluye PayPal"}
+      evidencia: "Recibe hasta 30% de bonificación en compras a partir de 6 meses sin intereses con tu tarjeta HSBC a través de PayPal."
+      nota: "banco-hsbc: \"Para las compras realizadas en Mercado Libre, Amazon y Paypal, el beneficio aplica en compras a Meses\""
+
+  - id: lp-paypal-santander
+    nombre: 10% de cashback Santander pagando con PayPal desde 6 MSI
+    comercio: liverpool
+    patrocinador: santander
+    campana: santander-bf26-cashback
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: cashback, pct: 10, tope: 7000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {min: 6, max: 12}
+      fondeo: [santander.tdc]
+      registro_previo: santander.com.mx/promociones/buen-fin.html
+    excluye: [lp-paypal-banorte, lp-paypal-afirme, lp-paypal-banamex, lp-paypal-hsbc, lp-paypal-liverpool]
+    avisos:
+      - "Solo si la tarjeta vinculada a PayPal es de crédito Santander"
+      - "Mínimo $10,000 por transacción; tope $7,000 por cliente; el día turbo de Liverpool (15 nov) no se asume vía PayPal"
+    fuente:
+      url: "https://www.paypalobjects.com/marketing/web/mx/buen-fin-2026/Promociones-Bancarias-BF26.pdf"
+      snapshot: snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva. Mínimo, tope y registro de snapshots/buen-fin-2026/banco-santander/20261116-145101.txt"}
+      evidencia: "Obtén 10% de cashback en compras a partir de 6 meses sin intereses con tu tarjeta de crédito Santander a través de PayPal."
+      nota: "Liverpool (comercio-liverpool/20261116-145101.txt): \"Paga con hasta 12 MSI y aprovecha las promociones de los bancos participantes\""
+
+  - id: lp-paypal-liverpool
+    nombre: 10% cashback Liverpool Visa pagando con PayPal desde $12,500 acumulados
+    comercio: liverpool
+    patrocinador: liverpool
+    campana: liverpool-bf26-cashback
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: cashback, pct: 10, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 12500, acumulable: true}
+      fondeo: [liverpool.tarjeta]
+      registro_previo: micredito.liverpool.com.mx/card-request/visa
+    excluye: [lp-paypal-banorte, lp-paypal-afirme, lp-paypal-banamex, lp-paypal-hsbc, lp-paypal-santander]
+    avisos:
+      - "Solo con Liverpool Visa vinculada a PayPal (la tarjeta departamental no se puede vincular)"
+      - "Tope, plazos y forma de entrega desconocidos: el T&C de Liverpool no se capturó"
+    fuente:
+      url: "https://www.paypalobjects.com/marketing/web/mx/buen-fin-2026/Promociones-Bancarias-BF26.pdf"
+      snapshot: snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Nueva. Porcentaje y mínimo acumulado coinciden con la tarjeta de Liverpool; tope desconocido"}
+      evidencia: "Solicita tu tarjeta Liverpool Visa e inscríbete para participar por 10% de cashback* al acumular compras de $12,500 a través de PayPal."

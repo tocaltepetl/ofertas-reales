@@ -1,6 +1,7 @@
 # Promociones bancarias de Mercado Libre, Buen Fin 2026.
 # Origen: calculadora v0 (artifact 8RDKtGqwc9QPhLdHs4GrLF), que resumió mercadolibre.com.mx/ofertas/<banco>
 # el 16 nov 2026. Cada promo apunta al snapshot capturado ese día. revisada: false hasta cotejarla a mano.
+# Verificadas por agente contra los snapshots el 16 nov 2026 (fuente.verificacion).
 promociones:
   # ---------------- Mercado Pago ----------------
   - id: ml-tcmpbf
@@ -9,13 +10,18 @@ promociones:
     comercio: mercadolibre
     patrocinador: mercadopago
     instrumentos: [mercadopago.tdc]
-    beneficio: { tipo: cupon, pct: 15, tope: 650 }
+    beneficio: {tipo: cupon, pct: 15, tope: 650, certeza: condicionado}
     condiciones:
-      minimo: { monto: 4000 }
-      plazos: { permitidos: [0, 3, 6] }
+      minimo: {monto: 4000}
+      plazos: {permitidos: [0, 3, 6]}
     acumulable_con_cupones: true
     avisos: ["Limitado a 50,000 cupones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/tarjeta-mercado-pago-visa", snapshot: snapshots/buen-fin-2026/ml-mercado-pago/20261116-150901.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/tarjeta-mercado-pago-visa"
+      snapshot: snapshots/buen-fin-2026/ml-mercado-pago/20261116-150901.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón TCMPBF al momento de pagar a una sola exhibición o a 3 y 6 meses con tu Tarjeta de Crédito Mercado Pago."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado: 'Limitado a 50,000 cupones o hasta agotar existencias'. Resto coincide (15%, mín. $4,000, tope $650 acumulado por usuario, 1/3/6 pagos, 'Acumulable con otras promociones y cupones')."}
 
   - id: ml-creditobf
     nombre: Cupón CREDITOBF
@@ -23,12 +29,17 @@ promociones:
     comercio: mercadolibre
     patrocinador: mercadopago
     instrumentos: [mercadopago.credito]
-    beneficio: { tipo: cupon, pct: 15, tope: 600 }
+    beneficio: {tipo: cupon, pct: 15, tope: 600, certeza: condicionado}
     condiciones:
-      minimo: { monto: 2000 }
+      minimo: {monto: 2000}
     exclusiva: true
-    avisos: ["Mercado Crédito cobra intereses", "Un cupón por usuario"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/tarjeta-mercado-pago-visa", snapshot: snapshots/buen-fin-2026/ml-mercado-pago/20261116-150901.txt, capturada: 2026-11-16 }
+    avisos: ["Mercado Crédito cobra intereses", "Un cupón por usuario", "Limitado a un presupuesto: puede terminar antes"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/tarjeta-mercado-pago-visa"
+      snapshot: snapshots/buen-fin-2026/ml-mercado-pago/20261116-150901.txt
+      capturada: 2026-11-16
+      evidencia: "Aplica en compras mínimas de $2,000 MXN. Descuento topado a $600 MXN, un cupón por usuario."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado y aviso nuevo: 'La campaña está limitada a un presupuesto'. exclusiva confirmada: 'no es acumulable con otras promociones, cupones o descuentos vigentes'."}
 
   - id: ml-credito40
     nombre: Cupón CREDITO40 (primera vez)
@@ -36,25 +47,33 @@ promociones:
     comercio: mercadolibre
     patrocinador: mercadopago
     instrumentos: [mercadopago.credito]
-    vigencia: { desde: 2026-11-10, hasta: 2026-11-17 }
-    beneficio: { tipo: cupon, pct: 40, tope: 500 }
+    vigencia: {desde: 2026-11-10, hasta: 2026-11-17}
+    beneficio: {tipo: cupon, pct: 40, tope: 500}
     condiciones:
-      minimo: { monto: 300 }
+      minimo: {monto: 300}
       requiere: [mercadopago_credito_primera_vez]
     avisos: ["Mercado Crédito cobra intereses", "Limitado a 2,000 cupones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas", capturada: 2026-11-16, nota: "No aparece en la página de Mercado Pago capturada; viene de la calculadora v0" }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas"
+      capturada: 2026-11-16
+      nota: "No aparece en la página de Mercado Pago capturada; viene de la calculadora v0"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Sin snapshot: no aparece en ml-mercado-pago/20261116-150901.txt (solo TCMPBF y CREDITOBF). Única pista: pista-expansion-bancos dice 'Mercado Crédito ofrece acceso a descuentos de hasta 40%', sin código, mínimo, tope ni vigencia."}
 
   - id: ml-saldo-mp-20
     nombre: 20% pagando con saldo en cuenta
     comercio: mercadolibre
     patrocinador: mercadopago
     instrumentos: [mercadopago.saldo]
-    beneficio: { tipo: descuento, pct: 20, tope: 300 }
+    beneficio: {tipo: descuento, pct: 20, tope: 300}
     condiciones:
-      minimo: { monto: 100 }
+      minimo: {monto: 100}
       requiere: [mercadopago_usuario_nuevo]
     avisos: ["Hasta agotar $2,000,000 en descuentos"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas", capturada: 2026-11-16, nota: "No aparece en la página de Mercado Pago capturada; viene de la calculadora v0" }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas"
+      capturada: 2026-11-16
+      nota: "No aparece en la página de Mercado Pago capturada; viene de la calculadora v0"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Sin snapshot: ningún snapshot menciona un 20% con saldo Mercado Pago. pista-expansion-bancos solo cita un cupón BFINMP de 10% (crédito, Mercado Crédito o saldo), que es otra promo y parece ser para tiendas externas."}
 
   # ---------------- Banamex ----------------
   - id: ml-bnmxbf
@@ -63,32 +82,45 @@ promociones:
     comercio: mercadolibre
     patrocinador: banamex
     instrumentos: [banamex.tdc]
-    beneficio: { tipo: cupon, pct: 10, tope: 750 }
+    beneficio: {tipo: cupon, pct: 10, tope: 750, certeza: condicionado}
     condiciones:
-      minimo: { monto: 3000 }
-      plazos: { permitidos: [3, 6, 9] }
+      minimo: {monto: 3000}
+      plazos: {permitidos: [3, 6, 9]}
     excluye: [ml-banamex-bonificacion]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/banamex", snapshot: snapshots/buen-fin-2026/ml-banamex/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: ["Limitado a 18,666 cupones"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/banamex"
+      snapshot: snapshots/buen-fin-2026/ml-banamex/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón BNMXBF al momento de pagar a 3, 6 y 9 meses con tu Tarjeta de Crédito Banamex."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado y aviso nuevo: 'Limitado a 18,666 (dieciocho mil seiscientos sesenta y seis) cupones'. Resto coincide; la página separa cupón y bonificación con 'ó'."}
 
   - id: ml-banamex-bonificacion
     nombre: Bonificación Banamex
     comercio: mercadolibre
     patrocinador: banamex
+    campana: banamex-bf26-bonificacion
     instrumentos: [banamex.tdc]
     beneficio:
       tipo: bonificacion
       tope: 10000
       tramos:
-        - { atributos: { banamex_productos_extra: 3 }, pct: 30 }
-        - { atributos: { banamex_productos_extra: 2 }, pct: 20 }
-        - { atributos: { banamex_productos_extra: 1 }, pct: 15 }
-        - { pct: 10 }
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+      escala_acumulada: true
     condiciones:
-      minimo: { monto: 10000 }
-      plazos: { min: 12 }
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 12}
       registro_previo: App Banamex o banamex.com/buenfin
-    avisos: [Se refleja en el estado de cuenta]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/banamex", snapshot: snapshots/buen-fin-2026/ml-banamex/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: [Se refleja en el estado de cuenta, "No participan Corporativas, Costco Banamex ni Negocios (PyME)"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/banamex"
+      snapshot: snapshots/buen-fin-2026/ml-banamex/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Monto mínimo de compra acumulada de $10,000 MXN. Límite de bonificación por cliente será de $10,000 MXN."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Porcentajes 10/15/20/30% por productos y tarjetas excluidas tomados de banco-banamex/20261116-145101.txt (la tabla de ML es imagen); se agregó el aviso de tarjetas excluidas."}
 
   # ---------------- Santander ----------------
   - id: ml-santbf
@@ -97,31 +129,42 @@ promociones:
     comercio: mercadolibre
     patrocinador: santander
     instrumentos: [santander.tdc]
-    beneficio: { tipo: cupon, pct: 15, tope: 1000 }
+    beneficio: {tipo: cupon, pct: 15, tope: 1000, certeza: condicionado}
     condiciones:
-      minimo: { monto: 3500 }
-      plazos: { permitidos: [0, 3, 6] }
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0, 3, 6]}
     avisos: ["Limitado a 15,000 cupones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/santander", snapshot: snapshots/buen-fin-2026/ml-santander/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/santander"
+      snapshot: snapshots/buen-fin-2026/ml-santander/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón SANTBF al momento de pagar a una sola exhibición o a 3 y 6 meses con tu Tarjeta de Crédito Santander."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado: 'Limitado a 15,000 (quince mil) cupones, por lo que la promoción podría terminar antes'. Resto coincide."}
 
   - id: ml-santander-cashback
     nombre: Cashback Santander
     comercio: mercadolibre
     patrocinador: santander
+    campana: santander-bf26-cashback
     instrumentos: [santander.tdc]
     beneficio:
       tipo: cashback
       tope: 7000
       tramos:
-        - { dias: [2026-11-17], atributos: { santander_nomina: true }, pct: 35, certeza: hasta }
-        - { dias: [2026-11-17], pct: 30, certeza: hasta }
-        - { pct: 10 }
+        - {dias: [2026-11-17], atributos: {santander_nomina: true}, pct: 35, certeza: hasta}
+        - {dias: [2026-11-17], pct: 30, certeza: hasta}
+        - {pct: 10}
     condiciones:
-      minimo: { monto: 10000 }
-      plazos: { min: 6 }
+      minimo: {monto: 10000}
+      plazos: {min: 6}
       registro_previo: santander.com.mx/promociones/buen-fin.html
-    avisos: ["Mínimo por comercio y por día", "Cashback en el estado de cuenta"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/santander", snapshot: snapshots/buen-fin-2026/ml-santander/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: ["Mínimo por comercio y por día", "Cashback en el estado de cuenta", "No participan Empresariales, Corporativas, Access ni débito"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/santander"
+      snapshot: snapshots/buen-fin-2026/ml-santander/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Monto mínimo de compra de $10,000 MXN por comercio y por día. Límite de cashback por cliente será de $7,000 MXN"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "10% base; Día Booster 17 nov 'hasta el 30%' y 'hasta el 35%' con portabilidad de nómina. Se agregó el aviso de tarjetas excluidas."}
 
   # ---------------- BBVA ----------------
   - id: ml-bbvabf
@@ -130,12 +173,18 @@ promociones:
     comercio: mercadolibre
     patrocinador: bbva
     instrumentos: [bbva.tdc]
-    beneficio: { tipo: cupon, pct: 10, tope: 550 }
+    beneficio: {tipo: cupon, pct: 10, tope: 550, certeza: condicionado}
     condiciones:
-      minimo: { monto: 5000 }
-      plazos: { permitidos: [3, 6, 9] }
+      minimo: {monto: 5000}
+      plazos: {permitidos: [3, 6, 9]}
     excluye: [ml-bbva-bonificacion]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/bbva", snapshot: snapshots/buen-fin-2026/ml-bbva/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: ["Limitado a 27,272 cupones"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/bbva"
+      snapshot: snapshots/buen-fin-2026/ml-bbva/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón BBVABF al momento de pagar a 3, 6 y 9 meses con tu Tarjeta de Crédito BBVA."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado y aviso nuevo: 'Limitado a 27,272 cupones'. Resto coincide; la página separa cupón y bonificación con 'Ó'."}
 
   - id: ml-bbva-bonificacion
     nombre: Bonificación BBVA
@@ -146,13 +195,41 @@ promociones:
       tipo: bonificacion
       tope: 2500
       tramos:
-        - { dias: [2026-11-13, 2026-11-17], pct: 15 }
-        - { pct: 10 }
+        - {dias: [2026-11-13, 2026-11-17], pct: 15}
+        - {pct: 10}
+      tope_por: dia
     condiciones:
-      minimo: { monto: 5000 }
-      plazos: { permitidos: [12, 15, 18] }
+      minimo: {monto: 5000}
+      plazos: {permitidos: [12, 15, 18]}
     avisos: ["Automática, sin registro", "Tope por día y cliente"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/bbva", snapshot: snapshots/buen-fin-2026/ml-bbva/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/bbva"
+      snapshot: snapshots/buen-fin-2026/ml-bbva/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "3) 17 de noviembre de 2026: 5% de bonificación adicional, para un total de 15% de bonificación."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "T&C: 15% el 13, 10% del 14 al 17 y +5% el 17; plazos 12, 15 y 18 MSI; mínimo $5,000 por compra (no acumulable); tope $2,500 por día y por cliente."}
+
+  - id: ml-bbva-paga-marzo
+    nombre: BBVA paga en marzo 2027 a 3 MSI
+    comercio: mercadolibre
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Compra en una exhibición y empieza a pagar en marzo 2027 a 3 MSI (según tu fecha de corte, podría ser febrero)"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: "App BBVA (notificación, Centro de Mensajes o Puntos y Promociones)"
+    excluye: [ml-bbvabf, ml-bbva-bonificacion]
+    avisos: ["Mínimo $3,500 en una sola compra, no acumulable", "Inscripción en la App BBVA del 3 al 12 nov o del 18 nov al 9 dic"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/bbva"
+      snapshot: snapshots/buen-fin-2026/ml-bbva/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "compra a una sola exhibición y paga en marzo de 2027 a 3 Meses Sin Intereses con tu Tarjeta de Crédito física o digital BBVA"
+      nota: "Fechas de inscripción y posible primer pago en febrero: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Agregada: faltaba en el archivo. La página la presenta como alternativa ('O bien') al cupón y a la bonificación."}
 
   # ---------------- HSBC ----------------
   - id: ml-hsbcbf
@@ -161,32 +238,45 @@ promociones:
     comercio: mercadolibre
     patrocinador: hsbc
     instrumentos: [hsbc.tdc]
-    beneficio: { tipo: cupon, pct: 15, tope: 1000 }
+    beneficio: {tipo: cupon, pct: 15, tope: 1000, certeza: condicionado}
     condiciones:
-      minimo: { monto: 3000 }
-      plazos: { permitidos: [0, 3, 6] }
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/hsbc", snapshot: snapshots/buen-fin-2026/ml-hsbc/20261116-145101.txt, capturada: 2026-11-16 }
+      minimo: {monto: 3000}
+      plazos: {permitidos: [0, 3, 6]}
+    avisos: ["Limitado a 14,000 cupones"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/hsbc"
+      snapshot: snapshots/buen-fin-2026/ml-hsbc/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón HSBCBF al momento de pagar a una sola exhibición o a 3 y 6 meses con tu Tarjeta de Crédito HSBC."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado y aviso nuevo: 'Limitado a 14,000 (catorce mil) cupones'. Resto coincide; 'Adicional' a la devolución."}
 
   - id: ml-hsbc-devolucion
     nombre: Devolución HSBC
     comercio: mercadolibre
     patrocinador: hsbc
+    campana: hsbc-bf26-devolucion
     instrumentos: [hsbc.tdc]
     beneficio:
       tipo: bonificacion
       tope: 7000
       tramos:
-        - { atributos: { hsbc_segmento: premier }, pct: 25 }
-        - { atributos: { hsbc_segmento: one }, pct: 20 }
-        - { pct: 10 }
+        - {atributos: {hsbc_segmento: premier}, pct: 25}
+        - {atributos: {hsbc_segmento: one}, pct: 20}
+        - {pct: 10}
       extras:
-        - { atributos: { hsbc_transferencia: true }, pct: 5 }
+        - {atributos: {hsbc_transferencia: true}, pct: 5}
+      escala_acumulada: true
     condiciones:
-      minimo: { monto: 15000, sumar_atributo: hsbc_otras_compras }
-      plazos: { min: 6 }
+      minimo: {monto: 15000, acumulable: true}
+      plazos: {min: 6}
       registro_previo: hsbc.com.mx/buenfin
-    avisos: [Devolución a más tardar el 29 ene 2027]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/hsbc", snapshot: snapshots/buen-fin-2026/ml-hsbc/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: [Devolución a más tardar el 29 ene 2027, "No participan HSBC Fusión ni Empresariales"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/hsbc"
+      snapshot: snapshots/buen-fin-2026/ml-hsbc/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "1) Clientes HSBC Premier o Premier Elite: 25% de devolución. 2) Clientes HSBC One: 20% de devolución. 3) Otros clientes: 10% de devolución."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Mínimo $15,000 acumulado a 6 meses o más, tope $7,000 por cliente, +5% por transferencia de saldo de $50,000 o más. Se agregó el aviso de tarjetas excluidas."}
 
   # ---------------- Banorte ----------------
   - id: ml-bnrtbf
@@ -195,24 +285,55 @@ promociones:
     comercio: mercadolibre
     patrocinador: banorte
     instrumentos: [banorte.tdc, banorte.tdd]
-    beneficio: { tipo: cupon, pct: 10, tope: 1000 }
+    beneficio: {tipo: cupon, pct: 10, tope: 1000, certeza: condicionado}
     condiciones:
-      minimo: { monto: 3000 }
-      plazos: { permitidos: [0] }
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/banorte", snapshot: snapshots/buen-fin-2026/ml-banorte/20261116-145101.txt, capturada: 2026-11-16 }
+      minimo: {monto: 3000}
+      plazos: {permitidos: [0]}
+    avisos: ["Limitado a 16,000 cupones", "Incluye tarjetas de crédito y débito VA"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/banorte"
+      snapshot: snapshots/buen-fin-2026/ml-banorte/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón BNRTBF al momento de pagar a una sola exhibición con tu Tarjeta de Crédito o Tarjeta de Débito Banorte"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado y aviso nuevo: 'Limitado a 16,000 (dieciséis mil) cupones'. Resto coincide."}
 
   - id: ml-banorte-bonificacion
     nombre: 10% de bonificación Banorte
     comercio: mercadolibre
     patrocinador: banorte
     instrumentos: [banorte.tdc]
-    beneficio: { tipo: bonificacion, pct: 10, tope: 5000 }
+    beneficio: {tipo: bonificacion, pct: 10, tope: 5000}
     condiciones:
-      minimo: { monto: 3000, estricto: true }
-      plazos: { permitidos: [0] }
+      minimo: {monto: 3000, estricto: true}
+      plazos: {permitidos: [0]}
       registro_previo: banorte.com/tutarjetafavorita
-    avisos: ["Excluye Básica, Conmigo, VA y empresariales", "Alternativa a Puntos Triples"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/banorte", snapshot: snapshots/buen-fin-2026/ml-banorte/20261116-145101.txt, capturada: 2026-11-16 }
+    excluye: [ml-banorte-puntos-triples]
+    avisos: ["No participan Básica, Banorte Conmigo, Empuje Negocios, Negocios y Empresas, Corporativa ni VA", "Los T&C hablan de \"Tarjetas de Crédito Digital Banorte\"", "Alternativa a Puntos Triples"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/banorte"
+      snapshot: snapshots/buen-fin-2026/ml-banorte/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Al comprar con tu Tarjeta de Crédito a un solo pago elige 10% de bonificación o Puntos Triples en compras mayores a $3,000.00"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Aviso de exclusiones completado (faltaban Empuje Negocios, Negocios y Empresas, Corporativa) y aviso de 'Tarjetas de Crédito Digital Banorte' según T&C; excluye Puntos Triples ('elige solo uno'). % mínimo y tope coinciden."}
+
+  - id: ml-banorte-puntos-triples
+    nombre: Puntos Triples Banorte
+    comercio: mercadolibre
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio: {tipo: bonificacion, forma: puntos, valor_desconocido: true}
+    condiciones:
+      minimo: {monto: 3000, estricto: true}
+      plazos: {permitidos: [0]}
+      registro_previo: banorte.com/tutarjetafavorita
+    excluye: [ml-banorte-bonificacion]
+    avisos: ["Hasta 90,000 puntos Recompensa Total o 25,000 puntos Marriott por cliente", "Alternativa a la bonificación de 10%", "No participan Básica, Banorte Conmigo, Empuje Negocios, Negocios y Empresas, Corporativa ni VA"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/banorte"
+      snapshot: snapshots/buen-fin-2026/ml-banorte/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Puntos Triples, hasta 90,000 puntos Recompensa Total o 25,000 puntos Marriott."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Agregada: faltaba en el archivo. Valor en pesos no publicado (puntos), por eso valor_desconocido."}
 
   # ---------------- American Express ----------------
   - id: ml-amexbf
@@ -221,25 +342,36 @@ promociones:
     comercio: mercadolibre
     patrocinador: amex
     instrumentos: [amex.tarjeta]
-    beneficio: { tipo: cupon, pct: 10, tope: 525 }
+    beneficio: {tipo: cupon, pct: 10, tope: 525, certeza: condicionado}
     condiciones:
-      minimo: { monto: 5000 }
-      plazos: { permitidos: [0, 3] }
+      minimo: {monto: 5000}
+      plazos: {permitidos: [0, 3]}
     avisos: ["Limitado a 2,426 cupones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/amex", snapshot: snapshots/buen-fin-2026/ml-amex/20261116-145923.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/amex"
+      snapshot: snapshots/buen-fin-2026/ml-amex/20261116-145923.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón AMEXBF al momento de pagar a una sola exhibición o a 3 meses con Las Tarjetas American Express."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado: 'Limitado a 2,426 (dos mil cuatrocientos veinte y seis) cupones'. Resto coincide."}
 
   - id: ml-amex-1500
     nombre: Bonificación Amex $1,500
     comercio: mercadolibre
     patrocinador: amex
+    campana: amex-bf26-1500
     instrumentos: [amex.tarjeta]
-    beneficio: { tipo: bonificacion, monto: 1500, certeza: condicionado }
+    beneficio: {tipo: bonificacion, monto: 1500, certeza: condicionado}
     condiciones:
-      minimo: { monto: 10000 }
-      plazos: { min: 3 }
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 3}
       registro_previo: Plataforma de Amex (primeros 40,000 registros)
-    avisos: ["Duda: Amex excluye compras \"mediante Mercado Pago\" y dice que no aplica con otras promociones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/amex", snapshot: snapshots/buen-fin-2026/ml-amex/20261116-145923.txt, capturada: 2026-11-16 }
+    avisos: ["Duda: Amex excluye compras \"mediante Mercado Pago\" y dice que no aplica con otras promociones", "Solo titulares de tarjetas personales; no Corporativas ni emitidas por terceros; el gasto de suplementarias no cuenta"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/amex"
+      snapshot: snapshots/buen-fin-2026/ml-amex/20261116-145923.txt
+      capturada: 2026-11-16
+      evidencia: "No aplica a compras mediante Mercado Pago u otros procesadores de pago o servicios de financiación de terceros."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Monto, mínimo acumulado, MSI y cupo de 40,000 registros coinciden, pero los T&C se contradicen con la página: ML la marca 'Adicional' al cupón y cobra vía 'Mercado Pago Standard', mientras Amex dice 'No aplica con otras promociones' y excluye compras 'mediante Mercado Pago'. Se agregó el aviso de tarjetas elegibles."}
 
   # ---------------- OXXO ----------------
   - id: ml-oxxobf
@@ -248,11 +380,16 @@ promociones:
     comercio: mercadolibre
     patrocinador: mercadolibre
     instrumentos: [oxxo.efectivo]
-    beneficio: { tipo: cupon, pct: 10, tope: 750 }
+    beneficio: {tipo: cupon, pct: 10, tope: 750, certeza: condicionado}
     condiciones:
-      minimo: { monto: 1500 }
-    avisos: [OXXO puede limitar el monto por ticket]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/oxxo", snapshot: snapshots/buen-fin-2026/ml-oxxo/20261116-145101.txt, capturada: 2026-11-16 }
+      minimo: {monto: 1500}
+    avisos: [OXXO puede limitar el monto por ticket, "Limitado a 11,333 cupones"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/oxxo"
+      snapshot: snapshots/buen-fin-2026/ml-oxxo/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Obtén 10% de descuento al ingresar el cupón OXXOBF en Mercado Libre y seleccionar efectivo en OXXO como método de pago."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado y aviso nuevo: 'Limitado a 11,333 (once mil trescientos treinta y tres) cupones'. El aviso del límite por ticket de OXXO no está en el snapshot (viene de la v0)."}
 
   # ---------------- Scotiabank ----------------
   - id: ml-scbabf
@@ -261,46 +398,67 @@ promociones:
     comercio: mercadolibre
     patrocinador: scotiabank
     instrumentos: [scotiabank.tdc]
-    beneficio: { tipo: cupon, pct: 15, tope: 750 }
+    beneficio: {tipo: cupon, pct: 15, tope: 750, certeza: condicionado}
     condiciones:
-      minimo: { monto: 3500 }
-      plazos: { permitidos: [0] }
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0, 3, 6, 9, 12]}
     avisos: ["Limitado a 1,733 cupones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/scotiabank", snapshot: snapshots/buen-fin-2026/ml-scotiabank/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/scotiabank"
+      snapshot: snapshots/buen-fin-2026/ml-scotiabank/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón SCBABF al momento de pagar a una sola exhibición o a 3, 6, 9 y 12 meses con tu Tarjeta de Crédito Scotiabank."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "plazos [0] → [0, 3, 6, 9, 12]: la página y los T&C dicen 'en una sola exhibición o pagando a 3, 6, 9 y 12 meses'. certeza → condicionado: 'Limitado a 1,733 cupones'."}
 
   - id: ml-scotiabank-cashback-tdc
     nombre: Cashback Scotiabank (crédito)
     comercio: mercadolibre
     patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdc
     instrumentos: [scotiabank.tdc]
     beneficio:
       tipo: cashback
       tope: 9000
+      certeza: condicionado
       tramos:
-        - { desde: 40000, pct: 20, tope: 8000 }
-        - { desde: 25000, pct: 15, tope: 5000 }
-        - { desde: 12000, pct: 10, tope: 2500 }
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
     condiciones:
       requiere: [scotiabank_invitacion]
-    avisos: ["Sujeto a bolsa de $11 M", "Una bonificación por cliente"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/scotiabank", snapshot: snapshots/buen-fin-2026/ml-scotiabank/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: ["Sujeto a bolsa de $11 M", "Una bonificación por cliente", "No participan Tarjetas de Crédito Básica ni adicionales", "Los T&C de Scotiabank dicen \"No aplica con otras promociones\"; ML lo marca como adicional al cupón"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/scotiabank"
+      snapshot: snapshots/buen-fin-2026/ml-scotiabank/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Límite de cashback por cliente será de $9,000 MXN con Tarjeta de Crédito y de $2,500 MXN con Tarjeta de Débito"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado: 'Cashback sujeto al presupuesto de Scotiabank' (bolsa de $11,000,000, 'hasta agotar existencias'). Avisos nuevos: tarjetas excluidas y 'No aplica con otras promociones'. Escalas y topes coinciden."}
 
   - id: ml-scotiabank-cashback-tdd
     nombre: Cashback Scotiabank (débito)
     comercio: mercadolibre
     patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdd
     instrumentos: [scotiabank.tdd]
     beneficio:
       tipo: cashback
       tope: 2500
+      certeza: condicionado
       tramos:
-        - { desde: 40000, pct: 20, tope: 8000 }
-        - { desde: 25000, pct: 15, tope: 5000 }
-        - { desde: 12000, pct: 10, tope: 2500 }
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
     condiciones:
       requiere: [scotiabank_invitacion]
-    avisos: [Sujeto a bolsa de $3 M]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/scotiabank", snapshot: snapshots/buen-fin-2026/ml-scotiabank/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: [Sujeto a bolsa de $3 M, "No participan débito empresarial ni adicionales", "Si cumples con crédito y débito, solo se premia crédito"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/scotiabank"
+      snapshot: snapshots/buen-fin-2026/ml-scotiabank/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Las bonificaciones están sujetas a una bolsa topada de $11,000,000.00 MXN para Tarjeta de Crédito y de $3,000,000.00 MXN para Tarjeta de Débito."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado por la bolsa de $3,000,000 para débito. Avisos nuevos: exclusiones y 'se premian las compras con Tarjeta de Crédito'. Escalas y tope de $2,500 coinciden."}
 
   # ---------------- Afirme ----------------
   - id: ml-afrmbf
@@ -309,25 +467,36 @@ promociones:
     comercio: mercadolibre
     patrocinador: afirme
     instrumentos: [afirme.tdc]
-    beneficio: { tipo: cupon, pct: 20, tope: 1000 }
+    beneficio: {tipo: cupon, pct: 20, tope: 1000, certeza: condicionado}
     condiciones:
-      minimo: { monto: 3000 }
-      plazos: { permitidos: [0, 3, 6, 9, 12] }
+      minimo: {monto: 3000}
+      plazos: {permitidos: [0, 3, 6, 9, 12]}
     avisos: ["Limitado a 1,569 cupones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/afirme", snapshot: snapshots/buen-fin-2026/ml-afirme/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/afirme"
+      snapshot: snapshots/buen-fin-2026/ml-afirme/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón AFRMBF al momento de pagar a una sola exhibición o a 3, 6, 9 y 12 meses con tu Tarjeta de Crédito Afirme."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado: 'Limitado a 1,569 (mil quinientos sesenta y nueve) cupones'. Resto coincide."}
 
   - id: ml-afirme-bonificacion
     nombre: Bonificación Afirme
     comercio: mercadolibre
     patrocinador: afirme
+    campana: afirme-bf26-bonificacion
     instrumentos: [afirme.tdc]
-    beneficio: { tipo: bonificacion, pct: 10, tope: 6000 }
+    beneficio: {tipo: bonificacion, pct: 10, tope: 6000}
     condiciones:
-      minimo: { monto: 10000 }
-      plazos: { min: 6 }
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 6}
       registro_previo: WhatsApp de Afirme (solo cuentan compras posteriores al registro)
     avisos: [Bonificación en 60 días o menos]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/afirme", snapshot: snapshots/buen-fin-2026/ml-afirme/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/afirme"
+      snapshot: snapshots/buen-fin-2026/ml-afirme/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Recibe 10% de bonificación al acumular $10,000 MXN en compras a partir de 6 Meses Sin Intereses con tu Tarjeta de Crédito Afirme."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
 
   # ---------------- INVEX ----------------
   - id: ml-invebf
@@ -336,25 +505,35 @@ promociones:
     comercio: mercadolibre
     patrocinador: invex
     instrumentos: [invex.tdc]
-    beneficio: { tipo: cupon, pct: 10, tope: 500 }
+    beneficio: {tipo: cupon, pct: 10, tope: 500, certeza: condicionado}
     condiciones:
-      minimo: { monto: 3500 }
-      plazos: { permitidos: [3, 6, 9, 12] }
+      minimo: {monto: 3500}
+      plazos: {permitidos: [3, 6, 9, 12]}
     avisos: ["Limitado a 2,200 cupones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/invex", snapshot: snapshots/buen-fin-2026/ml-invex/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/invex"
+      snapshot: snapshots/buen-fin-2026/ml-invex/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón INVEBF al momento de pagar a 3, 6, 9 y 12 meses con tu Tarjeta de Crédito INVEX."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado: 'Limitado a 2,200 (dos mil doscientos) cupones'. Resto coincide."}
 
   - id: ml-invex-bonificacion
     nombre: Bonificación INVEX
     comercio: mercadolibre
     patrocinador: invex
     instrumentos: [invex.tdc]
-    beneficio: { tipo: bonificacion, pct: 10, tope: 5000 }
+    beneficio: {tipo: bonificacion, pct: 10, tope: 5000}
     condiciones:
-      plazos: { min: 9 }
+      plazos: {min: 9}
       requiere: [invex_meta]
       registro_previo: Botón del correo de INVEX o INVEX Now
     avisos: [El mínimo y el tope son personales (meta enviada por correo)]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/invex", snapshot: snapshots/buen-fin-2026/ml-invex/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/invex"
+      snapshot: snapshots/buen-fin-2026/ml-invex/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Recibe hasta 10% de bonificación al alcanzar la meta de acumulación que te notificó INVEX y difiere tus compras a 9 Meses Sin Intereses"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Los T&C fijan 10% sobre el total acumulado al alcanzar la meta personal, tope $5,000 por cliente, 9 MSI o más."}
 
   # ---------------- Openbank ----------------
   - id: ml-opbabf
@@ -363,25 +542,35 @@ promociones:
     comercio: mercadolibre
     patrocinador: openbank
     instrumentos: [openbank.tdc]
-    beneficio: { tipo: cupon, pct: 10, tope: 500 }
+    beneficio: {tipo: cupon, pct: 10, tope: 500, certeza: condicionado}
     condiciones:
-      minimo: { monto: 2500 }
-      plazos: { permitidos: [0] }
+      minimo: {monto: 2500}
+      plazos: {permitidos: [0]}
     avisos: ["Limitado a 1,600 cupones"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/openbank", snapshot: snapshots/buen-fin-2026/ml-openbank/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/openbank"
+      snapshot: snapshots/buen-fin-2026/ml-openbank/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Usa el cupón OPBABF al momento de pagar a una sola exhibición con tu Tarjeta de Crédito Openbank."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "certeza garantizado → condicionado: 'Limitado a 1,600 (mil seiscientos) cupones'. Resto coincide."}
 
   - id: ml-openbank-cashback
     nombre: Cashback Openbank al diferir
     comercio: mercadolibre
     patrocinador: openbank
     instrumentos: [openbank.tdc]
-    beneficio: { tipo: cashback, pct: 15, tope: 500 }
+    beneficio: {tipo: cashback, pct: 15, tope: 500}
     condiciones:
-      minimo: { monto: 2000 }
-      plazos: { permitidos: [0] }
-      financiamiento_posterior: { meses: 9 }
+      minimo: {monto: 2000}
+      plazos: {permitidos: [0]}
+      financiamiento_posterior: {meses: 9}
     avisos: [Diferir en la app antes del 30 nov]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/openbank", snapshot: snapshots/buen-fin-2026/ml-openbank/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/openbank"
+      snapshot: snapshots/buen-fin-2026/ml-openbank/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Paga a una sola exhibición y después difiere tu compra a Meses Sin Intereses o Meses Con Intereses desde la app de Openbank"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "15%, mínimo $2,000, tope $500 por cliente; MSI desde la app 'a hasta 9 Meses Sin Intereses'. Tarjetas Open y Cinépolis."}
 
   # ---------------- Mifel ----------------
   - id: ml-mifebf
@@ -390,29 +579,42 @@ promociones:
     comercio: mercadolibre
     patrocinador: mifel
     instrumentos: [mifel.tdc]
-    beneficio: { tipo: cupon, pct: 15, tope: 900, certeza: condicionado }
+    beneficio: {tipo: cupon, pct: 15, tope: 900, certeza: condicionado}
     condiciones:
-      minimo: { monto: 3500 }
-      plazos: { permitidos: [0] }
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
     excluye: [ml-mifel-bonificacion]
     avisos: ["Solo 70 cupones: probablemente agotado"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/mifel", snapshot: snapshots/buen-fin-2026/ml-mifel/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/mifel"
+      snapshot: snapshots/buen-fin-2026/ml-mifel/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Limitado a 70 (setenta) cupones, por lo que la promoción podría terminar antes."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
 
   - id: ml-mifel-bonificacion
     nombre: Bonificación Mifel
     comercio: mercadolibre
     patrocinador: mifel
+    campana: mifel-bf26-bonificacion
     instrumentos: [mifel.tdc]
     beneficio:
       tipo: bonificacion
+      tope: 6000
       tramos:
-        - { desde: 50000, monto: 6000 }
-        - { desde: 25000, monto: 2500 }
-        - { desde: 10000, monto: 1000 }
+        - {desde: 50000, monto: 6000}
+        - {desde: 25000, monto: 2500}
+        - {desde: 10000, monto: 1000}
+      escala_acumulada: true
     condiciones:
-      plazos: { min: 12 }
-    avisos: ["Automática", "Se refleja a más tardar el 27 feb 2027"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/mifel", snapshot: snapshots/buen-fin-2026/ml-mifel/20261116-145101.txt, capturada: 2026-11-16 }
+      plazos: {min: 12}
+    avisos: ["Automática", "Se refleja a más tardar el 27 feb 2027", "No participan débito ni Tarjetas de Crédito Empresariales"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/mifel"
+      snapshot: snapshots/buen-fin-2026/ml-mifel/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Recibe bonificación en compras acumuladas a partir de 12 Meses Sin Intereses con tu Tarjeta de Crédito Mifel."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Escala por compra → acumulada (campana mifel-bf26-bonificacion, escala_acumulada): 'compras acumuladas'. tope 6000 agregado: 'monto máximo de bonificación es de $6,000.00 M.N. ... por cliente titular'. Aviso de tarjetas excluidas. Montos y escalas coinciden."}
 
   # ---------------- Falabella ----------------
   - id: ml-falabella-reembolso
@@ -420,49 +622,68 @@ promociones:
     comercio: mercadolibre
     patrocinador: falabella
     instrumentos: [falabella.tdc]
-    beneficio: { tipo: bonificacion, pct: 15, tope: 1000 }
+    beneficio: {tipo: bonificacion, pct: 15, tope: 1000}
     condiciones:
-      minimo: { monto: 2000 }
-      plazos: { min: 3 }
+      minimo: {monto: 2000}
+      plazos: {min: 3}
       registro_previo: "WhatsApp con #MeLiFalabella"
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/falabella", snapshot: snapshots/buen-fin-2026/ml-falabella/20261116-145101.txt, capturada: 2026-11-16 }
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/falabella"
+      snapshot: snapshots/buen-fin-2026/ml-falabella/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Monto mínimo de compra de $2,000 MXN. Límite de reembolso acumulado por cliente será de $1,000 MXN."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "MSI 'a cualquier plazo' (min 3); registro por WhatsApp a más tardar el 17 nov."}
 
   # ---------------- BanCoppel ----------------
   - id: ml-bancoppel-tdc
     nombre: Bonificación BanCoppel (crédito)
     comercio: mercadolibre
     patrocinador: bancoppel
+    campana: bancoppel-bf26-bonificacion-tdc
     instrumentos: [bancoppel.tdc]
     beneficio:
       tipo: bonificacion
       tope: 2200
       certeza: condicionado
       tramos:
-        - { mayor_a: 8500, pct: 20 }
-        - { mayor_a: 4500, pct: 15 }
-        - { desde: 3000, pct: 10 }
+        - {mayor_a: 8500, pct: 20}
+        - {mayor_a: 4500, pct: 15}
+        - {desde: 3000, pct: 10}
+      escala_acumulada: true
     condiciones:
       registro_previo: App BanCoppel
-    avisos: [Sujeta al presupuesto del banco]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/bancoppel", snapshot: snapshots/buen-fin-2026/ml-bancoppel/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: [Sujeta al presupuesto del banco, "Crédito y débito no se suman: una sola bonificación, sobre el producto con mayor monto"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/bancoppel"
+      snapshot: snapshots/buen-fin-2026/ml-bancoppel/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Recibe bonificación en compras acumuladas con tus Tarjetas BanCoppel. El porcentaje depende de cuánto acumules y de tu tipo de tarjeta"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Escala por compra → acumulada (campana, escala_acumulada): 'compras acumuladas'. La tabla de ML es imagen; escalas y tope $2,200 cotejados con pista-expansion-bancos ('10% al gastar de 3,000 a 4,500 pesos...')."}
 
   - id: ml-bancoppel-tdd
     nombre: Bonificación BanCoppel (débito o nómina)
     comercio: mercadolibre
     patrocinador: bancoppel
+    campana: bancoppel-bf26-bonificacion-tdd
     instrumentos: [bancoppel.tdd]
     beneficio:
       tipo: bonificacion
       tope: 1500
       certeza: condicionado
       tramos:
-        - { mayor_a: 6000, pct: 20 }
-        - { mayor_a: 3000, pct: 15 }
-        - { desde: 2000, pct: 10 }
+        - {mayor_a: 6000, pct: 20}
+        - {mayor_a: 3000, pct: 15}
+        - {desde: 2000, pct: 10}
+      escala_acumulada: true
     condiciones:
       registro_previo: App BanCoppel
-    avisos: [Sujeta al presupuesto del banco]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/bancoppel", snapshot: snapshots/buen-fin-2026/ml-bancoppel/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: [Sujeta al presupuesto del banco, "Crédito y débito no se suman: una sola bonificación, sobre el producto con mayor monto"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/bancoppel"
+      snapshot: snapshots/buen-fin-2026/ml-bancoppel/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Bonificación sujeta al presupuesto de BanCoppel por producto; se asigna primero a los clientes con mayor monto de compras acumuladas."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Escala por compra → acumulada (campana, escala_acumulada): 'compras acumuladas'. La tabla de ML es imagen; escalas y tope $1,500 cotejados con pista-expansion-bancos ('10% al gastar de 2,000 a 3,000 pesos...')."}
 
   # ---------------- Nu ----------------
   - id: ml-nu-pase-morado
@@ -470,39 +691,79 @@ promociones:
     comercio: mercadolibre
     patrocinador: nu
     instrumentos: [nu.tdc]
-    vigencia: { desde: 2026-11-13, hasta: 2026-11-17 }
-    beneficio: { tipo: sorteo, por_cada: 3000 }
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-30}
+    beneficio: {tipo: sorteo, por_cada: 3000}
     condiciones:
-      plazos: { min: 6 }
+      plazos: {min: 6}
       registro_previo: App Nu
-    avisos: ["Premio no garantizado (hasta $100,000)"]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/nubank", snapshot: snapshots/buen-fin-2026/ml-nu/20261116-145923.txt, capturada: 2026-11-16 }
+    avisos: ["Premio no garantizado (hasta $100,000)", "Los $3,000 se acumulan entre compras; máximo 5 pases por cliente", "Aprox. 1 de cada 10 folios trae bonificación (desde $300)"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/nubank"
+      snapshot: snapshots/buen-fin-2026/ml-nu/20261116-145923.txt
+      capturada: 2026-11-16
+      evidencia: "Cada $3,000 MXN acumulados en compras a 6 Meses Sin Intereses o más con tu Tarjeta de Crédito Nu te dan un Pase Morado"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "vigencia hasta 2026-11-17 → 2026-11-30: 'Vigencia de la promoción: 13 al 30 de noviembre de 2026'. Avisos nuevos de banco-nu-tyc: 'máximo cinco (5) Folios' y 'aproximadamente 1 de cada 10 Folios contiene una bonificación'."}
 
   # ---------------- DiDi ----------------
   - id: ml-didi-cashback
     nombre: Cashback DiDi Card
     comercio: mercadolibre
     patrocinador: didi
+    campana: didi-bf26-cashback
     instrumentos: [didi.tarjeta]
     beneficio:
       tipo: cashback
       tope: 2000
       tramos:
-        - { desde: 5000, pct: 20 }
-        - { desde: 500, pct: 10 }
+        - {desde: 5000, pct: 20}
+        - {pct: 10}
+      escala_acumulada: true
     condiciones:
+      minimo: {monto: 500}
       registro_previo: App DiDi (Beneficios)
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/didi", snapshot: snapshots/buen-fin-2026/ml-didi/20261116-145101.txt, capturada: 2026-11-16 }
+    avisos: ["El 20% se calcula sobre el total acumulado en comercios participantes al llegar a $5,000"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/didi"
+      snapshot: snapshots/buen-fin-2026/ml-didi/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "20% de cashback sobre el total acumulado si acumulas $5,000 MXN o más durante la campaña en comercios participantes."
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "El 20% se elige por lo acumulado en la campaña (campana didi-bf26-cashback, escala_acumulada), no por la compra; el mínimo de $500 pasa de tramo a condiciones.minimo por compra: 'Monto mínimo de $500 MXN por compra'. % y tope coinciden."}
 
   # ---------------- Klar ----------------
   - id: ml-klar-cashback
     nombre: 10% cashback Klar
     comercio: mercadolibre
     patrocinador: klar
+    campana: klar-bf26-cashback
     instrumentos: [klar.tdc]
-    beneficio: { tipo: cashback, pct: 10, tope: 800 }
+    beneficio: {tipo: cashback, pct: 10, tope: 800}
     condiciones:
-      minimo: { monto: 4000 }
-      plazos: { min: 6 }
-    avisos: [Sin registro]
-    fuente: { url: "https://www.mercadolibre.com.mx/ofertas/klar", snapshot: snapshots/buen-fin-2026/ml-klar/20261116-145101.txt, capturada: 2026-11-16 }
+      minimo: {monto: 4000}
+      plazos: {min: 6}
+    avisos: [Sin registro, "Solo segmentos Klar Plus y Platino", "Mínimo $4,000 por cargo individual; tope $800 por cliente en todos los comercios"]
+    fuente:
+      url: "https://www.mercadolibre.com.mx/ofertas/klar"
+      snapshot: snapshots/buen-fin-2026/ml-klar/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "Recibe 10% de cashback en compras de $4,000 MXN o más por cargo, a partir de 6 Meses Sin Intereses"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "campana klar-bf26-cashback agregada (tope de $800 'sumando las compras en todos los comercios participantes y ambas vías de diferimiento'). Aviso nuevo: 'aplica exclusivamente a los Clientes de los segmentos Plus y Platino' (banco-klar-tyc); no hay atributo de cartera para exigirlo."}
+
+  - id: ml-klar-splitk
+    nombre: 10% cashback Klar difiriendo con Split K al 0%
+    comercio: mercadolibre
+    patrocinador: klar
+    campana: klar-bf26-cashback
+    instrumentos: [klar.tdc]
+    beneficio: {tipo: cashback, pct: 10, tope: 800}
+    condiciones:
+      minimo: {monto: 4000}
+      plazos: {permitidos: [0]}
+      financiamiento_posterior: {meses: 6}
+    excluye: [ml-klar-cashback]
+    avisos: ["Solo si la compra no pudo hacerse a MSI en Mercado Libre: paga en una exhibición y difiere a 6 meses al 0% con Split K", "Contrata Split K en la app a más tardar en tu fecha de corte", "Solo segmentos Klar Plus y Platino"]
+    fuente:
+      url: "https://cdn.prod.website-files.com/630e13ca92151d578bc2ed8b/6ae9fec434cf054ae0babcab_TyC_Klarfest_Buen_Fin_2026_Track_Changes-(Final).pdf"
+      snapshot: snapshots/buen-fin-2026/banco-klar-tyc/20261116-145101.txt
+      capturada: 2026-11-16
+      evidencia: "En los otros siete comercios de la tabla podrán diferirse a 6 meses las compras elegibles que no hayan podido realizarse a MSI"
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Agregada: faltaba en el archivo. T&C de Klar, enlazados desde la página de ML; Mercado Libre aparece con 'SplitK promocional desde la app: 6 meses al 0%'."}

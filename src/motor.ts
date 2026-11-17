@@ -23,11 +23,22 @@ export interface Compra {
   dia: string; // AAAA-MM-DD
   /** máximo de MSI que este producto ofrece con cada instrumento (por id de producto) */
   msi: Record<string, number>;
+  /** categoría del producto (para promos limitadas a ciertas categorías) */
+  categoria?: string;
+}
+
+export interface Acumulado {
+  /** lo que ya compraste en la campaña (otras compras que cuentan para el mínimo) */
+  compras?: number;
+  /** lo que ya recibiste de beneficio en la campaña (se descuenta del tope por cliente) */
+  beneficio?: number;
 }
 
 export interface Cartera {
   instrumentos: string[];
   atributos: Record<string, string | number | boolean>;
+  /** por campaña (campo `campana` de las promos) */
+  acumulados?: Record<string, Acumulado>;
 }
 
 export interface Parametros {
@@ -107,16 +118,24 @@ type Calculo = { ok: true; aporte: Aporte } | { ok: false; razon: string };
 const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-MX");
 
 /** Calcula el beneficio de una promo dados el precio y lo que se paga tras el checkout. */
-export function calcularBeneficio(p: Promocion, precio: number, neto: number, dia: string, atr: Cartera["atributos"]): Calculo {
+export function calcularBeneficio(p: Promocion, precio: number, neto: number, dia: string, atr: Cartera["atributos"], meses = 0, acum: Acumulado = {}): Calculo {
   const b = p.beneficio;
   const enCheckout = EN_CHECKOUT.has(b.tipo);
   const base = (b.base ?? (enCheckout ? "bruto" : "neto")) === "bruto" ? precio : neto;
 
   const min = p.condiciones.minimo;
   if (min) {
-    const m = ((min.base ?? (enCheckout ? "bruto" : "neto")) === "bruto" ? precio : neto) + Number(min.sumar_atributo ? atr[min.sumar_atributo] ?? 0 : 0);
+    const m = ((min.base ?? (enCheckout ? "bruto" : "neto")) === "bruto" ? precio : neto) + (min.acumulable ? acum.compras ?? 0 : 0);
     if (min.estricto ? m <= min.monto : m < min.monto)
-      return { ok: false, razon: `Requiere compra ${min.estricto ? "mayor a" : "mínima de"} ${fmt(min.monto)}${min.sumar_atributo ? " (acumulado)" : ""}` };
+      return { ok: false, razon: `Requiere compra ${min.estricto ? "mayor a" : "mínima de"} ${fmt(min.monto)}${min.acumulable ? " (acumulado en la campaña; registra tus compras previas)" : ""}` };
+  }
+
+  if (b.valor_desconocido) {
+    return { ok: true, aporte: { promo: p, monto: 0, certeza: "condicionado", nota: `Monto no publicado${b.tope ? ` (hasta ${fmt(b.tope)})` : ""}` } };
+  }
+
+  if (b.tipo === "diferido") {
+    return { ok: true, aporte: { promo: p, monto: 0, certeza: b.certeza, nota: b.descripcion ?? "Pago diferido" } };
   }
 
   if (b.tipo === "sorteo") {
@@ -127,10 +146,13 @@ export function calcularBeneficio(p: Promocion, precio: number, neto: number, di
 
   let pct = b.pct, monto = b.monto, tope = b.tope, certeza: Certeza = b.certeza;
   if (b.tramos) {
+    const escala = base + (b.escala_acumulada ? acum.compras ?? 0 : 0);
     const t = b.tramos.find((t) =>
       (!t.dias || t.dias.includes(dia)) &&
-      (t.desde === undefined || base >= t.desde) &&
-      (t.mayor_a === undefined || base > t.mayor_a) &&
+      (t.desde === undefined || escala >= t.desde) &&
+      (t.mayor_a === undefined || escala > t.mayor_a) &&
+      (!t.meses || t.meses.includes(meses)) &&
+      (t.meses_min === undefined || meses >= t.meses_min) &&
       cumpleAtributos(t.atributos, atr));
     if (!t) return { ok: false, razon: "No alcanzas ningún tramo de la promoción" };
     pct = t.pct; monto = t.monto; certeza = t.certeza ?? certeza;
@@ -139,6 +161,10 @@ export function calcularBeneficio(p: Promocion, precio: number, neto: number, di
   if (pct !== undefined) for (const e of b.extras ?? []) if (cumpleAtributos(e.atributos, atr)) pct += e.pct;
 
   let valor = pct !== undefined ? (base * pct) / 100 : monto!;
+  if (tope !== undefined && b.tope_por === "cliente" && acum.beneficio) {
+    tope = Math.max(0, tope - acum.beneficio);
+    if (tope === 0) return { ok: false, razon: "Ya alcanzaste el tope de esta campaña" };
+  }
   if (tope !== undefined) valor = Math.min(valor, tope);
   valor = Math.min(valor, base);
   if (valor <= 0) return { ok: false, razon: "El beneficio resulta en $0" };
@@ -188,6 +214,8 @@ export function evaluar(cat: Catalogo, compra: Compra, cartera: Cartera, params:
 
   const opciones: Opcion[] = [];
   const no_aplican: NoAplica[] = [];
+  const acumDe = (p: Promocion): Acumulado => (p.campana ? cartera.acumulados?.[p.campana] ?? {} : {});
+  const tiene = new Set(cartera.instrumentos);
 
   for (const inst of cartera.instrumentos) {
     if (!cat.productos.has(inst)) throw new Error(`Instrumento desconocido: ${inst}`);
@@ -196,6 +224,10 @@ export function evaluar(cat: Catalogo, compra: Compra, cartera: Cartera, params:
     for (const p of delInstrumento) {
       if (!vigente(p, compra.dia, ev)) no_aplican.push({ promo: p, instrumento: inst, razon: "Fuera de vigencia ese día" });
       else if (!p.condiciones.requiere.every((a) => atr[a])) no_aplican.push({ promo: p, instrumento: inst, razon: "No cumples un requisito de la promoción (ver tu cartera)" });
+      else if (p.condiciones.fondeo && !p.condiciones.fondeo.some((f) => tiene.has(f)))
+        no_aplican.push({ promo: p, instrumento: inst, razon: `Requiere fondear con: ${p.condiciones.fondeo.join(", ")}` });
+      else if (p.condiciones.categorias && !(compra.categoria && p.condiciones.categorias.includes(compra.categoria)))
+        no_aplican.push({ promo: p, instrumento: inst, razon: `Solo en: ${p.condiciones.categorias.join(", ")}` });
       else candidatas.push(p);
     }
     const planes = planesDePago(cat, inst, compra);
@@ -212,7 +244,7 @@ export function evaluar(cat: Catalogo, compra: Compra, cartera: Cartera, params:
         const aportes: Aporte[] = [];
         let D = 0, valida = true;
         for (const p of checkout) {
-          const r = calcularBeneficio(p, P, P, compra.dia, atr);
+          const r = calcularBeneficio(p, P, P, compra.dia, atr, meses, acumDe(p));
           if (!r.ok) { valida = false; break; }
           aportes.push(r.aporte); D += r.aporte.monto;
         }
@@ -221,7 +253,7 @@ export function evaluar(cat: Catalogo, compra: Compra, cartera: Cartera, params:
         const neto = P - D;
         let B = 0;
         for (const p of posteriores) {
-          const r = calcularBeneficio(p, P, neto, compra.dia, atr);
+          const r = calcularBeneficio(p, P, neto, compra.dia, atr, meses, acumDe(p));
           if (!r.ok) { valida = false; break; }
           aportes.push(r.aporte); B += r.aporte.monto;
         }
@@ -237,6 +269,7 @@ export function evaluar(cat: Catalogo, compra: Compra, cartera: Cartera, params:
           certeza: peorCerteza(aportes.map((a) => a.certeza)),
           avisos: [...new Set(combo.flatMap((p) => p.avisos))],
           requisitos: combo.flatMap((p) => [
+            ...(p.condiciones.fondeo ? [`Paga con ${inst} fondeado con: ${p.condiciones.fondeo.filter((f) => tiene.has(f)).join(" o ")}`] : []),
             ...(p.codigo ? [`Ingresa el cupón ${p.codigo}`] : []),
             ...(p.condiciones.registro_previo ? [`Regístrate antes: ${p.condiciones.registro_previo}`] : []),
             ...(p.condiciones.financiamiento_posterior ? [`Difiere la compra desde la app del banco (hasta ${p.condiciones.financiamiento_posterior.meses} meses)`] : []),
@@ -251,7 +284,7 @@ export function evaluar(cat: Catalogo, compra: Compra, cartera: Cartera, params:
       let razon = "Ningún plazo disponible con este producto cumple la promoción";
       for (const meses of planes) {
         if (!plazoPermitido(p, meses)) continue;
-        const r = calcularBeneficio(p, P, P, compra.dia, atr);
+        const r = calcularBeneficio(p, P, P, compra.dia, atr, meses, acumDe(p));
         razon = r.ok ? "No se puede combinar en este caso" : r.razon;
         break;
       }

@@ -1,0 +1,701 @@
+# Promociones bancarias de The Home Depot México, Buen Fin 2026.
+# Origen: homedepot.com.mx/promociones-bancarias y sus T&C (condiciones-promociones-meses-sin-intereses-en-linea),
+# capturadas el 16 nov 2026; mecánicas generales cotejadas con las páginas de cada banco. revisada: false.
+#
+# Plazos MSI que ofrece la tienda (T&C "Toda La Tienda hasta 24 MSI"; son disponibilidad de plan, no beneficio):
+#   6, 12 y 18 MSI con casi todos los bancos; 13 MSI solo BBVA; 15 MSI solo Banamex; 24 MSI solo TDC The Home Depot Banamex.
+#   Mínimos: 6 MSI $6,500 · 12 MSI $8,500 · 13 MSI $10,000 · 15 MSI $10,500 · 18 MSI $12,500 · 24 MSI $13,500.
+#   En MSI no participan materiales básicos de construcción (varilla, castillos/malla, alambres, cemento, block, barro).
+#
+# Promos vía PayPal (sección PayPal de los T&C): se modelan con instrumentos: [paypal.cuenta] + condiciones.fondeo.
+#   PayPal en homedepot.com.mx: 3, 4, 6, 9 y 12 MSI, mínimo $10,000 para MSI; no aplica con débito en línea.
+promociones:
+  # ---------------- Banamex ----------------
+  - id: hd-banamex-bonificacion
+    nombre: Hasta 30% de bonificación Banamex desde 12 MSI
+    comercio: homedepot
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [banamex.tdc, banamex.homedepot]
+    beneficio:
+      tipo: bonificacion
+      tope: 10000
+      forma: estado_de_cuenta
+      tramos:
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 12}
+      registro_previo: App Banamex o banamex.com/buenfin (del 3 al 17 nov; solo cuentan compras posteriores al registro)
+    avisos:
+      - "El mínimo de $10,000 es acumulado en negocios participantes a 12+ MSI (todas tus TDC Banamex)"
+      - "Tope de $10,000 por cliente en todo el Buen Fin Banamex, incluidas las Horas Banamex"
+      - "Se refleja a más tardar 60 días hábiles después del 17 nov"
+      - "MSI en Home Depot: hasta 18 con TDC Banamex (15 MSI exclusivo Banamex); hasta 24 con TDC The Home Depot Banamex"
+      - "No participan TDC Corporativas, Costco ni Negocios (PyME); los T&C de la tienda excluyen genéricamente 'marca privada', pero el anuncio incluye la TDC The Home Depot Banamex"
+      - "Excluye materiales básicos de construcción"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Se otorgará un 10% de bonificación en compras participantes acumuladas a partir de $10,000 MXN"
+      nota: "Mecánica de productos participantes y tope: snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt (https://www.banamex.com/buenfin)"
+
+  - id: hd-banamex-horas
+    nombre: Horas Banamex +5% (16 nov, 11:00 a 13:00)
+    comercio: homedepot
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [banamex.tdc, banamex.homedepot]
+    vigencia: {desde: 2026-11-16, hasta: 2026-11-16}
+    beneficio: {tipo: bonificacion, pct: 5, tope: 10000, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 12}
+      registro_previo: App Banamex o banamex.com/buenfin antes de comprar (registro hasta el 16 nov)
+    avisos:
+      - "Solo compras del 16 nov entre 11:00 y 13:00 (hora CDMX); el catálogo no distingue horas"
+      - "Se suma a la bonificación base de hasta 30%; el tope de $10,000 por cliente es conjunto (la campaña descuenta lo ya recibido, pero en una misma compra el motor topa cada parte por separado)"
+      - "Requiere el mínimo de $10,000 acumulado de la campaña base"
+      - "No aplica vía PayPal ni agregadores de pago"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Se añade campana banamex-bf26-bonificacion y el mínimo pasa a acumulable. comercio-homedepot-tyc: 'Se otorgará un 10% de bonificación en compras participantes acumuladas a partir de $10,000 MXN' y 'hasta 35% tendrá un monto máximo de $10,000 MXN por cliente': el tope es conjunto con la base."}
+      evidencia: "en las Horas Banamex podrás obtener un 5% de bonificación adicional en tus compras participantes realizadas dentro del horario establecido"
+      nota: "Banamex confirma Home Depot el 16 nov de 11:00 a 13:00: snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt"
+
+  - id: hd-banamex-pesos-haz-mas
+    nombre: Pesos Haz Más con TDC The Home Depot Banamex desde 12 MSI
+    comercio: homedepot
+    patrocinador: banamex
+    instrumentos: [banamex.homedepot]
+    beneficio: {tipo: bonificacion, pct: 7, forma: monedero}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {min: 12}
+      registro_previo: App Banamex
+    avisos:
+      - "Se modela el 7% de la tarjeta física; con Tarjeta Digital en homedepot.com.mx o billetera digital en tienda son 10%"
+      - "Pesos Haz Más = dinero electrónico 1:1, solo canjeable en The Home Depot; llegan 60 días naturales después del fin de la promoción"
+      - "No aplica vía PayPal"
+      - "Excluye materiales básicos de construcción"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "La bonificación de Pesos Haz Más es aplicable para compras mínimas de $10,000 MXN realizadas a partir de 12 Meses Sin Intereses"
+
+  # ---------------- BBVA ----------------
+  - id: hd-bbva-bonificacion
+    nombre: 10% de bonificación BBVA desde 12 MSI
+    comercio: homedepot
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-14, hasta: 2026-11-16}
+    beneficio:
+      tipo: bonificacion
+      tope: 2500
+      forma: estado_de_cuenta
+      tramos:
+        - {meses: [12], desde: 8500, pct: 10}
+        - {meses: [13], desde: 10000, pct: 10}
+        - {meses: [18], desde: 12500, pct: 10}
+      tope_por: dia
+    condiciones:
+      plazos: {min: 12}
+    avisos:
+      - "Automática, sin registro"
+      - "Tope de $2,500 por día y por cliente"
+      - "Se refleja en 5 días hábiles como BONIFICACIÓN BUEN FIN"
+      - "MSI en Home Depot: 6, 12, 13 (exclusivo BBVA) y 18"
+      - "No participan Crea, Mi primera tarjeta, Negocios ni Micro Negocios"
+      - "Excluye materiales básicos de construcción"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Monto mínimo de compra de $8,500 MXN para plazo de 12 Meses Sin Intereses, $10,000 MXN para plazo de 13"
+      nota: "Mecánica general BBVA: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt (https://www.bbva.mx/buen-fin.html)"
+
+  - id: hd-bbva-paga-en-marzo
+    nombre: Compra ahora y paga en marzo 2027 a 3 MSI (BBVA)
+    comercio: homedepot
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-14, hasta: 2026-11-16}
+    beneficio:
+      tipo: diferido
+      descripcion: "Pagas en una exhibición y BBVA lo convierte a 3 MSI; primera mensualidad en el estado de cuenta de febrero 2027, se paga en marzo 2027"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: App BBVA (del 3 al 12 nov o del 18 nov al 9 dic)
+    avisos:
+      - "La página de BBVA la da del 13 al 17 nov en comercios nacionales; Home Depot la anuncia del 14 al 16"
+      - "Mínimo de $3,500 por compra (no acumulable)"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Aplica en compras realizadas en una sola exhibición a partir de un monto mínimo de $3,500 MXN"
+      nota: "Periodos de inscripción: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt"
+
+  # ---------------- Banorte ----------------
+  - id: hd-banorte-contado
+    nombre: Bonificación Banorte a un solo pago (hasta $12,000)
+    comercio: homedepot
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tramos:
+        - {desde: 30000, monto: 9000}
+        - {desde: 20000, monto: 5000}
+        - {desde: 12000, monto: 2000}
+    condiciones:
+      plazos: {permitidos: [0]}
+      registro_previo: banorte.com/tutarjetafavorita o App Tu Tarjeta Favorita
+    excluye: [hd-banorte-febrero]
+    avisos:
+      - "Se modelan los montos activando en sitio web; activando en la App son $2,200 / $5,500 / $9,900 y $12,000 desde $45,000"
+      - "Compras acumuladas en comercios participantes; no cuentan compras diferidas después"
+      - "Alternativa: bono en puntos Recompensa Total (45,000 a 255,000) o Marriott Bonvoy, en lugar del dinero"
+      - "No aplica vía PayPal ni Mercado Pago; excluye Básica, Conmigo, Corporativa, Negocios, RappiCard y VA"
+      - "Se refleja a más tardar el 15 dic 2026"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "$12,000 a $19,999 – Bonificación de $2,000 a revolvente activando en sitio web, $2,200 a revolvente activando en App"
+      nota: "La página de Banorte capturada (snapshots/buen-fin-2026/banco-banorte/20261116-150336.txt) no detalla la mecánica"
+
+  - id: hd-banorte-msi
+    nombre: Bonificación Banorte a MSI (hasta $8,500)
+    comercio: homedepot
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tramos:
+        - {desde: 30000, monto: 6000}
+        - {desde: 20000, monto: 3500}
+        - {desde: 12000, monto: 1000}
+    condiciones:
+      plazos: {min: 1}
+      registro_previo: banorte.com/tutarjetafavorita o App Tu Tarjeta Favorita
+    avisos:
+      - "Desde $45,000 activando en la App son $8,500; sin App el máximo es $6,000"
+      - "Compras acumuladas a MSI en comercios participantes; no cuentan compras diferidas después"
+      - "MSI en Home Depot: 6, 12 y 18"
+      - "No aplica vía PayPal ni Mercado Pago"
+      - "Excluye materiales básicos de construcción"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Bonificación a MSI: La bonificación aplica en compras acumuladas en comercios participantes a Meses Sin Intereses mayores a $12,000 MXN."
+
+  - id: hd-banorte-febrero
+    nombre: Compra ahora y paga en febrero 2027 + 3 MCI (Banorte)
+    comercio: homedepot
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Se aplaza 3 meses y luego 3 meses CON intereses (1.5% mensual); ajuste 20 días hábiles después de la compra"
+    condiciones:
+      minimo: {monto: 12000}
+      plazos: {permitidos: [0]}
+      registro_previo: banorte.com/tutarjetafavorita o App Tu Tarjeta Favorita
+    excluye: [hd-banorte-contado]
+    avisos:
+      - "Cobra intereses (1.5% mensual en los 3 meses finales)"
+      - "Alternativa a la bonificación; máximo $250,000 a aplazar"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "se aplazará 3 meses más 3 meses con intereses con una tasa mensual del 1.5%"
+
+  # ---------------- Santander ----------------
+  - id: hd-santander-cashback
+    nombre: Cashback Santander desde 6 MSI
+    comercio: homedepot
+    patrocinador: santander
+    campana: santander-bf26-cashback
+    instrumentos: [santander.tdc]
+    beneficio:
+      tipo: cashback
+      tope: 7000
+      forma: estado_de_cuenta
+      tramos:
+        - {dias: [2026-11-15], atributos: {santander_nomina: true}, pct: 35, certeza: condicionado}
+        - {dias: [2026-11-15], pct: 30, certeza: condicionado}
+        - {pct: 10}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {min: 6}
+      registro_previo: santander.com.mx/promociones/buen-fin.html (antes de comprar)
+    avisos:
+      - "Mínimo de $10,000 por transacción"
+      - "Día turbo (15 nov, Home Depot): +20%, o +25% con portabilidad de nómina; solo lo dice la página de Santander, no la de Home Depot"
+      - "Tope de $7,000 por cliente en todo el Buen Fin Santander"
+      - "MSI en Home Depot: 6, 12 y 18"
+      - "No cuentan compras diferidas desde la App o SuperLínea"
+      - "Excluye materiales básicos de construcción"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "10% de bonificación base en compras realizadas por un monto igual o mayor a $10,000.00 MXN."
+      nota: "Días turbo: snapshots/buen-fin-2026/banco-santander/20261116-145101.txt ('15 de noviembre: LG, Samsung, MacStore, The Home Depot...')"
+
+  # ---------------- HSBC ----------------
+  - id: hd-hsbc-devolucion
+    nombre: Devolución HSBC desde 6 MSI
+    comercio: homedepot
+    patrocinador: hsbc
+    campana: hsbc-bf26-devolucion
+    instrumentos: [hsbc.tdc]
+    beneficio:
+      tipo: bonificacion
+      tope: 7000
+      forma: estado_de_cuenta
+      tramos:
+        - {atributos: {hsbc_segmento: premier}, pct: 25}
+        - {atributos: {hsbc_segmento: one}, pct: 20}
+        - {pct: 10}
+      extras:
+        - {atributos: {hsbc_transferencia: true}, pct: 5}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 15000, acumulable: true}
+      plazos: {min: 6}
+      registro_previo: hsbc.com.mx/buenfin (a más tardar el 17 nov)
+    avisos:
+      - "Mínimo de $15,000 acumulado a 6+ MSI en comercios participantes"
+      - "Transferencia de saldos de $50,000+ entre el 3 y el 30 nov: +5%"
+      - "Devolución a más tardar el 29 ene 2027"
+      - "MSI en Home Depot: 6, 12 y 18"
+      - "Excluye Básica, Fusión y Empresariales; excluye materiales básicos de construcción"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Monto mínimo de compra acumulada: $15,000 MXN. Monto máximo de devolución por cliente: $7,000.00 MXN."
+      nota: "Mecánica general HSBC: snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt (https://www.hsbc.com.mx/buenfin)"
+
+  # ---------------- Scotiabank ----------------
+  - id: hd-scotiabank-cashback-tdc
+    nombre: Cashback Scotiabank (crédito)
+    comercio: homedepot
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdc
+    instrumentos: [scotiabank.tdc]
+    beneficio:
+      tipo: cashback
+      tope: 9000
+      certeza: condicionado
+      forma: estado_de_cuenta
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      plazos: {max: 18}
+      requiere: [scotiabank_invitacion]
+      registro_previo: ScotiaMóvil, SMS o correo (a más tardar el 17 nov)
+    avisos:
+      - "Solo clientes invitados por Scotiabank"
+      - "Compras acumuladas en giros participantes; sujeto a bolsa de $11 M"
+      - "+5% adicional pagando con billetera digital (desde $3,000 acumulados, tope $500): no modelado"
+      - "Se refleja a más tardar el 31 dic 2026 como BonifBuenFin26"
+      - "MSI en Home Depot: 6, 12 y 18; excluye materiales básicos de construcción en MSI"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "El otorgamiento de la bonificación está sujeto hasta agotar la bolsa de premiación destinada para la campaña."
+      nota: "Invitación, bolsas y topes: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt (https://www.scotiabank.com.mx/buenfin)"
+
+  - id: hd-scotiabank-cashback-tdd
+    nombre: Cashback Scotiabank (débito)
+    comercio: homedepot
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdd
+    instrumentos: [scotiabank.tdd]
+    beneficio:
+      tipo: cashback
+      tope: 2500
+      certeza: condicionado
+      forma: estado_de_cuenta
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: ScotiaMóvil, SMS o correo (a más tardar el 17 nov)
+    avisos:
+      - "Solo clientes invitados por Scotiabank"
+      - "Sujeto a bolsa de $3 M; tope de $2,500 con débito"
+      - "La página de promociones de Home Depot solo menciona crédito; sus T&C incluyen débito"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Hasta 25% de bonificación en compras hasta 18 Meses Sin Intereses o a un solo pago con Tarjetas de Crédito y/o Débito Scotiabank."
+      nota: "Tope de débito: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt"
+
+  # ---------------- American Express ----------------
+  - id: hd-amex-1500
+    nombre: Bonificación Amex $1,500
+    comercio: homedepot
+    patrocinador: amex
+    campana: amex-bf26-1500
+    instrumentos: [amex.tarjeta]
+    beneficio: {tipo: bonificacion, monto: 1500, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {max: 18}
+      registro_previo: Servicio en línea o Amex App, antes de comprar (primeros 40,000 registros)
+    avisos:
+      - "Limitado a los primeros 40,000 registros"
+      - "$10,000 acumulados en compras calificadas; una bonificación por titular"
+      - "Solo aparece en los T&C, no en la página de promociones"
+      - "No aplica vía PayPal ni Mercado Pago"
+      - "Puede tardar hasta 90 días"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "se deberán acumular $10,000 MXN de compras calificadas durante el periodo de la promoción."
+
+  # ---------------- DiDi ----------------
+  - id: hd-didi-cashback
+    nombre: Cashback DiDi Card
+    comercio: homedepot
+    patrocinador: didi
+    campana: didi-bf26-cashback
+    instrumentos: [didi.tarjeta]
+    beneficio:
+      tipo: cashback
+      tope: 2000
+      forma: saldo_app
+      tramos:
+        - {desde: 5000, pct: 20}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 500}
+      plazos: {max: 18}
+      registro_previo: App DiDi, sección Beneficios (del 1 al 17 nov)
+    avisos:
+      - "El % se decide por el acumulado al cierre: 20% sobre todo si llegas a $5,000, si no 10%"
+      - "Mínimo de $500 por compra; a MSI: $6,500 (6), $8,500 (12) o $12,500 (18), los mismos mínimos de MSI de la tienda (no se modelan por plazo)"
+      - "Cashback en la app DiDi a más tardar el 25 nov"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Se añade campana didi-bf26-cashback y escala_acumulada. Los tramos por plazo ($6,500/$8,500/$12,500, que son los mínimos de MSI de la tienda) se sustituyen por 20% desde $5,000 acumulados, si no 10%. comercio-homedepot-tyc: el porcentaje se determina por el 'Monto Acumulado del Participante al concluir la Vigencia'."}
+      evidencia: "El monto máximo de bonificación que podrá obtener cada Participante durante toda la Vigencia es de $2,000.00 MXN."
+
+  # ---------------- Mercado Pago ----------------
+  - id: hd-mercadopago-tienda
+    nombre: 15% de bonificación Mercado Pago (solo en tienda)
+    comercio: homedepot
+    patrocinador: mercadopago
+    instrumentos: [mercadopago.tdc]
+    beneficio: {tipo: bonificacion, pct: 15, certeza: condicionado}
+    condiciones:
+      registro_previo: App Mercado Pago
+    avisos:
+      - "Exclusivo para compras en tienda física, no en homedepot.com.mx"
+      - "Los T&C capturados no incluyen esta promo: tope y mínimo desconocidos"
+    fuente:
+      url: "https://www.homedepot.com.mx/promociones-bancarias"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot/20261116-151102.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "15%, solo en tienda física, MSI o un solo pago coincide con comercio-homedepot. Los T&C capturados no incluyen esta promo: tope y mínimo desconocidos, así que el 15% no tiene tope en el catálogo."}
+      evidencia: "Exclusivo para compras en tienda a Meses Sin Intereses o a un solo pago con Tarjeta de Crédito Mercado Pago."
+
+  # ---------------- Nu ----------------
+  - id: hd-nu-folios
+    nombre: Folios Nuviembre (bonificaciones de $300 a $100,000)
+    comercio: homedepot
+    patrocinador: nu
+    instrumentos: [nu.tdc]
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-30}
+    beneficio: {tipo: sorteo, por_cada: 3000}
+    condiciones:
+      minimo: {monto: 6500}
+      plazos: {min: 6}
+      registro_previo: App Nu (solo clientes a quienes se muestre la campaña)
+    avisos:
+      - "Un folio por cada $3,000 acumulados a 6+ MSI, máximo 5; ~1 de cada 10 folios trae bonificación"
+      - "Mínimo por plazo: $6,500 (6 MSI), $8,500 (12) o $12,500 (18)"
+      - "Premio no garantizado"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Por cada $3,000 MXN en compras acumuladas desde 6 Meses Sin Intereses con Tarjetas de Crédito NU, obtén un folio"
+      nota: "T&C de Nu: snapshots/buen-fin-2026/banco-nu-tyc/20261116-145101.txt"
+
+  # ---------------- Vía PayPal ----------------
+  - id: hd-paypal-bbva
+    nombre: Hasta 15% de bonificación BBVA pagando con PayPal a 12 MSI
+    comercio: homedepot
+    patrocinador: bbva
+    instrumentos: [paypal.cuenta]
+    vigencia: {desde: 2026-11-14, hasta: 2026-11-17}
+    beneficio: {tipo: bonificacion, pct: 15, tope: 2500, tope_por: dia, certeza: hasta, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {permitidos: [12]}
+      fondeo: [bbva.tdc]
+    avisos:
+      - "Automática, sin registro; tope de $2,500 por día y por cliente"
+      - "Desde 12 MSI, y PayPal en Home Depot da como máximo 12 MSI. bbva.mx pide mínimo $5,000; el MSI de PayPal en la tienda exige $10,000"
+      - "No cuenta convertir a MSI después de la compra; no participan Congelada, Crea, Mi primera tarjeta, Negocios ni Micro Negocios"
+      - "Se refleja hasta 60 días hábiles después del 17 nov como BONIFICACIÓN BUEN FIN"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva (antes no expresable). Mínimo de $10,000 = mínimo del MSI de PayPal en la tienda (bbva.mx dice $5,000)."}
+      evidencia: "Monto máximo de bonificación $2,500.00 MXN por día y por cliente durante la vigencia de la promoción."
+      nota: "BBVA confirma PayPal 15% a 12 y 18 MSI, mínimo $5,000 (snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt y pista-paypal-bancos)."
+
+  - id: hd-paypal-bbva-paga-marzo
+    nombre: BBVA vía PayPal, compra hoy y paga en marzo 2027 a 3 MSI
+    comercio: homedepot
+    patrocinador: bbva
+    instrumentos: [paypal.cuenta]
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-17}
+    beneficio:
+      tipo: diferido
+      descripcion: "Compra en una exhibición en PayPal; primer pago en el estado de cuenta de febrero 2027, se paga en marzo 2027, a 3 MSI"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      fondeo: [bbva.tdc]
+      registro_previo: App BBVA (del 3 al 12 nov o del 18 nov al 9 dic)
+    avisos:
+      - "No suma ahorro: es un diferimiento sin intereses"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva (antes no expresable)."}
+      evidencia: "Paga hasta marzo 2027 a 3 Meses Sin Intereses en compras a una sola exhibición en PayPal pagando con tu tarjeta de crédito BBVA."
+      nota: "Inscripción en la App: snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt"
+
+  - id: hd-paypal-banamex
+    nombre: Hasta 30% de bonificación Banamex pagando con PayPal a 12 MSI
+    comercio: homedepot
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [paypal.cuenta]
+    beneficio:
+      tipo: bonificacion
+      tope: 10000
+      forma: estado_de_cuenta
+      tramos:
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {permitidos: [12]}
+      fondeo: [banamex.tdc, banamex.homedepot]
+      registro_previo: App Banamex o banamex.com/buenfin (del 3 al 17 nov; solo cuentan compras posteriores al registro)
+    avisos:
+      - "Misma campaña que la bonificación directa: mínimo $10,000 acumulado y tope $10,000 por cliente compartidos"
+      - "Vía PayPal no aplican las Horas Banamex ni los Pesos Haz Más"
+      - "PayPal en Home Depot da como máximo 12 MSI"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva (antes no expresable). Usa la campaña banamex-bf26-bonificacion."}
+      evidencia: "Hasta 30% de bonificación en compras a partir de 12 Meses Sin Intereses con tu Tarjeta de Crédito Banamex a través de PayPal."
+      nota: "Mecánica general: snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt"
+
+  - id: hd-paypal-banorte
+    nombre: 15% de bonificación Banorte pagando con PayPal a MSI
+    comercio: homedepot
+    patrocinador: banorte
+    campana: banorte-bf26-msi-15
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {permitidos: [3, 4, 6, 9, 12]}
+      fondeo: [banorte.tdc]
+    avisos:
+      - "Tope de $5,000 por cuenta en toda la campaña 15% MSI Banorte; se refleja mes con mes durante el plazo"
+      - "Mínimo de $10,000 del MSI de PayPal en la tienda (Promodescuentos da $6,500 por ticket para la promo del banco)"
+      - "No participan Básica, Conmigo, Corporativa, Negocios, RappiCard ni VA"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva (antes no expresable). Mínimo de $10,000 del MSI de PayPal en la tienda; campana banorte-bf26-msi-15 compartida con wm-paypal-banorte."}
+      evidencia: "La bonificación máxima por cuenta es de $5,000 MXN y se verá reflejado mes con mes durante el plazo que realizaste tu compra."
+      nota: "Tarjetas excluidas: snapshots/buen-fin-2026/pista-pd-banorte/20261116-145923.txt"
+
+  - id: hd-paypal-hsbc
+    nombre: Devolución HSBC pagando con PayPal desde 6 MSI
+    comercio: homedepot
+    patrocinador: hsbc
+    campana: hsbc-bf26-devolucion
+    instrumentos: [paypal.cuenta]
+    beneficio:
+      tipo: bonificacion
+      tope: 7000
+      forma: estado_de_cuenta
+      tramos:
+        - {atributos: {hsbc_segmento: premier}, pct: 25}
+        - {atributos: {hsbc_segmento: one}, pct: 20}
+        - {pct: 10}
+      extras:
+        - {atributos: {hsbc_transferencia: true}, pct: 5}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 15000, acumulable: true}
+      plazos: {permitidos: [6, 9, 12]}
+      fondeo: [hsbc.tdc]
+      registro_previo: App HSBC (Benefit Hub) o hsbc.com.mx/buenfin (a más tardar el 17 nov)
+    avisos:
+      - "Misma campaña que la devolución directa: mínimo $15,000 acumulado y tope $7,000 por cliente compartidos"
+      - "HSBC acepta PayPal como comercio participante en compras a meses"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva (antes no expresable). Usa la campaña hsbc-bf26-devolucion; banco-hsbc acepta PayPal en compras a meses."}
+      evidencia: "Recibe hasta 30% de bonificación en compras a Meses Sin Intereses con tu tarjeta HSBC a través de PayPal."
+      nota: "Mecánica y PayPal: snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt ('Para las compras realizadas en Mercado Libre, Amazon y Paypal, el beneficio aplica en compras a Meses')"
+
+  - id: hd-paypal-scotiabank-tdc
+    nombre: Cashback Scotiabank (crédito) pagando con PayPal
+    comercio: homedepot
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdc
+    instrumentos: [paypal.cuenta]
+    beneficio:
+      tipo: cashback
+      tope: 9000
+      certeza: condicionado
+      forma: estado_de_cuenta
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      plazos: {max: 12}
+      requiere: [scotiabank_invitacion]
+      fondeo: [scotiabank.tdc]
+      registro_previo: ScotiaMóvil, SMS o correo (a más tardar el 17 nov)
+    avisos:
+      - "Misma campaña que el cashback directo; solo clientes invitados; bolsa de $11 M"
+      - "Scotiabank excluye 'PayPal auto-fondeo' (saldo PayPal): la compra debe cargarse a la tarjeta"
+      - "Débito vía PayPal no se modela: los T&C de PayPal en Home Depot excluyen tarjetas de débito en línea"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva (antes no expresable). Usa la campaña scotiabank-bf26-cashback-tdc; débito vía PayPal omitido (los T&C excluyen débito en línea)."}
+      evidencia: "Scotiabank: Hasta 25% de cashback con tus tarjetas de crédito y tarjetas de débito Scotiabank en PayPal."
+      nota: "Escalones, topes y exclusión de auto-fondeo: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt"
+
+  - id: hd-paypal-didi
+    nombre: Hasta 20% de cashback DiDi Card pagando con PayPal
+    comercio: homedepot
+    patrocinador: didi
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: cashback, valor_desconocido: true, certeza: condicionado, forma: saldo_app}
+    condiciones:
+      fondeo: [didi.tarjeta]
+    avisos:
+      - "Los T&C de DiDi para PayPal (h5.didiglobal.com) no se capturaron: mínimo, tope y si comparte campaña con el cashback directo son desconocidos"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Nueva. Solo se tiene la frase de comercio-homedepot-tyc; los T&C de DiDi para PayPal no se capturaron, por eso valor_desconocido."}
+      evidencia: "Didi Card: Hasta 20% de cashback en compras acumuladas con tu Didi Card a través de PayPal."
+
+  - id: hd-paypal-nu
+    nombre: Pase Morado Nuviembre pagando con Nu vía PayPal
+    comercio: homedepot
+    patrocinador: nu
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: sorteo, por_cada: 3000}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {permitidos: [6, 9, 12]}
+      fondeo: [nu.tdc]
+      registro_previo: App Nu (solo clientes a quienes se muestre la campaña)
+    avisos:
+      - "Un Pase Morado (folio) por cada $3,000 a 6+ MSI, máximo 5 en toda la campaña; premio no garantizado"
+      - "Mínimo de $10,000 del MSI de PayPal en la tienda"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea"
+      snapshot: snapshots/buen-fin-2026/comercio-homedepot-tyc/20261116-151221.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide, notas: "Nueva (antes no expresable). Folios de Nuviembre vía PayPal a 6+ MSI."}
+      evidencia: "Cada $3,000 en compras Meses Sin Intereses o más con tu tarjeta de crédito Nu a través de PayPal te dan un Pase Morado"
+      nota: "PayPal la lista 'a 6 meses sin intereses o más' (snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt)"

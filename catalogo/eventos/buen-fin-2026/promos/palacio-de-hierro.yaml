@@ -1,0 +1,450 @@
+# Promociones bancarias y de medios de pago de El Palacio de Hierro, Buen Fin 2026.
+# Origen: elpalaciodehierro.com/promociones-bancarias.html (47 tarjetas de promoción, capturadas el 16 nov 2026)
+# y el PDF de T&C "Gana en el Buen Fin" (El-fin-en-el-palacio.pdf, 65 pp.), que detalla la Tarjeta Palacio;
+# las mecánicas bancarias salen de las páginas de cada banco (snapshots banco-*), citadas en fuente.nota.
+#
+# No se capturan como promoción (no son un beneficio que el motor sume; van en avisos):
+# - Tarjetas de solo MSI: Tarjeta Palacio hasta 18 MSI (hogar y tecnología), 15 MSI (ropa, calzado y accesorios),
+#   12 MSI en Belleza desde $5,990 (6 MSI desde $2,990), 12 MSI los martes; bancos participantes (Amex, BBVA, Banamex,
+#   Santander, Banorte, HSBC, Scotiabank, INVEX, BanBajío, RappiCard, Nu, Falabella) hasta 15 MSI en hogar y tecnología
+#   y 12 MSI en moda y belleza desde $5,990 (T&C: ropa, calzado y accesorios desde $5,000); PayPal hasta 18 MSI desde
+#   $3,499 en artículos seleccionados.
+# - "Hasta 60% de descuento" con cualquier forma de pago: ya viene en el precio etiquetado de cada producto.
+# - Puntos dobles los jueves (no hay jueves en el evento) y Kueski "pagos quincenales" (sin beneficio).
+promociones:
+  # ---------------- Tarjeta Palacio ----------------
+  - id: ph-palacio-bonificacion
+    nombre: Bonificación Tarjeta Palacio a MSI (10%, 15% o 20%)
+    comercio: palacio-de-hierro
+    patrocinador: palacio-de-hierro
+    campana: palacio-bf26-bonificacion
+    instrumentos: [palacio.tarjeta]
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-15}
+    beneficio:
+      tipo: bonificacion
+      forma: monedero
+      tope: 10000
+      certeza: condicionado
+      tramos:
+        - {desde: 30000, pct: 20}
+        - {desde: 20000, pct: 15}
+        - {desde: 5000, pct: 10}
+      escala_acumulada: true
+    condiciones:
+      plazos: {min: 12}
+    avisos:
+      - "Limitado a 6,500 bonificaciones en total y a una bonificación por cliente (máximo $10,000)"
+      - "El monto puede ser de un solo ticket o acumulado del 13 al 15 de noviembre; obligatorio a partir de 12 MSI"
+      - "Llega como reembolso en la Tarjeta Palacio, usable en compras del 26 nov al 24 dic 2026; después se cancela"
+      - "La tarjeta de la página dice 20% desde $30,000 del 13 al 17 nov; el T&C dice 10/15/20% del 13 al 15 nov (se usa el T&C)"
+      - "10% adicional si además compras un Seguro Palacio o una Garantía Palacio (garantía mínima $3,000) tras una compra mínima de $5,000; no se modela"
+      - "Del 16 al 17 nov, compras de $5,000 o más ($3,000 solo en Belleza) con Tarjeta Palacio generan Triples Puntos Palacio; no se modela porque el T&C no da el valor del punto"
+      - "No participan Pago de Servicios, Superboletos, Estacionamientos, Viajes Palacio, boletos de avión, Palacio Outlet, Seguros ni Garantías"
+      - "No acumulable con otras promociones de puntos, descuentos o MSI de la Tarjeta Palacio"
+      - "MSI con Tarjeta Palacio: hasta 18 en hogar y tecnología, 15 en ropa, calzado y accesorios, 12 en Belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/on/demandware.static/-/Library-Sites-palacio-content-global/default/PDF/Informativas/Terminos-y-condiciones/El-fin-en-el-palacio.pdf"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio-tyc/20261116-151244.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: corregida, notas: "Se agrega campana palacio-bf26-bonificacion y escala_acumulada: true: el T&C (comercio-palacio-tyc/20261116-151244.txt) dice que el monto mínimo aplica en una sola exhibición o acumulado del 13 al 15 nov. Porcentajes 10/15/20%, a partir de 12 MSI, tope $10,000 y vigencia 13-15 coinciden con el T&C"}
+      evidencia: "Compras de $30,000.00 (treinta mil pesos 00/100 M.N.) o más| Obtendrá una bonificación del 20%"
+      nota: "Tarjeta 4 de snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt: \"OBTÉN 20 % bonificación Comprando $30,000 o más, sujeto a disponibilidad\""
+
+  # ---------------- BBVA ----------------
+  - id: ph-bbva-paga-marzo
+    nombre: BBVA paga en marzo 2027 a 3 MSI
+    comercio: palacio-de-hierro
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Compra en una exhibición y empieza a pagar en marzo 2027 a 3 MSI (según tu fecha de corte, podría ser febrero)"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: "App BBVA (notificación, Centro de Mensajes o Puntos y Promociones)"
+    avisos:
+      - "Monto mínimo $3,500 por compra, no acumulable"
+      - "Inscripción en la App BBVA del 3 al 12 nov o del 18 nov al 9 dic"
+      - "MSI BBVA en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "paga en marzo Comprando $3,500 o más, a revolvente, + 3MSI* Noviembre 13 al 17."
+      nota: "Mecánica de snapshots/buen-fin-2026/banco-bbva/20261116-145101.txt (bbva.mx/buen-fin.html): una exhibición, inscripción en la App, mínimo $3,500 no acumulable"
+
+  # ---------------- American Express ----------------
+  - id: ph-amex-1500
+    nombre: Bonificación Amex $1,500 a MSI
+    comercio: palacio-de-hierro
+    patrocinador: amex
+    campana: amex-bf26-1500
+    instrumentos: [amex.tarjeta]
+    beneficio: {tipo: bonificacion, monto: 1500, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 3}
+      registro_previo: App American Express (activaciones limitadas)
+    avisos:
+      - "Requiere activar la promoción en la App de Amex; las activaciones son limitadas"
+      - "MSI Amex en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "$1,500 con $10,000 a MSI coincide con la página de Palacio; que el mínimo sea acumulable y requiera activación solo consta en Promodescuentos (pista-pd-amex); no hay T&C de Amex capturado"}
+      evidencia: "OBTÉN $1,500 De bonificación comprando $10,000 a MSI* Noviembre 13 al 17."
+      nota: "snapshots/buen-fin-2026/pista-pd-amex/20261116-145923.txt: \"Recibe $1,500 de Cashback al gastar $10,000 a Meses sin Intereses en tienda o en línea en El Palacio de Hierro\"; activación en la App de Amex. No hay T&C de Amex capturado"
+
+  # ---------------- Banamex ----------------
+  - id: ph-banamex-bonificacion
+    nombre: Bonificación Banamex (hasta 30%)
+    comercio: palacio-de-hierro
+    patrocinador: banamex
+    campana: banamex-bf26-bonificacion
+    instrumentos: [banamex.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 10000
+      tramos:
+        - {atributos: {banamex_productos_extra: 3}, pct: 30}
+        - {atributos: {banamex_productos_extra: 2}, pct: 20}
+        - {atributos: {banamex_productos_extra: 1}, pct: 15}
+        - {pct: 10}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 10000, acumulable: true}
+      plazos: {min: 12}
+      registro_previo: App Banamex o banamex.com/buenfin
+    avisos:
+      - "El mínimo de $10,000 puede acumularse en compras a 12 MSI o más en negocios participantes"
+      - "Horas Banamex: 5% o 10% adicional en negocios seleccionados que se anuncian 3 horas antes; no se modela"
+      - "No participan tarjetas Corporativas, Costco Banamex ni de Negocios (PyME)"
+      - "MSI Banamex en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Hasta 30 % DE BONIFICACIÓN Comprando $10,000 a partir de 12 MSI* Noviembre 13 al 17."
+      nota: "Tramos 10/15/20/30% según Nómina, Hipotecario o Afore Banamex y tope de $10,000 por cliente: snapshots/buen-fin-2026/banco-banamex/20261116-145101.txt (banamex.com/buenfin)"
+
+  # ---------------- Santander ----------------
+  - id: ph-santander-cashback
+    nombre: Cashback Santander (10%; día turbo 15 nov hasta 30% o 35%)
+    comercio: palacio-de-hierro
+    patrocinador: santander
+    campana: santander-bf26-cashback
+    instrumentos: [santander.tdc]
+    beneficio:
+      tipo: cashback
+      forma: estado_de_cuenta
+      tope: 7000
+      tramos:
+        - {dias: [2026-11-15], atributos: {santander_nomina: true}, pct: 35, certeza: hasta}
+        - {dias: [2026-11-15], pct: 30, certeza: hasta}
+        - {pct: 10}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {min: 6}
+      registro_previo: santander.com.mx/promociones/buen-fin.html
+    avisos:
+      - "Inscríbete antes de comprar; las compras previas al registro no cuentan"
+      - "Mínimo $10,000 por transacción; tope $7,000 por cliente en toda la campaña"
+      - "El 15 nov es día turbo para El Palacio de Hierro según Santander (+20%, o +25% con portabilidad de nómina); la página de Palacio solo anuncia 10% los días 13, 14, 16 y 17"
+      - "MSI Santander en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "OBTÉN 10 % DE CASHBACK Comprando $10,000 o más, a partir de 6 MSI* Noviembre 13, 14 y 16, 17."
+      nota: "Días turbo, tope de $7,000 y registro: snapshots/buen-fin-2026/banco-santander/20261116-145101.txt (\"15 de noviembre: LG, Samsung, MacStore, The Home Depot, El Palacio de Hierro, Liverpool y Sears\")"
+
+  # ---------------- Scotiabank ----------------
+  - id: ph-scotiabank-cashback-tdc
+    nombre: Cashback Scotiabank (crédito)
+    comercio: palacio-de-hierro
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdc
+    instrumentos: [scotiabank.tdc]
+    beneficio:
+      tipo: cashback
+      tope: 9000
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: ScotiaMóvil, SMS o correo de invitación
+    avisos:
+      - "Solo clientes invitados e inscritos; los montos son compras acumuladas en giros participantes"
+      - "+5% adicional (tope $500) pagando con billetera digital compras acumuladas desde $3,000; no se modela"
+      - "Una bonificación por cliente"
+      - "MSI Scotiabank en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Hasta 25 % DE CASHBACK comprando $12,000 o más, aplican compras acumuladas Noviembre 13 al 17."
+      nota: "Tramos 10/15/20%, topes e invitación: snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt (retail incluye Palacio de Hierro)"
+
+  - id: ph-scotiabank-cashback-tdd
+    nombre: Cashback Scotiabank (débito)
+    comercio: palacio-de-hierro
+    patrocinador: scotiabank
+    campana: scotiabank-bf26-cashback-tdd
+    instrumentos: [scotiabank.tdd]
+    beneficio:
+      tipo: cashback
+      tope: 2500
+      tramos:
+        - {desde: 40000, pct: 20, tope: 8000}
+        - {desde: 25000, pct: 15, tope: 5000}
+        - {desde: 12000, pct: 10, tope: 2500}
+      escala_acumulada: true
+    condiciones:
+      requiere: [scotiabank_invitacion]
+      registro_previo: ScotiaMóvil, SMS o correo de invitación
+    avisos:
+      - "Solo clientes invitados e inscritos; compras acumuladas"
+      - "Tope de $2,500 con débito; bolsa total de débito de $3,000,000"
+      - "Si cumples con crédito y débito, solo se premia la de crédito"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "Hasta 25 % DE CASHBACK comprando $12,000 o más, aplican compras acumuladas Noviembre 13 al 17."
+      nota: "La tarjeta de Palacio no distingue crédito/débito; el débito sale de snapshots/buen-fin-2026/banco-scotiabank/20261116-145101.txt"
+
+  # ---------------- Banorte ----------------
+  - id: ph-banorte-bonificacion
+    nombre: Bonificación Banorte hasta $12,000 (porcentaje desconocido)
+    comercio: palacio-de-hierro
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    beneficio: {tipo: bonificacion, tope: 12000, certeza: condicionado, valor_desconocido: true}
+    condiciones:
+      minimo: {monto: 12000}
+    avisos:
+      - "Valor desconocido: la página solo dice \"hasta $12,000\" y no hay T&C de Banorte capturados para Palacio; el motor la muestra como $0"
+      - "Liverpool anuncia la misma campaña como hasta $12,000 a un solo pago o hasta $8,500 a MSI"
+      - "MSI Banorte en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Ningún snapshot da porcentaje ni tramos (banco-banorte no contiene la campaña; pista-pd-banorte es otra promoción de 15% a MSI que no incluye a Palacio en su lista); se mantiene valor_desconocido"}
+      evidencia: "OBTÉN HASTA $12,000 u obtén bonificaciones adicionales, comprando $12,000 o más Noviembre 13 al 17."
+      nota: "snapshots/buen-fin-2026/banco-banorte/20261116-150336.txt no contiene la campaña; la de 15% a MSI (pista-pd-banorte) es para otros comercios"
+
+  # ---------------- HSBC ----------------
+  - id: ph-hsbc-devolucion
+    nombre: Devolución HSBC (hasta 30%)
+    comercio: palacio-de-hierro
+    patrocinador: hsbc
+    campana: hsbc-bf26-devolucion
+    instrumentos: [hsbc.tdc]
+    beneficio:
+      tipo: bonificacion
+      forma: estado_de_cuenta
+      tope: 7000
+      tramos:
+        - {atributos: {hsbc_segmento: premier}, pct: 25}
+        - {atributos: {hsbc_segmento: one}, pct: 20}
+        - {pct: 10}
+      extras:
+        - {atributos: {hsbc_transferencia: true}, pct: 5}
+      escala_acumulada: true
+    condiciones:
+      minimo: {monto: 15000, acumulable: true}
+      plazos: {min: 6, max: 24}
+      registro_previo: hsbc.com.mx/buenfin o Benefit Hub en la app HSBC
+    avisos:
+      - "Mínimo de $15,000 acumulado en compras de 6 a 24 MSI en comercios participantes"
+      - "Devolución a más tardar el 29 ene 2027; no aplica Fusión ni Empresariales"
+      - "MSI HSBC en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "hasta 30 % DE devolución En compras a 6 MSI* o más con Tarjetas de crédito HSBC Noviembre 13 al 17."
+      nota: "Segmentos 25/20/10%, +5% por transferencia de saldo, mínimo y tope: snapshots/buen-fin-2026/banco-hsbc/20261116-145101.txt"
+
+  # ---------------- Falabella ----------------
+  - id: ph-falabella-dinero-electronico
+    nombre: 15% en dinero electrónico Falabella
+    comercio: palacio-de-hierro
+    patrocinador: falabella
+    instrumentos: [falabella.tdc]
+    beneficio: {tipo: bonificacion, pct: 15, forma: monedero, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 4000}
+      plazos: {min: 3}
+    avisos:
+      - "Tope, registro y forma de uso del dinero electrónico desconocidos: no hay T&C de Falabella capturados"
+      - "MSI Falabella en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "15% desde $4,000 a MSI coincide con la página de Palacio, pero tope, registro y uso del dinero electrónico no aparecen en ningún snapshot"}
+      evidencia: "OBTÉN 15 % DE DINERO ELECTRÓNICO Comprando $4,000 o más a MSI* Noviembre 13 al 17."
+
+  # ---------------- Nu ----------------
+  - id: ph-nu-nuviembre
+    nombre: Folios Nuviembre (bonificación no garantizada)
+    comercio: palacio-de-hierro
+    patrocinador: nu
+    instrumentos: [nu.tdc]
+    vigencia: {desde: 2026-11-13, hasta: 2026-11-30}
+    beneficio: {tipo: sorteo, por_cada: 3000}
+    condiciones:
+      plazos: {min: 6}
+      registro_previo: App Nu (campaña Nuviembre 2026)
+    avisos:
+      - "Un folio por cada $3,000 acumulados a 6 MSI o más; máximo 5 folios"
+      - "Aproximadamente 1 de cada 10 folios trae bonificación (de $300 a $100,000); no está garantizada"
+      - "Solo clientes a quienes la App Nu muestre la campaña"
+      - "MSI Nu en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "PUEDES OBTENER UNA bonificación Comprando $3,000 o más a 6 MSI* Noviembre 13 al 30."
+      nota: "Mecánica de folios: snapshots/buen-fin-2026/banco-nu-tyc/20261116-145101.txt (cdn.nu.com.mx, T&C Nuviembre 2026)"
+
+  # ---------------- Kueski Pay ----------------
+  - id: ph-kueski-nuevo30
+    nombre: Cupón KUESKINUEVO30 (usuarios nuevos)
+    codigo: KUESKINUEVO30
+    comercio: palacio-de-hierro
+    patrocinador: kueski
+    instrumentos: [kueski.pay]
+    vigencia: {desde: 2026-11-01, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 30, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 200}
+      requiere: [kueski_usuario_nuevo]
+    excluye: [ph-kueski-bf]
+    avisos:
+      - "Tope del descuento desconocido: no hay T&C de Kueski capturados"
+      - "Kueski Pay cobra intereses según el plan"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "30% desde $200 y vigencia 1-30 nov coinciden con la página; tope del descuento desconocido (no hay T&C de Kueski)"}
+      evidencia: "OBTÉN 30 % DE DESCUENTO Usuarios nuevos, comprando $200 o más ingresando el cupón: KUESKINUEVO30 Noviembre 1 al 30."
+
+  - id: ph-kueski-bf
+    nombre: Cupón KUESKIBF
+    codigo: KUESKIBF
+    comercio: palacio-de-hierro
+    patrocinador: kueski
+    instrumentos: [kueski.pay]
+    beneficio: {tipo: cupon, pct: 10, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 5000}
+    excluye: [ph-kueski-nuevo30]
+    avisos:
+      - "Tope del descuento desconocido: no hay T&C de Kueski capturados"
+      - "Se asume que no se combina con KUESKINUEVO30 (un cupón por compra)"
+      - "Kueski Pay cobra intereses según el plan"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "10% desde $5,000 coincide con la página; tope del descuento y si se combina con KUESKINUEVO30 desconocidos (no hay T&C de Kueski)"}
+      evidencia: "OBTÉN 10 % DE DESCUENTO Comprando $5,000 o más ingresando el cupón: KUESKIBF Noviembre 13 al 17."
+
+  # ---------------- BanBajío ----------------
+  - id: ph-banbajio-compra-gratis
+    nombre: BanBajío 100% de bonificación a las primeras compras de cada hora
+    comercio: palacio-de-hierro
+    patrocinador: banbajio
+    instrumentos: [banbajio.tdc]
+    beneficio: {tipo: sorteo}
+    condiciones:
+      minimo: {monto: 2000}
+    avisos:
+      - "Solo las primeras compras de cada hora reciben el 100%; no es un ahorro garantizado"
+      - "Número de ganadores por hora, tope y registro desconocidos: no hay T&C de BanBajío capturados"
+      - "MSI BanBajío en Palacio: hasta 15 en hogar y tecnología, 12 en moda y belleza desde $5,990"
+    fuente:
+      url: "https://www.elpalaciodehierro.com/promociones-bancarias.html"
+      snapshot: snapshots/buen-fin-2026/comercio-palacio/20261116-151140.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "gana el 100 % DE BONIFICACIÓN Comprando a partir de $2,000 o más con TDC a las primeras compras de cada hora"
+
+  # ---------------- Klar ----------------
+  - id: ph-klar-splitk
+    nombre: 10% cashback Klar difiriendo con Split K al 0%
+    comercio: palacio-de-hierro
+    patrocinador: klar
+    instrumentos: [klar.tdc]
+    beneficio: {tipo: cashback, pct: 10, tope: 800, certeza: condicionado}
+    condiciones:
+      minimo: {monto: 4000}
+      plazos: {permitidos: [0]}
+      financiamiento_posterior: {meses: 12}
+    avisos:
+      - "Solo segmentos Klar Plus y Platino"
+      - "En Palacio no aplica a MSI del comercio: paga en una exhibición y difiere con Split K a 6, 9 o 12 meses al 0% antes de tu fecha de corte"
+      - "Mínimo $4,000 por cargo individual; tope $800 por cliente en todos los comercios"
+    fuente:
+      url: "https://cdn.prod.website-files.com/630e13ca92151d578bc2ed8b/6ae9fec434cf054ae0babcab_TyC_Klarfest_Buen_Fin_2026_Track_Changes-(Final).pdf"
+      snapshot: snapshots/buen-fin-2026/banco-klar-tyc/20261116-145101.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: coincide}
+      evidencia: "En Liverpool y El Palacio de Hierro podrán diferirse compras elegibles a 6, 9 o 12 meses."
+      nota: "No aparece en la página de promociones de Palacio; viene del T&C de Klar"
+
+  # ---------------- PayPal + Banorte ----------------
+  - id: ph-paypal-banorte
+    nombre: 15% de bonificación Banorte pagando con PayPal a MSI
+    comercio: palacio-de-hierro
+    patrocinador: banorte
+    instrumentos: [paypal.cuenta]
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, certeza: condicionado, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 6500}
+      plazos: {min: 3}
+      fondeo: [banorte.tdc]
+    avisos:
+      - "Solo si la tarjeta vinculada a PayPal es de crédito Banorte (excepto Básica, Conmigo, Corporativa, Negocios, RappiCard y VA)"
+      - "Banorte bonifica porque PayPal es comercio participante; Palacio no la anuncia y solo ofrece MSI con PayPal en artículos seleccionados desde $3,499"
+      - "Bonificación mes a mes durante el plazo de la compra; tope $5,000 por cliente; mínimo $6,500 por ticket, no acumulable"
+    fuente:
+      url: "https://www.promodescuentos.com/ofertas/buen-fin-2026-con-banorte-15-de-bonificacion-en-compras-a-meses-sin-intereses-en-comercios-participantes-1204725"
+      snapshot: snapshots/buen-fin-2026/pista-pd-banorte/20261116-145923.txt
+      capturada: 2026-11-16
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-16, resultado: dudosa, notas: "Nueva. Porcentaje, tope y mínimo de Promodescuentos (pista-pd-banorte), que lista PayPal como comercio; PayPal la confirma en pista-paypal-bancos. Que aplique en Palacio vía PayPal solo lo afirma un comentario del mismo hilo"}
+      evidencia: "Compra mínima $6,500 pesos por ticket, no acumulable en moneda nacional en los comercios participantes."
+      nota: "snapshots/buen-fin-2026/pista-paypal-bancos/20261116-145101.txt: \"15% de bonificación en compras a meses sin intereses con tarjeta de crédito Banorte a través de PayPal\""

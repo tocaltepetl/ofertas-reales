@@ -88,8 +88,9 @@ export function cargarCatalogo(raiz = join(RAIZ_PROYECTO, "catalogo")): Catalogo
         errores.push(`${donde}: patrocinador desconocido ${p.patrocinador}`);
       for (const i of p.instrumentos) if (!productos.has(i)) errores.push(`${donde}: instrumento desconocido ${i}`);
       for (const a of p.condiciones.requiere) if (!atributos.has(a)) errores.push(`${donde}: atributo desconocido ${a}`);
-      const sa = p.condiciones.minimo?.sumar_atributo;
-      if (sa && !atributos.has(sa)) errores.push(`${donde}: atributo desconocido ${sa}`);
+      for (const f of p.condiciones.fondeo ?? []) if (!productos.has(f)) errores.push(`${donde}: instrumento de fondeo desconocido ${f}`);
+      if (p.beneficio.escala_acumulada && !p.campana) errores.push(`${donde}: una escala acumulada necesita "campana"`);
+      if (p.condiciones.minimo?.acumulable && !p.campana) errores.push(`${donde}: un mínimo acumulable necesita "campana"`);
       const atribsTramos = [...(p.beneficio.tramos ?? []), ...(p.beneficio.extras ?? [])].flatMap((t) => Object.keys(t.atributos ?? {}));
       for (const a of atribsTramos) if (!atributos.has(a)) errores.push(`${donde}: atributo desconocido ${a}`);
       const v = p.vigencia ?? { desde: ev.desde, hasta: ev.hasta };

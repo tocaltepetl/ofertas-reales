@@ -82,10 +82,45 @@ test("explica por qué no aplica una promo", () => {
   assert.match(razon("ml-invex-bonificacion"), /requisito/);
 });
 
-test("HSBC suma otras compras al mínimo acumulado", () => {
+test("HSBC suma las compras previas de la campaña al mínimo acumulado", () => {
   const sin = evaluar(cat, compra(12000, "2026-11-16", { "hsbc.tdc": 12 }), { instrumentos: ["hsbc.tdc"], atributos: {} }, P);
-  const con = evaluar(cat, compra(12000, "2026-11-16", { "hsbc.tdc": 12 }), { instrumentos: ["hsbc.tdc"], atributos: { hsbc_otras_compras: 5000, hsbc_segmento: "premier" } }, P);
+  const con = evaluar(cat, compra(12000, "2026-11-16", { "hsbc.tdc": 12 }), { instrumentos: ["hsbc.tdc"], atributos: { hsbc_segmento: "premier" }, acumulados: { "hsbc-bf26-devolucion": { compras: 5000 } } }, P);
   assert.ok(!sin.opciones.some((o) => o.promos.some((p) => p.id === "ml-hsbc-devolucion")));
   const dev = con.opciones.find((o) => o.promos.length === 1 && o.promos[0].id === "ml-hsbc-devolucion" && o.meses === 12)!;
   assert.equal(dev.ahorro, 3000); // 25% de 12,000
+});
+
+test("una promo limitada a una categoría solo aplica si la compra es de esa categoría", () => {
+  const base = { evento: "buen-fin-2026", comercio: "liverpool", precio: 5000, dia: "2026-11-15", msi: {} };
+  const cartera = { instrumentos: ["amex.tarjeta"], atributos: {} };
+  const sin = evaluar(cat, base, cartera, P);
+  assert.ok(!sin.opciones.some((o) => o.promos.some((p) => p.id === "lp-ropa-descuento")));
+  assert.match(sin.no_aplican.find((n) => n.promo.id === "lp-ropa-descuento")!.razon, /Solo en: ropa/);
+  const ropa = evaluar(cat, { ...base, categoria: "ropa" }, cartera, P);
+  assert.ok(ropa.opciones.some((o) => o.promos.some((p) => p.id === "lp-ropa-descuento")));
+});
+
+test("el tope por cliente descuenta lo ya recibido en la campaña", () => {
+  const c = { instrumentos: ["santander.tdc"], atributos: {} };
+  const r = evaluar(cat, compra(60000, "2026-11-16", { "santander.tdc": 12 }), { ...c, acumulados: { "santander-bf26-cashback": { beneficio: 6000 } } }, P);
+  const o = r.opciones.find((o) => o.promos.length === 1 && o.promos[0].id === "ml-santander-cashback" && o.meses === 12)!;
+  assert.equal(o.ahorro, 1000); // tope 7,000 − 6,000 ya recibidos
+  const lleno = evaluar(cat, compra(60000, "2026-11-16", { "santander.tdc": 12 }), { ...c, acumulados: { "santander-bf26-cashback": { beneficio: 7000 } } }, P);
+  assert.match(lleno.no_aplican.find((n) => n.promo.id === "ml-santander-cashback")!.razon, /tope/);
+});
+
+test("valor desconocido: se muestra sin sumar ahorro", () => {
+  const r = evaluar(cat, { evento: "buen-fin-2026", comercio: "palacio-de-hierro", precio: 15000, dia: "2026-11-15", msi: {} }, { instrumentos: ["banorte.tdc"], atributos: {} }, P);
+  const o = r.opciones.find((o) => o.promos.some((p) => p.id === "ph-banorte-bonificacion"))!;
+  assert.equal(o.ahorro, 0);
+  assert.equal(o.certeza, "condicionado");
+  assert.match(o.aportes[0].nota ?? "", /no publicado/);
+});
+
+test("PayPal: la promo requiere tener la tarjeta con la que se fondea", () => {
+  const base = { evento: "buen-fin-2026", comercio: "walmart", precio: 12000, dia: "2026-11-16", msi: { "paypal.cuenta": 12 } };
+  const sin = evaluar(cat, base, { instrumentos: ["paypal.cuenta"], atributos: {} }, P);
+  assert.match(sin.no_aplican.find((n) => n.promo.id === "wm-paypal-banorte")!.razon, /fondear/);
+  const con = evaluar(cat, base, { instrumentos: ["paypal.cuenta", "banorte.tdc"], atributos: {} }, P);
+  assert.ok(con.opciones.some((o) => o.promos.some((p) => p.id === "wm-paypal-banorte")));
 });
