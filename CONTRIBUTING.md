@@ -47,7 +47,7 @@ npm run web       # versión web local en http://127.0.0.1:8766
 | `catalogo/comercios.yaml` | Comercios y sus reglas |
 | `src/esquema.ts` | El esquema: qué campos existen y qué significan |
 | `fuentes/<evento>.json` | Las URLs que captura `scripts/captura.py` |
-| `snapshots/<evento>/` | Las capturas guardadas (HTML, texto, PDFs) y `manifest.jsonl` |
+| `snapshots/<evento>/` | Las capturas guardadas (HTML, texto, PDFs), `manifest.jsonl` y `archivo-ia.jsonl` (respaldos en Internet Archive) |
 | `docs/aprendizajes.md` | Lo que hemos aprendido sobre dónde y cómo buscar promos |
 
 ### Confirmar una promo en el YAML
@@ -80,6 +80,10 @@ Si hay algo que la persona debe saber y el motor no calcula (cupos, bolsas limit
 1. Agrega la URL a `fuentes/<evento>.json`, con un `id` descriptivo y `"render": true` si la página necesita JavaScript.
 2. Corre `python3 scripts/captura.py fuentes/<evento>.json --solo <id> --sin-directorio`.
 3. Si el sitio bloquea scripts (pasa con varios bancos y PDFs), bájalo desde tu navegador, guárdalo en `snapshots/<evento>/<id>/`, extrae el texto con `pdftotext -layout` y agrega su línea a `manifest.jsonl` con `"metodo": "chrome-manual"`.
+
+### Respaldar en Internet Archive
+
+Después de capturar, corre `python3 scripts/archivar.py snapshots/<evento>`. Pide a la Wayback Machine una captura de cada URL del manifiesto y anota el enlace en `snapshots/<evento>/archivo-ia.jsonl`. Es un testigo independiente, con fecha, de lo que decía la fuente. Se puede volver a correr: solo reintenta las URLs que fallaron.
 
 ### Agregar una promoción o un evento
 

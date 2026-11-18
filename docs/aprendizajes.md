@@ -39,6 +39,8 @@ Notas que sirven para el siguiente evento (Hot Sale, Black Friday, Buen Fin 2027
 - **La página de Amex rompe WebFetch ("header overflow")**, pero curl con un User-Agent de navegador funciona. (BF 2026)
 - **Las páginas de los bancos enlazan sus PDFs de condiciones** (`href` que termina en `.pdf`, muchas veces relativo, como `img/…`), y esos PDFs traen lo que el texto visible omite. Al capturar, busca esos enlaces en el render.html y baja también los PDFs. (BF 2026)
 - **`pdftotext -layout` lee PDFs que WebFetch no puede decodificar.** Si una tabla es imagen, renderiza la página con `pdftoppm` y mírala. (BF 2026)
+- **Guarda siempre el archivo original, no solo el texto.** Algunas capturas con Chrome solo guardaron el texto visible (get_page_text); como evidencia vale más el HTML o PDF tal como lo entregó el servidor, con URL, fecha y SHA-256 en el manifiesto. Con Chrome, guarda también `document.documentElement.outerHTML`. (BF 2026)
+- **Respalda en Internet Archive el mismo día de la captura** (`scripts/archivar.py`). Es evidencia independiente del repo, pero archiva lo que la página dice en ese momento y falla seguido con los sitios que bloquean bots. Complementa las capturas propias, no las reemplaza. (BF 2026)
 
 ## Modelado en el catálogo
 
