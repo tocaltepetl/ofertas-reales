@@ -32,13 +32,26 @@ def captura_existente(url: str, dia: str) -> str | None:
     return None
 
 
+class _SinRedireccion(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):
+        return None
+
+
 def guardar(url: str) -> str:
-    estado, final, cab, _ = pedir("https://web.archive.org/save/" + url, timeout=180)
-    if "/web/" in final and "/save/" not in final:
-        return final
-    loc = cab.get("Content-Location") or cab.get("content-location")
-    if loc:
-        return "https://web.archive.org" + loc
+    """Pide la captura y lee el enlace de la primera redirección, sin seguirla: si Wayback aún procesa la captura
+    nueva, seguir la redirección lleva a la captura más cercana, que puede ser de otro año."""
+    abridor = urllib.request.build_opener(_SinRedireccion)
+    req = urllib.request.Request("https://web.archive.org/save/" + url, headers={"User-Agent": UA})
+    try:
+        with abridor.open(req, timeout=180) as r:
+            estado, cab = r.status, dict(r.headers)
+    except urllib.error.HTTPError as e:
+        if e.code not in (301, 302, 303, 307):
+            raise
+        estado, cab = e.code, dict(e.headers)
+    loc = cab.get("Location") or cab.get("location") or cab.get("Content-Location") or cab.get("content-location")
+    if loc and "/web/" in loc:
+        return loc if loc.startswith("http") else "https://web.archive.org" + loc
     raise RuntimeError(f"respuesta sin captura (http {estado})")
 
 
@@ -60,8 +73,13 @@ def main() -> None:
     urls: dict[str, str] = {}
     for l in (carpeta / "manifest.jsonl").read_text().splitlines():
         r = json.loads(l)
-        if r.get("http") == 200 and r["url"] not in urls:
-            urls[r["url"]] = r["id"]
+        if r.get("http") != 200 or r["url"] in urls:
+            continue
+        # un slug equivocado que redirige a la portada no es la fuente: no se archiva
+        pedida, final = urllib.parse.urlparse(r["url"]), urllib.parse.urlparse(r.get("url_final") or r["url"])
+        if final.path in ("", "/") and pedida.path not in ("", "/"):
+            continue
+        urls[r["url"]] = r["id"]
     solo = set(a.solo.split(",")) if a.solo else None
     pendientes = [(i, u) for u, i in urls.items() if u not in hechas and (not solo or i in solo)]
     print(f"{len(urls)} URLs, {len(hechas)} ya archivadas, {len(pendientes)} por archivar")
@@ -82,6 +100,17 @@ def main() -> None:
                             continue
                         raise
                 time.sleep(a.pausa)
+            if reg.get("archivo_ia"):
+                # Wayback sigue redirecciones: aceptar otra página del sitio, pero no la portada
+                archivada = urllib.parse.urlparse(reg["archivo_ia"].split("/", 5)[-1]).path
+                if archivada in ("", "/") and urllib.parse.urlparse(u).path not in ("", "/"):
+                    reg["error"] = f"Wayback devolvió la portada: {reg.pop('archivo_ia')}"
+                else:
+                    # Save Page Now puede devolver una captura reciente de otro día en vez de hacer una nueva
+                    ts = reg["archivo_ia"].split("/web/", 1)[1][:8]
+                    reg["dia_captura"] = ts
+                    if ts != a.dia:
+                        reg["aviso"] = f"captura del {ts}, no del {a.dia}"
         except Exception as e:
             reg["error"] = f"{type(e).__name__}: {e}"[:300]
         reg["fecha"] = dt.datetime.now().astimezone().isoformat(timespec="seconds")
