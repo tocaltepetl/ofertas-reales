@@ -10,6 +10,8 @@
 <header>
   <h1>¿Dónde y cómo me conviene pagar?</h1>
   <p class="sub" id="subtitulo">Cargando catálogo…</p>
+  <nav id="eventos" aria-label="Eventos"></nav>
+  <div id="aviso" hidden></div>
 </header>
 <main>
   <aside class="card" id="panel">
@@ -21,14 +23,9 @@
         <label class="field" for="dia">Día</label>
         <select id="dia"></select>
       </div>
-      <div>
+      <div id="caja-categoria">
         <label class="field" for="categoria">Categoría</label>
-        <select id="categoria">
-          <option value="">General</option>
-          <option value="ropa">Ropa</option>
-          <option value="calzado">Calzado</option>
-          <option value="accesorios">Accesorios</option>
-        </select>
+        <select id="categoria"></select>
       </div>
     </div>
     <label class="field" for="rendimiento">Rendimiento anual de tu dinero (%)</label>
@@ -40,9 +37,11 @@
     <p class="note">El número junto a cada tarjeta son los MSI máximos que ofrece <b>este producto</b> con ella.</p>
     <div id="cartera"></div>
 
-    <h2 class="mt">Lo que ya compraste en el evento</h2>
+    <div id="caja-acumulados">
+    <h2 class="mt">Lo que ya compraste en <span id="nombre-evento">el evento</span></h2>
     <p class="note">Algunas promos suman tus compras previas al mínimo (p. ej. HSBC $15,000 acumulados) y descuentan del tope lo que ya recibiste.</p>
     <div id="acumulados"></div>
+    </div>
   </aside>
 
   <section>
