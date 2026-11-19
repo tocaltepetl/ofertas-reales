@@ -16,7 +16,8 @@ const json = {
   generado: new Date().toISOString(),
   emisores: cat.emisores,
   comercios: [...cat.comercios.values()],
-  eventos: [...cat.eventos.values()],
+  // Un evento sin promos todavía (p. ej. recién creado) no se publica: la web lo elegiría por defecto si empieza pronto.
+  eventos: [...cat.eventos.values()].filter((ev) => (cat.promociones.get(ev.id) ?? []).length > 0),
   promociones: Object.fromEntries(cat.promociones),
 };
 writeFileSync(join(dist, "catalogo.json"), JSON.stringify(json));

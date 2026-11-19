@@ -11,8 +11,9 @@ test("sin opciones solo se carga el catálogo principal", () => {
 });
 
 test("los eventos de ejemplo cargan y validan junto al catálogo", () => {
+  const base = cargarCatalogo().eventos.size;
   const cat = cargarCatalogo(undefined, { eventosExtra: [EVENTOS_DEMO] });
-  assert.equal(cat.eventos.size, 3);
+  assert.equal(cat.eventos.size, base + 2);
   for (const id of ["buen-fin-2026", "demo-hot-sale-2027", "demo-venta-navidena-2026"]) assert.ok(cat.eventos.has(id), id);
   for (const id of ["demo-hot-sale-2027", "demo-venta-navidena-2026"]) {
     assert.match(cat.eventos.get(id)!.nombre, /DEMO/);

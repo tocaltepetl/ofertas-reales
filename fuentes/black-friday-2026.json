@@ -1,0 +1,179 @@
+{
+ "evento": "black-friday-2026",
+ "vigencia": [
+  "2026-11-27",
+  "2026-12-06"
+ ],
+ "fuentes": [
+  {
+   "id": "ml-mercado-pago",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/tarjeta-mercado-pago-visa"
+  },
+  {
+   "id": "ml-banamex",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/banamex"
+  },
+  {
+   "id": "ml-santander",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/santander"
+  },
+  {
+   "id": "ml-bbva",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/bbva"
+  },
+  {
+   "id": "ml-hsbc",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/hsbc"
+  },
+  {
+   "id": "ml-banorte",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/banorte"
+  },
+  {
+   "id": "ml-amex",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/amex"
+  },
+  {
+   "id": "ml-oxxo",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/oxxo"
+  },
+  {
+   "id": "ml-scotiabank",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/scotiabank"
+  },
+  {
+   "id": "ml-afirme",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/afirme"
+  },
+  {
+   "id": "ml-invex",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/invex"
+  },
+  {
+   "id": "ml-openbank",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/openbank"
+  },
+  {
+   "id": "ml-mifel",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/mifel"
+  },
+  {
+   "id": "ml-falabella",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/falabella"
+  },
+  {
+   "id": "ml-bancoppel",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/bancoppel"
+  },
+  {
+   "id": "ml-nu",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/nubank"
+  },
+  {
+   "id": "ml-didi",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/didi"
+  },
+  {
+   "id": "ml-klar",
+   "tipo": "comercio-banco",
+   "comercio": "mercadolibre",
+   "url": "https://www.mercadolibre.com.mx/ofertas/klar"
+  },
+  {
+   "id": "comercio-amazon",
+   "tipo": "comercio",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/blackfriday",
+   "render": true,
+   "nota": "landing de Black Friday; buscar el enlace a 'Promociones Bancarias' (en el Buen Fin fue b?node=120273989011) y sus ventanas 'Conoce más'"
+  },
+  {
+   "id": "comercio-amazon-bancos",
+   "tipo": "comercio",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=120273989011",
+   "render": true,
+   "nota": "página de promociones bancarias del Buen Fin; revisar si Amazon la reutiliza"
+  },
+  {
+   "id": "comercio-liverpool",
+   "tipo": "comercio",
+   "comercio": "liverpool",
+   "url": "https://www.liverpool.com.mx/tienda/paginas/black-friday",
+   "render": true,
+   "nota": "el 18 nov solo tenía texto genérico ('Black Days 2026, viernes 27 de noviembre')"
+  },
+  {
+   "id": "comercio-palacio",
+   "tipo": "comercio",
+   "comercio": "palacio-de-hierro",
+   "url": "https://www.elpalaciodehierro.com/promociones-bancarias.html",
+   "render": true
+  },
+  {
+   "id": "comercio-walmart",
+   "tipo": "comercio",
+   "comercio": "walmart",
+   "url": "https://www.walmart.com.mx/content/especiales/beneficios-walmart/360013_2480003",
+   "render": true,
+   "nota": "en el Buen Fin las promos venían en banners; usar el texto alternativo"
+  },
+  {
+   "id": "comercio-coppel",
+   "tipo": "comercio",
+   "comercio": "coppel",
+   "url": "https://www.coppel.com/inf/promociones-bancarias",
+   "render": true,
+   "nota": "curl da 403"
+  },
+  {
+   "id": "comercio-homedepot",
+   "tipo": "comercio",
+   "comercio": "homedepot",
+   "url": "https://www.homedepot.com.mx/promociones-bancarias",
+   "render": true
+  },
+  {
+   "id": "banco-bbva",
+   "tipo": "banco",
+   "emisor": "bbva",
+   "url": "https://www.bbva.mx/black-friday.html",
+   "render": true,
+   "nota": "el 18 nov aún mostraba la edición 2025 (TyC_Black-Friday-solo-28nov2025.pdf); bajar el PDF de 2026 cuando aparezca"
+  }
+ ]
+}
