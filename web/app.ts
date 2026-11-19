@@ -3,6 +3,7 @@ import type { Catalogo } from "../src/catalogo.ts";
 import type { Emisor, Comercio, Evento, Promocion, Producto, Atributo } from "../src/esquema.ts";
 import { evaluar, ordenar, mejoresPorInstrumento, type Opcion, type Criterio, type Resultado } from "../src/motor.ts";
 import { almacenNavegador, cargarPerfil, guardarPerfil, cargarEstadoEvento, guardarEstadoEvento, migrarV1, cargarUltimaVista, guardarUltimaVista, borrarDatos, type Perfil, type EstadoEvento } from "./estado.ts";
+import { ordenarEmisores } from "./cartera.ts";
 import { hoyEn, agenda, diasDe, diaInicial, categoriasDe, textoFase, faseDe } from "./eventos.ts";
 import { mesesCalendario, carriles, eventosDelDia, vistaAlEntrar, indicesDeColor, icsDeEvento, VISTA_CALENDARIO } from "./calendario.ts";
 
@@ -291,7 +292,8 @@ async function main() {
 
   function pintarCartera() {
     const box = el("cartera");
-    box.innerHTML = cat.emisores.map((e) => `
+    // Se ordena solo al pintar (al cargar o con Marcar/Quitar todo), nunca al marcar una casilla, para que nada brinque bajo el cursor
+    box.innerHTML = ordenarEmisores(cat.emisores, P.tengo, P.carteraElegida).map((e) => `
       <details class="group" data-emisor="${e.id}" data-buscar="${esc(sinAcentos([e.nombre, ...e.productos.map((p) => p.nombre)].join(" ")))}">
         <summary class="gtitle"><span>${esc(e.nombre)}</span><span class="how" data-cuenta="${e.id}"></span></summary>
         ${e.productos.map((p) => `<label class="chk" data-buscar="${esc(sinAcentos(e.nombre + " " + p.nombre))}"><input type="checkbox" data-p="${p.id}" ${P.tengo[p.id] ? "checked" : ""}>
