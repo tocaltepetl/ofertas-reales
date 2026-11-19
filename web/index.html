@@ -7,57 +7,98 @@
 <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-<header>
-  <h1>¿Dónde y cómo me conviene pagar?</h1>
-  <p class="sub" id="subtitulo">Cargando catálogo…</p>
-  <nav id="eventos" aria-label="Eventos"></nav>
-  <div id="aviso" hidden></div>
+<header class="top">
+  <div class="top-in">
+    <a class="marca" href="#calendario">Buscador de promociones</a>
+    <nav id="eventos" aria-label="Eventos"></nav>
+  </div>
 </header>
-<main>
-  <aside class="card" id="panel">
-    <h2>Tu compra</h2>
-    <label class="field" for="precio">Precio (MXN)</label>
-    <input type="number" id="precio" min="0" step="1">
-    <div class="row2">
-      <div>
-        <label class="field" for="dia">Día</label>
-        <select id="dia"></select>
+
+<!-- ---------- Calendario ---------- -->
+<section id="vista-calendario" class="vista" hidden>
+  <div class="cabeza">
+    <h1>Calendario de eventos de compras</h1>
+    <p class="sub">Buen Fin, Black Friday, Hot Sale y más. Elige un evento para ver con qué tarjeta te conviene pagar.</p>
+  </div>
+  <div id="cal-destacado"></div>
+  <div class="cal-grid">
+    <div class="card"><h2>Por mes</h2><div id="cal-meses" class="meses"></div></div>
+    <div id="cal-lista"></div>
+  </div>
+</section>
+
+<!-- ---------- Evento ---------- -->
+<section id="vista-evento" class="vista" hidden>
+  <div class="cabeza">
+    <h1 id="titulo-evento">¿Dónde y cómo me conviene pagar?</h1>
+    <p class="sub" id="subtitulo">Cargando catálogo…</p>
+    <div id="aviso" hidden></div>
+  </div>
+
+  <div id="evento-vacio" class="card vacio-evento" hidden></div>
+
+  <main id="calculadora">
+    <aside>
+      <div class="card" id="panel-compra">
+        <h2>Tu compra</h2>
+        <label class="field" for="precio">Precio (MXN)</label>
+        <input type="number" id="precio" min="0" step="1" inputmode="numeric">
+        <div class="row2">
+          <div>
+            <label class="field" for="dia">Día</label>
+            <select id="dia"></select>
+          </div>
+          <div id="caja-categoria">
+            <label class="field" for="categoria">Categoría</label>
+            <select id="categoria"></select>
+          </div>
+        </div>
+        <details class="mas">
+          <summary>Más opciones</summary>
+          <label class="field" for="rendimiento">Rendimiento anual de tu dinero (%)</label>
+          <input type="number" id="rendimiento" min="0" max="50" step="0.5">
+          <p class="note">Sirve para valorar los MSI: el dinero que no pagas hoy sigue rindiendo.</p>
+          <div id="caja-acumulados">
+            <h3 class="mt">Lo que ya compraste en <span id="nombre-evento">el evento</span></h3>
+            <p class="note">Algunas promos suman tus compras previas al mínimo (p. ej. HSBC $15,000 acumulados) y descuentan del tope lo que ya recibiste.</p>
+            <div id="acumulados"></div>
+          </div>
+        </details>
       </div>
-      <div id="caja-categoria">
-        <label class="field" for="categoria">Categoría</label>
-        <select id="categoria"></select>
+
+      <div class="card" id="panel-cartera">
+        <div class="cartera-cabeza">
+          <h2>Tu cartera</h2>
+          <span class="how" id="cuenta-cartera"></span>
+        </div>
+        <input type="search" id="buscar-tarjeta" placeholder="Buscar banco o tarjeta" aria-label="Buscar banco o tarjeta">
+        <div class="btns"><button id="todo">Marcar todo</button><button id="nada">Quitar todo</button></div>
+        <p class="note">El número junto a cada tarjeta son los MSI máximos que ofrece <b>este producto</b> con ella.</p>
+        <div id="cartera"></div>
       </div>
-    </div>
-    <label class="field" for="rendimiento">Rendimiento anual de tu dinero (%)</label>
-    <input type="number" id="rendimiento" min="0" max="50" step="0.5">
-    <p class="note">Sirve para valorar los MSI: el dinero que no pagas hoy sigue rindiendo.</p>
+    </aside>
 
-    <h2 class="mt">Tu cartera</h2>
-    <div class="btns"><button id="todo">Marcar todo</button><button id="nada">Quitar todo</button></div>
-    <p class="note">El número junto a cada tarjeta son los MSI máximos que ofrece <b>este producto</b> con ella.</p>
-    <div id="cartera"></div>
-
-    <div id="caja-acumulados">
-    <h2 class="mt">Lo que ya compraste en <span id="nombre-evento">el evento</span></h2>
-    <p class="note">Algunas promos suman tus compras previas al mínimo (p. ej. HSBC $15,000 acumulados) y descuentan del tope lo que ya recibiste.</p>
-    <div id="acumulados"></div>
-    </div>
-  </aside>
-
-  <section>
-    <div class="card">
-      <div class="tabs">
-        <button class="tab on" data-c="ahorro">Ordenar por ahorro</button>
-        <button class="tab" data-c="total">Ahorro + valor de los MSI</button>
-        <label class="chk inline"><input type="checkbox" id="garantizado"> Solo garantizado</label>
+    <section id="resultados">
+      <div id="aviso-cartera" class="aviso-cartera" hidden></div>
+      <div class="card">
+        <div class="tabs">
+          <button class="tab on" data-c="ahorro">Ordenar por ahorro</button>
+          <button class="tab" data-c="total">Ahorro + valor de los MSI</button>
+          <label class="chk inline"><input type="checkbox" id="garantizado"> Solo garantizado</label>
+        </div>
+        <h2>Comparación entre comercios</h2>
+        <div class="scroll"><table id="comparacion" class="apilable"></table></div>
       </div>
-      <h2>Comparación entre comercios</h2>
-      <div class="scroll"><table id="comparacion"></table></div>
-    </div>
 
-    <div class="card mt" id="detalle"></div>
-  </section>
-</main>
+      <div class="card mt" id="detalle"></div>
+    </section>
+  </main>
+</section>
+<footer class="pie">
+  <p>Tus tarjetas y preferencias se guardan solo en este navegador; no se envían a ningún servidor.
+    <span id="borrar-caja"><button class="enlace" id="borrar">Borrar lo guardado</button></span></p>
+  <p>Las condiciones del banco y del comercio son las que valen; revísalas antes de comprar. No es asesoría financiera.</p>
+</footer>
 <script type="module" src="app.js"></script>
 </body>
 </html>

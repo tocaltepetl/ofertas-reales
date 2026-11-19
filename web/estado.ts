@@ -19,6 +19,8 @@ export interface Perfil {
   soloGarantizado: boolean;
   precio: number;
   categoria: string;
+  /** true cuando el usuario ya tocó su cartera; mientras sea false, la web avisa que se compara con todas las tarjetas. */
+  carteraElegida: boolean;
 }
 
 /** Propio de un evento. */
@@ -32,11 +34,18 @@ export interface Almacen {
   getItem(k: string): string | null;
   setItem(k: string, v: string): void;
   removeItem(k: string): void;
+  /** Para enumerar las claves al borrar todo (localStorage los tiene). */
+  readonly length?: number;
+  key?(i: number): string | null;
 }
 
 export const CLAVE_PERFIL = "buscador-promos-v2:perfil";
 export const claveEvento = (id: string) => `buscador-promos-v2:evento:${id}`;
 export const CLAVE_V1 = "buscador-promos-v1";
+/** Última vista abierta: el id de un evento o "calendario". */
+export const CLAVE_VISTA = "buscador-promos-v2:vista";
+/** Prefijo común de todas las claves de esta web, de cualquier versión. */
+const PREFIJO = "buscador-promos-";
 
 // ---------------------------------------------------------------------------
 // Helpers internos
@@ -101,7 +110,7 @@ function limpiarAcumulados(v: unknown): EstadoEvento["acumulados"] {
   return out;
 }
 
-const CAMPOS_PERFIL = ["tengo", "msi", "atributos", "rendimiento", "criterio", "soloGarantizado", "precio", "categoria"] as const;
+const CAMPOS_PERFIL = ["tengo", "msi", "atributos", "rendimiento", "criterio", "soloGarantizado", "precio", "categoria", "carteraElegida"] as const;
 const CAMPOS_EVENTO = ["dia", "comercio", "acumulados"] as const;
 
 function elegir(o: Obj, campos: readonly string[]): Obj {
@@ -129,6 +138,7 @@ export function cargarPerfil(alm: Almacen | null, defecto: Perfil): Perfil {
     soloGarantizado: typeof s.soloGarantizado === "boolean" ? s.soloGarantizado : defecto.soloGarantizado,
     precio: esNumero(s.precio) ? s.precio : defecto.precio,
     categoria: typeof s.categoria === "string" ? s.categoria : defecto.categoria,
+    carteraElegida: typeof s.carteraElegida === "boolean" ? s.carteraElegida : defecto.carteraElegida,
   };
 }
 
@@ -170,6 +180,36 @@ export function migrarV1(alm: Almacen | null, eventoV1: string): void {
     alm.removeItem(CLAVE_V1);
   } catch {
     /* sin almacenamiento */
+  }
+}
+
+export function cargarUltimaVista(alm: Almacen | null): string | null {
+  const v = leer(alm, CLAVE_VISTA);
+  return typeof v === "string" && v !== "" ? v : null;
+}
+
+export function guardarUltimaVista(alm: Almacen | null, vista: string): void {
+  escribir(alm, CLAVE_VISTA, vista);
+}
+
+/**
+ * Borra todo lo que esta web guardó (perfil, eventos, última vista y la clave v1) y
+ * deja intactas las claves ajenas. Devuelve true si no quedó ninguna clave propia. Nunca lanza.
+ */
+export function borrarDatos(alm: Almacen | null): boolean {
+  if (!alm) return true;
+  try {
+    const propias: string[] = [];
+    for (let i = 0; i < (alm.length ?? 0); i++) {
+      const k = alm.key?.(i);
+      if (k?.startsWith(PREFIJO)) propias.push(k);
+    }
+    // Sin enumeración posible, al menos las claves fijas
+    if (!alm.key) propias.push(CLAVE_PERFIL, CLAVE_VISTA, CLAVE_V1);
+    for (const k of propias) alm.removeItem(k);
+    return propias.every((k) => !existe(alm, k));
+  } catch {
+    return false;
   }
 }
 

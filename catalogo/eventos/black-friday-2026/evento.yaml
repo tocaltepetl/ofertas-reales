@@ -1,7 +1,7 @@
 # Black Friday y Cyber Monday 2026. No hay organizador oficial ni directorio de comercios:
 # cada tienda y cada banco pone sus fechas. El rango cubre del viernes 27 nov a la "Black Week"
 # que algunas marcas alargan hasta el 6 dic; cada promo declara su propia `vigencia`.
-# Mientras promos/ esté vacío, el evento no se publica en la web (scripts/build-web.ts).
+# Mientras promos/ esté vacío, la web lo muestra en el calendario pero no abre en él por defecto.
 id: black-friday-2026
 nombre: Black Friday y Cyber Monday 2026
 desde: 2026-11-27

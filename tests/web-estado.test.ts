@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   type Almacen, type Perfil, CLAVE_PERFIL, CLAVE_V1, claveEvento,
   cargarPerfil, guardarPerfil, cargarEstadoEvento, guardarEstadoEvento, migrarV1, almacenNavegador,
+  cargarUltimaVista, guardarUltimaVista, borrarDatos, CLAVE_VISTA,
 } from "../web/estado.ts";
 
 /** Almacen en memoria; expone el Map para inspeccionarlo. */
@@ -13,6 +14,8 @@ function memoria(inicial: Record<string, string> = {}): Almacen & { datos: Map<s
     getItem: (k) => datos.get(k) ?? null,
     setItem: (k, v) => { datos.set(k, v); },
     removeItem: (k) => { datos.delete(k); },
+    get length() { return datos.size; },
+    key: (i) => [...datos.keys()][i] ?? null,
   };
 }
 
@@ -32,6 +35,7 @@ const defecto = (): Perfil => ({
   soloGarantizado: false,
   precio: 12987,
   categoria: "",
+  carteraElegida: false,
 });
 
 const VACIO = { dia: null, comercio: null, acumulados: {} };
@@ -149,7 +153,7 @@ test("migración v1: reparte perfil y evento, y borra la v1", () => {
   assert.deepEqual(cargarPerfil(alm, defecto()), {
     tengo: { "bbva-oro": false, "nu": true }, msi: { "bbva-oro": 18 },
     atributos: { "meli-plus": true, "nivel": "oro" },
-    rendimiento: 11, criterio: "total", soloGarantizado: true, precio: 8000, categoria: "pantallas",
+    rendimiento: 11, criterio: "total", soloGarantizado: true, precio: 8000, categoria: "pantallas", carteraElegida: false,
   });
   assert.deepEqual(cargarEstadoEvento(alm, "buen-fin-2026"),
     { dia: "2026-11-15", comercio: "liverpool", acumulados: { "promo-1": { compras: 1, beneficio: 300 } } });
@@ -225,4 +229,29 @@ test("almacenNavegador: null si no hay localStorage o si acceder lanza", (t) => 
   const m = memoria();
   Object.defineProperty(globalThis, "localStorage", { configurable: true, value: m });
   assert.equal(almacenNavegador(), m);
+});
+
+test("última vista: se guarda y se lee; vacía o corrupta es null", () => {
+  const alm = memoria();
+  assert.equal(cargarUltimaVista(alm), null);
+  guardarUltimaVista(alm, "buen-fin-2026");
+  assert.equal(cargarUltimaVista(alm), "buen-fin-2026");
+  assert.equal(cargarUltimaVista(memoria({ [CLAVE_VISTA]: "{roto" })), null);
+  assert.equal(cargarUltimaVista(memoria({ [CLAVE_VISTA]: "7" })), null);
+  assert.equal(cargarUltimaVista(quebrado), null);
+  assert.equal(cargarUltimaVista(null), null);
+});
+
+test("borrarDatos: quita todas las claves propias y respeta las ajenas", () => {
+  const alm = memoria({
+    [CLAVE_PERFIL]: "{}", [claveEvento("buen-fin-2026")]: "{}", [claveEvento("black-friday-2026")]: "{}",
+    [CLAVE_VISTA]: '"calendario"', [CLAVE_V1]: "{}", "otra-app": "x",
+  });
+  assert.equal(borrarDatos(alm), true);
+  assert.deepEqual([...alm.datos.keys()], ["otra-app"]);
+});
+
+test("borrarDatos: nunca lanza", () => {
+  assert.equal(borrarDatos(null), true);
+  assert.equal(borrarDatos(quebrado), false);
 });
