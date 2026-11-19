@@ -4,3 +4,4 @@ __pycache__/
 node_modules/
 snapshots/index.html
 web/dist/
+web/dist-artefacto/

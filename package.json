@@ -16,6 +16,7 @@
     "evaluar": "node src/cli.ts evaluar",
     "build:web": "node scripts/build-web.ts",
     "web": "node scripts/build-web.ts && python3 -m http.server -b 127.0.0.1 -d web/dist 8766",
+    "build:artefacto": "node scripts/build-web.ts --artefacto",
     "web:demo": "node scripts/build-web.ts --demo && python3 -m http.server -b 127.0.0.1 -d web/dist 8766"
   },
   "dependencies": {

@@ -1,15 +1,20 @@
 :root{
   --bg:#f6f5f1; --card:#fff; --ink:#1d1d1f; --muted:#6b6b70; --line:#e4e2dc;
-  --accent:#2d5bd7; --accent-soft:#e8eefc; --good:#1f7a4d; --good-soft:#e5f3ec;
+  --accent:#2d5bd7; --accent-soft:#e8eefc; --on-accent:#fff; --good:#1f7a4d; --good-soft:#e5f3ec;
   --warn:#9a5b00; --warn-soft:#fbf0dc; --bad:#a33; --chip:#f0efea;
   --ev0:#2d5bd7; --ev1:#c2410c; --ev2:#0f766e; --ev3:#a21caf; --ev4:#4d7c0f;
 }
+/* Tema oscuro: por preferencia del sistema salvo que se elija claro, y con data-theme="dark" explícito */
 @media (prefers-color-scheme: dark){
-  :root{ --bg:#141416; --card:#1e1e21; --ink:#ececee; --muted:#9a9aa1; --line:#33333a;
-    --accent:#7ea0ff; --accent-soft:#232c45; --good:#5cc995; --good-soft:#1c3328;
+  :root:not([data-theme="light"]){ --bg:#141416; --card:#1e1e21; --ink:#ececee; --muted:#9a9aa1; --line:#33333a;
+    --accent:#7ea0ff; --accent-soft:#232c45; --on-accent:#0d1530; --good:#5cc995; --good-soft:#1c3328;
     --warn:#e2a64a; --warn-soft:#3a2e1a; --bad:#ff8080; --chip:#2a2a2f;
-    --ev0:#7ea0ff; --ev1:#fb923c; --ev2:#2dd4bf; --ev3:#e879f9; --ev4:#a3e635; }
+    --ev0:#7ea0ff; --ev1:#fb923c; --ev2:#2dd4bf; --ev3:#e879f9; --ev4:#a3e635; color-scheme:dark; }
 }
+:root[data-theme="dark"]{ --bg:#141416; --card:#1e1e21; --ink:#ececee; --muted:#9a9aa1; --line:#33333a;
+    --accent:#7ea0ff; --accent-soft:#232c45; --on-accent:#0d1530; --good:#5cc995; --good-soft:#1c3328;
+    --warn:#e2a64a; --warn-soft:#3a2e1a; --bad:#ff8080; --chip:#2a2a2f;
+    --ev0:#7ea0ff; --ev1:#fb923c; --ev2:#2dd4bf; --ev3:#e879f9; --ev4:#a3e635; color-scheme:dark; }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45}
@@ -41,7 +46,7 @@ button:hover{border-color:var(--accent)}
 .attr select,.attr input{width:auto;padding:3px 6px;font-size:12px}
 .tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
 .tab{padding:7px 13px;border-radius:999px}
-.tab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
 td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -70,7 +75,7 @@ a{color:var(--accent)}
 .acum input{width:84px;padding:3px 6px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
 
 /* ---------- Barra superior ---------- */
-.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top-in{max-width:1240px;margin:0 auto;padding:8px 16px;display:flex;gap:14px;align-items:center}
 .marca{font-weight:700;color:var(--ink);text-decoration:none;white-space:nowrap;letter-spacing:-.01em}
 #eventos{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0;padding:2px 0}
@@ -79,8 +84,8 @@ a{color:var(--accent)}
 .evento:hover{border-color:var(--accent);border-left-color:var(--c,var(--accent))}
 .evento small{font-size:11px;color:var(--muted)}
 .evento.activo small{color:var(--good);font-weight:600}
-.evento.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.evento.on small{color:#fff;opacity:.85}
+.evento.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.evento.on small{color:var(--on-accent);opacity:.85}
 @media (max-width:640px){.top-in{flex-wrap:wrap;gap:6px}.marca{width:100%}}
 
 .vista{padding-bottom:20px}
@@ -91,7 +96,7 @@ a{color:var(--accent)}
 /* ---------- Botones ---------- */
 .btn{display:inline-block;text-decoration:none;font-weight:600;border:1px solid var(--line);background:var(--chip);color:var(--ink);padding:7px 13px;border-radius:9px}
 .btn:hover{border-color:var(--accent)}
-.btn.prim{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.prim{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 button.sec{background:transparent;border-color:var(--line);font-weight:600}
 .ev-acc{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 

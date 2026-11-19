@@ -7,6 +7,9 @@ import { ordenarEmisores } from "./cartera.ts";
 import { hoyEn, agenda, diasDe, diaInicial, categoriasDe, textoFase, faseDe } from "./eventos.ts";
 import { mesesCalendario, carriles, eventosDelDia, vistaAlEntrar, indicesDeColor, icsDeEvento, VISTA_CALENDARIO } from "./calendario.ts";
 
+/** true en el build para artefacto de claude.ai, donde el visor bloquea las descargas (lo define esbuild). */
+declare const ARTEFACTO: boolean;
+
 /** Único evento que existía cuando el estado se guardaba en la clave v1. */
 const EVENTO_V1 = "buen-fin-2026";
 const ZONA = "America/Mexico_City";
@@ -104,7 +107,7 @@ async function main() {
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
-  const botonIcs = (e: Evento) => `<button class="sec" data-ics="${esc(e.id)}">Agregar a mi calendario</button>`;
+  const botonIcs = (e: Evento) => (ARTEFACTO ? "" : `<button class="sec" data-ics="${esc(e.id)}">Agregar a mi calendario</button>`);
   function conectarIcs(raiz: HTMLElement) {
     raiz.querySelectorAll<HTMLButtonElement>("[data-ics]").forEach((b) => (b.onclick = () => descargarIcs(j.eventos.find((e) => e.id === b.dataset.ics)!)));
   }
@@ -437,14 +440,34 @@ async function main() {
       caja.innerHTML = `¿Borrar tus tarjetas, preferencias y compras de este navegador? <button class="enlace peligro" id="borrar-si">Sí, borrar</button> <button class="enlace" id="borrar-no">Cancelar</button>`;
       el("borrar-no").onclick = pintarBorrar;
       el("borrar-si").onclick = () => {
-        borrado = true;
-        if (!borrarDatos(alm)) { borrado = false; caja.textContent = "No se pudo borrar: tu navegador bloqueó el acceso al almacenamiento."; return; }
-        location.replace(location.pathname);
+        if (!borrarDatos(alm)) { caja.textContent = "No se pudo borrar: tu navegador bloqueó el acceso al almacenamiento."; return; }
+        reiniciar();
+        caja.textContent = "Listo: se borró lo guardado en este navegador.";
       };
       el("borrar-si").focus();
     };
   }
   pintarBorrar();
+
+  /** Tras borrar: vuelve a los valores por defecto sin recargar (dentro de un artefacto recargar puede navegar mal). */
+  function reiniciar() {
+    // Sin escribir nada hasta que el usuario vuelva a cambiar algo
+    borrado = true;
+    Object.assign(P, perfilPorDefecto(cat));
+    precio.value = String(P.precio); rendimiento.value = String(P.rendimiento); buscar.value = "";
+    (el("garantizado") as HTMLInputElement).checked = P.soloGarantizado;
+    document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("on", (x as HTMLElement).dataset.c === P.criterio));
+    pintarCartera();
+    irA(vistaAlEntrar(j.eventos, tienePromos, hoy, null));
+    // El primer cambio del usuario vuelve a habilitar el guardado
+    const reanudar = () => { borrado = false; document.removeEventListener("input", reanudar, true); document.removeEventListener("change", reanudar, true); document.removeEventListener("click", reanudarClic, true); };
+    const reanudarClic = (e: Event) => { if ((e.target as HTMLElement).closest("button, a")) reanudar(); };
+    setTimeout(() => {
+      document.addEventListener("input", reanudar, true);
+      document.addEventListener("change", reanudar, true);
+      document.addEventListener("click", reanudarClic, true);
+    });
+  }
 
   const idDeHash = () => decodeURIComponent(location.hash.slice(1));
   window.addEventListener("hashchange", () => { if (idDeHash() !== vista) { irA(idDeHash()); window.scrollTo(0, 0); } });
