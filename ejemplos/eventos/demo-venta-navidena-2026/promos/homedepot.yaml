@@ -1,0 +1,33 @@
+# DEMOSTRACIÓN: promociones ficticias de un evento de prueba. No son reales.
+promociones:
+  - id: demo-vn-homedepot-hsbc-campana
+    nombre: "[DEMO] HSBC 12% de bonificación a meses (ficticio)"
+    comercio: homedepot
+    patrocinador: hsbc
+    campana: demo-vn-hsbc-bonificacion
+    instrumentos: [hsbc.tdc]
+    beneficio: {tipo: bonificacion, pct: 12, tope: 2500, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 4000, acumulable: true}
+      plazos: {min: 6}
+    avisos:
+      - "Promoción ficticia de demostración; campaña compartida con Walmart y Coppel"
+    fuente:
+      url: "https://example.com/demo-venta-navidena-2026/hsbc"
+      capturada: 2026-11-18
+      revisada: false
+
+  - id: demo-vn-homedepot-hogar
+    nombre: "[DEMO] 10% en hogar con Tarjeta The Home Depot Banamex (ficticio)"
+    comercio: homedepot
+    patrocinador: banamex
+    instrumentos: [banamex.homedepot]
+    beneficio: {tipo: descuento, pct: 10, tope: 1500, tope_por: compra}
+    condiciones:
+      categorias: [hogar]
+    avisos:
+      - "Promoción ficticia de demostración"
+    fuente:
+      url: "https://example.com/demo-venta-navidena-2026/homedepot"
+      capturada: 2026-11-18
+      revisada: false

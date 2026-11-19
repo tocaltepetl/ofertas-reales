@@ -1,0 +1,33 @@
+# DEMOSTRACIÓN: promociones ficticias de un evento de prueba. No son reales.
+promociones:
+  - id: demo-vn-walmart-banorte-10
+    nombre: "[DEMO] 10% de descuento con Banorte (ficticio)"
+    comercio: walmart
+    patrocinador: banorte
+    instrumentos: [banorte.tdc, banorte.tdd]
+    beneficio: {tipo: descuento, pct: 10, tope: 1000, tope_por: compra}
+    condiciones:
+      minimo: {monto: 1500}
+    avisos:
+      - "Promoción ficticia de demostración"
+    fuente:
+      url: "https://example.com/demo-venta-navidena-2026/walmart"
+      capturada: 2026-11-18
+      revisada: false
+
+  - id: demo-vn-walmart-hsbc-campana
+    nombre: "[DEMO] HSBC 12% de bonificación a meses (ficticio)"
+    comercio: walmart
+    patrocinador: hsbc
+    campana: demo-vn-hsbc-bonificacion
+    instrumentos: [hsbc.tdc]
+    beneficio: {tipo: bonificacion, pct: 12, tope: 2500, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 4000, acumulable: true}
+      plazos: {min: 6}
+    avisos:
+      - "Promoción ficticia de demostración; campaña compartida con Coppel y Home Depot"
+    fuente:
+      url: "https://example.com/demo-venta-navidena-2026/hsbc"
+      capturada: 2026-11-18
+      revisada: false

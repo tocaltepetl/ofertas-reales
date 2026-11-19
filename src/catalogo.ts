@@ -36,7 +36,19 @@ function leer<T>(archivo: string, esquema: z.ZodType<T, z.ZodTypeDef, unknown>, 
 
 export const RAIZ_PROYECTO = resolve(import.meta.dirname, "..");
 
-export function cargarCatalogo(raiz = join(RAIZ_PROYECTO, "catalogo")): Catalogo {
+export interface OpcionesCarga {
+  /**
+   * Directorios adicionales con la misma forma que catalogo/eventos/ (una subcarpeta por evento con
+   * evento.yaml y promos/*.yaml), p. ej. ejemplos/eventos para probar la web con varios eventos.
+   * Sus promociones se validan contra los comercios e instrumentos del catálogo principal.
+   */
+  eventosExtra?: string[];
+}
+
+/** Directorio con los eventos ficticios de demostración (ver `--demo` en scripts/build-web.ts). */
+export const EVENTOS_DEMO = join(RAIZ_PROYECTO, "ejemplos", "eventos");
+
+export function cargarCatalogo(raiz = join(RAIZ_PROYECTO, "catalogo"), opciones: OpcionesCarga = {}): Catalogo {
   const errores: string[] = [];
   const inst = leer(join(raiz, "instrumentos.yaml"), Instrumentos, errores);
   const com = leer(join(raiz, "comercios.yaml"), Comercios, errores);
@@ -58,20 +70,22 @@ export function cargarCatalogo(raiz = join(RAIZ_PROYECTO, "catalogo")): Catalogo
 
   const eventos = new Map<string, TEvento>();
   const promociones = new Map<string, Promocion[]>();
-  const dirEventos = join(raiz, "eventos");
-  for (const nombre of existsSync(dirEventos) ? readdirSync(dirEventos) : []) {
-    const dir = join(dirEventos, nombre);
-    if (!statSync(dir).isDirectory()) continue;
-    const ev = leer(join(dir, "evento.yaml"), Evento, errores);
-    if (!ev) continue;
-    if (ev.id !== nombre) errores.push(`${dir}: el id del evento (${ev.id}) debe coincidir con la carpeta`);
-    eventos.set(ev.id, ev);
-    const lista: Promocion[] = [];
-    const dirPromos = join(dir, "promos");
-    for (const f of existsSync(dirPromos) ? readdirSync(dirPromos).filter((x) => x.endsWith(".yaml")).sort() : []) {
-      lista.push(...(leer(join(dirPromos, f), ArchivoPromos, errores)?.promociones ?? []));
+  for (const dirEventos of [join(raiz, "eventos"), ...(opciones.eventosExtra ?? [])]) {
+    for (const nombre of existsSync(dirEventos) ? readdirSync(dirEventos) : []) {
+      const dir = join(dirEventos, nombre);
+      if (!statSync(dir).isDirectory()) continue;
+      const ev = leer(join(dir, "evento.yaml"), Evento, errores);
+      if (!ev) continue;
+      if (ev.id !== nombre) errores.push(`${dir}: el id del evento (${ev.id}) debe coincidir con la carpeta`);
+      if (eventos.has(ev.id)) { errores.push(`${dir}: evento duplicado ${ev.id}`); continue; }
+      eventos.set(ev.id, ev);
+      const lista: Promocion[] = [];
+      const dirPromos = join(dir, "promos");
+      for (const f of existsSync(dirPromos) ? readdirSync(dirPromos).filter((x) => x.endsWith(".yaml")).sort() : []) {
+        lista.push(...(leer(join(dirPromos, f), ArchivoPromos, errores)?.promociones ?? []));
+      }
+      promociones.set(ev.id, lista);
     }
-    promociones.set(ev.id, lista);
   }
 
   // Referencias cruzadas

@@ -1,0 +1,8 @@
+# DEMOSTRACIÓN: evento ficticio para probar la web con varios eventos (npm run web:demo).
+# Activo del 16 al 30 nov 2026 para ver un evento "en curso". No contiene promociones reales.
+id: demo-venta-navidena-2026
+nombre: "[DEMO] Venta Navideña 2026 (ficticio)"
+desde: 2026-11-16
+hasta: 2026-11-30
+zona_horaria: America/Mexico_City
+sitio: https://example.com/demo-venta-navidena-2026

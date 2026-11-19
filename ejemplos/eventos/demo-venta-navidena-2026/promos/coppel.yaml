@@ -1,0 +1,53 @@
+# DEMOSTRACIÓN: promociones ficticias de un evento de prueba. No son reales.
+promociones:
+  - id: demo-vn-coppel-hsbc-campana
+    nombre: "[DEMO] HSBC 12% de bonificación a meses (ficticio)"
+    comercio: coppel
+    patrocinador: hsbc
+    campana: demo-vn-hsbc-bonificacion
+    instrumentos: [hsbc.tdc]
+    beneficio: {tipo: bonificacion, pct: 12, tope: 2500, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 4000, acumulable: true}
+      plazos: {min: 6}
+    avisos:
+      - "Promoción ficticia de demostración; campaña compartida con Walmart y Home Depot"
+    fuente:
+      url: "https://example.com/demo-venta-navidena-2026/hsbc"
+      capturada: 2026-11-18
+      revisada: false
+
+  - id: demo-vn-coppel-linea-blanca
+    nombre: "[DEMO] 15% en línea blanca con BanCoppel (ficticio)"
+    comercio: coppel
+    patrocinador: coppel
+    instrumentos: [bancoppel.tdc, bancoppel.tdd]
+    vigencia: {desde: 2026-11-20, hasta: 2026-11-30}
+    beneficio: {tipo: descuento, pct: 15, tope: 3000, tope_por: compra}
+    condiciones:
+      categorias: [linea-blanca]
+    avisos:
+      - "Promoción ficticia de demostración; empieza el 20 nov"
+    fuente:
+      url: "https://example.com/demo-venta-navidena-2026/coppel"
+      capturada: 2026-11-18
+      revisada: false
+
+  - id: demo-vn-coppel-bancoppel-msi
+    nombre: "[DEMO] BanCoppel difiere a 9 MSI (ficticio)"
+    comercio: coppel
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdc]
+    beneficio:
+      tipo: diferido
+      descripcion: "Pagas de contado y BanCoppel difiere la compra a 9 MSI (ficticio)"
+    condiciones:
+      minimo: {monto: 3000}
+      plazos: {permitidos: [0]}
+      financiamiento_posterior: {meses: 9}
+    avisos:
+      - "Promoción ficticia de demostración"
+    fuente:
+      url: "https://example.com/demo-venta-navidena-2026/bancoppel"
+      capturada: 2026-11-18
+      revisada: false

@@ -1,0 +1,33 @@
+# DEMOSTRACIÓN: promociones ficticias de un evento de prueba. No son reales.
+promociones:
+  - id: demo-hs-amazon-santander-15
+    nombre: "[DEMO] 15% de descuento con Santander (ficticio)"
+    comercio: amazon
+    patrocinador: santander
+    instrumentos: [santander.tdc]
+    beneficio: {tipo: descuento, pct: 15, tope: 2000, tope_por: compra}
+    condiciones:
+      minimo: {monto: 3000}
+    avisos:
+      - "Promoción ficticia de demostración"
+    fuente:
+      url: "https://example.com/demo-hot-sale-2027/amazon"
+      capturada: 2026-11-18
+      revisada: false
+
+  - id: demo-hs-amazon-bbva-msi
+    nombre: "[DEMO] BBVA 12 MSI y 10% de bonificación desde 12 meses (ficticio)"
+    comercio: amazon
+    patrocinador: bbva
+    campana: demo-hs-bbva-bonificacion
+    instrumentos: [bbva.tdc]
+    beneficio: {tipo: bonificacion, pct: 10, tope: 3000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 5000, acumulable: true}
+      plazos: {min: 12}
+    avisos:
+      - "Promoción ficticia de demostración; campaña compartida con Liverpool"
+    fuente:
+      url: "https://example.com/demo-hot-sale-2027/bbva"
+      capturada: 2026-11-18
+      revisada: false

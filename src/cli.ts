@@ -1,6 +1,6 @@
 /**
  * Uso:
- *   node src/cli.ts validar
+ *   node src/cli.ts validar [--demo]   (--demo: incluye también los eventos ficticios de ejemplos/eventos)
  *   node src/cli.ts evaluar --comercio mercadolibre --precio 12987 [--dia 2026-11-16] [--cartera ejemplos/cartera.yaml]
  *                           [--evento buen-fin-2026] [--criterio ahorro|total] [--todas] [--rendimiento 10] [--categoria ropa]
  *   node src/cli.ts comparar --precio 12987 [--comercios amazon,walmart] [--dia …] [--cartera …] [--criterio …] [--categoria …]
@@ -10,7 +10,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { parseArgs } from "node:util";
 import { parse } from "yaml";
 import { z } from "zod";
-import { cargarCatalogo, ErrorCatalogo, type Catalogo } from "./catalogo.ts";
+import { cargarCatalogo, ErrorCatalogo, EVENTOS_DEMO, type Catalogo } from "./catalogo.ts";
 import { evaluar, ordenar, mejoresPorInstrumento, type Opcion, type Criterio } from "./motor.ts";
 
 const ArchivoCartera = z.object({
@@ -99,12 +99,12 @@ function main() {
       evento: { type: "string", default: "buen-fin-2026" }, cartera: { type: "string", default: "ejemplos/cartera.yaml" },
       criterio: { type: "string", default: "ahorro" }, todas: { type: "boolean", default: false },
       rendimiento: { type: "string" }, categoria: { type: "string" }, comercios: { type: "string" },
-      escribir: { type: "string" },
+      escribir: { type: "string" }, demo: { type: "boolean", default: false },
     },
   });
   let cat: Catalogo;
   try {
-    cat = cargarCatalogo();
+    cat = cargarCatalogo(undefined, values.demo ? { eventosExtra: [EVENTOS_DEMO] } : {});
   } catch (e) {
     if (e instanceof ErrorCatalogo) { console.error(e.message); process.exit(1); }
     throw e;

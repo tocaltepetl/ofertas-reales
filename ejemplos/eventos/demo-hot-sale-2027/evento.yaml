@@ -1,0 +1,8 @@
+# DEMOSTRACIÓN: evento ficticio para probar la web con varios eventos (npm run web:demo).
+# No es el Hot Sale real ni contiene promociones reales.
+id: demo-hot-sale-2027
+nombre: "[DEMO] Hot Sale 2027 (ficticio)"
+desde: 2027-05-24
+hasta: 2027-06-01
+zona_horaria: America/Mexico_City
+sitio: https://example.com/demo-hot-sale-2027
