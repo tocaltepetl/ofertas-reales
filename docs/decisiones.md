@@ -37,14 +37,26 @@ y qué hacer si no respetan la promoción.
   y el directorio de oficinas, tomados de `concilianet.profeco.gob.mx`
   (`catalogo/profeco.yaml`).
 
-### Plataforma Nacional de Transparencia
-**Pendiente:** buscar en el
-[buscador de la PNT](https://buscador.plataformadetransparencia.org.mx/)
-solicitudes previas a Profeco sobre «Buen Fin» (monitoreo de precios, quejas
-por comercio, datos de QQP). No se pudo hacer desde aquí porque el buscador
-necesita un navegador. Si nadie las ha pedido, la siguiente solicitud sería
-la base de precios del monitoreo del Buen Fin y las quejas por proveedor, con
-su prueba en seco (sujeto obligado: Procuraduría Federal del Consumidor).
+### Plataforma Nacional de Transparencia (búsqueda del 2026-11-26)
+En el [buscador de la PNT](https://buscador.plataformadetransparencia.org.mx/),
+sección Solicitudes, «"Buen Fin"» da 84 solicitudes (índice actualizado al
+21 nov 2026); 27 son a Profeco. Las revisamos todas: casi todas coinciden por
+otras palabras (denuncias penales, quejas contra personal, Telcel, Inditex).
+Solo dos tratan del Buen Fin:
+- **1031500063315** (17 nov 2015): multas por información engañosa en el Buen
+  Fin, precios que subieron sin justificación cambiaria y personal que atiende
+  quejas. Respondida con entrega de información el 13 dic 2015.
+- **340024500038425** (1 dic 2025): pide la presentación de una capacitación
+  a proveedores («El Buen Fin está Hecho en México»). No sirve aquí.
+
+**Nadie ha pedido** la base del monitoreo de precios del Buen Fin (QQP) ni las
+quejas por proveedor durante el evento. Siguiente paso: redactar esa solicitud
+con su prueba en seco
+([guía común](https://github.com/tocaltepetl/.github/blob/main/docs/solicitudes/README.md)).
+Sujeto obligado probable: Procuraduría Federal del Consumidor (QQP y quejas
+son suyos); falta confirmar el nombre exacto en el catálogo de la PNT. Buscar
+«"Quién es Quién en los Precios"» no sirvió: el buscador lo trata como palabras
+sueltas (9.9 millones de resultados).
 
 ### Cómo se modeló
 - `catalogo/profeco.yaml`: canales que valen para cualquier evento, con su
