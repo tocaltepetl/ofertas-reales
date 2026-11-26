@@ -4,8 +4,8 @@ import { join, resolve } from "node:path";
 import { parse } from "yaml";
 import { z } from "zod";
 import {
-  Instrumentos, Comercios, Evento, ArchivoPromos,
-  type Emisor, type Producto, type Comercio, type Evento as TEvento, type Promocion, type Atributo,
+  Instrumentos, Comercios, Evento, ArchivoPromos, Profeco,
+  type Profeco as TProfeco, type Emisor, type Producto, type Comercio, type Evento as TEvento, type Promocion, type Atributo,
 } from "./esquema.ts";
 
 export interface Catalogo {
@@ -17,6 +17,8 @@ export interface Catalogo {
   eventos: Map<string, TEvento>;
   /** promociones por evento */
   promociones: Map<string, Promocion[]>;
+  /** canales de Profeco (catalogo/profeco.yaml), si existe */
+  profeco?: TProfeco;
 }
 
 export class ErrorCatalogo extends Error {
@@ -67,6 +69,8 @@ export function cargarCatalogo(raiz = join(RAIZ_PROYECTO, "catalogo"), opciones:
     }
   }
   const comercios = new Map((com?.comercios ?? []).map((c) => [c.id, c]));
+  const archivoProfeco = join(raiz, "profeco.yaml");
+  const profeco = existsSync(archivoProfeco) ? leer(archivoProfeco, Profeco, errores) : undefined;
 
   const eventos = new Map<string, TEvento>();
   const promociones = new Map<string, Promocion[]>();
@@ -89,6 +93,10 @@ export function cargarCatalogo(raiz = join(RAIZ_PROYECTO, "catalogo"), opciones:
   }
 
   // Referencias cruzadas
+  for (const ev of eventos.values()) {
+    for (const c of ev.profeco?.balance?.casos ?? [])
+      if (c.comercio && !comercios.has(c.comercio)) errores.push(`${ev.id}: caso de Profeco con comercio desconocido ${c.comercio}`);
+  }
   const nombresEmisores = new Set((inst?.emisores ?? []).map((e) => e.id));
   for (const [evId, lista] of promociones) {
     const ev = eventos.get(evId)!;
@@ -118,5 +126,5 @@ export function cargarCatalogo(raiz = join(RAIZ_PROYECTO, "catalogo"), opciones:
   }
 
   if (errores.length) throw new ErrorCatalogo(errores);
-  return { raiz, emisores: inst!.emisores, productos, atributos, comercios, eventos, promociones };
+  return { raiz, emisores: inst!.emisores, productos, atributos, comercios, eventos, promociones, profeco };
 }

@@ -4,3 +4,21 @@ desde: 2026-11-13
 hasta: 2026-11-17
 zona_horaria: America/Mexico_City
 sitio: https://www.elbuenfin.org
+profeco:
+  # Micrositio de Quién es Quién en los Precios para el Buen Fin (activo del 13 al 17 nov).
+  comparador: https://elbuenfin.profeco.gob.mx/
+  balance:
+    titulo: Profeco detectó ofertas reales y simuladas durante la edición 16 de El Buen Fin
+    url: https://www.gob.mx/profeco/prensa/profeco-detecto-ofertas-reales-y-simuladas-durante-la-edicion-16-de-el-buen-fin
+    fecha: 2026-11-23
+    resumen: >-
+      Profeco siguió los precios de 55 mil productos en 400 puntos de venta, de septiembre al
+      último día del Buen Fin, con Quién es Quién en los Precios.
+    # Los casos que cita el comunicado, tal cual (precio antes → precio durante el evento).
+    casos:
+      - { tienda: Walmart Santa María Coacalco, comercio: walmart, producto: "Pantalla Hisense de 55 pulgadas", antes: 8999, durante: 5599 }
+      - { tienda: Soriana Híper Campeche Central, producto: Lavadora Mabe, antes: 11239, durante: 7490 }
+      - { tienda: Sears La Gran Plaza Guadalajara, producto: Estufa Mabe, antes: 17199, durante: 9499 }
+      - { tienda: Coppel Selem Campeche, comercio: coppel, producto: Lavadora Mabe, antes: 9199, durante: 14699 }
+      - { tienda: Soriana Híper Río Nilo Guadalajara, producto: Freidora T-Fal, antes: 2319, durante: 3400 }
+      - { tienda: Liverpool Campeche, comercio: liverpool, producto: Minisplit LG, antes: 8626.91, durante: 9134.37 }

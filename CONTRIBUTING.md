@@ -4,6 +4,8 @@ Este catálogo lo mantiene la comunidad. Las promociones cambian a diario y los 
 
 No necesitas programar para ayudar. Lo más valioso es **confirmar promos**.
 
+Estas son las reglas propias del catálogo. Las comunes a todos los proyectos de tocaltepetl (privacidad, código de conducta, buscar antes lo que ya publica el gobierno) están en el [CONTRIBUTING común](https://github.com/tocaltepetl/.github/blob/main/CONTRIBUTING.md).
+
 ## Qué hace falta ahora
 
 [`docs/pendientes.md`](docs/pendientes.md) lista las promociones dudosas, con lo que falta en cada una, y cuántas no ha revisado ninguna persona. Se regenera con `npm run pendientes`.
@@ -49,6 +51,8 @@ npm run web       # versión web local en http://127.0.0.1:8766
 | `fuentes/<evento>.json` | Las URLs que captura `scripts/captura.py` |
 | `snapshots/<evento>/` | Las capturas guardadas (HTML, texto, PDFs), `manifest.jsonl` y `archivo-ia.jsonl` (respaldos en Internet Archive) |
 | `docs/aprendizajes.md` | Lo que hemos aprendido sobre dónde y cómo buscar promos |
+| `catalogo/profeco.yaml` | Canales de Profeco (teléfono, Concilianet, comparador) |
+| `docs/decisiones.md` | Decisiones del proyecto y lo que publica Profeco |
 
 ### Confirmar una promo en el YAML
 
@@ -90,6 +94,10 @@ Después de capturar, corre `python3 scripts/archivar.py snapshots/<evento>`. Pi
 Copia una promo parecida del mismo comercio y ajústala; los comentarios de `src/esquema.ts` explican cada campo. Las recetas de los casos difíciles (tramos acumulados, campañas en varios comercios, "paga después", opciones excluyentes) están en la sección *Modelado* de [`docs/aprendizajes.md`](docs/aprendizajes.md).
 
 Un evento nuevo es una carpeta `catalogo/eventos/<id>/` con su `evento.yaml` y sus `promos/`; el motor no tiene código específico de ningún evento.
+
+### Agregar lo que publica Profeco de un evento
+
+En el `evento.yaml`, el bloque `profeco` lleva el `comparador` (el micrositio de Quién es Quién en los Precios para ese evento) y, cuando Profeco publica su balance, el comunicado con sus `casos` (tienda, producto, precio `antes` y `durante`). Copia los casos tal como vienen en el comunicado oficial; las cifras que solo salen en la prensa no se cargan. Anota en `docs/decisiones.md` qué buscaste y dónde.
 
 ### Antes de abrir el PR
 

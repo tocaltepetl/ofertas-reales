@@ -32,6 +32,7 @@
   <div class="cabeza">
     <h1 id="titulo-evento">¿Dónde y cómo me conviene pagar?</h1>
     <p class="sub" id="subtitulo">Cargando catálogo…</p>
+    <p class="sub" id="ir-profeco-caja" hidden><button class="enlace" id="ir-profeco"></button></p>
     <div id="aviso" hidden></div>
   </div>
 
@@ -43,6 +44,7 @@
         <h2>Tu compra</h2>
         <label class="field" for="precio">Precio (MXN)</label>
         <input type="number" id="precio" min="0" step="1" inputmode="numeric">
+        <p class="note" id="nota-precio" hidden></p>
         <div class="row2">
           <div>
             <label class="field" for="dia">Día</label>
@@ -93,12 +95,20 @@
       <div class="card mt" id="detalle"></div>
     </section>
   </main>
+
+  <section id="profeco" class="card profeco" aria-label="Profeco" hidden></section>
 </section>
 <footer class="pie">
   <p>Tus tarjetas y preferencias se guardan solo en este navegador; no se envían a ningún servidor.
     <span id="borrar-caja"><button class="enlace" id="borrar">Borrar lo guardado</button></span></p>
   <p>Las condiciones del banco y del comercio son las que valen; revísalas antes de comprar. No es asesoría financiera.</p>
+  <p>Contamos visitas con Cloudflare Web Analytics, sin cookies ni datos personales.
+    <a href="https://github.com/tocaltepetl/.github/blob/main/docs/privacidad.md" target="_blank" rel="noopener">Cómo cuidamos tu privacidad</a>.</p>
+  <p>Un proyecto abierto de <a href="https://github.com/tocaltepetl" target="_blank" rel="noopener">tocaltepetl</a> ·
+    <a href="https://github.com/tocaltepetl/buenfin" target="_blank" rel="noopener">código y datos</a>.</p>
 </footer>
 <script type="module" src="app.js"></script>
+<!-- Cloudflare Web Analytics: visitas sin cookies ni datos personales -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "05f1e13089164a0b824bb84ea67449e1"}'></script>
 </body>
 </html>

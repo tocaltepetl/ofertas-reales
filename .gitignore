@@ -5,3 +5,4 @@ node_modules/
 snapshots/index.html
 web/dist/
 web/dist-artefacto/
+.capturas/
