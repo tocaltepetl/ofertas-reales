@@ -107,5 +107,26 @@ servidor) que sirve `web/dist/`, generado en el workflow con
   debe dar 200, y `curl -s https://ofertas-reales.tocaltepetl.org | grep cloudflareinsights`
   debe encontrar el beacon (los Workers con assets no lo inyectan solos).
 
+### Primer despliegue (2026-11-26, manual)
+Black Friday empezaba al día siguiente y Actions no corría en el repo (0
+corridas) ni existía aún el secreto `CLOUDFLARE_API_TOKEN`. Se publicó a mano
+con `wrangler deploy` desde la rama `captura-black-friday-26nov` (versión
+`pre-5a73308`, que incluye los PR #1 y #2 sin fusionar), sin la aprobación de
+`production`. Verificado: la página, `og.png`, `favicon.svg` y
+`catalogo.json` dan 200 y el beacon está en la página. Las siguientes
+publicaciones deben pasar por `release.yml` o `desplegar.yml`.
+
 ### Pendiente
 - Agregar el proyecto a `profile/README.md` de `.github`.
+
+## 2026-11-26: cuenta de Internet Archive para los respaldos
+
+Save Page Now anónimo a veces devuelve una captura vieja sin avisar, y
+`archivar.py` lo deducía de la redirección. Se creó una cuenta de archive.org,
+y el script usa la API autenticada
+(SPN2) cuando encuentra las llaves: pide la captura, recibe un `job_id` y
+consulta el estado hasta tener la fecha exacta. Las llaves viven fuera del repo
+(`~/.config/tocaltepetl/ia.env` o variables de entorno). Solo se piden capturas
+de páginas públicas; no se suben a archive.org los archivos de `snapshots/`,
+que son de sus titulares y se guardan solo como evidencia.
+

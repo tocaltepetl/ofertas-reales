@@ -89,6 +89,15 @@ Si hay algo que la persona debe saber y el motor no calcula (cupos, bolsas limit
 
 Después de capturar, corre `python3 scripts/archivar.py snapshots/<evento>`. Pide a la Wayback Machine una captura de cada URL del manifiesto y anota el enlace en `snapshots/<evento>/archivo-ia.jsonl`. Es un testigo independiente, con fecha, de lo que decía la fuente. Se puede volver a correr: solo reintenta las URLs que fallaron.
 
+Con una cuenta de archive.org, el script usa la API autenticada de Save Page Now: sabe si cada captura salió bien y con qué fecha, en vez de deducirlo de una redirección. Genera tus llaves en [archive.org/account/s3.php](https://archive.org/account/s3.php) y guárdalas fuera del repo, en `~/.config/tocaltepetl/ia.env` (permisos `600`):
+
+```
+IA_ACCESS=…
+IA_SECRET=…
+```
+
+(o expórtalas como `IA_ACCESS` e `IA_SECRET`). Si una captura sigue en la cola de Internet Archive al acabar la espera (`--espera`, 15 min por defecto), queda anotado su `job_spn2` y la siguiente corrida la retoma.
+
 ### Agregar una promoción o un evento
 
 Copia una promo parecida del mismo comercio y ajústala; los comentarios de `src/esquema.ts` explican cada campo. Las recetas de los casos difíciles (tramos acumulados, campañas en varios comercios, "paga después", opciones excluyentes) están en la sección *Modelado* de [`docs/aprendizajes.md`](docs/aprendizajes.md).

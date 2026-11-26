@@ -174,6 +174,174 @@
    "url": "https://www.bbva.mx/black-friday.html",
    "render": true,
    "nota": "el 18 nov aún mostraba la edición 2025 (TyC_Black-Friday-solo-28nov2025.pdf); bajar el PDF de 2026 cuando aparezca"
+  },
+  {
+   "id": "banco-banamex-46531",
+   "tipo": "banco",
+   "emisor": "banamex",
+   "url": "https://www.banamex.com/sitios/promociones/promocion/detalle.html?id=46531",
+   "render": true,
+   "nota": "promoción de Banamex que aparece al buscar Black Days de Liverpool; confirmar a qué evento corresponde"
+  },
+  {
+   "id": "comercio-amazon-tyc-banorte",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516790011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Banorte (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-revolut",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=223936358011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Revolut (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-falabella",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224103438011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Falabella (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-hey",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=223936391011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Hey (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-klar",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=223936342011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Klar (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-openbank",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=223936354011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Openbank (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-rappi",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=223936382011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Rappi (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-mifel",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=223936363011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Mifel (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-scotiabank",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=223936348011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Scotiabank (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-nu",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=223936372011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Nu (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-didi",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516664011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de DiDi (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-bancoppel",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516784011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de BanCoppel (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-invex",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516674011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Invex (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-afirme",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516782011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Afirme (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-bbva",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516660011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de BBVA (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-access",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=222905094011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Access (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-santander",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516728011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Santander (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-banamex",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516780011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de Banamex (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-amazon-tyc-hsbc",
+   "tipo": "comercio-banco",
+   "comercio": "amazon",
+   "url": "https://www.amazon.com.mx/b?node=224516792011",
+   "render": true,
+   "nota": "términos del cupón o bonificación de HSBC (botón BANKP_F_button de la página de promociones bancarias, 26 nov)"
+  },
+  {
+   "id": "comercio-homedepot-tyc",
+   "tipo": "comercio",
+   "comercio": "homedepot",
+   "url": "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea",
+   "render": true,
+   "nota": "condiciones en línea; anclas #BFriday2026_Banamex, #BFriday2026_Banorte, #BFriday2026_BBVA y #BF2026_NU"
   }
  ]
 }

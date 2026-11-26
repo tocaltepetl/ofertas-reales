@@ -1,5 +1,6 @@
 # Promociones bancarias de The Home Depot México, Black Friday 2026.
-# BBVA "paga en marzo" es una promoción general del banco (T&C del 27 nov); revisada: false hasta cotejarla a mano.
+# BBVA "paga en marzo" es una promoción general del banco (T&C del 27 nov). Del 26 al 30 nov, Home Depot suma
+# bonificaciones de Banamex, BBVA, Banorte y los folios de Nu. revisada: false hasta cotejarlas a mano.
 promociones:
   # ---------------- BBVA ----------------
   - id: hd-bf-bbva-paga-marzo
@@ -28,3 +29,177 @@ promociones:
       evidencia: "Realiza compras el 27 de noviembre de 2026 en una sola exhibición (un solo pago) con tus tarjetas de crédito BBVA físicas o digitales y comienza a pagarlas hasta marzo* de 2027 a 3 meses sin intereses."
       nota: "Válido en comercios físicos y en línea de la República Mexicana; página: snapshots/black-friday-2026/banco-bbva/20261125-182707.txt (https://www.bbva.mx/black-friday.html)"
 
+  # ---------------- Banamex (26 al 30 nov) ----------------
+  - id: hd-bf-banamex-12msi
+    nombre: 15% de bonificación Banamex a 12 MSI
+    comercio: homedepot
+    patrocinador: banamex
+    campana: banamex-hd-bf26
+    instrumentos: [banamex.tdc, banamex.homedepot]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 8500}
+      plazos: {permitidos: [12]}
+    avisos:
+      - "Mínimo de $8,500 en un mismo ticket, a 12 MSI"
+      - "Tope de $5,000 por cliente, compartido con la promo a 18 MSI de la Tarjeta The Home Depot Banamex"
+      - "Se refleja a más tardar 90 días naturales después del 30 nov como 15% REEMBOLSO"
+      - "No participan corporativas ni Costco Banamex"
+      - "Excluye materiales básicos de construcción (varilla, castillos, malla, alambre, cemento, block, barro)"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea#BFriday2026_Banamex"
+      snapshot: snapshots/black-friday-2026/comercio-homedepot-tyc/20261126-155755.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "Condiciones en línea de Home Depot (sección Banamex, 26 al 30 nov): 15% a 12 MSI con TDC Banamex o The Home Depot Banamex, mínimo $8,500 por ticket, tope $5,000 por cliente."
+      evidencia: "Para participar por el 15% de bonificación en compras a 12 Meses Sin Intereses con Tarjetas de Crédito Banamex y Tarjeta de Crédito The Home Depot Banamex el monto mínimo de compra es de $8,500 MXN en un mismo ticket."
+
+  - id: hd-bf-banamex-hd-18msi
+    nombre: 15% de bonificación con Tarjeta The Home Depot Banamex a 18 MSI
+    comercio: homedepot
+    patrocinador: banamex
+    campana: banamex-hd-bf26
+    instrumentos: [banamex.homedepot]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 12500}
+      plazos: {permitidos: [18]}
+    avisos:
+      - "Mínimo de $12,500 en un mismo ticket, a 18 MSI"
+      - "Tope de $5,000 por cliente, compartido con la promo a 12 MSI"
+      - "Se refleja a más tardar 90 días naturales después del 30 nov como 15% REEMBOLSO"
+      - "Excluye materiales básicos de construcción (varilla, castillos, malla, alambre, cemento, block, barro)"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea#BFriday2026_Banamex"
+      snapshot: snapshots/black-friday-2026/comercio-homedepot-tyc/20261126-155755.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "Misma sección de Banamex: el 15% a 18 MSI es solo con la Tarjeta The Home Depot Banamex, mínimo $12,500; tope de $5,000 por cliente para la promoción del 15%."
+      evidencia: "Para participar por el 15% de bonificación en compras a 18 Meses Sin Intereses con Tarjeta de Crédito The Home Depot Banamex el monto mínimo de compra es de $12,500 MXN en un mismo ticket."
+
+  - id: hd-bf-banamex-pesos-haz-mas
+    nombre: Pesos Haz Más con Tarjeta The Home Depot Banamex a 12 o 18 MSI
+    comercio: homedepot
+    patrocinador: banamex
+    instrumentos: [banamex.homedepot]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio:
+      tipo: bonificacion
+      forma: monedero
+      tramos:
+        - {meses: [12], desde: 8500, pct: 3}
+        - {meses: [18], desde: 12500, pct: 3}
+    condiciones:
+      plazos: {permitidos: [12, 18]}
+    avisos:
+      - "Se modela el 3% de la tarjeta física; con Tarjeta Digital en homedepot.com.mx o billetera digital en tienda son 5%"
+      - "Pesos Haz Más = dinero electrónico 1:1, solo canjeable en The Home Depot; llegan 60 días naturales después del 30 nov"
+      - "No aplica vía PayPal"
+      - "Excluye materiales básicos de construcción (varilla, castillos, malla, alambre, cemento, block, barro)"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea#BFriday2026_Banamex"
+      snapshot: snapshots/black-friday-2026/comercio-homedepot-tyc/20261126-155755.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "Sección Banamex: Pesos Haz Más 5% (digital) o 3% (física) a 12 MSI desde $8,500 o 18 MSI desde $12,500; no vía PayPal."
+      evidencia: "5% en Pesos Haz Más en compras a 12 o 18 Meses Sin Intereses con Tarjeta de Crédito Digital The Home Depot Banamex o con Billetera Digital o 3% en Pesos Haz Más en compras a 12 o 18 Meses Sin Intereses con Tarjeta The Home Depot Banamex física."
+
+  # ---------------- BBVA (26 al 30 nov) ----------------
+  - id: hd-bf-bbva-13msi
+    nombre: 15% de bonificación BBVA a 13 MSI
+    comercio: homedepot
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, tope_por: dia, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 10000}
+      plazos: {permitidos: [13]}
+    avisos:
+      - "Automática; se refleja en 5 días hábiles como BONIF HOME DEPOT"
+      - "Tope de $5,000 por cliente y por día"
+      - "No participan Mi Primera Tarjeta, Crea, Negocio ni Micro Negocios"
+      - "Excluye materiales básicos de construcción (varilla, castillos, malla, alambre, cemento, block, barro)"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea#BFriday2026_BBVA"
+      snapshot: snapshots/black-friday-2026/comercio-homedepot-tyc/20261126-155755.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "Sección BBVA (26 al 30 nov): 15% a 13 MSI desde $10,000, tope $5,000 por cliente y por día, TDC física y digital salvo Mi Primera Tarjeta, Crea, Negocio y Micro Negocios."
+      evidencia: "En tienda y en línea, obtén una bonificación del 15% en tu estado de cuenta al comprar a 13 Meses Sin Intereses a partir de $10,000 MXN."
+
+  # ---------------- Banorte (26 al 30 nov) ----------------
+  - id: hd-bf-banorte-12msi
+    nombre: 15% de bonificación Banorte a 12 MSI
+    comercio: homedepot
+    patrocinador: banorte
+    instrumentos: [banorte.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: bonificacion, pct: 15, tope: 5000, forma: estado_de_cuenta}
+    condiciones:
+      minimo: {monto: 8500}
+      plazos: {permitidos: [12]}
+    avisos:
+      - "Mínimo de $8,500 por ticket, no acumulable"
+      - "Tope de $5,000 por cliente; se refleja a más tardar el 30 dic"
+      - "No participan Básica, Conmigo, Corporativa, Empuje Negocios, Negocios y Empresas, Rappi Card ni Va Crédito"
+      - "No aplica vía PayPal"
+      - "Excluye materiales básicos de construcción (varilla, castillos, malla, alambre, cemento, block, barro)"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea#BFriday2026_Banorte"
+      snapshot: snapshots/black-friday-2026/comercio-homedepot-tyc/20261126-155755.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "Sección Banorte (26 al 30 nov): 15% a 12 MSI, mínimo $8,500 por ticket, tope $5,000, exclusiones de tarjetas y PayPal."
+      evidencia: "Compra mínima: $8,500 MXN por ticket, no acumulable. Tope de bonificación: $5,000 MXN por cliente"
+
+  # ---------------- Nu ----------------
+  - id: hd-bf-nu-folios
+    nombre: Folios Nuviembre (bonificaciones de $300 a $100,000)
+    comercio: homedepot
+    patrocinador: nu
+    instrumentos: [nu.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: sorteo, por_cada: 3000}
+    condiciones:
+      minimo: {monto: 6500}
+      plazos: {min: 6}
+      registro_previo: App Nu (solo clientes a quienes se muestre la campaña)
+    avisos:
+      - "Es la misma campaña Nuviembre del Buen Fin (13 al 30 nov): los folios que ya ganaste cuentan para el máximo de 5"
+      - "Un folio por cada $3,000 acumulados a 6+ MSI; ~1 de cada 10 folios trae bonificación"
+      - "Mínimo por plazo: $6,500 (6 MSI), $8,500 (12) o $12,500 (18)"
+      - "Premio no garantizado"
+    fuente:
+      url: "https://www.homedepot.com.mx/condiciones-promociones-meses-sin-intereses-en-linea#BF2026_NU"
+      snapshot: snapshots/black-friday-2026/comercio-homedepot-tyc/20261126-155755.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "Sección NU (vigencia 13 al 30 nov): folio por cada $3,000 a 6+ MSI, máximo 5, mínimos por plazo de Home Depot."
+      evidencia: "Por cada $3,000 MXN en compras acumuladas desde 6 Meses Sin Intereses con Tarjetas de Crédito NU, obtén un folio"
