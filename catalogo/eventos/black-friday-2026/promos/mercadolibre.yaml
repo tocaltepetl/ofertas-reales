@@ -1,0 +1,30 @@
+# Promociones bancarias de Mercado Libre, Black Friday 2026.
+# BBVA "paga en marzo" es una promoción general del banco (T&C del 27 nov); revisada: false hasta cotejarla a mano.
+promociones:
+  # ---------------- BBVA ----------------
+  - id: ml-bf-bbva-paga-marzo
+    nombre: BBVA Black Friday, paga en marzo 2027 a 3 MSI
+    comercio: mercadolibre
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-27, hasta: 2026-11-27}
+    beneficio:
+      tipo: diferido
+      descripcion: "Compra en una exhibición; primer pago en marzo 2027 (o febrero según tu corte), a 3 MSI"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: "App BBVA, del 24 al 26 nov o del 1 al 9 dic"
+    avisos:
+      - "Solo compras del 27 nov; cada compra de $3,500 o más en una exhibición (no se acumulan compras para el mínimo)"
+      - "Promoción general de BBVA en cualquier comercio nacional; no aplica a MSI del comercio"
+      - "No participan Crea, Mi Primera Tarjeta, Congelada, Negocio ni tarjetas de marca propia de comercios"
+      - "No suma ahorro: es un diferimiento sin intereses"
+    fuente:
+      url: "https://www.bbva.mx/content/dam/public-web/mexico/documents/tycs/Terminos-y-Condiciones_Black-Friday-Skip3MSI_27-Nov-2026.pdf"
+      snapshot: snapshots/black-friday-2026/banco-bbva-tyc/20261125-skip3msi.txt
+      capturada: 2026-11-25
+      revisada: false
+      evidencia: "Realiza compras el 27 de noviembre de 2026 en una sola exhibición (un solo pago) con tus tarjetas de crédito BBVA físicas o digitales y comienza a pagarlas hasta marzo* de 2027 a 3 meses sin intereses."
+      nota: "Válido en comercios físicos y en línea de la República Mexicana; página: snapshots/black-friday-2026/banco-bbva/20261125-182707.txt (https://www.bbva.mx/black-friday.html)"
+

@@ -1,0 +1,114 @@
+# Promociones bancarias de Walmart México, Black Friday 2026.
+# BBVA "paga en marzo" es una promoción general del banco (T&C del 27 nov); revisada: false hasta cotejarla a mano.
+promociones:
+  # ---------------- BBVA ----------------
+  - id: wm-bf-bbva-paga-marzo
+    nombre: BBVA Black Friday, paga en marzo 2027 a 3 MSI
+    comercio: walmart
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-27, hasta: 2026-11-27}
+    beneficio:
+      tipo: diferido
+      descripcion: "Compra en una exhibición; primer pago en marzo 2027 (o febrero según tu corte), a 3 MSI"
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {permitidos: [0]}
+      registro_previo: "App BBVA, del 24 al 26 nov o del 1 al 9 dic"
+    avisos:
+      - "Solo compras del 27 nov; cada compra de $3,500 o más en una exhibición (no se acumulan compras para el mínimo)"
+      - "Promoción general de BBVA en cualquier comercio nacional; no aplica a MSI del comercio"
+      - "No participan Crea, Mi Primera Tarjeta, Congelada, Negocio ni tarjetas de marca propia de comercios"
+      - "No suma ahorro: es un diferimiento sin intereses"
+    fuente:
+      url: "https://www.bbva.mx/content/dam/public-web/mexico/documents/tycs/Terminos-y-Condiciones_Black-Friday-Skip3MSI_27-Nov-2026.pdf"
+      snapshot: snapshots/black-friday-2026/banco-bbva-tyc/20261125-skip3msi.txt
+      capturada: 2026-11-25
+      revisada: false
+      evidencia: "Realiza compras el 27 de noviembre de 2026 en una sola exhibición (un solo pago) con tus tarjetas de crédito BBVA físicas o digitales y comienza a pagarlas hasta marzo* de 2027 a 3 meses sin intereses."
+      nota: "Válido en comercios físicos y en línea de la República Mexicana; página: snapshots/black-friday-2026/banco-bbva/20261125-182707.txt (https://www.bbva.mx/black-friday.html)"
+
+  # ---------------- Cupones de Walmart (Cyber) ----------------
+  - id: wm-bf-wb12cyber26
+    nombre: Cupón WB12CYBER26 (BBVA y Walmart INVEX a 12 MSI)
+    codigo: WB12CYBER26
+    comercio: walmart
+    patrocinador: walmart
+    instrumentos: [bbva.tdc, invex.walmart]
+    vigencia: {desde: 2026-11-24, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 15, certeza: condicionado}
+    condiciones:
+      plazos: {permitidos: [12]}
+    excluye: [wm-bf-wb18cyber26]
+    avisos:
+      - "Solo productos participantes (los marca la propia página)"
+      - "Mínimo y tope desconocidos: la página no los muestra y no se capturó el T&C"
+    fuente:
+      url: "https://www.walmart.com.mx/content/especiales/beneficios-walmart/360013_2480003"
+      snapshot: snapshots/black-friday-2026/comercio-walmart/20261125-182707.txt
+      capturada: 2026-11-25
+      revisada: false
+      evidencia: "BBVA & WM Invex 12MSI + 15% Ahorro Adicional Cupón: WB12CYBER26. Productos Participantes."
+      nota: "Vigencia 24 al 30 nov del alt del banner en snapshots/black-friday-2026/comercio-walmart/20261125-182707.render.html"
+
+  - id: wm-bf-wb18cyber26
+    nombre: Cupón WB18CYBER26 (BBVA y Walmart INVEX a 18 MSI)
+    codigo: WB18CYBER26
+    comercio: walmart
+    patrocinador: walmart
+    instrumentos: [bbva.tdc, invex.walmart]
+    vigencia: {desde: 2026-11-24, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 15, certeza: condicionado}
+    condiciones:
+      plazos: {permitidos: [18]}
+    excluye: [wm-bf-wb12cyber26]
+    avisos:
+      - "Solo productos participantes (los marca la propia página)"
+      - "Mínimo y tope desconocidos: la página no los muestra y no se capturó el T&C"
+    fuente:
+      url: "https://www.walmart.com.mx/content/especiales/beneficios-walmart/360013_2480003"
+      snapshot: snapshots/black-friday-2026/comercio-walmart/20261125-182707.txt
+      capturada: 2026-11-25
+      revisada: false
+      evidencia: "BBVA & WM Invex 18MSI + 15% Ahorro Adicional Cupón: WB18CYBER26. Productos Participantes."
+      nota: "Vigencia 24 al 30 nov del alt del banner en snapshots/black-friday-2026/comercio-walmart/20261125-182707.render.html"
+
+  # ---------------- Banamex y Santander ----------------
+  - id: wm-bf-banamex-9msi
+    nombre: Banamex 9 MSI + 10% de ahorro adicional
+    comercio: walmart
+    patrocinador: banamex
+    instrumentos: [banamex.tdc]
+    vigencia: {desde: 2026-11-24, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, certeza: condicionado}
+    condiciones:
+      plazos: {permitidos: [9]}
+    avisos:
+      - "Requiere un código promocional del banco que no aparece en el texto de la página; búscalo en el banner de Walmart"
+      - "Mínimo, tope y productos participantes desconocidos"
+    fuente:
+      url: "https://www.walmart.com.mx/content/especiales/beneficios-walmart/360013_2480003"
+      snapshot: snapshots/black-friday-2026/comercio-walmart/20261125-182707.render.html
+      capturada: 2026-11-25
+      revisada: false
+      evidencia: "Banamex 9MSI + 10% Ahorro adicional Vigencia: 24 al 30 de noviembre"
+
+  - id: wm-bf-santander-9msi
+    nombre: Santander 9 MSI + 10% de ahorro adicional
+    comercio: walmart
+    patrocinador: santander
+    instrumentos: [santander.tdc]
+    vigencia: {desde: 2026-11-24, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, certeza: condicionado}
+    condiciones:
+      plazos: {permitidos: [9]}
+    avisos:
+      - "Requiere un código promocional del banco que no aparece en el texto de la página; búscalo en el banner de Walmart"
+      - "Mínimo, tope y productos participantes desconocidos"
+    fuente:
+      url: "https://www.walmart.com.mx/content/especiales/beneficios-walmart/360013_2480003"
+      snapshot: snapshots/black-friday-2026/comercio-walmart/20261125-182707.render.html
+      capturada: 2026-11-25
+      revisada: false
+      evidencia: "Santander 9MSI + 10% Ahorro adicional Vigencia: 24 al 30 de noviembre"
+
