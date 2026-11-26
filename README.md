@@ -2,6 +2,8 @@
 
 > ¿Es oferta? Con qué tarjeta te conviene pagar y si el precio es real.
 
+**https://ofertas-reales.tocaltepetl.org**
+
 Encuentra la mejor forma de pagar en el Buen Fin, Hot Sale y otros eventos de compras en México: con qué tarjeta, si conviene pagar a MSI o de contado, y qué cupones y bonificaciones aplican, según **las tarjetas que tú tienes**.
 
 Antes de pagar, también te ayuda a revisar con la Procuraduría Federal del Consumidor (Profeco) si el precio es real, y te dice qué hacer si no respetan la promoción.

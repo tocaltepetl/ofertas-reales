@@ -85,7 +85,27 @@ Beacon de Cloudflare Web Analytics (sin cookies ni datos personales) en
 para artefacto de claude.ai no lo lleva (`scripts/build-web.ts`): esas visitas
 no son del sitio y el visor bloquea scripts externos.
 
-### Pendiente para publicar
-- Decidir el despliegue: `ofertas-reales.tocaltepetl.org` (Worker con assets, como
-  rutas-gdl, con `release.yml` y `desplegar.yml`) o seguir solo como artefacto.
-- Si se agrega `og.png`, revisar el `.gitignore` (hoy no excluye `*.png`).
+## 2026-11-26: despliegue en ofertas-reales.tocaltepetl.org
+
+**Opciones:** solo artefacto de claude.ai · Worker de Cloudflare con dominio
+propio, como rutas-gdl.
+**Elegida:** Worker solo con assets (`wrangler.jsonc`, sin código de
+servidor) que sirve `web/dist/`, generado en el workflow con
+`npm run build:web`. El artefacto sigue disponible con `build:artefacto`.
+
+- **Versiones:** igual que rutas-gdl. `release.yml` calcula la versión con
+  los títulos de los PR (`.github/scripts/siguiente-version.sh`), espera
+  aprobación en `production`, despliega y crea tag y Release.
+  `desplegar.yml` publica a mano un tag o `main`. `pr-titulo.yml` revisa el
+  formato del título. La versión se ve en el pie (`class="ver"`).
+- **Secretos:** `CLOUDFLARE_API_TOKEN` (secreto) y `CLOUDFLARE_ACCOUNT_ID`
+  (variable) del repo, y el ambiente `production` con revisión obligatoria.
+- **Imagen para compartir:** `web/publico/og.png` (1200×630) y
+  `favicon.svg`; el build copia `web/publico/` a `web/dist/`. El `.gitignore`
+  no excluye `*.png`. Tras desplegar:
+  `curl -s -o /dev/null -w '%{http_code}' https://ofertas-reales.tocaltepetl.org/og.png`
+  debe dar 200, y `curl -s https://ofertas-reales.tocaltepetl.org | grep cloudflareinsights`
+  debe encontrar el beacon (los Workers con assets no lo inyectan solos).
+
+### Pendiente
+- Agregar el proyecto a `profile/README.md` de `.github`.

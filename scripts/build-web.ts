@@ -1,11 +1,11 @@
 /**
- * Compila el catálogo a web/dist/catalogo.json y empaqueta web/app.ts → web/dist/app.js.
+ * Compila el catálogo a web/dist/catalogo.json, empaqueta web/app.ts → web/dist/app.js y copia web/publico/.
  * Con --demo incluye también los eventos ficticios de ejemplos/eventos (para probar varios eventos).
  * Con --artefacto escribe en web/dist-artefacto/ la versión para publicar como artefacto de claude.ai:
  * página sin <html>/<head>/<body> (el visor pone el esqueleto), CSS en línea, sin source map y sin
  * el botón .ics (el visor bloquea las descargas) ni el beacon de Cloudflare.
  */
-import { mkdirSync, writeFileSync, copyFileSync, readFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, copyFileSync, readFileSync, cpSync } from "node:fs";
 import { join } from "node:path";
 import { build } from "esbuild";
 import { cargarCatalogo, EVENTOS_DEMO, RAIZ_PROYECTO } from "../src/catalogo.ts";
@@ -46,5 +46,7 @@ if (artefacto) {
 } else {
   copyFileSync(join(RAIZ_PROYECTO, "web", "index.html"), join(dist, "index.html"));
   copyFileSync(join(RAIZ_PROYECTO, "web", "estilos.css"), join(dist, "estilos.css"));
+  // favicon, og.png y demás archivos que se sirven tal cual
+  cpSync(join(RAIZ_PROYECTO, "web", "publico"), dist, { recursive: true });
 }
 console.log(`${artefacto ? "web/dist-artefacto" : "web/dist"} listo: ${Object.values(json.promociones).flat().length} promociones${demo ? " (con eventos de demostración)" : ""}`);

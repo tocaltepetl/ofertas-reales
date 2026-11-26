@@ -107,6 +107,16 @@ npm run validar && npm test && npm run pendientes
 
 Si aprendiste algo que sirva para el siguiente evento (dónde estaban las condiciones, una trampa del sitio), agrégalo a `docs/aprendizajes.md`.
 
+### Título del PR y publicación
+
+El título del PR sigue Conventional Commits y decide si se publica una versión nueva al fusionarlo:
+
+- `feat: …` (novedad, incluidas promos de un evento nuevo) → versión 0.**X**.0
+- `fix: …` (corrección de una promo o de la página) → versión 0.0.**X**
+- `docs`, `chore`, `refactor`, `test`, `ci` → no publican
+
+Si un cambio se ve en la página (promos, textos, avisos), usa `feat` o `fix` aunque sea "solo datos". Para publicar `main` sin versión nueva: Actions → Desplegar → Run workflow con `main` (o un tag para regresar a una versión anterior). Toda publicación espera aprobación en el ambiente `production`.
+
 ## Reglas del catálogo
 
 - **Toda cifra necesita una fuente.** Sin fuente oficial, la promo queda `dudosa`, aunque la hayamos visto en un foro.
