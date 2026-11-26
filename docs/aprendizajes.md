@@ -23,6 +23,9 @@ Notas que sirven para el siguiente evento (Hot Sale, Black Friday, Buen Fin 2027
 - **Los comercios separan las condiciones por canal** (en línea y en tienda, con URLs distintas y un `#ancla` por banco). Captura las dos, o las promos solo de tienda se quedan sin fuente. (BF 2026)
 - **Las páginas de condiciones por banco de Amazon** (`b?node=`) traen el texto legal completo de cada cupón y muchas veces también las condiciones de la bonificación del banco: los dos niveles de INVEX, los tramos oficiales de BanCoppel, las reglas de Revolut. Captúralas primero; valen más que la página del propio banco. (BF 2026)
 - **Las cláusulas de exclusión están en las condiciones de la bonificación del banco, no en las del cupón** ("no acumulable con otras promociones o descuentos ofrecidos por BBVA"). Lee las dos mitades de cada página de banco. (BF 2026)
+- **Amazon deja en su página de promociones bancarias ventanas de un evento anterior.** El 26 nov, la de Black Friday mezclaba los cupones nuevos (T526, PAVO) con ventanas del Buen Fin (MIFELBF26, OPBF26, SCOTBF26) cuyos `b?node=` de T&C ya salen vacíos. Antes de modelar una ventana, captura su T&C: si no trae texto o el código coincide con el evento anterior, no la cargues. `amazon.com.mx/promocionesbancarias` redirige a la misma página (`b?node=120273989011`). (BF 2026)
+- **Home Depot publica las promos de cada evento en la misma página de condiciones en línea**, con un ancla por banco y evento (`#BFriday2026_Banamex`, `#BF2026_NU`). Basta con recapturarla. (BF 2026)
+- **Una campaña de un banco puede cruzar eventos** (Nuviembre de Nu, del 13 al 30 nov, cubre Buen Fin y Black Friday). El catálogo no comparte campañas entre eventos: se modela en cada evento con su vigencia y un aviso de que el máximo de folios es uno solo. (BF 2026)
 
 ## Captura técnica
 
@@ -42,6 +45,8 @@ Notas que sirven para el siguiente evento (Hot Sale, Black Friday, Buen Fin 2027
 - **Guarda siempre el archivo original, no solo el texto.** Algunas capturas con Chrome solo guardaron el texto visible (get_page_text); como evidencia vale más el HTML o PDF tal como lo entregó el servidor, con URL, fecha y SHA-256 en el manifiesto. Con Chrome, guarda también `document.documentElement.outerHTML`. (BF 2026)
 - **Respalda en Internet Archive el mismo día de la captura** (`scripts/archivar.py`). Es evidencia independiente del repo, pero archiva lo que la página dice en ese momento y falla seguido con los sitios que bloquean bots. Complementa las capturas propias, no las reemplaza. (BF 2026)
 - **Save Page Now puede devolver una captura vieja sin avisar** (hasta del año anterior) si no la sigues bien: no sigas la redirección de `/save/`, lee su `Location`, y comprueba que la fecha de la captura sea la de hoy y que no sea la portada del sitio (los slugs equivocados redirigen ahí). `scripts/archivar.py` ya lo hace. (BF 2026)
+- **Desde el 25 nov, las páginas de banco de Mercado Libre (`/ofertas/<banco>`) piden iniciar sesión** a los scripts y a Chromium headless (370 caracteres de texto). Hay que leerlas en el Chrome del usuario o en otra fuente. (BF 2026)
+- **`bbvadescuentos.mx/blackfriday` da 404** a scripts aunque bbva.mx lo enlaza; las condiciones de BBVA en cada comercio se toman de la página del comercio. (BF 2026)
 
 ## Modelado en el catálogo
 
