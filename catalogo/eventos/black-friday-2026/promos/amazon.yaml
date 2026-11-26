@@ -1,5 +1,7 @@
 # Promociones bancarias de Amazon México, Black Friday 2026 (26 al 30 nov según Amazon).
-# Al 25 nov la página de Amazon todavía no muestra las promos de bancos; lo que hay aquí viene de otras fuentes.
+# El 26 nov Amazon ya publicó sus cupones bancarios (b?node=120273989011); cada banco enlaza a sus T&C (b?node=…).
+# Las ventanas de Revolut, Falabella, Hey, Klar, Openbank, Rappi, Mifel y Scotiabank son restos del Buen Fin
+# (mismos códigos, T&C vacíos) y no se modelan.
 # revisada: false hasta cotejarla a mano.
 promociones:
   # ---------------- Banamex ----------------
@@ -13,20 +15,27 @@ promociones:
     beneficio: {tipo: cupon, pct: 10, tope: 500}
     condiciones:
       minimo: {monto: 4500}
+      plazos: {min: 1}
     exclusiva: true
     avisos:
+      - "Solo a meses sin intereses (hasta 24 MSI)"
       - "Tope de $500 acumulado por cliente en toda la vigencia; hasta agotar cupones"
       - "No participan tarjetas corporativas"
       - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, tarjetas de regalo ni envíos"
       - "No se combina con otras promociones ni códigos promocionales"
       - "Llegó por correo a clientes Banamex Priority, aunque las bases dicen que participan todas las TDC Banamex"
     fuente:
-      url: "https://www.amazon.com.mx/blackfriday"
-      snapshot: snapshots/black-friday-2026/correo-banamex/20261125-amazon-bnmxt526.txt
-      capturada: 2026-11-25
+      url: "https://www.amazon.com.mx/b?node=224516780011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-banamex/20261126-155619.txt
+      capturada: 2026-11-26
       revisada: false
-      evidencia: "Obtén 10% de descuento en compras desde $4,500.00 pesos [...] cupón BNMXT526 [...] Vigencia: del 26 al 30 de noviembre del 2026 [...] descuento máximo acumulado por cliente [...] $500.00 pesos"
-      nota: "Correo de Banamex (PIEZA ID EPC-003267-0002), no una página pública; las bases completas están en amazon.com.mx"
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: corregida
+        notas: "T&C de Amazon (b?node=224516780011): 'Paga tus productos a Meses sin Intereses, con una tarjeta de crédito emitida en México por Banamex'. Se agrega plazos {min: 1}: el correo del 25 nov no decía que fuera solo a MSI. Mínimo, tope y vigencia coinciden. Antes la fuente era el correo de Banamex (snapshots/black-friday-2026/correo-banamex/20261125-amazon-bnmxt526.txt)."
+      evidencia: "Paga tus productos a Meses sin Intereses, con una tarjeta de crédito emitida en México por Banamex."
+      nota: "Primero llegó por correo de Banamex (25 nov); la página pública de Amazon salió el 26 nov"
 
   # ---------------- BBVA ----------------
   - id: amz-bf-bbva-paga-marzo
@@ -55,3 +64,310 @@ promociones:
       evidencia: "Realiza compras el 27 de noviembre de 2026 en una sola exhibición (un solo pago) con tus tarjetas de crédito BBVA físicas o digitales y comienza a pagarlas hasta marzo* de 2027 a 3 meses sin intereses."
       nota: "Válido en comercios físicos y en línea de la República Mexicana; página: snapshots/black-friday-2026/banco-bbva/20261125-182707.txt (https://www.bbva.mx/black-friday.html)"
 
+  # ---------------- Santander (cupón Black Friday) ----------------
+  - id: amz-bf-santt526
+    nombre: Cupón SANTT526
+    codigo: SANTT526
+    comercio: amazon
+    patrocinador: santander
+    instrumentos: [santander.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 15, tope: 1000}
+    condiciones:
+      minimo: {monto: 3500}
+      plazos: {min: 1}
+    avisos:
+      - "Solo a meses sin intereses"
+      - "Tope de $1,000 acumulado por cliente en toda la vigencia"
+      - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, suscripciones, tarjetas de regalo ni envíos"
+      - "Solo un cupón por compra; no se combina con otros códigos promocionales"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516728011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-santander/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Amazon (b?node=224516728011, botón BANKP_F_button_Santander): 15%, mínimo $3,500, solo MSI, tope $1,000, del 26 nov 00:00 al 30 nov 23:59."
+      evidencia: "Comprar un mínimo de $3,500.00 [...] Paga tus productos a Meses sin Intereses, con una tarjeta de crédito emitida en México por SANTANDER. [...] El descuento máximo acumulado por cliente de Amazon México será de $1,000.00"
+
+  # ---------------- HSBC (cupón Black Friday) ----------------
+  - id: amz-bf-hsbct526
+    nombre: Cupón HSBCT526
+    codigo: HSBCT526
+    comercio: amazon
+    patrocinador: hsbc
+    instrumentos: [hsbc.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, tope: 750}
+    condiciones:
+      minimo: {monto: 3500}
+    avisos:
+      - "De contado o a meses sin intereses"
+      - "Tope de $750 acumulado por cliente en toda la vigencia"
+      - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, suscripciones, tarjetas de regalo ni envíos"
+      - "Solo un cupón por compra; no se combina con otros códigos promocionales"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516792011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-hsbc/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Amazon (b?node=224516792011): 10%, mínimo $3,500, contado o MSI, tope $750, 26 al 30 nov."
+      evidencia: "Comprar un mínimo de $3,500.00 [...] Paga tus productos en una sola exhibición (pago de contado) o a Meses sin Intereses, con una tarjeta de crédito emitida en México por HSBC. [...] $750.00"
+
+  # ---------------- Banorte (cupón Black Friday) ----------------
+  - id: amz-bf-bnrtt526
+    nombre: Cupón BNRTT526
+    codigo: BNRTT526
+    comercio: amazon
+    patrocinador: banorte
+    instrumentos: [banorte.tdc, banorte.tdd]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {permitidos: [0]}
+    avisos:
+      - "Solo en una exhibición; no aplica a MSI"
+      - "Crédito o débito Banorte, incluidas las tarjetas Va"
+      - "Tope de $500 acumulado por cliente en toda la vigencia"
+      - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, suscripciones, tarjetas de regalo ni envíos"
+      - "Solo un cupón por compra; no se combina con otros códigos promocionales"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516790011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-banorte/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Amazon (b?node=224516790011): 10%, mínimo $4,500, solo contado, crédito o débito Banorte y Va, tope $500, 26 al 30 nov. Va no tiene instrumento propio."
+      evidencia: "Comprar un mínimo de $4,500.00 [...] Paga tus productos en una sola exhibición (pago de contado), con una tarjeta de crédito o débito emitida en México por Banorte y Va. [...] $500.00"
+
+  # ---------------- BBVA (cupón Black Friday) ----------------
+  - id: amz-bf-bbvapavo
+    nombre: Cupón BBVAPAVO
+    codigo: BBVAPAVO
+    comercio: amazon
+    patrocinador: bbva
+    instrumentos: [bbva.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {permitidos: [3, 6, 9, 12, 15]}
+    avisos:
+      - "Solo a 3, 6, 9, 12 o 15 MSI"
+      - "Tope de $500 acumulado por cliente en toda la vigencia"
+      - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, suscripciones, tarjetas de regalo ni envíos"
+      - "Solo un cupón por compra; no se combina con otros códigos promocionales"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516660011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-bbva/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Amazon (b?node=224516660011): 10%, mínimo $4,500, 3-15 MSI, tope $500, 26 al 30 nov."
+      evidencia: "Comprar un mínimo de $4,500.00 [...] Paga tus productos a Meses sin Intereses (3, 6, 9, 12 o 15 Meses sin Intereses), con una tarjeta de crédito emitida en México por BBVA. [...] $500.00"
+
+  # ---------------- INVEX (cupón Black Friday) ----------------
+  - id: amz-bf-invexpavo
+    nombre: Cupón INVEXPAVO
+    codigo: INVEXPAVO
+    comercio: amazon
+    patrocinador: invex
+    instrumentos: [invex.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {permitidos: [0, 3, 6, 9, 12]}
+    avisos:
+      - "De contado o a 3, 6, 9 o 12 MSI"
+      - "Tope de $500 acumulado por cliente en toda la vigencia"
+      - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, suscripciones, tarjetas de regalo ni envíos"
+      - "Solo un cupón por compra; no se combina con otros códigos promocionales"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516674011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-invex/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Amazon (b?node=224516674011): 10%, mínimo $4,500, contado o 3-12 MSI, tope $500, 26 al 30 nov."
+      evidencia: "Comprar un mínimo de $4,500.00 [...] Paga tus productos en una sola exhibición o Meses sin Intereses (3, 6, 9 o 12 Meses sin Intereses), con una tarjeta de crédito emitida en México por INVEX. [...] $500.00"
+
+  # ---------------- Afirme (cupón Black Friday) ----------------
+  - id: amz-bf-afirmepavo
+    nombre: Cupón AFIRMEPAVO
+    codigo: AFIRMEPAVO
+    comercio: amazon
+    patrocinador: afirme
+    instrumentos: [afirme.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, tope: 1000}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {permitidos: [0, 3, 6, 9, 12]}
+    avisos:
+      - "De contado o a 3, 6, 9 o 12 MSI"
+      - "Tope de $1,000 acumulado por cliente en toda la vigencia"
+      - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, suscripciones, tarjetas de regalo ni envíos"
+      - "Solo un cupón por compra; no se combina con otros códigos promocionales"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516782011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-afirme/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Amazon (b?node=224516782011): 10%, mínimo $4,500, contado o 3-12 MSI, tope $1,000, 26 al 30 nov."
+      evidencia: "Comprar un mínimo de $4,500.00 [...] Paga tus productos en una sola exhibición (pago de contado) o a Meses Sin Intereses (3, 6, 9 o 12 Meses sin Intereses), con una tarjeta de crédito emitida en México por AFIRME. [...] $1,000.00"
+
+  # ---------------- BanCoppel (cupón Black Friday) ----------------
+  - id: amz-bf-bcoppavod
+    nombre: Cupón BCOPPAVOD
+    codigo: BCOPPAVOD
+    comercio: amazon
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdd]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, tope: 300}
+    condiciones:
+      minimo: {monto: 1000}
+    avisos:
+      - "Con tarjeta de débito BanCoppel"
+      - "Tope de $300 acumulado por cliente en toda la vigencia"
+      - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, suscripciones, tarjetas de regalo ni envíos"
+      - "Solo un cupón por compra; no se combina con otros códigos promocionales"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516784011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-bancoppel/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Amazon (b?node=224516784011): débito, 10%, mínimo $1,000, tope $300, 26 al 30 nov."
+      evidencia: "Comprar un mínimo de $1,000.00 [...] Paga tus productos con una tarjeta de débito emitida en México por BANCOPPEL. [...] $300.00"
+
+  - id: amz-bf-bcoppavoc
+    nombre: Cupón BCOPPAVOC
+    codigo: BCOPPAVOC
+    comercio: amazon
+    patrocinador: bancoppel
+    instrumentos: [bancoppel.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, pct: 10, tope: 500}
+    condiciones:
+      minimo: {monto: 4500}
+      plazos: {permitidos: [3, 6, 9, 12, 15]}
+    avisos:
+      - "Solo a 3, 6, 9, 12 o 15 MSI"
+      - "Tope de $500 acumulado por cliente en toda la vigencia"
+      - "No aplica en libros, software digital, preventas de videojuegos y consolas, dulces y botanas, suscripciones, tarjetas de regalo ni envíos"
+      - "Solo un cupón por compra; no se combina con otros códigos promocionales"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516784011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-bancoppel/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Amazon (b?node=224516784011): crédito, 10%, mínimo $4,500, 3-15 MSI, tope $500, 26 al 30 nov."
+      evidencia: "Comprar un mínimo de $4,500.00 [...] Paga tus productos a Meses sin Intereses (3, 6, 9, 12 o 15 Meses sin Intereses), con una tarjeta de crédito emitida en México por BANCOPPEL. [...] $500.00"
+
+  # ---------------- DiDi ----------------
+  - id: amz-bf-didi-cashback
+    nombre: Cashback DiDi Card 15%
+    comercio: amazon
+    patrocinador: didi
+    instrumentos: [didi.tarjeta]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cashback, pct: 15, tope: 500, forma: saldo_app}
+    condiciones:
+      plazos: {permitidos: [0]}
+      registro_previo: App DiDi, campaña de cashback (solo cuentan compras posteriores al registro)
+    avisos:
+      - "Sin mínimo de compra; tope de $500 por tarjetahabiente en toda la vigencia"
+      - "No aplica a meses sin intereses ni pagos diferidos"
+      - "Llega en 7 días hábiles como saldo en la app DiDi (vigente 365 días): sirve para pagar la tarjeta o usar en DiDi"
+      - "Si otra campaña de cashback aplica a la misma compra, solo se da la de mayor beneficio"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=224516664011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-didi/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Regigold (DiDi) en Amazon, actualizados el 26 nov: 15% de cada compra elegible, tope $500 por tarjetahabiente, sin mínimo, registro previo en la app, excluye MSI, 26 al 30 nov."
+      evidencia: "La bonificación equivale al quince por ciento (15%) del monto de cada compra elegible. El monto máximo acumulado por tarjeta habiente durante el periodo de vigencia es de $500.00 MXN"
+
+  # ---------------- Nu ----------------
+  - id: amz-bf-nu-pase-morado
+    nombre: Pase Morado Nuviembre
+    comercio: amazon
+    patrocinador: nu
+    instrumentos: [nu.tdc]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: sorteo, por_cada: 3000}
+    condiciones:
+      minimo: {monto: 3000}
+      plazos: {min: 6}
+      registro_previo: App Nu (registro del 2 al 30 nov)
+    avisos:
+      - "Es la misma campaña Nuviembre del Buen Fin (13 al 30 nov): los folios que ya ganaste cuentan para el máximo de 5"
+      - "Un folio por cada $3,000 acumulados a 6 o más MSI; ~1 de cada 10 folios trae bonificación ($300 a $100,000)"
+      - "Premio no garantizado"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=223936372011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-tyc-nu/20261126-155619.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion:
+        por: agente
+        fecha: 2026-11-26
+        resultado: coincide
+        notas: "T&C de Nu en Amazon: fase de acumulación del 13 al 30 nov, un Pase Morado por cada $3,000 a 6+ MSI, máximo 5. La bonificación directa de $1,000 por cada $10,000 era de la fase acelerada (13 al 18 nov), así que no se modela aquí."
+      evidencia: "Por cada $3,000.00 (tres mil pesos Moneda Nacional) de compras elegibles acumuladas, realizadas a 6 (seis) o más Meses Sin Intereses, los Participantes obtendrán un Pase Morado"
+
+  # ---------------- Kueski ----------------
+  - id: amz-bf-kueskimania
+    nombre: Cupón KUESKIMANIA
+    codigo: KUESKIMANIA
+    comercio: amazon
+    patrocinador: kueski
+    instrumentos: [kueski.pay]
+    vigencia: {desde: 2026-11-26, hasta: 2026-11-30}
+    beneficio: {tipo: cupon, monto: 200}
+    condiciones:
+      minimo: {monto: 2000}
+    avisos:
+      - "Para clientes nuevos y recurrentes de Kueski Pay; el código se usa una sola vez"
+      - "Kueski Pay puede cobrar intereses según el plan"
+    fuente:
+      url: "https://www.amazon.com.mx/b?node=120273989011"
+      snapshot: snapshots/black-friday-2026/comercio-amazon-bancos/20261126-155155.txt
+      capturada: 2026-11-26
+      revisada: false
+      verificacion: {por: agente, fecha: 2026-11-26, resultado: coincide, notas: "Ventana de Kueski en la página de promociones bancarias, con sus T&C: $200 al acumular desde $2,000, del 26 al 30 nov."}
+      evidencia: "Del 26 al 30 de noviembre de 2026, podrás llevarte $200.00 M.N. (doscientos pesos 00/100) de descuento al acumular desde $2,000.00 M.N."
