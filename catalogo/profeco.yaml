@@ -1,0 +1,12 @@
+# Canales de Profeco que valen para cualquier evento. La web los muestra en la tarjeta
+# "Antes y después de pagar". Revisa los datos cada evento y actualiza `fuente.revisada`.
+telefono:
+  nacional: "800 468 8722"
+  cdmx: "55 5568 8722"
+  horario: "lunes a viernes de 9:00 a 19:00; sábados, domingos y festivos de 10:00 a 18:00"
+concilianet: https://concilianet.profeco.gob.mx/
+oficinas: https://www.gob.mx/profeco/acciones-y-programas/oficinas-de-defensa-del-consumidor-en-el-pais
+comparador: https://qqp.profeco.gob.mx/
+fuente:
+  url: https://concilianet.profeco.gob.mx/
+  revisada: 2026-11-26

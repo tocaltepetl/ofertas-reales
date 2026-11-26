@@ -1,10 +1,11 @@
 /** Interfaz web: usa el mismo motor que la CLI, con el catálogo compilado a JSON. */
 import type { Catalogo } from "../src/catalogo.ts";
-import type { Emisor, Comercio, Evento, Promocion, Producto, Atributo } from "../src/esquema.ts";
+import type { Emisor, Comercio, Evento, Promocion, Producto, Atributo, Profeco } from "../src/esquema.ts";
 import { evaluar, ordenar, mejoresPorInstrumento, type Opcion, type Criterio, type Resultado } from "../src/motor.ts";
 import { almacenNavegador, cargarPerfil, guardarPerfil, cargarEstadoEvento, guardarEstadoEvento, migrarV1, cargarUltimaVista, guardarUltimaVista, borrarDatos, type Perfil, type EstadoEvento } from "./estado.ts";
 import { ordenarEmisores } from "./cartera.ts";
 import { hoyEn, agenda, diasDe, diaInicial, categoriasDe, textoFase, faseDe } from "./eventos.ts";
+import { htmlProfeco, comparadorDe } from "./profeco.ts";
 import { mesesCalendario, carriles, eventosDelDia, vistaAlEntrar, indicesDeColor, icsDeEvento, VISTA_CALENDARIO } from "./calendario.ts";
 
 /** true en el build para artefacto de claude.ai, donde el visor bloquea las descargas (lo define esbuild). */
@@ -22,6 +23,7 @@ interface CatalogoJSON {
   comercios: Comercio[];
   eventos: Evento[];
   promociones: Record<string, Promocion[]>;
+  profeco?: Profeco;
 }
 
 const $ = (n: number) => "$" + Math.round(n).toLocaleString("es-MX");
@@ -193,6 +195,18 @@ async function main() {
         : "";
   }
 
+  function pintarProfeco() {
+    const fase = faseDe(ev, hoy);
+    const html = htmlProfeco(ev, j.profeco, fase, esc);
+    el("profeco").hidden = !html;
+    el("profeco").innerHTML = html;
+    el("ir-profeco-caja").hidden = !html;
+    el("ir-profeco").textContent = ev.profeco?.balance ? "Ve las ofertas reales y simuladas que encontró Profeco ↓" : "Antes de pagar: compara el precio con Profeco ↓";
+    const comparador = comparadorDe(ev, j.profeco, fase);
+    el("nota-precio").hidden = !comparador;
+    if (comparador) el("nota-precio").innerHTML = `¿El precio es real? <a href="${esc(comparador)}" target="_blank" rel="noopener">Compáralo en Profeco</a> antes de pagar.`;
+  }
+
   function pintarVacio() {
     const fase = faseDe(ev, hoy);
     const conPromos = j.eventos.filter((e) => tienePromos(e.id));
@@ -215,9 +229,10 @@ async function main() {
     comerciosConPromos = [...new Set(promos.map((p) => p.comercio))];
     el("titulo-evento").textContent = ev.nombre;
     el("subtitulo").textContent = `${rango(ev)} · ${resumenPromos(ev)}${promos.length ? ` · catálogo del ${fechaCorta(hoyEn(ZONA, new Date(j.generado)))}` : ""}`;
-    document.title = `${ev.nombre} · Buscador de promociones`;
+    document.title = `${ev.nombre} · Ofertas reales`;
     el("nombre-evento").textContent = ev.nombre;
     pintarAviso();
+    pintarProfeco();
 
     el("evento-vacio").hidden = promos.length > 0;
     el("calculadora").hidden = !promos.length;
@@ -246,7 +261,7 @@ async function main() {
     el("vista-calendario").hidden = vista !== VISTA_CALENDARIO;
     el("vista-evento").hidden = vista === VISTA_CALENDARIO;
     if (vista === VISTA_CALENDARIO) {
-      document.title = "Calendario · Buscador de promociones";
+      document.title = "Calendario · Ofertas reales";
       pintarCalendario();
     } else {
       abrirEvento(vista);
@@ -272,6 +287,8 @@ async function main() {
     b.onclick = () => { P.criterio = b.dataset.c as Criterio; document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("on", x === b)); actualizar(); };
   });
   const marcarTodas = (v: boolean) => { for (const k in P.tengo) P.tengo[k] = v; P.carteraElegida = true; pintarCartera(); actualizar(); };
+  // Con botón y no con #profeco: el hash de la URL elige el evento
+  el("ir-profeco").onclick = () => el("profeco").scrollIntoView({ behavior: "smooth", block: "start" });
   el("todo").onclick = () => marcarTodas(true);
   el("nada").onclick = () => marcarTodas(false);
   buscar.oninput = () => filtrarCartera();

@@ -10,7 +10,7 @@
 
 Puedes copiar, adaptar y redistribuir el catálogo, también con fines comerciales, siempre que:
 
-- **Des crédito:** "Buscador de promociones y colaboradores", con un enlace a este repositorio.
+- **Des crédito:** "Ofertas reales (tocaltepetl) y colaboradores", con un enlace a este repositorio.
 - **Compartas igual:** si publicas el catálogo modificado o una obra derivada de él, debe ir bajo CC BY-SA 4.0 o una licencia compatible.
 
 Las promociones son hechos publicados por bancos y comercios. Lo que se licencia es su selección, estructura y verificación, es decir, el trabajo de la comunidad.

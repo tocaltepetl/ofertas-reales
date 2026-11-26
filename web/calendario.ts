@@ -136,7 +136,7 @@ export function icsDeEvento(ev: Evento, url: string, ahora: Date): string {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Buscador de promociones//ES",
+    "PRODID:-//tocaltepetl//Ofertas reales//ES",
     "CALSCALE:GREGORIAN",
     "BEGIN:VEVENT",
     `UID:${ev.id}@buscador-promociones`,

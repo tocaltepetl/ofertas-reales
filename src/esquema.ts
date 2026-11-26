@@ -58,6 +58,50 @@ export const Comercio = z.object({
 });
 export const Comercios = z.object({ comercios: z.array(Comercio) });
 
+// ---------- Profeco ----------
+/**
+ * Un caso del monitoreo de precios de Profeco: lo que costaba un producto en una tienda antes del
+ * evento y lo que costó durante. Si `durante` es mayor que `antes`, la "oferta" era simulada.
+ */
+export const CasoProfeco = z.object({
+  /** la tienda como la nombra Profeco, con su sucursal */
+  tienda: z.string(),
+  /** id del comercio en comercios.yaml, si está en el catálogo */
+  comercio: Id.optional(),
+  producto: z.string(),
+  antes: z.number().positive(),
+  durante: z.number().positive(),
+});
+
+/** Lo que Profeco publicó sobre un evento: su comparador de precios y su balance al terminar. */
+export const ProfecoEvento = z.object({
+  /** micrositio de Quién es Quién en los Precios para el evento */
+  comparador: z.string().url().optional(),
+  balance: z
+    .object({
+      titulo: z.string(),
+      url: z.string().url(),
+      fecha: Fecha,
+      /** qué monitoreó Profeco (productos, tiendas, periodo), en una o dos frases */
+      resumen: z.string(),
+      casos: z.array(CasoProfeco).default([]),
+    })
+    .optional(),
+});
+
+/** Canales de Profeco que valen para cualquier evento (catalogo/profeco.yaml). */
+export const Profeco = z.object({
+  telefono: z.object({ nacional: z.string(), cdmx: z.string(), horario: z.string() }),
+  /** conciliación en línea, solo con los proveedores que participan */
+  concilianet: z.string().url(),
+  /** directorio de oficinas de defensa del consumidor */
+  oficinas: z.string().url(),
+  /** Quién es Quién en los Precios */
+  comparador: z.string().url(),
+  /** de dónde salieron los datos y cuándo se revisaron */
+  fuente: z.object({ url: z.string().url(), revisada: Fecha }),
+});
+
 export const Evento = z.object({
   id: Id,
   nombre: z.string(),
@@ -65,6 +109,7 @@ export const Evento = z.object({
   hasta: Fecha,
   zona_horaria: z.string().default("America/Mexico_City"),
   sitio: z.string().url().optional(),
+  profeco: ProfecoEvento.optional(),
 });
 
 // ---------- Promociones ----------
@@ -215,3 +260,5 @@ export type Tramo = z.infer<typeof Tramo>;
 export type Beneficio = z.infer<typeof Beneficio>;
 export type Promocion = z.infer<typeof Promocion>;
 export type Certeza = z.infer<typeof Certeza>;
+export type Profeco = z.infer<typeof Profeco>;
+export type CasoProfeco = z.infer<typeof CasoProfeco>;

@@ -1,5 +1,5 @@
 blank_issues_enabled: true
 contact_links:
   - name: Lista de promociones pendientes de confirmar
-    url: https://github.com/OWNER/REPO/blob/main/docs/pendientes.md
+    url: https://github.com/tocaltepetl/ofertas-reales/blob/main/docs/pendientes.md
     about: Antes de abrir un issue, mira qué le falta a cada promo dudosa.

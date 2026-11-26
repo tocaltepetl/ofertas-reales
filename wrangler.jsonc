@@ -1,0 +1,14 @@
+// Configuración de Cloudflare Workers: solo archivos estáticos (sin código de servidor).
+// Sirve web/dist/, que genera `npm run build:web`. Lo usan los workflows de GitHub Actions;
+// no hace falta correrlo a mano. Ver docs/decisiones.md («Despliegue»).
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "ofertas-reales",
+	"compatibility_date": "2026-11-26",
+	"assets": {
+		"directory": "./web/dist" // solo esta carpeta se publica
+	},
+	"routes": [
+		{ "pattern": "ofertas-reales.tocaltepetl.org", "custom_domain": true }
+	]
+}
