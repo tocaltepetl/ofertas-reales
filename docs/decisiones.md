@@ -109,3 +109,15 @@ servidor) que sirve `web/dist/`, generado en el workflow con
 
 ### Pendiente
 - Agregar el proyecto a `profile/README.md` de `.github`.
+
+## 2026-11-26: cuenta de Internet Archive para los respaldos
+
+Save Page Now anónimo a veces devuelve una captura vieja sin avisar, y
+`archivar.py` lo deducía de la redirección. Se creó una cuenta de archive.org,
+y el script usa la API autenticada
+(SPN2) cuando encuentra las llaves: pide la captura, recibe un `job_id` y
+consulta el estado hasta tener la fecha exacta. Las llaves viven fuera del repo
+(`~/.config/tocaltepetl/ia.env` o variables de entorno). Solo se piden capturas
+de páginas públicas; no se suben a archive.org los archivos de `snapshots/`,
+que son de sus titulares y se guardan solo como evidencia.
+
