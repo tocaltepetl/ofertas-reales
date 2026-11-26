@@ -107,6 +107,15 @@ servidor) que sirve `web/dist/`, generado en el workflow con
   debe dar 200, y `curl -s https://ofertas-reales.tocaltepetl.org | grep cloudflareinsights`
   debe encontrar el beacon (los Workers con assets no lo inyectan solos).
 
+### Primer despliegue (2026-11-26, manual)
+Black Friday empezaba al día siguiente y Actions no corría en el repo (0
+corridas) ni existía aún el secreto `CLOUDFLARE_API_TOKEN`. Se publicó a mano
+con `wrangler deploy` desde la rama `captura-black-friday-26nov` (versión
+`pre-5a73308`, que incluye los PR #1 y #2 sin fusionar), sin la aprobación de
+`production`. Verificado: la página, `og.png`, `favicon.svg` y
+`catalogo.json` dan 200 y el beacon está en la página. Las siguientes
+publicaciones deben pasar por `release.yml` o `desplegar.yml`.
+
 ### Pendiente
 - Agregar el proyecto a `profile/README.md` de `.github`.
 
