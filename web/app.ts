@@ -229,7 +229,7 @@ async function main() {
     comerciosConPromos = [...new Set(promos.map((p) => p.comercio))];
     el("titulo-evento").textContent = ev.nombre;
     el("subtitulo").textContent = `${rango(ev)} · ${resumenPromos(ev)}${promos.length ? ` · catálogo del ${fechaCorta(hoyEn(ZONA, new Date(j.generado)))}` : ""}`;
-    document.title = `${ev.nombre} · Buscador de promociones`;
+    document.title = `${ev.nombre} · Ofertas reales`;
     el("nombre-evento").textContent = ev.nombre;
     pintarAviso();
     pintarProfeco();
@@ -261,7 +261,7 @@ async function main() {
     el("vista-calendario").hidden = vista !== VISTA_CALENDARIO;
     el("vista-evento").hidden = vista === VISTA_CALENDARIO;
     if (vista === VISTA_CALENDARIO) {
-      document.title = "Calendario · Buscador de promociones";
+      document.title = "Calendario · Ofertas reales";
       pintarCalendario();
     } else {
       abrirEvento(vista);

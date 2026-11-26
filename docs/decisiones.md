@@ -58,6 +58,15 @@ son suyos); falta confirmar el nombre exacto en el catálogo de la PNT. Buscar
 «"Quién es Quién en los Precios"» no sirvió: el buscador lo trata como palabras
 sueltas (9.9 millones de resultados).
 
+### Nombre: ofertas-reales
+Empezó como `buenfin`. Se cambió porque el catálogo ya cubre otros eventos
+(Black Friday, Hot Sale), porque «El Buen Fin» es el nombre de un programa
+ajeno y podía sugerir afiliación, y porque no decía lo que aporta. «Ofertas
+reales» es el término de Profeco («ofertas reales y simuladas») y abarca las
+dos partes: si la oferta es real y con qué conviene pagarla. Las claves de
+`localStorage` (`buscador-promos-*`) y el UID del `.ics` se conservan para no
+perder lo guardado ni duplicar eventos en calendarios.
+
 ### Cómo se modeló
 - `catalogo/profeco.yaml`: canales que valen para cualquier evento, con su
   fuente y la fecha en que se revisaron.
@@ -77,7 +86,6 @@ para artefacto de claude.ai no lo lleva (`scripts/build-web.ts`): esas visitas
 no son del sitio y el visor bloquea scripts externos.
 
 ### Pendiente para publicar
-- Crear `tocaltepetl/buenfin` en GitHub y subir con la cuenta `tocaltepetl-dev`.
-- Decidir el despliegue: `buenfin.tocaltepetl.org` (Worker con assets, como
+- Decidir el despliegue: `ofertas-reales.tocaltepetl.org` (Worker con assets, como
   rutas-gdl, con `release.yml` y `desplegar.yml`) o seguir solo como artefacto.
 - Si se agrega `og.png`, revisar el `.gitignore` (hoy no excluye `*.png`).
